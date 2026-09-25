@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/junk-removal-tacoma",
+      "destination": "/tacoma"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

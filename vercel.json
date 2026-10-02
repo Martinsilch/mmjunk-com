@@ -25,7 +25,7 @@
   ],
   "headers": [
     {
-      "source": "/(llms.txt|llms-full.txt|llms-workflows.txt|llm-examples.md|knowledge/(.*)|humans.txt)",
+      "source": "/llms.txt",
       "headers": [
         {
           "key": "Content-Type",
@@ -33,7 +33,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, stale-while-revalidate=3600"
+          "value": "public, max-age=3600, stale-while-revalidate=3600"
         },
         {
           "key": "Access-Control-Allow-Origin",
@@ -42,7 +42,101 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/llms-full.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/llms-workflows.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/llm-examples.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/knowledge/:match*",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/humans.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/security.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/assets/:match*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -51,7 +145,7 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "/:match*",
       "headers": [
         {
           "key": "X-Content-Type-Options",

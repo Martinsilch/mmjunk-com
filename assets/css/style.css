@@ -72,6 +72,10 @@ img {
   display: block;
 }
 
+svg {
+  max-width: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -288,6 +292,14 @@ button {
   border-radius: var(--radius-md);
 }
 
+.btn--xl {
+  padding: 18px 34px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
+}
+
 .btn--primary {
   background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
   color: #fff;
@@ -322,6 +334,21 @@ button {
   background: rgba(255, 255, 255, 0.2);
   border-color: #fff;
   transform: translateY(-2px);
+}
+
+.btn--outline-light {
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+.btn--outline-light:hover {
+  background: #ffffff;
+  color: #0f172a !important;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .btn--outline-dark {
@@ -864,68 +891,70 @@ button {
   text-decoration: underline;
 }
 
-/* Reviews Multi-Platform Triad */
-.reviews-triad {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 14px;
-  max-width: 960px;
-  margin: 0 auto 36px;
-}
-
-@media (min-width: 640px) {
-  .reviews-triad {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .reviews-triad {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.reviews-triad__item {
+/* Compact Multi-Platform Trust Ribbon */
+.trust-ribbon {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
+  max-width: 980px;
+  margin: 0 auto 32px;
+  padding: 0 16px;
+}
+
+.trust-ribbon__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 7px 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.reviews-triad__item:hover {
-  transform: translateY(-2px);
-  border-color: #cbd5e1;
-  box-shadow: var(--shadow-md);
-}
-
-.reviews-triad__icon {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-}
-
-.reviews-triad__score {
-  font-size: 0.95rem;
-  font-weight: 800;
+.trust-ribbon__pill:hover {
+  transform: translateY(-1px);
+  border-color: #ea580c;
   color: #0f172a;
-  line-height: 1.2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
-.reviews-triad__meta {
-  font-size: 0.75rem;
-  color: #64748b;
-  line-height: 1.3;
+.trust-ribbon__pill svg {
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  flex-shrink: 0;
+  display: block;
 }
 
-.reviews-triad__item--badge {
+.trust-ribbon__pill strong {
+  color: #ea580c;
+  font-weight: 700;
+}
+
+.trust-ribbon__pill--badge {
   background: #f8fafc;
+}
+
+.trust-ribbon__badge-tag {
+  background: #ecfdf5;
+  color: #16a34a;
+  border: 1px solid #a7f3d0;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 0.72rem;
+  line-height: 1;
 }
 
 /* Job Scope Badges */

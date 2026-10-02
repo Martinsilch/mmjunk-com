@@ -31,84 +31,120 @@
 
   <!-- Connected Schema.org Graph: LocalBusiness + Service + AchieveAction + Review -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/commercial-appliance-removal/#service",
+      "name": "Commercial Appliance Removal",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    },
+    {
+      "@type": "AchieveAction",
+      "@id": "https://www.mmjunk.com/jobs/federal-way-commercial-refrigerator-extraction/#action",
+      "name": "Commercial Kitchen Refrigerator Extraction & EPA Freon Evacuation",
+      "agent": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "endTime": "2026-09-25",
+      "location": {
+        "@type": "Place",
+        "name": "ANKO BAKE Restaurant Kitchen",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "320th St",
           "addressLocality": "Federal Way",
           "addressRegion": "WA",
           "postalCode": "98003",
           "addressCountry": "US"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.3093,
+          "longitude": -122.324
         }
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/commercial-appliance-removal/#service",
-        "name": "Commercial Appliance Removal",
-        "provider": { "@id": "https://www.mmjunk.com/#business" }
-      },
-      {
-        "@type": "AchieveAction",
-        "@id": "https://www.mmjunk.com/jobs/federal-way-commercial-refrigerator-extraction/#action",
-        "name": "Commercial Kitchen Refrigerator Extraction & EPA Freon Evacuation",
-        "agent": { "@id": "https://www.mmjunk.com/#business" },
-        "endTime": "2026-09-25",
-        "location": {
-          "@type": "Place",
-          "name": "ANKO BAKE Restaurant Kitchen",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Federal Way",
-            "addressRegion": "WA",
-            "postalCode": "98003",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 47.3093,
-            "longitude": -122.3240
-          }
+      "result": {
+        "@type": "Review",
+        "@id": "https://www.mmjunk.com/#review-ankobake",
+        "url": "https://share.google/iCe2bBpzwVtm8vV66",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Google",
+          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
         },
-        "result": {
-          "@type": "Review",
-          "@id": "https://www.mmjunk.com/#review-ankobake",
-          "url": "https://share.google/iCe2bBpzwVtm8vV66",
-          "publisher": {
-            "@type": "Organization",
-            "name": "Google",
-            "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "ANKO BAKE"
-          },
-          "datePublished": "2026-09-25",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "M&M Junk Removal did an exceptional job clearing out our restaurant equipment in Federal Way! As a local restaurant owner, I needed three heavy commercial refrigerators hauled away and properly disposed of. I called Martin, and he gave me a fair flat-rate quote with zero runaround. He showed up on time, carefully navigated tight kitchen doors without scratching anything, and loaded everything quickly. Professional, honest, and reliable. Highly recommend M&M Junk Removal for any commercial or business cleanouts!"
-        }
+        "author": {
+          "@type": "Person",
+          "name": "ANKO BAKE"
+        },
+        "datePublished": "2026-09-25",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "M&M Junk Removal did an exceptional job clearing out our restaurant equipment in Federal Way! As a local restaurant owner, I needed three heavy commercial refrigerators hauled away and properly disposed of. I called Martin, and he gave me a fair flat-rate quote with zero runaround. He showed up on time, carefully navigated tight kitchen doors without scratching anything, and loaded everything quickly. Professional, honest, and reliable. Highly recommend M&M Junk Removal for any commercial or business cleanouts!"
       }
-    ]
-  }
+    }
+  ]
+}
   </script>
 </head>
 <body>

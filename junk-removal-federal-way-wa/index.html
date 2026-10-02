@@ -57,153 +57,210 @@
 
   <!-- Localized Schema.org JSON-LD (Pillar 1: Entity Disambiguation) -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-        "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#business",
-        "name": "M&M Junk Removal - Federal Way",
-        "parentOrganization": {
-          "@type": "LocalBusiness",
-          "name": "M&M Junk Removal",
-          "url": "https://www.mmjunk.com"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness"
+      ],
+      "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#business",
+      "name": "M&M Junk Removal - Federal Way",
+      "parentOrganization": {
+        "@type": "LocalBusiness",
+        "name": "M&M Junk Removal",
+        "url": "https://www.mmjunk.com"
+      },
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com/junk-removal-federal-way-wa/",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "image": "https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png",
+      "priceRange": "$$",
+      "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
+      "currenciesAccepted": "USD",
+      "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
+      "founder": {
+        "@type": "Person",
+        "name": "Martin Silch"
+      },
+      "foundingDate": "2007",
+      "sameAs": [
+        "https://www.google.com/maps?cid=15999711673070107161",
+        "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
+        "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
+        "https://www.facebook.com/mmjunkremoval/",
+        "https://amzy.me/?utm_content=4"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.3093,
+        "longitude": -122.324
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
         },
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com/junk-removal-federal-way-wa/",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "image": "https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png",
-        "priceRange": "$$",
-        "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
-        "currenciesAccepted": "USD",
-        "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
-        "founder": {
-          "@type": "Person",
-          "name": "Martin Silch"
-        },
-        "foundingDate": "2007",
-        "sameAs": [
-          "https://www.google.com/maps?cid=15999711673070107161",
-          "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
-          "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
-          "https://www.facebook.com/mmjunkremoval/",
-          "https://amzy.me/?utm_content=4"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 47.3093,
-          "longitude": -122.3240
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "18:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Saturday", "Sunday"],
-            "opens": "09:00",
-            "closes": "16:00"
-          }
-        ],
-        "areaServed": [
-          {
-            "@type": "City",
-            "name": "Federal Way",
-            "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
-          },
-          { "@type": "PostalCode", "postalCode": "98003" },
-          { "@type": "PostalCode", "postalCode": "98023" },
-          { "@type": "PostalCode", "postalCode": "98063" },
-          { "@type": "PostalCode", "postalCode": "98093" }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Federal Way Junk Removal Services",
-          "itemListElement": [
-            {
-              "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#service"
-            }
-          ]
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "09:00",
+          "closes": "16:00"
         }
-      },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#service",
-        "name": "Federal Way Residential & Commercial Junk Removal",
-        "serviceType": "Junk Removal & Hauling",
-        "provider": { "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#business" },
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "95.00",
-            "priceCurrency": "USD",
-            "description": "Federal Way baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
-          }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98003"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98023"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98063"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98093"
         }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#review",
-        "url": "https://www.google.com/maps?cid=15999711673070107161",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Christine & Brian Frye"
-        },
-        "datePublished": "2026-07-20",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "We had two days before movers were coming to our Federal Way home for our cross country move and had a LOT of garbage. Martin quickly returned my call, showed up on time the next morning, and filled his truck. Yet his price was way less than what others quoted. Great communication, great guy, great service!",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#business" }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#faq",
-        "mainEntity": [
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Federal Way Junk Removal Services",
+        "itemListElement": [
           {
-            "@type": "Question",
-            "name": "How quickly can M&M Junk Removal arrive in Federal Way?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Because our home base is right here in Federal Way (98003/98023), our trucks are often available for dispatch within 60 to 90 minutes when you call before 1:00 PM PST."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Where does junk from Federal Way get taken?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We actively sort items for local charity donation in South King County and scrap metal reclamation. Residual materials are legally transported to King County's Algona Transfer Station or Bow Lake Recycling Center."
-            }
+            "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#service"
           }
         ]
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#service",
+      "name": "Federal Way Residential & Commercial Junk Removal",
+      "serviceType": "Junk Removal & Hauling",
+      "provider": {
+        "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#business"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "95.00",
+          "priceCurrency": "USD",
+          "description": "Federal Way baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
+        },
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#review",
+      "url": "https://www.google.com/maps?cid=15999711673070107161",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Christine & Brian Frye"
+      },
+      "datePublished": "2026-07-20",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "We had two days before movers were coming to our Federal Way home for our cross country move and had a LOT of garbage. Martin quickly returned my call, showed up on time the next morning, and filled his truck. Yet his price was way less than what others quoted. Great communication, great guy, great service!",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#business"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.mmjunk.com/junk-removal-federal-way-wa/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How quickly can M&M Junk Removal arrive in Federal Way?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because our home base is right here in Federal Way (98003/98023), our trucks are often available for dispatch within 60 to 90 minutes when you call before 1:00 PM PST."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where does junk from Federal Way get taken?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We actively sort items for local charity donation in South King County and scrap metal reclamation. Residual materials are legally transported to King County's Algona Transfer Station or Bow Lake Recycling Center."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>

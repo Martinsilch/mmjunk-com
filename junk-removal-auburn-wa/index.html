@@ -57,148 +57,205 @@
 
   <!-- Localized Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-        "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#business",
-        "name": "M&M Junk Removal - Auburn",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com/junk-removal-auburn-wa/",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "image": "https://www.mmjunk.com/assets/images/Auburn%20Junk%20Removal.png",
-        "priceRange": "$$",
-        "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
-        "currenciesAccepted": "USD",
-        "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
-        "founder": {
-          "@type": "Person",
-          "name": "Martin Silch"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness"
+      ],
+      "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#business",
+      "name": "M&M Junk Removal - Auburn",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com/junk-removal-auburn-wa/",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "image": "https://www.mmjunk.com/assets/images/Auburn%20Junk%20Removal.png",
+      "priceRange": "$$",
+      "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
+      "currenciesAccepted": "USD",
+      "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
+      "founder": {
+        "@type": "Person",
+        "name": "Martin Silch"
+      },
+      "foundingDate": "2007",
+      "sameAs": [
+        "https://www.google.com/maps?cid=15999711673070107161",
+        "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
+        "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
+        "https://www.facebook.com/mmjunkremoval/",
+        "https://amzy.me/?utm_content=4"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Auburn",
+        "addressRegion": "WA",
+        "postalCode": "98001",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.3073,
+        "longitude": -122.2284
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
         },
-        "foundingDate": "2007",
-        "sameAs": [
-          "https://www.google.com/maps?cid=15999711673070107161",
-          "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
-          "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
-          "https://www.facebook.com/mmjunkremoval/",
-          "https://amzy.me/?utm_content=4"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Auburn",
-          "addressRegion": "WA",
-          "postalCode": "98001",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 47.3073,
-          "longitude": -122.2284
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "18:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Saturday", "Sunday"],
-            "opens": "09:00",
-            "closes": "16:00"
-          }
-        ],
-        "areaServed": [
-          {
-            "@type": "City",
-            "name": "Auburn",
-            "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
-          },
-          { "@type": "PostalCode", "postalCode": "98001" },
-          { "@type": "PostalCode", "postalCode": "98002" },
-          { "@type": "PostalCode", "postalCode": "98092" },
-          { "@type": "PostalCode", "postalCode": "98047" }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Auburn Junk Removal Services",
-          "itemListElement": [
-            {
-              "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#service"
-            }
-          ]
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "09:00",
+          "closes": "16:00"
         }
-      },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#service",
-        "name": "Auburn Residential & Contractor Junk Hauling",
-        "serviceType": "Junk Removal & Demolition",
-        "provider": { "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#business" },
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "95.00",
-            "priceCurrency": "USD",
-            "description": "Auburn baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
-          }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98001"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98002"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98092"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98047"
         }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#review",
-        "url": "https://www.google.com/maps?cid=15999711673070107161",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Erin Davis"
-        },
-        "datePublished": "2026-08-05",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "Martin and his crew were great! We called Martin one afternoon and he was here the next day and efficiently hauled away a broken down playset and playhouse. We appreciated how easy it was to coordinate, how quickly Martin could help, how clean the space was left, and that it was so reasonably priced!",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#business" }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#faq",
-        "mainEntity": [
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Auburn Junk Removal Services",
+        "itemListElement": [
           {
-            "@type": "Question",
-            "name": "Do you offer same-day junk hauling in Auburn, WA?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes! We dispatch 16-foot box trucks daily throughout Auburn, Lea Hill, Lakeland Hills, and West Hill. Book before 1:00 PM PST or call (253) 886-7724 for same-day service."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can M&M Junk Removal haul concrete and heavy yard waste in Auburn?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Our commercial box trucks are rated up to 4.5 tons payload. We safely haul dense concrete, gravel, sod, and downed tree branches."
-            }
+            "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#service"
           }
         ]
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#service",
+      "name": "Auburn Residential & Contractor Junk Hauling",
+      "serviceType": "Junk Removal & Demolition",
+      "provider": {
+        "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#business"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "95.00",
+          "priceCurrency": "USD",
+          "description": "Auburn baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
+        },
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#review",
+      "url": "https://www.google.com/maps?cid=15999711673070107161",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Erin Davis"
+      },
+      "datePublished": "2026-08-05",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Martin and his crew were great! We called Martin one afternoon and he was here the next day and efficiently hauled away a broken down playset and playhouse. We appreciated how easy it was to coordinate, how quickly Martin could help, how clean the space was left, and that it was so reasonably priced!",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#business"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.mmjunk.com/junk-removal-auburn-wa/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you offer same-day junk hauling in Auburn, WA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! We dispatch 16-foot box trucks daily throughout Auburn, Lea Hill, Lakeland Hills, and West Hill. Book before 1:00 PM PST or call (253) 886-7724 for same-day service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can M&M Junk Removal haul concrete and heavy yard waste in Auburn?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Our commercial box trucks are rated up to 4.5 tons payload. We safely haul dense concrete, gravel, sod, and downed tree branches."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>

@@ -106,7 +106,35 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           '@type': 'City',
           'name': cityName,
           'sameAs': wikidataUri
-        }
+        },
+        'potentialAction': [
+          {
+            '@type': 'ReserveAction',
+            'name': `Book Junk Removal in ${cityName} via AMZY`,
+            'target': {
+              '@type': 'EntryPoint',
+              'urlTemplate': AMZY_BOOKING_URL,
+              'inLanguage': 'en-US',
+              'actionPlatform': [
+                'http://schema.org/DesktopWebPlatform',
+                'http://schema.org/MobileWebPlatform'
+              ]
+            },
+            'result': {
+              '@type': 'Reservation',
+              'name': `Online Service Booking for ${cityName}, WA`
+            }
+          },
+          {
+            '@type': 'ScheduleAction',
+            'name': `Schedule Online Pickup in ${cityName}`,
+            'target': {
+              '@type': 'EntryPoint',
+              'urlTemplate': AMZY_BOOKING_URL,
+              'inLanguage': 'en-US'
+            }
+          }
+        ]
       },
       ...jobs.map((job) => ({
         '@type': 'AchieveAction',

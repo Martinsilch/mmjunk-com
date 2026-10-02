@@ -31,41 +31,73 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "CollectionPage",
-        "@id": "https://www.mmjunk.com/jobs/#collection",
-        "name": "M&M Junk Removal Field Operations & Telemetry Log",
-        "description": "Chronological repository of verified completed hauling, demolition, and recycling actions across South Puget Sound.",
-        "url": "https://www.mmjunk.com/jobs/"
-      }
-    ]
-  }
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.mmjunk.com/jobs/#collection",
+      "name": "M&M Junk Removal Field Operations & Telemetry Log",
+      "description": "Chronological repository of verified completed hauling, demolition, and recycling actions across South Puget Sound.",
+      "url": "https://www.mmjunk.com/jobs/"
+    }
+  ]
+}
   </script>
 </head>
 <body>

@@ -31,84 +31,120 @@
 
   <!-- Connected Schema.org Graph: LocalBusiness + Service + AchieveAction + Review -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/residential-furniture-removal/#service",
+      "name": "Residential Furniture & Bulky Item Removal",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    },
+    {
+      "@type": "AchieveAction",
+      "@id": "https://www.mmjunk.com/jobs/federal-way-heavy-treadmill-disassembly/#action",
+      "name": "Heavy Treadmill Disassembly & Narrow Staircase Extraction",
+      "agent": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "endTime": "2026-09-29",
+      "location": {
+        "@type": "Place",
+        "name": "Federal Way Private Residence",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "320th St",
           "addressLocality": "Federal Way",
           "addressRegion": "WA",
           "postalCode": "98003",
           "addressCountry": "US"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.3093,
+          "longitude": -122.324
         }
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/residential-furniture-removal/#service",
-        "name": "Residential Furniture & Bulky Item Removal",
-        "provider": { "@id": "https://www.mmjunk.com/#business" }
-      },
-      {
-        "@type": "AchieveAction",
-        "@id": "https://www.mmjunk.com/jobs/federal-way-heavy-treadmill-disassembly/#action",
-        "name": "Heavy Treadmill Disassembly & Narrow Staircase Extraction",
-        "agent": { "@id": "https://www.mmjunk.com/#business" },
-        "endTime": "2026-09-29",
-        "location": {
-          "@type": "Place",
-          "name": "Federal Way Private Residence",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Federal Way",
-            "addressRegion": "WA",
-            "postalCode": "98003",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 47.3093,
-            "longitude": -122.3240
-          }
+      "result": {
+        "@type": "Review",
+        "@id": "https://www.mmjunk.com/#review-sj",
+        "url": "https://share.google/biQmq7QXeKyGy8FrX",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Google",
+          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
         },
-        "result": {
-          "@type": "Review",
-          "@id": "https://www.mmjunk.com/#review-sj",
-          "url": "https://share.google/biQmq7QXeKyGy8FrX",
-          "publisher": {
-            "@type": "Organization",
-            "name": "Google",
-            "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "S J"
-          },
-          "datePublished": "2026-09-29",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "Martin gave me a fair quote (way less than the big franchises) and showed up just an hour after I called him. He was courteous, competent, and cheerfully worked really hard to get my extra heavy treadmill disassembled so it would fit through the door. Really impressed with his work ethic and communication. Would hire him again in a heartbeat!"
-        }
+        "author": {
+          "@type": "Person",
+          "name": "S J"
+        },
+        "datePublished": "2026-09-29",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Martin gave me a fair quote (way less than the big franchises) and showed up just an hour after I called him. He was courteous, competent, and cheerfully worked really hard to get my extra heavy treadmill disassembled so it would fit through the door. Really impressed with his work ethic and communication. Would hire him again in a heartbeat!"
       }
-    ]
-  }
+    }
+  ]
+}
   </script>
 </head>
 <body>

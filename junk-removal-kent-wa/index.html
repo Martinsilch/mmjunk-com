@@ -57,148 +57,205 @@
 
   <!-- Localized Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-        "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#business",
-        "name": "M&M Junk Removal - Kent",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com/junk-removal-kent-wa/",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "image": "https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png",
-        "priceRange": "$$",
-        "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
-        "currenciesAccepted": "USD",
-        "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
-        "founder": {
-          "@type": "Person",
-          "name": "Martin Silch"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness"
+      ],
+      "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#business",
+      "name": "M&M Junk Removal - Kent",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com/junk-removal-kent-wa/",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "image": "https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png",
+      "priceRange": "$$",
+      "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
+      "currenciesAccepted": "USD",
+      "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
+      "founder": {
+        "@type": "Person",
+        "name": "Martin Silch"
+      },
+      "foundingDate": "2007",
+      "sameAs": [
+        "https://www.google.com/maps?cid=15999711673070107161",
+        "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
+        "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
+        "https://www.facebook.com/mmjunkremoval/",
+        "https://amzy.me/?utm_content=4"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kent",
+        "addressRegion": "WA",
+        "postalCode": "98030",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.3809,
+        "longitude": -122.2348
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
         },
-        "foundingDate": "2007",
-        "sameAs": [
-          "https://www.google.com/maps?cid=15999711673070107161",
-          "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
-          "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
-          "https://www.facebook.com/mmjunkremoval/",
-          "https://amzy.me/?utm_content=4"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Kent",
-          "addressRegion": "WA",
-          "postalCode": "98030",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 47.3809,
-          "longitude": -122.2348
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "18:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Saturday", "Sunday"],
-            "opens": "09:00",
-            "closes": "16:00"
-          }
-        ],
-        "areaServed": [
-          {
-            "@type": "City",
-            "name": "Kent",
-            "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
-          },
-          { "@type": "PostalCode", "postalCode": "98030" },
-          { "@type": "PostalCode", "postalCode": "98031" },
-          { "@type": "PostalCode", "postalCode": "98032" },
-          { "@type": "PostalCode", "postalCode": "98042" }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Kent Junk Removal Services",
-          "itemListElement": [
-            {
-              "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#service"
-            }
-          ]
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "09:00",
+          "closes": "16:00"
         }
-      },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#service",
-        "name": "Kent Commercial & Residential Junk Removal",
-        "serviceType": "Junk Removal & Hauling",
-        "provider": { "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#business" },
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "95.00",
-            "priceCurrency": "USD",
-            "description": "Kent baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
-          }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Kent",
+          "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98030"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98031"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98032"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98042"
         }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#review",
-        "url": "https://www.google.com/maps?cid=15999711673070107161",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Audra Edmiston"
-        },
-        "datePublished": "2026-08-25",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "Martin was great and very affordable. I was getting estimates and was going to go with a big box style company. When I messaged Martin to let him know, he said he would beat their price and he definitely did that. We had a 4pc sectional couch, countertop, desk, and glass. They came in and were fast, affordable, and professional!",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#business" }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#faq",
-        "mainEntity": [
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Kent Junk Removal Services",
+        "itemListElement": [
           {
-            "@type": "Question",
-            "name": "Do you handle commercial warehouse and office cleanouts in Kent?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes! Kent Valley has extensive logistics and warehouse operations. We haul pallets, scrap packaging, office cubicles, retail fixtures, and light demolition debris with commercial invoice billing."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How quickly can M&M Junk Removal dispatch a truck in Kent, WA?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We offer same-day and next-day pickup throughout Kent East Hill, West Hill, and the Kent Valley. Call (253) 886-7724 before 1:00 PM PST for same-day dispatch."
-            }
+            "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#service"
           }
         ]
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#service",
+      "name": "Kent Commercial & Residential Junk Removal",
+      "serviceType": "Junk Removal & Hauling",
+      "provider": {
+        "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#business"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "95.00",
+          "priceCurrency": "USD",
+          "description": "Kent baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
+        },
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#review",
+      "url": "https://www.google.com/maps?cid=15999711673070107161",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Audra Edmiston"
+      },
+      "datePublished": "2026-08-25",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Martin was great and very affordable. I was getting estimates and was going to go with a big box style company. When I messaged Martin to let him know, he said he would beat their price and he definitely did that. We had a 4pc sectional couch, countertop, desk, and glass. They came in and were fast, affordable, and professional!",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#business"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.mmjunk.com/junk-removal-kent-wa/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you handle commercial warehouse and office cleanouts in Kent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Kent Valley has extensive logistics and warehouse operations. We haul pallets, scrap packaging, office cubicles, retail fixtures, and light demolition debris with commercial invoice billing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can M&M Junk Removal dispatch a truck in Kent, WA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We offer same-day and next-day pickup throughout Kent East Hill, West Hill, and the Kent Valley. Call (253) 886-7724 before 1:00 PM PST for same-day dispatch."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>

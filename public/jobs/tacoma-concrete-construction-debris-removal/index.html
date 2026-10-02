@@ -31,84 +31,120 @@
 
   <!-- Connected Schema.org Graph: LocalBusiness + Service + AchieveAction + Review -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/construction-debris-removal/#service",
-        "name": "Construction & Commercial Remodel Debris",
-        "provider": { "@id": "https://www.mmjunk.com/#business" }
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
       },
-      {
-        "@type": "AchieveAction",
-        "@id": "https://www.mmjunk.com/jobs/tacoma-concrete-construction-debris-removal/#action",
-        "name": "Heavy Concrete Slab Extraction, Masonry Removal & Aggregate Recycling",
-        "agent": { "@id": "https://www.mmjunk.com/#business" },
-        "endTime": "2026-08-05",
-        "location": {
-          "@type": "Place",
-          "name": "Tacoma Residential Remodel Site",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Tacoma",
-            "addressRegion": "WA",
-            "postalCode": "98402",
-            "addressCountry": "US"
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 47.2529,
-            "longitude": -122.4443
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
           }
         },
-        "result": {
-          "@type": "Review",
-          "@id": "https://www.mmjunk.com/#review-drewparis",
-          "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
-          "publisher": {
-            "@type": "Organization",
-            "name": "Google",
-            "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Drew Paris"
-          },
-          "datePublished": "2026-08-05",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "I had an excellent experience with Martin. He was quick to respond and offered me an excellent deal for what I needed to be hauled away. I had an assortment of concrete and heavy yard/ house waste materials that needed to be removed. His communication was awesome throughout and showed up on time and ready to work. He was fast and efficient and was prepared with the necessary tools to complete the job. Don't let the picture fool you, it was a lot of heavy concrete with some pieces that were approximately 400lbs each. I highly recommend him. He's a small business over fighting against the larger corporations and deserves a slice of the pie like everyone else. He's fair and has great pricing compared to his competitors. I will be using him in the future."
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/construction-debris-removal/#service",
+      "name": "Construction & Commercial Remodel Debris",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       }
-    ]
-  }
+    },
+    {
+      "@type": "AchieveAction",
+      "@id": "https://www.mmjunk.com/jobs/tacoma-concrete-construction-debris-removal/#action",
+      "name": "Heavy Concrete Slab Extraction, Masonry Removal & Aggregate Recycling",
+      "agent": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "endTime": "2026-08-05",
+      "location": {
+        "@type": "Place",
+        "name": "Tacoma Residential Remodel Site",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tacoma",
+          "addressRegion": "WA",
+          "postalCode": "98402",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.2529,
+          "longitude": -122.4443
+        }
+      },
+      "result": {
+        "@type": "Review",
+        "@id": "https://www.mmjunk.com/#review-drewparis",
+        "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Google",
+          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Drew Paris"
+        },
+        "datePublished": "2026-08-05",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "I had an excellent experience with Martin. He was quick to respond and offered me an excellent deal for what I needed to be hauled away. I had an assortment of concrete and heavy yard/ house waste materials that needed to be removed. His communication was awesome throughout and showed up on time and ready to work. He was fast and efficient and was prepared with the necessary tools to complete the job. Don't let the picture fool you, it was a lot of heavy concrete with some pieces that were approximately 400lbs each. I highly recommend him. He's a small business over fighting against the larger corporations and deserves a slice of the pie like everyone else. He's fair and has great pricing compared to his competitors. I will be using him in the future."
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

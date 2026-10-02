@@ -31,84 +31,149 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Federal Way", "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington" },
-          { "@type": "City", "name": "Auburn", "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington" },
-          { "@type": "City", "name": "Tacoma", "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington" },
-          { "@type": "City", "name": "Kent", "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington" }
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/residential/#service",
-        "name": "Residential Junk Removal Services",
-        "serviceType": "Residential Waste Hauling & Light Demolition",
-        "provider": { "@id": "https://www.mmjunk.com/#business" },
-        "description": "Comprehensive residential junk hauling, bulky furniture carryout, organic yard waste disposal, and backyard light demolition across South King and Pierce Counties.",
-        "hasPart": [
-          { "@type": "Service", "@id": "https://www.mmjunk.com/services/residential-furniture-removal/#service", "name": "Residential Furniture & Bulky Item Removal" },
-          { "@type": "Service", "@id": "https://www.mmjunk.com/services/yard-waste-removal/#service", "name": "Yard Waste Removal & Composting" },
-          { "@type": "Service", "@id": "https://www.mmjunk.com/services/hot-tub-demolition-removal/#service", "name": "Hot Tub, Shed & Light Demolition" }
-        ],
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "95.00",
-            "priceCurrency": "USD",
-            "description": "Curbside residential pickup minimum baseline"
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Tacoma",
+          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Kent",
+          "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
+        }
+      ],
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
           }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/residential/#service",
+      "name": "Residential Junk Removal Services",
+      "serviceType": "Residential Waste Hauling & Light Demolition",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/#review-hilarysmith",
-        "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      "description": "Comprehensive residential junk hauling, bulky furniture carryout, organic yard waste disposal, and backyard light demolition across South King and Pierce Counties.",
+      "hasPart": [
+        {
+          "@type": "Service",
+          "@id": "https://www.mmjunk.com/services/residential-furniture-removal/#service",
+          "name": "Residential Furniture & Bulky Item Removal"
         },
-        "author": {
-          "@type": "Person",
-          "name": "Hilary Smith"
+        {
+          "@type": "Service",
+          "@id": "https://www.mmjunk.com/services/yard-waste-removal/#service",
+          "name": "Yard Waste Removal & Composting"
         },
-        "datePublished": "2026-08-15",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
+        {
+          "@type": "Service",
+          "@id": "https://www.mmjunk.com/services/hot-tub-demolition-removal/#service",
+          "name": "Hot Tub, Shed & Light Demolition"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "95.00",
+          "priceCurrency": "USD",
+          "description": "Curbside residential pickup minimum baseline"
         },
-        "reviewBody": "Had such a great experience with Martin. Scheduling was easy. He was available within the hour and was able to get my bulky mattresses and bed frames from an upstairs landing with no trouble. He was quick and efficient and the price was more reasonable than I expected. Would highly recommend!",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-hilarysmith",
+      "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Hilary Smith"
+      },
+      "datePublished": "2026-08-15",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Had such a great experience with Martin. Scheduling was easy. He was available within the hour and was able to get my bulky mattresses and bed frames from an upstairs landing with no trouble. He was quick and efficient and the price was more reasonable than I expected. Would highly recommend!",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

@@ -31,79 +31,132 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Federal Way", "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington" },
-          { "@type": "City", "name": "Auburn", "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington" },
-          { "@type": "City", "name": "Tacoma", "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington" },
-          { "@type": "City", "name": "Kent", "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington" }
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/recurring/#service",
-        "name": "Recurring & Scheduled Junk Removal Services",
-        "serviceType": "Scheduled Commercial Waste Routes & Property Maintenance",
-        "provider": { "@id": "https://www.mmjunk.com/#business" },
-        "description": "Customized scheduled junk hauling routes for apartment communities, commercial plazas, property managers, and construction job sites across South Puget Sound.",
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "140.00",
-            "priceCurrency": "USD",
-            "description": "Recurring route stop baseline"
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Tacoma",
+          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Kent",
+          "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
+        }
+      ],
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
           }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/recurring/#service",
+      "name": "Recurring & Scheduled Junk Removal Services",
+      "serviceType": "Scheduled Commercial Waste Routes & Property Maintenance",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/#review-geoffrey",
-        "url": "https://www.google.com/maps/contrib/112831820990922965141/reviews?hl=en-US",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      "description": "Customized scheduled junk hauling routes for apartment communities, commercial plazas, property managers, and construction job sites across South Puget Sound.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "140.00",
+          "priceCurrency": "USD",
+          "description": "Recurring route stop baseline"
         },
-        "author": {
-          "@type": "Person",
-          "name": "Geoffrey Smith"
-        },
-        "datePublished": "2026-09-17",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "Martin has hauled a lot of junk off my old property for several years. He is very responsive and great to work with.",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-geoffrey",
+      "url": "https://www.google.com/maps/contrib/112831820990922965141/reviews?hl=en-US",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Geoffrey Smith"
+      },
+      "datePublished": "2026-09-17",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Martin has hauled a lot of junk off my old property for several years. He is very responsive and great to work with.",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

@@ -57,147 +57,201 @@
 
   <!-- Localized Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-        "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#business",
-        "name": "M&M Junk Removal - Edgewood",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com/junk-removal-edgewood-wa/",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "image": "https://www.mmjunk.com/assets/images/Yard%20Trash%20Removal%20in%20Milton,%20WA.png",
-        "priceRange": "$$",
-        "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
-        "currenciesAccepted": "USD",
-        "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
-        "founder": {
-          "@type": "Person",
-          "name": "Martin Silch"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness"
+      ],
+      "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#business",
+      "name": "M&M Junk Removal - Edgewood",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com/junk-removal-edgewood-wa/",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "image": "https://www.mmjunk.com/assets/images/Yard%20Trash%20Removal%20in%20Milton,%20WA.png",
+      "priceRange": "$$",
+      "paymentAccepted": "Cash, Check, Credit Card, Debit Card, Zelle",
+      "currenciesAccepted": "USD",
+      "slogan": "\"We Haul Junk to the Dump\" Your Fast, Friendly, and Fair-Priced Hauling Solution.",
+      "founder": {
+        "@type": "Person",
+        "name": "Martin Silch"
+      },
+      "foundingDate": "2007",
+      "sameAs": [
+        "https://www.google.com/maps?cid=15999711673070107161",
+        "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
+        "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
+        "https://www.facebook.com/mmjunkremoval/",
+        "https://amzy.me/?utm_content=4"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Edgewood",
+        "addressRegion": "WA",
+        "postalCode": "98371",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.2501,
+        "longitude": -122.2932
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
         },
-        "foundingDate": "2007",
-        "sameAs": [
-          "https://www.google.com/maps?cid=15999711673070107161",
-          "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
-          "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
-          "https://www.facebook.com/mmjunkremoval/",
-          "https://amzy.me/?utm_content=4"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Edgewood",
-          "addressRegion": "WA",
-          "postalCode": "98371",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 47.2501,
-          "longitude": -122.2932
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "18:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Saturday", "Sunday"],
-            "opens": "09:00",
-            "closes": "16:00"
-          }
-        ],
-        "areaServed": [
-          {
-            "@type": "City",
-            "name": "Edgewood",
-            "sameAs": "https://en.wikipedia.org/wiki/Edgewood,_Washington"
-          },
-          { "@type": "PostalCode", "postalCode": "98371" },
-          { "@type": "PostalCode", "postalCode": "98372" },
-          { "@type": "PostalCode", "postalCode": "98354" }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Edgewood Junk Removal Services",
-          "itemListElement": [
-            {
-              "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#service"
-            }
-          ]
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "09:00",
+          "closes": "16:00"
         }
-      },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#service",
-        "name": "Edgewood Residential Cleanouts & Yard Debris Hauling",
-        "serviceType": "Junk Removal & Acreage Cleanouts",
-        "provider": { "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#business" },
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "95.00",
-            "priceCurrency": "USD",
-            "description": "Edgewood baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
-          }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Edgewood",
+          "sameAs": "https://en.wikipedia.org/wiki/Edgewood,_Washington"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98371"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98372"
+        },
+        {
+          "@type": "PostalCode",
+          "postalCode": "98354"
         }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#review",
-        "url": "https://www.google.com/maps?cid=15999711673070107161",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Drew Paris"
-        },
-        "datePublished": "2026-07-28",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "I had an excellent experience with Martin. He was quick to respond and offered me an excellent deal for what I needed to be hauled away. I had an assortment of concrete and heavy yard/house waste materials that needed to be removed. Communication was awesome throughout, showed up on time, and prepared with the necessary tools. Fair and has great pricing compared to his competitors!",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#business" }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#faq",
-        "mainEntity": [
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Edgewood Junk Removal Services",
+        "itemListElement": [
           {
-            "@type": "Question",
-            "name": "How quickly can M&M Junk Removal service Edgewood homes?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Edgewood is right in our core 15-mile operating zone. We dispatch trucks daily and can typically arrive within 1-2 hours for same-day requests booked before 1:00 PM PST."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you remove yard waste and overgrown blackberry bushes in Edgewood?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, we specialize in large-property brush clearing, branch hauling, and yard cleanups throughout Edgewood and North Pierce County."
-            }
+            "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#service"
           }
         ]
+      },
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#service",
+      "name": "Edgewood Residential Cleanouts & Yard Debris Hauling",
+      "serviceType": "Junk Removal & Acreage Cleanouts",
+      "provider": {
+        "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#business"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "95.00",
+          "priceCurrency": "USD",
+          "description": "Edgewood baseline MINI curbside pickup minimum ($95-$140) with 10% rate guarantee"
+        },
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#review",
+      "url": "https://www.google.com/maps?cid=15999711673070107161",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Drew Paris"
+      },
+      "datePublished": "2026-07-28",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "I had an excellent experience with Martin. He was quick to respond and offered me an excellent deal for what I needed to be hauled away. I had an assortment of concrete and heavy yard/house waste materials that needed to be removed. Communication was awesome throughout, showed up on time, and prepared with the necessary tools. Fair and has great pricing compared to his competitors!",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#business"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.mmjunk.com/junk-removal-edgewood-wa/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How quickly can M&M Junk Removal service Edgewood homes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Edgewood is right in our core 15-mile operating zone. We dispatch trucks daily and can typically arrive within 1-2 hours for same-day requests booked before 1:00 PM PST."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you remove yard waste and overgrown blackberry bushes in Edgewood?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we specialize in large-property brush clearing, branch hauling, and yard cleanups throughout Edgewood and North Pierce County."
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 </head>
 <body>

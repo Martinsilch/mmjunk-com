@@ -31,79 +31,132 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Federal Way", "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington" },
-          { "@type": "City", "name": "Auburn", "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington" },
-          { "@type": "City", "name": "Tacoma", "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington" },
-          { "@type": "City", "name": "Kent", "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington" }
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/estate-cleanout/#service",
-        "name": "Estate Liquidation, Foreclosure & Whole-Home Cleanouts",
-        "serviceType": "Estate Cleanout Service",
-        "provider": { "@id": "https://www.mmjunk.com/#business" },
-        "description": "Comprehensive property clearing, hoarder cleanouts, attic-to-basement sorting, and donation diversion for estate executors, realtors, and downsizing families.",
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "230.00",
-            "priceCurrency": "USD",
-            "description": "Multi-truck and volume cleanout tiers with 10% competitor price match guarantee"
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Tacoma",
+          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Kent",
+          "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
+        }
+      ],
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
           }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/estate-cleanout/#service",
+      "name": "Estate Liquidation, Foreclosure & Whole-Home Cleanouts",
+      "serviceType": "Estate Cleanout Service",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/#review-mowzz",
-        "url": "https://share.google/76RAz2qMVJ4VhgKc9",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      "description": "Comprehensive property clearing, hoarder cleanouts, attic-to-basement sorting, and donation diversion for estate executors, realtors, and downsizing families.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "230.00",
+          "priceCurrency": "USD",
+          "description": "Multi-truck and volume cleanout tiers with 10% competitor price match guarantee"
         },
-        "author": {
-          "@type": "Person",
-          "name": "MoWzz Creations"
-        },
-        "datePublished": "2026-09-17",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "M&M Junk Removal made our moving prep in NE Tacoma completely effortless! We were cleaning out the house before our move and pulled everything outside, staging it by the garage for easy access. Martin loaded all our bulky items, old furniture, and boxes in about 20 minutes flat. Pricing was transparent with no surprise fees.",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-mowzz",
+      "url": "https://share.google/76RAz2qMVJ4VhgKc9",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "MoWzz Creations"
+      },
+      "datePublished": "2026-09-17",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "M&M Junk Removal made our moving prep in NE Tacoma completely effortless! We were cleaning out the house before our move and pulled everything outside, staging it by the garage for easy access. Martin loaded all our bulky items, old furniture, and boxes in about 20 minutes flat. Pricing was transparent with no surprise fees.",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

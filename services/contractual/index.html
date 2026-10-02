@@ -31,79 +31,132 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Federal Way", "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington" },
-          { "@type": "City", "name": "Auburn", "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington" },
-          { "@type": "City", "name": "Tacoma", "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington" },
-          { "@type": "City", "name": "Kent", "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington" }
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/contractual/#service",
-        "name": "Contractual Junk Removal & Corporate Vendor Services",
-        "serviceType": "Master Service Agreement Waste Hauling & Contractor Partnerships",
-        "provider": { "@id": "https://www.mmjunk.com/#business" },
-        "description": "Formal corporate vendor agreements, Master Service Agreements (MSAs), preferential contract pricing, and Net-30 commercial billing for contractors and property management firms.",
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "140.00",
-            "priceCurrency": "USD",
-            "description": "Commercial contract partner baseline"
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Tacoma",
+          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Kent",
+          "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
+        }
+      ],
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
           }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/contractual/#service",
+      "name": "Contractual Junk Removal & Corporate Vendor Services",
+      "serviceType": "Master Service Agreement Waste Hauling & Contractor Partnerships",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/#review-audra",
-        "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      "description": "Formal corporate vendor agreements, Master Service Agreements (MSAs), preferential contract pricing, and Net-30 commercial billing for contractors and property management firms.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "140.00",
+          "priceCurrency": "USD",
+          "description": "Commercial contract partner baseline"
         },
-        "author": {
-          "@type": "Person",
-          "name": "Audra Edmiston"
-        },
-        "datePublished": "2026-07-28",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "Martin was great and very affordable. I was getting estimates and was going to go with a big box style company that also took military discounts. When I messaged Martin to let him know, he said he would beat their price and he definitely did that. We had a 4pc sectional couch, counter top, desk, and glass. They came in and were fast and affordable. I would recommend them and definitely use them again.",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-audra",
+      "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Audra Edmiston"
+      },
+      "datePublished": "2026-07-28",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "Martin was great and very affordable. I was getting estimates and was going to go with a big box style company that also took military discounts. When I messaged Martin to let him know, he said he would beat their price and he definitely did that. We had a 4pc sectional couch, counter top, desk, and glass. They came in and were fast and affordable. I would recommend them and definitely use them again.",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

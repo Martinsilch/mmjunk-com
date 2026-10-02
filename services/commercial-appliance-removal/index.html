@@ -31,79 +31,132 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Federal Way", "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington" },
-          { "@type": "City", "name": "Auburn", "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington" },
-          { "@type": "City", "name": "Tacoma", "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington" },
-          { "@type": "City", "name": "Kent", "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington" }
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/commercial-appliance-removal/#service",
-        "name": "Commercial Appliance Removal & EPA Freon Recovery",
-        "serviceType": "Commercial Appliance Disposal",
-        "provider": { "@id": "https://www.mmjunk.com/#business" },
-        "description": "Professional decommissioning, extraction, and EPA Section 608 Freon compliant disposal for commercial restaurant coolers, freezers, and industrial appliances.",
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "150.00",
-            "priceCurrency": "USD",
-            "description": "Commercial appliance recovery and certified refrigerant evacuation baseline"
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Tacoma",
+          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Kent",
+          "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
+        }
+      ],
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
           }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/commercial-appliance-removal/#service",
+      "name": "Commercial Appliance Removal & EPA Freon Recovery",
+      "serviceType": "Commercial Appliance Disposal",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/#review-ankobake",
-        "url": "https://share.google/iCe2bBpzwVtm8vV66",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      "description": "Professional decommissioning, extraction, and EPA Section 608 Freon compliant disposal for commercial restaurant coolers, freezers, and industrial appliances.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "150.00",
+          "priceCurrency": "USD",
+          "description": "Commercial appliance recovery and certified refrigerant evacuation baseline"
         },
-        "author": {
-          "@type": "Person",
-          "name": "ANKO BAKE"
-        },
-        "datePublished": "2026-09-25",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "M&M Junk Removal did an exceptional job clearing out our restaurant equipment in Federal Way! As a local restaurant owner, I needed three heavy commercial refrigerators hauled away and properly disposed of. Martin gave me a fair flat-rate quote with zero runaround. Professional, honest, and reliable.",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-ankobake",
+      "url": "https://share.google/iCe2bBpzwVtm8vV66",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "ANKO BAKE"
+      },
+      "datePublished": "2026-09-25",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "M&M Junk Removal did an exceptional job clearing out our restaurant equipment in Federal Way! As a local restaurant owner, I needed three heavy commercial refrigerators hauled away and properly disposed of. Martin gave me a fair flat-rate quote with zero runaround. Professional, honest, and reliable.",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

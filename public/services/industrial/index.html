@@ -31,82 +31,139 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Federal Way", "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington" },
-          { "@type": "City", "name": "Auburn", "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington" },
-          { "@type": "City", "name": "Tacoma", "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington" },
-          { "@type": "City", "name": "Kent", "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington" }
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/industrial/#service",
-        "name": "Industrial Junk Removal & Heavy Hauling",
-        "serviceType": "Industrial Waste Management & Heavy Debris Removal",
-        "provider": { "@id": "https://www.mmjunk.com/#business" },
-        "description": "Heavy-payload industrial waste management, warehouse trash-outs, pallet disposal, broken concrete slabs, and scrap machinery recycling for South King and Pierce County.",
-        "hasPart": [
-          { "@type": "Service", "@id": "https://www.mmjunk.com/services/construction-debris-removal/#service", "name": "Construction & Commercial Remodel Debris" }
-        ],
-        "offers": {
-          "@type": "Offer",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "price": "230.00",
-            "priceCurrency": "USD",
-            "description": "Heavy debris and industrial hauling baseline"
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Tacoma",
+          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Kent",
+          "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington"
+        }
+      ],
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
+          }
+        },
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
           }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/industrial/#service",
+      "name": "Industrial Junk Removal & Heavy Hauling",
+      "serviceType": "Industrial Waste Management & Heavy Debris Removal",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       },
-      {
-        "@type": "Review",
-        "@id": "https://www.mmjunk.com/#review-drewparis",
-        "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Google",
-          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      "description": "Heavy-payload industrial waste management, warehouse trash-outs, pallet disposal, broken concrete slabs, and scrap machinery recycling for South King and Pierce County.",
+      "hasPart": [
+        {
+          "@type": "Service",
+          "@id": "https://www.mmjunk.com/services/construction-debris-removal/#service",
+          "name": "Construction & Commercial Remodel Debris"
+        }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "230.00",
+          "priceCurrency": "USD",
+          "description": "Heavy debris and industrial hauling baseline"
         },
-        "author": {
-          "@type": "Person",
-          "name": "Drew Paris"
-        },
-        "datePublished": "2026-08-05",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "I had an excellent experience with Martin. He was quick to respond and offered me an excellent deal for what I needed to be hauled away. I had an assortment of concrete and heavy yard/ house waste materials that needed to be removed. His communication was awesome throughout and showed up on time and ready to work. He was fast and efficient and was prepared with the necessary tools to complete the job. Don't let the picture fool you, it was a lot of heavy concrete with some pieces that were approximately 400lbs each. I highly recommend him. He's a small business over fighting against the larger corporations and deserves a slice of the pie like everyone else. He's fair and has great pricing compared to his competitors. I will be using him in the future.",
-        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
+        "url": "https://amzy.me/?utm_content=4"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-drewparis",
+      "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Drew Paris"
+      },
+      "datePublished": "2026-08-05",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "I had an excellent experience with Martin. He was quick to respond and offered me an excellent deal for what I needed to be hauled away. I had an assortment of concrete and heavy yard/ house waste materials that needed to be removed. His communication was awesome throughout and showed up on time and ready to work. He was fast and efficient and was prepared with the necessary tools to complete the job. Don't let the picture fool you, it was a lot of heavy concrete with some pieces that were approximately 400lbs each. I highly recommend him. He's a small business over fighting against the larger corporations and deserves a slice of the pie like everyone else. He's fair and has great pricing compared to his competitors. I will be using him in the future.",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

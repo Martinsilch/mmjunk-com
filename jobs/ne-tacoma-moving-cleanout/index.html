@@ -31,84 +31,120 @@
 
   <!-- Connected Schema.org Graph -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/estate-cleanout/#service",
-        "name": "Estate Liquidation & Moving Cleanouts",
-        "provider": { "@id": "https://www.mmjunk.com/#business" }
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
       },
-      {
-        "@type": "AchieveAction",
-        "@id": "https://www.mmjunk.com/jobs/ne-tacoma-moving-cleanout/#action",
-        "name": "Pre-Move Garage Staging Cleanout & Bulky Item Hauling",
-        "agent": { "@id": "https://www.mmjunk.com/#business" },
-        "endTime": "2026-09-17",
-        "location": {
-          "@type": "Place",
-          "name": "NE Tacoma Residence",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Tacoma",
-            "addressRegion": "WA",
-            "postalCode": "98422",
-            "addressCountry": "US"
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 47.3000,
-            "longitude": -122.4000
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
           }
         },
-        "result": {
-          "@type": "Review",
-          "@id": "https://www.mmjunk.com/#review-mowzz",
-          "url": "https://share.google/76RAz2qMVJ4VhgKc9",
-          "publisher": {
-            "@type": "Organization",
-            "name": "Google",
-            "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "MoWzz Creations"
-          },
-          "datePublished": "2026-09-17",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "M&M Junk Removal made our moving prep in NE Tacoma completely effortless! We were cleaning out the house before our move and pulled everything outside, staging it by the garage for easy access. I booked a same-day appointment online, and Martin arrived right on time with his large truck. He quickly loaded all our bulky items, old furniture, and boxes in about 20 minutes flat. Pricing was transparent with no surprise fees. Truly a lifesaver during our move—thank you Martin!"
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/estate-cleanout/#service",
+      "name": "Estate Liquidation & Moving Cleanouts",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       }
-    ]
-  }
+    },
+    {
+      "@type": "AchieveAction",
+      "@id": "https://www.mmjunk.com/jobs/ne-tacoma-moving-cleanout/#action",
+      "name": "Pre-Move Garage Staging Cleanout & Bulky Item Hauling",
+      "agent": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "endTime": "2026-09-17",
+      "location": {
+        "@type": "Place",
+        "name": "NE Tacoma Residence",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Tacoma",
+          "addressRegion": "WA",
+          "postalCode": "98422",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.3,
+          "longitude": -122.4
+        }
+      },
+      "result": {
+        "@type": "Review",
+        "@id": "https://www.mmjunk.com/#review-mowzz",
+        "url": "https://share.google/76RAz2qMVJ4VhgKc9",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Google",
+          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "MoWzz Creations"
+        },
+        "datePublished": "2026-09-17",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "M&M Junk Removal made our moving prep in NE Tacoma completely effortless! We were cleaning out the house before our move and pulled everything outside, staging it by the garage for easy access. I booked a same-day appointment online, and Martin arrived right on time with his large truck. He quickly loaded all our bulky items, old furniture, and boxes in about 20 minutes flat. Pricing was transparent with no surprise fees. Truly a lifesaver during our move—thank you Martin!"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

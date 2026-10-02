@@ -31,84 +31,120 @@
 
   <!-- Connected Schema.org Graph: LocalBusiness + Service + AchieveAction + Review -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
-        "@id": "https://www.mmjunk.com/#business",
-        "name": "M&M Junk Removal",
-        "telephone": "+1-253-886-7724",
-        "url": "https://www.mmjunk.com",
-        "logo": "https://www.mmjunk.com/assets/images/logo.png",
-        "priceRange": "$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "320th St",
-          "addressLocality": "Federal Way",
-          "addressRegion": "WA",
-          "postalCode": "98003",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "234",
-          "bestRating": "5"
-        }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "LocalBusiness",
+        "HomeAndConstructionBusiness",
+        "RecyclingCenter"
+      ],
+      "@id": "https://www.mmjunk.com/#business",
+      "name": "M&M Junk Removal",
+      "telephone": "+1-253-886-7724",
+      "url": "https://www.mmjunk.com",
+      "logo": "https://www.mmjunk.com/assets/images/logo.png",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "320th St",
+        "addressLocality": "Federal Way",
+        "addressRegion": "WA",
+        "postalCode": "98003",
+        "addressCountry": "US"
       },
-      {
-        "@type": "Service",
-        "@id": "https://www.mmjunk.com/services/hot-tub-demolition-removal/#service",
-        "name": "Hot Tub, Shed & Light Demolition",
-        "provider": { "@id": "https://www.mmjunk.com/#business" }
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "234",
+        "bestRating": "5"
       },
-      {
-        "@type": "AchieveAction",
-        "@id": "https://www.mmjunk.com/jobs/auburn-playset-shed-demolition/#action",
-        "name": "Backyard Playset & Playhouse Teardown and Magnetic Nail Sweep",
-        "agent": { "@id": "https://www.mmjunk.com/#business" },
-        "endTime": "2026-08-20",
-        "location": {
-          "@type": "Place",
-          "name": "Auburn Residential Backyard",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Auburn",
-            "addressRegion": "WA",
-            "postalCode": "98001",
-            "addressCountry": "US"
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Online via AMZY",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
           },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 47.3073,
-            "longitude": -122.2285
+          "result": {
+            "@type": "Reservation",
+            "name": "Online Junk Removal Dispatch"
           }
         },
-        "result": {
-          "@type": "Review",
-          "@id": "https://www.mmjunk.com/#review-erindavis",
-          "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
-          "publisher": {
-            "@type": "Organization",
-            "name": "Google",
-            "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Erin Davis"
-          },
-          "datePublished": "2026-08-20",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "reviewBody": "Martin and his crew were great! We called Martin one afternoon and he was here the next day and efficiently hauled away a broken down playset and playhouse. We appreciated how easy it was to coordinate, how quickly Martin could help, how clean the space was left, and that it was so reasonably priced. We’d use M&M again and highly recommend!"
+        {
+          "@type": "ScheduleAction",
+          "name": "Schedule Junk Removal Pickup",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US"
+          }
         }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/hot-tub-demolition-removal/#service",
+      "name": "Hot Tub, Shed & Light Demolition",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
       }
-    ]
-  }
+    },
+    {
+      "@type": "AchieveAction",
+      "@id": "https://www.mmjunk.com/jobs/auburn-playset-shed-demolition/#action",
+      "name": "Backyard Playset & Playhouse Teardown and Magnetic Nail Sweep",
+      "agent": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "endTime": "2026-08-20",
+      "location": {
+        "@type": "Place",
+        "name": "Auburn Residential Backyard",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Auburn",
+          "addressRegion": "WA",
+          "postalCode": "98001",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.3073,
+          "longitude": -122.2285
+        }
+      },
+      "result": {
+        "@type": "Review",
+        "@id": "https://www.mmjunk.com/#review-erindavis",
+        "url": "https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Google",
+          "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Erin Davis"
+        },
+        "datePublished": "2026-08-20",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Martin and his crew were great! We called Martin one afternoon and he was here the next day and efficiently hauled away a broken down playset and playhouse. We appreciated how easy it was to coordinate, how quickly Martin could help, how clean the space was left, and that it was so reasonably priced. We’d use M&M again and highly recommend!"
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>

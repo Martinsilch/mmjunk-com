@@ -630,6 +630,364 @@ button {
   gap: 4px;
 }
 
+.video-card__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.video-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.video-card__link--yt {
+  background: rgba(255, 0, 0, 0.12);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.video-card__link--yt:hover {
+  background: #ff0000;
+  color: #ffffff;
+  border-color: #ff0000;
+}
+
+.video-card__link--fb {
+  background: rgba(24, 119, 242, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(24, 119, 242, 0.3);
+}
+
+.video-card__link--fb:hover {
+  background: #1877f2;
+  color: #ffffff;
+  border-color: #1877f2;
+}
+
+/* Video Channel CTA Banner */
+.video-channel-cta {
+  margin-top: 40px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.video-channel-cta__body {
+  max-width: 680px;
+}
+
+.video-channel-cta__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 0, 0, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+
+.video-channel-cta__title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.video-channel-cta__desc {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.btn--youtube {
+  background: #ff0000;
+  color: #ffffff !important;
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn--youtube:hover {
+  background: #cc0000;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255, 0, 0, 0.4);
+}
+
+.btn--facebook {
+  background: #1877f2;
+  color: #ffffff !important;
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn--facebook:hover {
+  background: #166fe5;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(24, 119, 242, 0.4);
+}
+
+/* Documented Field Jobs Grid */
+.field-dispatch-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .field-dispatch-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.field-dispatch-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.field-dispatch-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+.field-dispatch-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.field-dispatch-card__tag {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.field-dispatch-card__location {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.field-dispatch-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.field-dispatch-card__text {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+
+.field-dispatch-card__quote {
+  background: #f8fafc;
+  border-left: 3px solid #1877f2;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: #334155;
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.45;
+}
+
+.field-dispatch-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1877f2;
+  text-decoration: none;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  transition: color 0.2s ease;
+}
+
+.field-dispatch-card__link:hover {
+  color: #166fe5;
+  text-decoration: underline;
+}
+
+/* Reviews Multi-Platform Triad */
+.reviews-triad {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 14px;
+  max-width: 960px;
+  margin: 0 auto 36px;
+}
+
+@media (min-width: 640px) {
+  .reviews-triad {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .reviews-triad {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.reviews-triad__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reviews-triad__item:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+}
+
+.reviews-triad__icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.reviews-triad__score {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.reviews-triad__meta {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+.reviews-triad__item--badge {
+  background: #f8fafc;
+}
+
+/* Job Scope Badges */
+.review-card__job-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #ffedd5;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* Social links in footer */
+.footer__social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.footer__social-link:hover {
+  color: #ffffff;
+  border-color: #ea580c;
+  background: #ea580c;
+  transform: translateY(-2px);
+}
+
+.footer__social-link--fb:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+}
+
+.footer__social-link--yt:hover {
+  background: #ff0000;
+  border-color: #ff0000;
+}
+
+.footer__social-link--google:hover {
+  background: #ffffff;
+  color: #4285f4;
+  border-color: #4285f4;
+}
+
 /* ==========================================================================
    REVIEWS SECTION
    ========================================================================== */

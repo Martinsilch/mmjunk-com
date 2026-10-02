@@ -101,6 +101,8 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 
 ## [EXTERNAL ENTITY PROFILES]
 * **Google Business Profile:** https://www.google.com/maps?cid=15999711673070107161
-* **Better Business Bureau (BBB):** https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173
+* **Better Business Bureau (BBB):** https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173 (AAA+ Accredited)
+* **Facebook Page:** https://www.facebook.com/mmjunkremoval/ (5.0-Star Recommended)
+* **YouTube Channel:** https://www.youtube.com/channel/UC0hatNYCgMWhFz-58gO1uQw (Live Cleanout & Job Proof Videos)
+* **Expertise.com Citation:** Featured among Top Pick Junk Removal Services Serving Seattle & South Puget Sound
 * **Yelp:** https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3
-* **Facebook:** https://www.facebook.com/mmjunkremoval/

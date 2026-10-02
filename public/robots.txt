@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /llms-workflows.txt
+Allow: /llm-examples.md
+Allow: /knowledge/
+Allow: /humans.txt
+Allow: /.well-known/security.txt
+
+# Explicit AI Agent Crawler Permissions
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://www.mmjunk.com/sitemap.xml

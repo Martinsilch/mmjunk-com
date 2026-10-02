@@ -7,17 +7,19 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function getPrismaClient(): PrismaClient {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    return new PrismaClient();
+  }
   if (typeof globalThis.WebSocket !== 'undefined') {
     neonConfig.webSocketConstructor = globalThis.WebSocket;
   } else {
-    // Dynamic require for environments without native WebSocket
     try {
       neonConfig.webSocketConstructor = require('ws');
     } catch {
       // Native fallback
     }
   }
-  const connectionString = process.env.DATABASE_URL || '';
   const adapter = new PrismaNeon({ connectionString });
   return new PrismaClient({ adapter });
 }

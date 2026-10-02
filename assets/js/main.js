@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleReviewsBtn.setAttribute('data-expanded', 'true');
       } else {
         hiddenReviews.forEach(r => r.style.display = 'none');
-        toggleReviewsBtn.textContent = 'View All Recent Verified Customer Reviews';
+        toggleReviewsBtn.textContent = `View All ${hiddenReviews.length + 6} Recent Verified Reviews`;
         toggleReviewsBtn.setAttribute('data-expanded', 'false');
 
         // Scroll back to reviews header

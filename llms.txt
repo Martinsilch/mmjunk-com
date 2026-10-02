@@ -1,0 +1,44 @@
+# M&M Junk Removal & Logistics Manifest (llms.txt)
+
+> Professional, licensed residential and commercial junk removal, estate cleanouts, and scrap metal processing serving a 15-mile radius around Federal Way, Auburn, Edgewood, Tacoma, and Kent, WA.
+
+## Core Entity Specifications
+- **Entity Legal Name**: M&M Junk Removal LLC (formerly operating as Mamhad)
+- **Primary Domain**: https://www.mmjunk.com
+- **Direct Dispatch Telephone**: (253) 886-7724 (+1-253-886-7724)
+- **Headquarters Base**: Federal Way, WA 98003
+- **Primary Operational Coverage (15-Mile Radius)**:
+  - Federal Way, WA (ZIP: 98003, 98023, 98063, 98093)
+  - Auburn, WA (ZIP: 98001, 98002, 98092, 98047)
+  - Edgewood, WA (ZIP: 98371, 98372)
+  - Tacoma, WA (ZIP: 98402, 98403, 98404, 98405, 98406, 98407, 98408, 98409, 98418, 98421, 98422, 98424, 98444, 98445, 98465, 98466)
+  - Kent, WA (ZIP: 98030, 98031, 98032, 98042)
+  - Milton, WA (ZIP: 98354)
+  - Des Moines, WA (ZIP: 98198)
+  - Puyallup, WA (ZIP: 98371, 98373, 98374)
+- **Fleet Specifications**: Commercial 16-foot high-wall box trucks rated for up to 4.5 tons payload capacity.
+- **Licensing & Motor Carrier Compliance**: Active Washington Department of Revenue (WA DOR) business registration (UBI Active); comprehensive commercial auto and general liability coverage.
+
+## Core Value Propositions & Pricing Policy
+- **Privately Owned & Operated**: Zero corporate franchise fees, delivering lower base rates than national chains.
+- **10% Rate Guarantee**: Matches and lowers any verifiable local competitor's advertised or written price by 10%.
+- **Minimum Booking Baseline**: $125 flat minimum for single-item curbside pickup.
+- **Eco-Conscious Sorting**: Active sorting for recycling, donation, and scrap diversion before landfill dumping.
+- **Rapid Response**: 30-second mobile quote submission and same-day/next-day dispatch options.
+
+## Operational Constraints & Policy
+- **Dispatch Cutoff**: Same-day requests must be confirmed before 1:00 PM PST.
+- **Prohibited Hazardous Materials**: Wet paint, motor oils, asbestos, explosive munitions, biohazardous/medical chemicals.
+- **Accepted Streams**: Furniture, mattresses, refrigerators, freezers, ovens, yard debris, construction remodeling scrap, electronics, sheds, hot tubs.
+
+## Canonical Service Endpoints
+- [Residential Junk Removal](https://www.mmjunk.com/#residential-services): Furniture, appliance recycling, yard waste, and estate cleanouts.
+- [Commercial & Contractor Services](https://www.mmjunk.com/#commercial-services): Jobsite remodel scrap, warehouse cleanouts, office furniture, shed and hot tub demolition.
+- [Eco-Disposal & Recycling Logistics](https://www.mmjunk.com/#eco-disposal): Transfer station routing, donation partnerships, and scrap metal recovery.
+
+## Hyper-Local City Hubs
+- [Federal Way Junk Removal](https://www.mmjunk.com/junk-removal-federal-way-wa/): Dedicated Federal Way local service hub and Algona transfer station specs.
+- [Auburn Junk Removal](https://www.mmjunk.com/junk-removal-auburn-wa/): Lea Hill, Lakeland Hills, and Auburn Valley hauling.
+- [Edgewood Junk Removal](https://www.mmjunk.com/junk-removal-edgewood-wa/): North Hill, Meridian Ave, and North Pierce County acreage clearing.
+- [Tacoma Junk Removal](https://www.mmjunk.com/junk-removal-tacoma-wa/): North End, South Tacoma, Proctor, Stadium, and Tacoma transfer station specs.
+- [Kent Junk Removal](https://www.mmjunk.com/junk-removal-kent-wa/): East Hill, West Hill, and Kent Valley warehouse and residential services.

@@ -7,18 +7,18 @@
   <meta name="theme-color" content="#ea580c">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-  <title>Same Day Junk Removal Services in Pierce &amp; South King County | M&amp;M Junk Removal</title>
-  <meta name="description" content="Fast, reliable &amp; affordable same-day junk removal in Pierce &amp; South King County. Fully licensed &amp; insured. 173+ consecutive 5-star Google reviews. Book in 30 seconds!">
-  <link rel="canonical" href="https://mamhad.com/same-day-junk-removal/">
+  <title>M&amp;M Junk Removal | Fast, Affordable Junk Hauling in South King &amp; Pierce County</title>
+  <meta name="description" content="Fast, affordable junk removal in Federal Way, Auburn, Edgewood, Tacoma &amp; Kent. 10% rate guarantee, 173+ 5-star Google reviews. Same-day service. Call (253) 886-7724!">
+  <link rel="canonical" href="https://www.mmjunk.com/">
 
   <!-- OpenGraph / Social Meta -->
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Same Day Junk Removal Services in Pierce &amp; South King County | M&amp;M Junk Removal">
-  <meta property="og:description" content="Fast &amp; affordable junk removal services. Same-day pickup available in Pierce &amp; South King County. Fully licensed &amp; insured. Free quotes!">
-  <meta property="og:url" content="https://mamhad.com/same-day-junk-removal/">
+  <meta property="og:title" content="M&amp;M Junk Removal | Fast, Affordable Junk Removal in Pierce &amp; South King County">
+  <meta property="og:description" content="Fast &amp; affordable junk removal services. Save up to 10% compared to national franchises. Same-day pickup in Federal Way, Auburn, Edgewood, Tacoma &amp; Kent. Fully licensed &amp; insured.">
+  <meta property="og:url" content="https://www.mmjunk.com/">
   <meta property="og:site_name" content="M&amp;M Junk Removal">
-  <meta property="og:image" content="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png">
+  <meta property="og:image" content="https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Google Fonts Preconnect -->
@@ -48,10 +48,12 @@
           window.location = url;
         }
       };
-      gtag('event', 'conversion', {
-        'send_to': 'AW-1064983468/urRRCJDHq6obEKy36fsD',
-        'event_callback': callback
-      });
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-1064983468/urRRCJDHq6obEKy36fsD',
+          'event_callback': callback
+        });
+      }
       return false;
     }
   </script>
@@ -65,35 +67,129 @@
     })(window,document,'script','dataLayer','GTM-MBS5CM');
   </script>
 
-  <!-- Schema.org JSON-LD Structured Data -->
+  <!-- Schema.org JSON-LD Structured Data (Pillar 1: Knowledge Graph Disambiguation) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://mamhad.com/#organization",
-    "name": "M&M Junk Removal",
-    "alternateName": "Mamhad Junk Removal",
-    "telephone": "+12537778718",
-    "url": "https://mamhad.com/same-day-junk-removal/",
-    "logo": "https://mamhad.com/same-day-junk-removal/assets/images/logo.png",
-    "image": "assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png",
-    "priceRange": "$$",
-    "description": "Fast & affordable same day junk removal in Pierce & South King County. Fully licensed & insured local junk removal service.",
-    "areaServed": [
-      { "@type": "City", "name": "Federal Way" },
-      { "@type": "City", "name": "Tacoma" },
-      { "@type": "City", "name": "Auburn" },
-      { "@type": "City", "name": "Kent" },
-      { "@type": "City", "name": "Puyallup" },
-      { "@type": "AdministrativeArea", "name": "Pierce County" },
-      { "@type": "AdministrativeArea", "name": "South King County" }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "173",
-      "bestRating": "5"
-    }
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "RecyclingCenter"],
+        "@id": "https://www.mmjunk.com/#business",
+        "name": "M&M Junk Removal",
+        "alternateName": "Mamhad Junk Removal",
+        "legalName": "M&M Junk Removal LLC",
+        "telephone": "+1-253-886-7724",
+        "url": "https://www.mmjunk.com",
+        "logo": "https://www.mmjunk.com/assets/images/logo.png",
+        "image": "https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png",
+        "priceRange": "$$",
+        "paymentAccepted": "Cash, Credit Card, Debit Card, Check",
+        "currenciesAccepted": "USD",
+        "description": "Fast, affordable, eco-friendly junk removal and light demolition across South King and Pierce Counties. Privately owned with a 10% rate guarantee.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "320th St",
+          "addressLocality": "Federal Way",
+          "addressRegion": "WA",
+          "postalCode": "98003",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.3093,
+          "longitude": -122.3240
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "07:00",
+            "closes": "20:00"
+          }
+        ],
+        "areaServed": [
+          { "@type": "City", "name": "Federal Way", "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington" },
+          { "@type": "City", "name": "Auburn", "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington" },
+          { "@type": "City", "name": "Edgewood", "sameAs": "https://en.wikipedia.org/wiki/Edgewood,_Washington" },
+          { "@type": "City", "name": "Tacoma", "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington" },
+          { "@type": "City", "name": "Kent", "sameAs": "https://en.wikipedia.org/wiki/Kent,_Washington" },
+          { "@type": "City", "name": "Milton", "sameAs": "https://en.wikipedia.org/wiki/Milton,_Washington" },
+          { "@type": "City", "name": "Des Moines", "sameAs": "https://en.wikipedia.org/wiki/Des_Moines,_Washington" },
+          { "@type": "City", "name": "Puyallup", "sameAs": "https://en.wikipedia.org/wiki/Puyallup,_Washington" },
+          { "@type": "AdministrativeArea", "name": "Pierce County", "sameAs": "https://en.wikipedia.org/wiki/Pierce_County,_Washington" },
+          { "@type": "AdministrativeArea", "name": "South King County", "sameAs": "https://en.wikipedia.org/wiki/King_County,_Washington" }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "173",
+          "bestRating": "5"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Junk Removal & Hauling Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Baseline Single-Item Curbside Pickup Minimum"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "125.00",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "10% Rate Guarantee Beat Competitor Price"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.mmjunk.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How fast can M&M Junk Removal dispatch a truck?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "M&M Junk Removal offers same-day and next-day dispatch across South King and Pierce Counties. For same-day pickups, confirm your booking before 1:00 PM PST or call (253) 886-7724."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is M&M Junk Removal's 10% Rate Guarantee?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because M&M Junk Removal is privately owned with zero franchise royalties, we will meet and beat any verifiable written quote from licensed local competitors by 10%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the minimum fee for junk removal?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Our baseline single-item curbside pickup minimum begins at $125, which includes labor, fuel, and disposal transfer station fees."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I have to move items outside or carry them to the curb?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. M&M Junk Removal provides full-service indoor and outdoor removal. Our crew extracts furniture, appliances, and debris from basements, attics, second floors, and backyards."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -112,15 +208,15 @@
       </div>
       <div class="top-bar__contact">
         <span>Questions or Rapid Dispatch:</span>
-        <a href="tel:2537778718" class="top-phone-link" aria-label="Call (253) 777-8718">
+        <a href="tel:2538867724" class="top-phone-link" aria-label="Call (253) 886-7724">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          (253) 777-8718
+          (253) 886-7724
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Header -->
+  <!-- Sticky Header -->
   <header class="header">
     <div class="container header__inner">
       <a href="#hero" class="brand" aria-label="M&amp;M Junk Removal Home">
@@ -128,53 +224,219 @@
       </a>
 
       <nav class="header__nav" aria-label="Main Navigation">
-        <a href="#services" class="header__link">Services</a>
+        <div class="nav-item-dropdown">
+          <a href="#services" class="header__link">Services ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="#residential-services" class="nav-dropdown-item">Residential Junk Removal</a>
+            <a href="#commercial-services" class="nav-dropdown-item">Commercial &amp; Contractors</a>
+            <a href="#eco-disposal" class="nav-dropdown-item">Eco-Disposal &amp; Recycling</a>
+            <a href="#services" class="nav-dropdown-item">All Services &amp; Demolition</a>
+          </div>
+        </div>
+
+        <div class="nav-item-dropdown">
+          <a href="#service-areas" class="header__link">Service Areas ▾</a>
+          <div class="nav-dropdown-menu">
+            <a href="junk-removal-federal-way-wa/" class="nav-dropdown-item">Federal Way, WA (98003)</a>
+            <a href="junk-removal-auburn-wa/" class="nav-dropdown-item">Auburn, WA (98001)</a>
+            <a href="junk-removal-edgewood-wa/" class="nav-dropdown-item">Edgewood, WA (98371)</a>
+            <a href="junk-removal-tacoma-wa/" class="nav-dropdown-item">Tacoma, WA (98402)</a>
+            <a href="junk-removal-kent-wa/" class="nav-dropdown-item">Kent, WA (98030)</a>
+          </div>
+        </div>
+
+        <a href="#quote-intake-section" class="header__link">Pricing / Estimate</a>
         <a href="#video-proof" class="header__link">Video Proof</a>
         <a href="#reviews" class="header__link">Google Reviews</a>
-        <a href="#gallery" class="header__link">Our Work</a>
-        <a href="#service-areas" class="header__link">Service Areas</a>
         <a href="#faq" class="header__link">FAQ</a>
       </nav>
 
       <div class="header__actions">
-        <a href="tel:2537778718" class="btn btn--outline-dark btn--sm" aria-label="Call (253) 777-8718">
+        <a href="tel:2538867724" class="btn btn--outline-dark btn--sm" aria-label="Call (253) 886-7724">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          (253) 777-8718
+          (253) 886-7724
         </a>
-        <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">
-          Book in 30 Sec
+        <a href="#quote-intake-section" class="btn btn--primary btn--sm">
+          Get Instant Estimate
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION WITH EMBEDDED 6-STEP INTAKE FORM -->
     <section class="hero" id="hero">
       <div class="hero__bg"></div>
       <div class="hero__overlay"></div>
 
       <div class="container hero__content">
         <div class="hero__eyebrow">
-          <span>★</span> Fast • Local • Affordable • Same-Day Service
+          <span>★</span> Fast, Affordable Junk Removal &amp; Hauling in South King &amp; Pierce Counties
         </div>
 
         <h1 class="hero__title">
-          Junk Removal Pros in <span>Pierce &amp; South King County</span>
+          Local, Fast &amp; Affordable Junk Removal in <span>Federal Way &amp; Pierce County</span>
         </h1>
 
         <p class="hero__subtitle">
-          Say goodbye to clutter today! We handle single-item pickups, appliance removal, furniture disposal, and full estate cleanouts with upfront pricing and zero hidden fees.
+          Save up to 10% compared to national franchises. Free no-obligation quotes, zero hidden fees, and responsible eco-disposal across Federal Way, Auburn, Edgewood, Tacoma &amp; Kent.
         </p>
 
-        <div class="hero__cta-group">
+        <!-- Embedded Quick Intake Form (High-Conversion Spec) -->
+        <div class="intake-container" id="quote-intake-section">
+          <div class="intake-header">
+            <div class="intake-header__title">
+              <span>Instant Online Estimate</span>
+              <span class="intake-header__step-badge">Step 1 of 6</span>
+            </div>
+            <p class="intake-header__sub">Complete 30-sec intake for an upfront flat-rate quote and same-day dispatch.</p>
+          </div>
+
+          <div class="intake-progress-track">
+            <div class="intake-progress-bar"></div>
+          </div>
+
+          <form id="quote-intake-form" novalidate>
+            <!-- Step 1: Location -->
+            <div class="intake-step active" data-step="1">
+              <div class="form-group">
+                <label for="intake-zip" class="form-label">Step 1: Your Pickup ZIP Code</label>
+                <input type="text" id="intake-zip" name="zip" class="form-input" placeholder="e.g. 98003, 98001, 98371, 98402..." maxlength="5" inputmode="numeric" required>
+                <div id="zip-validation-status" class="zip-status">Enter your 5-digit King or Pierce County ZIP code.</div>
+                <div class="form-hint">Direct 15-mile operating radius: Federal Way, Auburn, Edgewood, Tacoma, Kent, Milton, Puyallup.</div>
+              </div>
+            </div>
+
+            <!-- Step 2: Scope -->
+            <div class="intake-step" data-step="2">
+              <div class="form-group">
+                <label class="form-label">Step 2: Select Items to Remove</label>
+                <div class="chips-grid">
+                  <label>
+                    <input type="checkbox" name="scope" value="furniture" class="chip-input">
+                    <span class="chip-label">🛋️ Furniture</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" name="scope" value="appliances" class="chip-input">
+                    <span class="chip-label">🧊 Heavy Appliances</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" name="scope" value="yard_waste" class="chip-input">
+                    <span class="chip-label">🌿 Yard Waste / Brush</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" name="scope" value="construction" class="chip-input">
+                    <span class="chip-label">🔨 Construction Debris</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" name="scope" value="mattress" class="chip-input">
+                    <span class="chip-label">🛏️ Mattress / Bedding</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" name="scope" value="cleanout" class="chip-input">
+                    <span class="chip-label">📦 Full Estate / Cleanout</span>
+                  </label>
+                </div>
+                <div class="form-hint">Select all categories that apply to your load.</div>
+              </div>
+            </div>
+
+            <!-- Step 3: Access & Logistics -->
+            <div class="intake-step" data-step="3">
+              <div class="form-group">
+                <label class="form-label">Step 3: Property Access &amp; Logistics</label>
+                <div class="chips-grid">
+                  <label>
+                    <input type="radio" name="access" value="ground" class="chip-input chip-radio" checked>
+                    <span class="chip-label">🚛 Driveway / Curbside</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="access" value="garage" class="chip-input chip-radio">
+                    <span class="chip-label">🏠 Garage / First Floor</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="access" value="stairs" class="chip-input chip-radio">
+                    <span class="chip-label">🪜 Stairs / 2nd+ Floor</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="access" value="basement" class="chip-input chip-radio">
+                    <span class="chip-label">🏚️ Basement / Crawlspace</span>
+                  </label>
+                </div>
+                <div class="form-hint">Our crew handles 100% of lifting regardless of floor or location.</div>
+              </div>
+            </div>
+
+            <!-- Step 4: Heaviest Item -->
+            <div class="intake-step" data-step="4">
+              <div class="form-group">
+                <label for="intake-heavy" class="form-label">Step 4: Heaviest or Oversized Item (Optional)</label>
+                <input type="text" id="intake-heavy" name="heavy_item" class="form-input" placeholder="e.g. Concrete slabs, upright piano, hot tub, heavy cast iron stove...">
+                <div class="form-hint">Helps our dispatch team equip the truck with hydraulic dollies and extra technicians.</div>
+              </div>
+            </div>
+
+            <!-- Step 5: Schedule & Photo Upload -->
+            <div class="intake-step" data-step="5">
+              <div class="form-group">
+                <label for="intake-date" class="form-label">Preferred Completion Window</label>
+                <select id="intake-date" name="preferred_date" class="form-select">
+                  <option value="today">Today (Same-Day Rapid Dispatch)</option>
+                  <option value="tomorrow">Tomorrow (Next-Day Morning/Afternoon)</option>
+                  <option value="this_week">Within the Next 2-3 Days</option>
+                  <option value="weekend">This Upcoming Weekend</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Photo Upload (Recommended for exact quote)</label>
+                <div class="file-dropzone" id="photo-dropzone">
+                  <span class="file-dropzone__icon">📷</span>
+                  <div class="file-dropzone__text" id="dropzone-file-name">Drag &amp; drop photos of your junk, or click to browse</div>
+                  <input type="file" id="intake-photos" name="photos" accept="image/*" multiple style="display:none;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 6: Contact & Route -->
+            <div class="intake-step" data-step="6">
+              <div class="form-group">
+                <label for="intake-name" class="form-label">Your Full Name</label>
+                <input type="text" id="intake-name" name="name" class="form-input" placeholder="e.g. Alex Johnson" required>
+              </div>
+              <div class="form-group">
+                <label for="intake-phone" class="form-label">Phone Number (For SMS Quote Confirmation)</label>
+                <input type="tel" id="intake-phone" name="phone" class="form-input" placeholder="e.g. (253) 886-7724" required>
+              </div>
+              <div class="form-group">
+                <label for="intake-email" class="form-label">Email Address (Optional)</label>
+                <input type="email" id="intake-email" name="email" class="form-input" placeholder="e.g. alex@example.com">
+              </div>
+            </div>
+
+            <!-- Step Navigation -->
+            <div class="intake-nav">
+              <button type="button" class="btn btn--outline-dark btn--sm" id="intake-prev-btn" style="visibility: hidden;">
+                &larr; Back
+              </button>
+              <button type="button" class="btn btn--primary btn--sm" id="intake-next-btn">
+                Next Step &rarr;
+              </button>
+              <button type="submit" class="btn btn--primary btn--sm" id="intake-submit-btn" style="display: none;">
+                Get Guaranteed Quote
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="hero__cta-group" style="margin-top: 24px;">
+          <a href="tel:2538867724" class="btn btn--outline btn--lg" aria-label="Call (253) 886-7724 for free consultation">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Call Dispatch: (253) 886-7724
+          </a>
           <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--lg">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
-            Book Online in 30 Sec
-          </a>
-          <a href="tel:2537778718" class="btn btn--outline btn--lg" aria-label="Call (253) 777-8718 for free consultation">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            Call: (253) 777-8718
+            Book Directly in 30 Sec
           </a>
         </div>
 
@@ -184,12 +446,12 @@
             Licensed &amp; Insured
           </div>
           <div class="hero-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            Bookings in 30 Sec. Or LESS
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+            Privately Owned &amp; Operated
           </div>
           <div class="hero-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-            Locally Owned &amp; Operated
+            <span style="font-weight:900; color:#ea580c;">10%</span>
+            Rate Guarantee
           </div>
           <div class="hero-badge">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
@@ -198,6 +460,7 @@
         </div>
       </div>
     </section>
+
 
     <!-- TRUST STRIP STATS -->
     <section class="trust-strip">
@@ -217,6 +480,57 @@
         <div class="trust-metric">
           <div class="trust-metric__number">100%</div>
           <div class="trust-metric__label">Licensed &amp; Insured Company</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE VALUE PROPOSITIONS & 10% RATE GUARANTEE -->
+    <section class="section" style="padding-top: 40px; padding-bottom: 20px;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">The M&amp;M Advantage</span>
+          <h2 class="section-title">Why South Puget Sound Homeowners &amp; Businesses Choose Us</h2>
+          <p class="section-desc">Independent, local, and built to deliver higher value without corporate markups.</p>
+        </div>
+
+        <div class="value-props-grid">
+          <div class="value-prop-card">
+            <span class="value-prop-card__badge">Zero Franchise Fees</span>
+            <h3 class="value-prop-card__title">Privately Owned &amp; Operated</h3>
+            <p class="value-prop-card__text">We do not pay expensive franchise royalties or corporate marketing overhead. That direct cost savings goes back to you in lower baseline rates.</p>
+          </div>
+
+          <div class="value-prop-card">
+            <span class="value-prop-card__badge">Price Match -10%</span>
+            <h3 class="value-prop-card__title">10% Rate Guarantee</h3>
+            <p class="value-prop-card__text">We guarantee to beat any verifiable written quote from licensed local competitors by 10%. Transparent pricing with zero surprise add-ons.</p>
+          </div>
+
+          <div class="value-prop-card">
+            <span class="value-prop-card__badge">Landfill Diversion</span>
+            <h3 class="value-prop-card__title">Eco-Conscious Sorting</h3>
+            <p class="value-prop-card__text">Every truckload is hand-sorted for donation partnerships, scrap metal recycling, and clean wood/concrete diversion before municipal transfer disposal.</p>
+          </div>
+
+          <div class="value-prop-card">
+            <span class="value-prop-card__badge">Same-Day Pickup</span>
+            <h3 class="value-prop-card__title">Rapid 30-Sec Response</h3>
+            <p class="value-prop-card__text">Submit photos in seconds for an instant estimate. Trucks on standby across South King &amp; Pierce County for same-day dispatch before 1:00 PM PST.</p>
+          </div>
+        </div>
+
+        <!-- 10% Rate Guarantee Banner -->
+        <div class="guarantee-banner">
+          <div class="guarantee-banner__content">
+            <span class="guarantee-banner__tag">★ Official Price Protection</span>
+            <h3 class="guarantee-banner__title">Our 10% Rate Guarantee to You</h3>
+            <p class="guarantee-banner__text">
+              Have an estimate from another licensed junk hauler in Federal Way, Auburn, Edgewood, Tacoma, or Kent? Show our dispatch team their written quote. We will beat their price by <strong>10%</strong>—guaranteed.
+            </p>
+          </div>
+          <a href="tel:2538867724" class="btn btn--primary btn--lg" style="white-space: nowrap;">
+            Claim 10% Match: (253) 886-7724
+          </a>
         </div>
       </div>
     </section>
@@ -508,88 +822,237 @@
       </div>
     </section>
 
-    <!-- OUR CORE SERVICES -->
+    <!-- OUR CORE SERVICES & SILOS (PILLAR 2: CHUNK-LEVEL INFORMATION ARCHITECTURE) -->
     <section class="section section--alt" id="services">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">What We Haul</span>
-          <h2 class="section-title">Full-Service Junk Removal Solutions</h2>
-          <p class="section-desc">You point, we pick it up! We handle everything from single item removals to hoarder estate purges across Pierce and South King County.</p>
+          <span class="section-tag">Core Hauling Silos</span>
+          <h2 class="section-title">Comprehensive Residential &amp; Commercial Solutions</h2>
+          <p class="section-desc">M&amp;M Junk Removal provides upfront flat rates, prompt dispatch, and eco-conscious sorting across South King and Pierce Counties.</p>
         </div>
 
-        <div class="services-grid">
-          <!-- Service 1 -->
-          <div class="service-card">
-            <div class="service-card__icon-box">🏡</div>
-            <h3 class="service-card__title">Estate &amp; Hoarder Cleanouts</h3>
-            <p class="service-card__desc">Our signature specialty. Compassionate, discreet, organized, and thorough whole-home cleanouts for families and executors.</p>
-            <ul class="service-card__items">
-              <li>Full house, attic &amp; basement cleanouts</li>
-              <li>Respectful sorting &amp; donation delivery</li>
-              <li>Property handover ready</li>
-            </ul>
+        <!-- SILO 1: RESIDENTIAL JUNK REMOVAL -->
+        <article class="service-silo" id="residential-services" style="margin-bottom: 50px;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <span style="font-size: 2rem;">🛋️</span>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">Residential Junk Removal: Furniture, Appliances &amp; Cleanouts</h3>
+              <p style="color: #64748b; font-size: 0.9rem;">Serving homeowners, renters, and property executors in Federal Way, Auburn, Edgewood, Tacoma &amp; Kent.</p>
+            </div>
+          </div>
+          
+          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+            M&amp;M Junk Removal removes bulky residential clutter directly from interior rooms, attics, basements, and curbside driveways without requiring customer lifting. From heavy 4-piece sectional sofas and deep freeze refrigerators to overgrown yard debris, our two-technician crews handle disassembly, loading, and property sweeping.
+          </p>
+
+          <div class="services-grid" style="margin-bottom: 24px;">
+            <div class="service-card">
+              <div class="service-card__icon-box">🛋️</div>
+              <h4 class="service-card__title">Furniture &amp; Mattress Hauling</h4>
+              <p class="service-card__desc">M&amp;M Junk Removal hauls sofas, recliners, dressers, dining sets, mattresses, and box springs with zero damage to doorways.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-card__icon-box">🧊</div>
+              <h4 class="service-card__title">Appliance Recycling</h4>
+              <p class="service-card__desc">M&amp;M Junk Removal extracts refrigerators, freezers, washers, dryers, and stoves for certified eco-recovery.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-card__icon-box">🌿</div>
+              <h4 class="service-card__title">Yard Waste &amp; Brush</h4>
+              <p class="service-card__desc">M&amp;M Junk Removal chips and removes fallen branches, shrub trimmings, sod, blackberries, and storm debris.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-card__icon-box">🏡</div>
+              <h4 class="service-card__title">Estate &amp; Attic Cleanouts</h4>
+              <p class="service-card__desc">M&amp;M Junk Removal performs complete estate liquidations, hoarder cleanouts, and garage clean-sweeps with compassion.</p>
+            </div>
           </div>
 
-          <!-- Service 2 -->
-          <div class="service-card">
-            <div class="service-card__icon-box">📦</div>
-            <h3 class="service-card__title">Residential Junk Removal</h3>
-            <p class="service-card__desc">Reclaim your garage, shed, or crawlspace. We handle all personal clutter, boxes, old tools, and unwanted household items.</p>
-            <ul class="service-card__items">
-              <li>Garages &amp; basements cleared</li>
-              <li>Spring cleaning &amp; move-out trash</li>
-              <li>Fast same-day loading</li>
-            </ul>
+          <!-- Semantic Table: Residential Rates & Specs -->
+          <div class="table-responsive">
+            <table class="geo-table">
+              <thead>
+                <tr>
+                  <th>Residential Item Category</th>
+                  <th>Handling &amp; Dismantling Requirements</th>
+                  <th>Typical Load Volume</th>
+                  <th>Base Pricing Baseline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Bulky Furniture (Couches, Sectionals)</strong></td>
+                  <td>Dual-technician carryout, entryway protection</td>
+                  <td>1/8 to 1/4 Truckload</td>
+                  <td><span class="table-tag">$125 - $220</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Mattress &amp; Box Spring Sets</strong></td>
+                  <td>Dry bagging &amp; transfer recycling facility</td>
+                  <td>1/8 Truckload</td>
+                  <td><span class="table-tag">$125 - $175</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Refrigerators &amp; Freezers</strong></td>
+                  <td>Freon / EPA certified refrigerant recovery</td>
+                  <td>Single Heavy Appliance</td>
+                  <td><span class="table-tag">$150 - $225</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Yard Waste &amp; Organic Branches</strong></td>
+                  <td>Bulk pitchfork loading &amp; composting transfer</td>
+                  <td>Per Cubic Yard</td>
+                  <td><span class="table-tag">$85 - $130 / yd</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Full Garage or Estate Cleanout</strong></td>
+                  <td>Complete crew packing, hauling &amp; broom sweep</td>
+                  <td>Full 16ft Box Truck (16 yds)</td>
+                  <td><span class="table-tag">Custom Quote (10% Beat)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- SILO 2: COMMERCIAL & CONTRACTOR SERVICES -->
+        <article class="service-silo" id="commercial-services" style="margin-bottom: 50px;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <span style="font-size: 2rem;">🏢</span>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">Commercial, Contractor &amp; Light Demolition Hauling</h3>
+              <p style="color: #64748b; font-size: 0.9rem;">Trusted logistics partner for general contractors, property managers, and retail facilities.</p>
+            </div>
           </div>
 
-          <!-- Service 3 -->
-          <div class="service-card">
-            <div class="service-card__icon-box">🛋️</div>
-            <h3 class="service-card__title">Appliance &amp; Furniture Removal</h3>
-            <p class="service-card__desc">Heavy lifting is tough on your back and walls. Let our team safely haul away couches, heavy mattresses, refrigerators, and washers.</p>
-            <ul class="service-card__items">
-              <li>Sofas, recliners &amp; dressers</li>
-              <li>Refrigerators, ovens &amp; water heaters</li>
-              <li>Mattress &amp; box spring disposal</li>
-            </ul>
+          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+            M&amp;M Junk Removal provides rapid commercial debris dispatch for renovation sites, tenant turnover cleanouts, office liquidations, and light demolition projects. Our 16-foot high-wall box trucks handle up to 4.5 tons of payload, offering prompt digital invoicing, certificates of insurance (COI), and scheduled recurring waste routes.
+          </p>
+
+          <div class="services-grid" style="margin-bottom: 24px;">
+            <div class="service-card">
+              <div class="service-card__icon-box">🔨</div>
+              <h4 class="service-card__title">Construction &amp; Renovation Debris</h4>
+              <p class="service-card__desc">Drywall, framing lumber, tile, roofing shingles, carpet, and jobsite scrap hauled promptly for contractors.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-card__icon-box">🖥️</div>
+              <h4 class="service-card__title">Office Furniture &amp; E-Waste</h4>
+              <p class="service-card__desc">Cubicle partition breakdown, ergonomic desks, filing cabinets, and certified electronic equipment recycling.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-card__icon-box">🏚️</div>
+              <h4 class="service-card__title">Shed &amp; Deck Demolition</h4>
+              <p class="service-card__desc">Dismantling old wooden sheds, rotting backyard decks, chain-link fences, and playsets down to clean ground.</p>
+            </div>
+            <div class="service-card">
+              <div class="service-card__icon-box">♨️</div>
+              <h4 class="service-card__title">Hot Tub &amp; Spa Disassembly</h4>
+              <p class="service-card__desc">Safe electrical disconnection, shell saw-cutting, loading, and disposal with zero damage to concrete patios.</p>
+            </div>
           </div>
 
-          <!-- Service 4 -->
-          <div class="service-card">
-            <div class="service-card__icon-box">🔨</div>
-            <h3 class="service-card__title">Shed &amp; Light Demolition</h3>
-            <p class="service-card__desc">Need an old wooden shed, rotting deck, or rusted playground disassembled? We dismantle and haul away all debris completely.</p>
-            <ul class="service-card__items">
-              <li>Shed teardown &amp; removal</li>
-              <li>Playset &amp; deck demolition</li>
-              <li>Clean ground sweep included</li>
-            </ul>
+          <!-- Semantic Table: Commercial & Demolition Specs -->
+          <div class="table-responsive">
+            <table class="geo-table">
+              <thead>
+                <tr>
+                  <th>Commercial Debris Category</th>
+                  <th>Payload &amp; Equipment Rating</th>
+                  <th>Compliance &amp; Invoicing</th>
+                  <th>Rate Structure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Drywall, Framing &amp; Remodel Trash</strong></td>
+                  <td>Heavy-duty 16ft box truck (up to 4.5 ton cap)</td>
+                  <td>Licensed WA Motor Carrier (UBI Active)</td>
+                  <td><span class="table-tag">Volume + Weight Tiers</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Backyard Shed Teardown (10x12)</strong></td>
+                  <td>Reciprocating saws, safety sledge, magnets</td>
+                  <td>Full site broom-sweep included</td>
+                  <td><span class="table-tag">$650 - $1,200</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Above-Ground Hot Tub / Jacuzzi</strong></td>
+                  <td>Sawzall sectional cut &amp; shell extraction</td>
+                  <td>Wiring check, component sorting</td>
+                  <td><span class="table-tag">$350 - $550</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Property Management Tenant Eviction</strong></td>
+                  <td>Rapid 24-hr emergency crew dispatch</td>
+                  <td>Itemized photo log &amp; net-30 terms</td>
+                  <td><span class="table-tag">Hourly / Truck Rate</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- SILO 3: ECO-DISPOSAL & RECYCLING LOGISTICS -->
+        <article class="service-silo" id="eco-disposal">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <span style="font-size: 2rem;">♻️</span>
+            <div>
+              <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">Eco-Disposal, Donation &amp; Recycling Logistics</h3>
+              <p style="color: #64748b; font-size: 0.9rem;">Maximum landfill diversion through certified Puget Sound scrap, charity, and transfer facilities.</p>
+            </div>
           </div>
 
-          <!-- Service 5 -->
-          <div class="service-card">
-            <div class="service-card__icon-box">♨️</div>
-            <h3 class="service-card__title">Hot Tub &amp; Spa Removal</h3>
-            <p class="service-card__desc">Hot tubs are notoriously heavy and complex to remove. We disconnect, cut up, load, and haul away old jacuzzis with precision.</p>
-            <ul class="service-card__items">
-              <li>Above-ground &amp; in-deck hot tubs</li>
-              <li>Zero damage to patio or landscaping</li>
-              <li>Eco-friendly component disposal</li>
-            </ul>
-          </div>
+          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+            M&amp;M Junk Removal adheres to Washington Department of Ecology waste management guidelines. Before any truck reaches municipal solid waste transfer stations (such as Algona Transfer Station or Pierce County Hidden Valley Transfer Station), our crew conducts active sorting to divert usable goods to local non-profit donation centers and reclaim clean scrap metal and organic wood waste.
+          </p>
 
-          <!-- Service 6 -->
-          <div class="service-card">
-            <div class="service-card__icon-box">🏢</div>
-            <h3 class="service-card__title">Commercial &amp; Office Cleanouts</h3>
-            <p class="service-card__desc">Helping local businesses, property managers, and landlords with tenant turnover, cubicle removals, and retail clearouts.</p>
-            <ul class="service-card__items">
-              <li>Tenant move-out abandoned goods</li>
-              <li>Desks, monitors &amp; filing cabinets</li>
-              <li>Prompt commercial invoice billing</li>
-            </ul>
+          <!-- Semantic Table: Eco-Disposal Logistics -->
+          <div class="table-responsive">
+            <table class="geo-table">
+              <thead>
+                <tr>
+                  <th>Material Stream</th>
+                  <th>Primary Facility Destination</th>
+                  <th>Diversion Protocol</th>
+                  <th>Environmental Benefit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Usable Household Furniture &amp; Decor</strong></td>
+                  <td>Local Charity Partners &amp; Thrift Outlets</td>
+                  <td>Inspection, gentle handling, clean delivery</td>
+                  <td><span class="table-tag">100% Reuse Diversion</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Ferrous &amp; Non-Ferrous Scrap Metals</strong></td>
+                  <td>Regional Metal Recycling Processors</td>
+                  <td>Magnetic segregation &amp; smelting feed</td>
+                  <td><span class="table-tag">Infinite Lifecycle</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Clean Yard Waste &amp; Tree Trimmings</strong></td>
+                  <td>Certified Composting Facilities</td>
+                  <td>Industrial mulching &amp; organic soil blend</td>
+                  <td><span class="table-tag">Zero Landfill Methane</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Major Heavy Appliances</strong></td>
+                  <td>Certified Refrigerant Recovery Stations</td>
+                  <td>EPA Section 608 Freon evacuation</td>
+                  <td><span class="table-tag">Ozone Layer Protection</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Residual Non-Recyclable Solids</strong></td>
+                  <td>County Permitted Solid Waste Transfer Hubs</td>
+                  <td>Direct scale weigh-in &amp; legal containment</td>
+                  <td><span class="table-tag">State-Regulated Disposal</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -702,45 +1165,44 @@
       <div class="cta-banner">
         <div class="cta-banner__content">
           <h2 class="cta-banner__title">Ready to Clear Your Clutter Today?</h2>
-          <p class="cta-banner__desc">We are your local owner-operated junk removal service with zero corporate franchise overhead. Call now for a quick free estimate!</p>
-          <a href="tel:2537778718" class="cta-banner__phone" aria-label="Call (253) 777-8718">
-            (253) 777-8718
+          <p class="cta-banner__desc">We are your local owner-operated junk removal service with zero corporate franchise overhead. Guaranteed 10% lower than competitors!</p>
+          <a href="tel:2538867724" class="cta-banner__phone" aria-label="Call (253) 886-7724">
+            (253) 886-7724
           </a>
           <div class="cta-banner__buttons">
-            <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--lg">
-              Book Online in 30 Seconds
+            <a href="#quote-intake-section" class="btn btn--primary btn--lg">
+              Get Instant Estimate
             </a>
-            <a href="tel:2537778718" class="btn btn--outline btn--lg">
-              Call For Free Consultation
+            <a href="tel:2538867724" class="btn btn--outline btn--lg">
+              Call Dispatch: (253) 886-7724
             </a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SERVICE AREAS -->
+    <!-- SERVICE AREAS & HYPER-LOCAL HUBS -->
     <section class="section" id="service-areas">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Local Coverage</span>
-          <h2 class="section-title">Junk Removal Service Areas</h2>
-          <p class="section-desc">We dispatch trucks across Pierce County and South King County for fast same-day and next-day pickups:</p>
+          <span class="section-tag">Direct Operational Coverage</span>
+          <h2 class="section-title">Dedicated City Service Hubs</h2>
+          <p class="section-desc">We dispatch trucks across Pierce County and South King County within a strict 15-mile operating radius for prompt same-day service:</p>
         </div>
 
         <div class="cities-grid">
-          <div class="city-pill">📍 Federal Way, WA</div>
-          <div class="city-pill">📍 Tacoma, WA</div>
-          <div class="city-pill">📍 Auburn, WA</div>
-          <div class="city-pill">📍 Kent, WA</div>
-          <div class="city-pill">📍 Puyallup, WA</div>
-          <div class="city-pill">📍 Milton, WA</div>
-          <div class="city-pill">📍 Edgewood, WA</div>
-          <div class="city-pill">📍 Sumner, WA</div>
-          <div class="city-pill">📍 Fife, WA</div>
-          <div class="city-pill">📍 Lakewood, WA</div>
-          <div class="city-pill">📍 Des Moines, WA</div>
-          <div class="city-pill">📍 Pierce County</div>
-          <div class="city-pill">📍 South King County</div>
+          <a href="junk-removal-federal-way-wa/" class="city-pill" style="color: inherit; text-decoration: none;">📍 <strong>Federal Way, WA (98003)</strong></a>
+          <a href="junk-removal-auburn-wa/" class="city-pill" style="color: inherit; text-decoration: none;">📍 <strong>Auburn, WA (98001)</strong></a>
+          <a href="junk-removal-edgewood-wa/" class="city-pill" style="color: inherit; text-decoration: none;">📍 <strong>Edgewood, WA (98371)</strong></a>
+          <a href="junk-removal-tacoma-wa/" class="city-pill" style="color: inherit; text-decoration: none;">📍 <strong>Tacoma, WA (98402)</strong></a>
+          <a href="junk-removal-kent-wa/" class="city-pill" style="color: inherit; text-decoration: none;">📍 <strong>Kent, WA (98030)</strong></a>
+          <div class="city-pill">📍 Milton, WA (98354)</div>
+          <div class="city-pill">📍 Des Moines, WA (98198)</div>
+          <div class="city-pill">📍 Puyallup, WA (98371)</div>
+          <div class="city-pill">📍 Sumner, WA (98390)</div>
+          <div class="city-pill">📍 Fife, WA (98424)</div>
+          <div class="city-pill">📍 Pierce County (Direct Zone)</div>
+          <div class="city-pill">📍 South King County (Direct Zone)</div>
         </div>
       </div>
     </section>
@@ -751,62 +1213,73 @@
         <div class="section-header">
           <span class="section-tag">Got Questions?</span>
           <h2 class="section-title">Frequently Asked Questions</h2>
-          <p class="section-desc">Everything you need to know about our same-day junk removal services.</p>
+          <p class="section-desc">Transparent information about our pricing, dispatch windows, and eco-disposal policies.</p>
         </div>
 
         <div class="faq-list">
           <!-- FAQ 1 -->
           <div class="faq-item">
             <button type="button" class="faq-question">
-              <span>How fast can you come for junk removal?</span>
+              <span>How fast can you dispatch a truck for junk removal?</span>
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>We offer same-day and next-day junk removal services in most of Pierce &amp; South King County. When you call us at (253) 777-8718, we can often dispatch a truck within hours!</p>
+              <p>We offer same-day and next-day junk removal services throughout Federal Way, Auburn, Edgewood, Tacoma, and Kent. For guaranteed same-day pickup, confirm before 1:00 PM PST or call <a href="tel:2538867724" style="color:#ea580c; font-weight:700;">(253) 886-7724</a> for emergency routing!</p>
             </div>
           </div>
 
           <!-- FAQ 2 -->
           <div class="faq-item">
             <button type="button" class="faq-question">
-              <span>What types of junk do you remove?</span>
+              <span>How does M&amp;M Junk Removal's 10% Rate Guarantee work?</span>
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>We haul away furniture, mattresses, appliances, yard waste, electronics, construction debris, sheds, hot tubs, and complete hoarder/estate contents. If you have an unusual item, just give us a call for an instant consultation.</p>
+              <p>Because we are privately owned and do not pay costly franchise royalties, we match and beat any verifiable written estimate from a licensed local competitor by 10%. Simply send us a photo of their written quote!</p>
             </div>
           </div>
 
           <!-- FAQ 3 -->
           <div class="faq-item">
             <button type="button" class="faq-question">
-              <span>How is pricing calculated?</span>
+              <span>How is junk removal pricing calculated?</span>
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>Our pricing is based primarily on how much space your items take up in our truck, plus the nature of the materials (such as heavy concrete or specialty disposal items). Because we are locally owned with zero corporate overhead, our rates consistently beat franchise competitors!</p>
+              <p>Our pricing is based on how much space your items occupy in our 16-foot high-wall box truck, starting at our $125 baseline minimum for single-item pickups. Heavy materials like concrete, brick, or sod are priced by weight tiers. Labor, loading, and transfer station fees are always included with zero hidden costs.</p>
             </div>
           </div>
 
           <!-- FAQ 4 -->
           <div class="faq-item">
             <button type="button" class="faq-question">
-              <span>Are you licensed and insured?</span>
+              <span>What items do you accept and what is prohibited?</span>
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>Yes, absolutely. M&amp;M Junk Removal is fully licensed and insured in Washington State, so your home, driveway, and property are always 100% protected while our crew is on-site.</p>
+              <p>We accept couches, mattresses, appliances, yard debris, construction waste, electronics, sheds, hot tubs, and estate cleanout goods. In accordance with WA Department of Ecology regulations, prohibited items include hazardous liquid chemicals, wet paint, explosive munitions, and asbestos.</p>
             </div>
           </div>
 
           <!-- FAQ 5 -->
           <div class="faq-item">
             <button type="button" class="faq-question">
-              <span>Do I need to carry items to the curb?</span>
+              <span>Are you fully licensed and insured in Washington State?</span>
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>No! We are a full-service junk removal company. Leave items exactly where they are—in the basement, upstairs bedroom, attic, or backyard. Our team handles 100% of the lifting, carrying, loading, and cleanup.</p>
+              <p>Yes. M&amp;M Junk Removal is a fully registered Washington State commercial motor carrier (WA DOR UBI Active) carrying comprehensive general liability and commercial auto insurance coverage protecting your property 100%.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question">
+              <span>Do I need to carry items out to the driveway or curb?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Never! We are full-service haulers. Our two-person crews safely lift and carry items from anywhere inside your home—upstairs bedrooms, basements, attics, or backyards. You simply point, and we take care of the rest.</p>
             </div>
           </div>
         </div>
@@ -821,29 +1294,33 @@
         <div>
           <img src="assets/images/logo-dark-bg.png" alt="M&amp;M Junk Removal" style="height: 40px; width: auto; margin-bottom: 14px; display: block;">
           <p>Your trusted local partner for same-day residential, commercial, and estate junk removal services across Pierce County &amp; South King County, Washington.</p>
-          <p style="margin-top: 12px; font-weight: 600; color: #fb923c;">Fully Licensed &amp; Insured • WA State</p>
+          <p style="margin-top: 12px; font-weight: 600; color: #fb923c;">10% Rate Guarantee • Fully Licensed &amp; Insured</p>
+          <p style="margin-top: 8px; font-size: 0.82rem; color: #94a3b8;">
+            AI Machine-Readable Endpoints: <a href="llms.txt" style="color: #fb923c;">/llms.txt</a> • <a href="llms-full.txt" style="color: #fb923c;">/llms-full.txt</a>
+          </p>
         </div>
 
         <div>
-          <h3 class="footer__heading">Quick Links</h3>
+          <h3 class="footer__heading">Local City Hubs</h3>
           <ul class="footer__links">
-            <li><a href="#services">Services Offered</a></li>
-            <li><a href="#video-proof">Video Testimonials</a></li>
-            <li><a href="#reviews">Google Reviews (173+)</a></li>
-            <li><a href="#gallery">Recent Work Photos</a></li>
-            <li><a href="#faq">Frequently Asked Questions</a></li>
+            <li><a href="junk-removal-federal-way-wa/">Junk Removal Federal Way, WA</a></li>
+            <li><a href="junk-removal-auburn-wa/">Junk Removal Auburn, WA</a></li>
+            <li><a href="junk-removal-edgewood-wa/">Junk Removal Edgewood, WA</a></li>
+            <li><a href="junk-removal-tacoma-wa/">Junk Removal Tacoma, WA</a></li>
+            <li><a href="junk-removal-kent-wa/">Junk Removal Kent, WA</a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="footer__heading">Contact &amp; Booking</h3>
+          <h3 class="footer__heading">Contact &amp; Dispatch</h3>
           <ul class="footer__links">
-            <li><strong>Phone:</strong> <a href="tel:2537778718">(253) 777-8718</a></li>
-            <li><strong>Service Area:</strong> Tacoma, Federal Way, Auburn &amp; nearby</li>
-            <li><strong>Hours:</strong> Mon - Sun: 7:00 AM - 8:00 PM</li>
+            <li><strong>Phone:</strong> <a href="tel:2538867724">(253) 886-7724</a></li>
+            <li><strong>Headquarters:</strong> Federal Way, WA 98003</li>
+            <li><strong>Service Hours:</strong> Mon - Sun: 7:00 AM - 8:00 PM</li>
+            <li><strong>Same-Day Cutoff:</strong> 1:00 PM PST</li>
             <li style="margin-top: 10px;">
-              <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm" style="display:inline-block;">
-                Book in 30 Seconds
+              <a href="#quote-intake-section" class="btn btn--primary btn--sm" style="display:inline-block;">
+                Get Instant Estimate
               </a>
             </li>
           </ul>
@@ -851,20 +1328,20 @@
       </div>
 
       <div class="footer__bottom">
-        <div>&copy; 2026 M&amp;M Junk Removal (Mamhad). All rights reserved.</div>
-        <div>Fast, Affordable, Same-Day Junk Removal</div>
+        <div>&copy; 2026 M&amp;M Junk Removal (www.mmjunk.com). All rights reserved.</div>
+        <div>Fast, Affordable, Same-Day Junk Removal in South King &amp; Pierce Counties</div>
       </div>
     </div>
   </footer>
 
   <!-- MOBILE STICKY ACTION BAR -->
   <div class="mobile-sticky-bar">
-    <a href="tel:2537778718" class="btn btn--outline" style="border-color: #ea580c; color: #fb923c;" aria-label="Call (253) 777-8718">
+    <a href="tel:2538867724" class="btn btn--outline" style="border-color: #ea580c; color: #fb923c;" aria-label="Call (253) 886-7724">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      Call (253) 777-8718
+      Call (253) 886-7724
     </a>
-    <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary">
-      Book Online (30s)
+    <a href="#quote-intake-section" class="btn btn--primary">
+      Get Instant Quote
     </a>
   </div>
 
@@ -872,3 +1349,4 @@
   <script src="assets/js/main.js"></script>
 </body>
 </html>
+

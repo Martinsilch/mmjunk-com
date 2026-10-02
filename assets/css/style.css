@@ -891,70 +891,110 @@ button {
   text-decoration: underline;
 }
 
-/* Compact Multi-Platform Trust Ribbon */
-.trust-ribbon {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  max-width: 980px;
-  margin: 0 auto 32px;
-  padding: 0 16px;
+/* ==========================================================================
+   SOCIAL PROOF TITLE FOOTER / AUTHORITY SHOWCASE
+   ========================================================================== */
+.social-authority-showcase {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: 32px auto 20px;
 }
 
-.trust-ribbon__pill {
-  display: inline-flex;
+@media (min-width: 640px) {
+  .social-authority-showcase {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .social-authority-showcase {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.social-authority-card {
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 9999px;
-  padding: 7px 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
   text-decoration: none;
-  color: #334155;
-  font-size: 0.82rem;
-  font-weight: 500;
-  line-height: 1;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  transition: all 0.25s ease;
+  position: relative;
+  text-align: left;
 }
 
-.trust-ribbon__pill:hover {
-  transform: translateY(-1px);
+.social-authority-card:hover {
+  transform: translateY(-3px);
   border-color: #ea580c;
-  color: #0f172a;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 24px rgba(234, 88, 12, 0.12);
 }
 
-.trust-ribbon__pill svg {
-  width: 16px !important;
-  height: 16px !important;
-  max-width: 16px !important;
-  max-height: 16px !important;
+.social-authority-card__logo-wrap {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.social-authority-card:hover .social-authority-card__logo-wrap {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.social-authority-card__logo-wrap svg {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px !important;
+  max-height: 32px !important;
   display: block;
 }
 
-.trust-ribbon__pill strong {
-  color: #ea580c;
-  font-weight: 700;
-}
-
-.trust-ribbon__pill--badge {
-  background: #f8fafc;
-}
-
-.trust-ribbon__badge-tag {
-  background: #ecfdf5;
+.social-authority-card__bbb-badge {
+  font-weight: 900;
+  font-size: 0.8rem;
   color: #16a34a;
-  border: 1px solid #a7f3d0;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-weight: 800;
-  font-size: 0.72rem;
+  background: #ecfdf5;
+  border: 1.5px solid #a7f3d0;
+  padding: 4px 6px;
+  border-radius: 6px;
   line-height: 1;
+}
+
+.social-authority-card__content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.social-authority-card__title {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 2px 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.social-authority-card__desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.35;
+  font-weight: 600;
 }
 
 /* Job Scope Badges */

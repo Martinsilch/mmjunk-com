@@ -91,6 +91,46 @@
       "source": "/junk-removal-services/contractual-junk-removal-services/",
       "destination": "/services/contractual/",
       "permanent": true
+    },
+    {
+      "source": "/services/appliance-removal",
+      "destination": "/services/commercial-appliance-removal/",
+      "permanent": true
+    },
+    {
+      "source": "/services/appliance-removal/",
+      "destination": "/services/commercial-appliance-removal/",
+      "permanent": true
+    },
+    {
+      "source": "/services/scrap-metal",
+      "destination": "/services/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/services/scrap-metal/",
+      "destination": "/services/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/services/commercial-junk-removal",
+      "destination": "/services/commercial/",
+      "permanent": true
+    },
+    {
+      "source": "/services/commercial-junk-removal/",
+      "destination": "/services/commercial/",
+      "permanent": true
+    },
+    {
+      "source": "/services/residential-cleanouts",
+      "destination": "/services/residential/",
+      "permanent": true
+    },
+    {
+      "source": "/services/residential-cleanouts/",
+      "destination": "/services/residential/",
+      "permanent": true
     }
   ],
   "headers": [

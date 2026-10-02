@@ -741,6 +741,19 @@ button {
   color: var(--text-light);
 }
 
+.review-card__google-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  line-height: 1;
+}
+
+.review-card__google-link:hover {
+  transform: scale(1.15);
+  opacity: 0.9;
+}
+
 .review-card__google {
   width: 20px;
   height: 20px;
@@ -759,6 +772,26 @@ button {
   line-height: 1.6;
   color: #334155;
   flex-grow: 1;
+  margin-bottom: 14px;
+}
+
+.review-card__source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e40af;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.review-card__source-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
 }
 
 .reviews-actions {

@@ -125,17 +125,31 @@ htmlFiles.forEach(file => {
   const hasAggregate = content.includes('"AggregateRating"') && content.includes('"ratingValue": "5.0"') && content.includes('"reviewCount": "234"');
   const hasReviewSection = content.includes('review') || content.includes('reviews');
   const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston');
+  const hasReviewSchema = content.includes('"@type": "Review"') || content.includes('"@type":"Review"');
+  const hasReviewProvenance = !hasReviewSchema || (content.includes('"publisher"') && content.includes('"Google"') && content.includes('15999711673070107161'));
 
   if (!hasAggregate) {
     results.pillar3.checks.push(`⚠️ ${file}: Missing explicit AggregateRating 5.0 (234 reviews) schema`);
+  } else if (!hasReviewProvenance) {
+    results.pillar3.checks.push(`⚠️ ${file}: Review schema present but missing Google publisher CID provenance`);
   } else {
-    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (5.0 stars, 234 reviews) + Customer Case Study (quoted=${hasCustomerQuotes})`);
+    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (5.0 stars, 234 reviews) + Review Provenance (quoted=${hasCustomerQuotes})`);
   }
 });
 
 // Check if review prompt and owner response SOP exists
 const hasReviewsJson = fs.existsSync('assets/reviews.json');
-results.pillar3.checks.push(`✓ Verified customer review database present: assets/reviews.json (${hasReviewsJson})`);
+let reviewsHaveProvenance = false;
+if (hasReviewsJson) {
+  try {
+    const raw = fs.readFileSync('assets/reviews.json', 'utf8').replace(/^\uFEFF/, '');
+    const revs = JSON.parse(raw);
+    reviewsHaveProvenance = revs.every(r => r.platform === 'Google' && r.verified && r.originUrl && r.originUrl.includes('15999711673070107161'));
+  } catch(e) {
+    reviewsHaveProvenance = false;
+  }
+}
+results.pillar3.checks.push(`✓ Verified customer review database present: assets/reviews.json (exists=${hasReviewsJson}, google_provenance=${reviewsHaveProvenance})`);
 
 // ----------------------------------------------------
 // PILLAR 4: Machine-Readable Endpoints (llms.txt & Agentic Ecosystem)

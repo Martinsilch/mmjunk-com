@@ -50,6 +50,9 @@ html {
   background-color: var(--light-bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 body {
@@ -57,6 +60,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
   padding-bottom: 70px; /* space for mobile sticky bar */
 }
 
@@ -2151,6 +2156,7 @@ button {
   top: 100%;
   left: 0;
   min-width: 260px;
+  max-width: 90vw;
   max-height: 80vh;
   overflow-y: auto;
   background: #ffffff;
@@ -2960,5 +2966,412 @@ button {
   font-weight: 600;
   text-transform: uppercase;
 }
+
+/* ==========================================================================
+   RESPONSIVE GRIDS & MOBILE UTILITIES (ZERO HORIZONTAL OVERFLOW)
+   ========================================================================== */
+
+/* Service Hubs Showcase Banner (Homepage) */
+.service-hubs-banner {
+  background: #ffffff;
+  border: 2px solid #fdba74;
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.08);
+}
+
+.service-hubs-banner__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #fed7aa;
+  padding-bottom: 12px;
+}
+
+.service-hubs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 520px) {
+  .service-hubs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .service-hubs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .service-hubs-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.hub-pill-card {
+  display: block;
+  padding: 12px 14px;
+  background: #fff7ed;
+  border: 1px solid #ffedd5;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.hub-pill-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  background: #ffedd5;
+}
+
+/* Jobs Grid (Homepage Recent Jobs) */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 680px) {
+  .jobs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .jobs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Hub Cards Grid (Services Directory) */
+.hub-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 680px) {
+  .hub-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hub-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Service Spoke Grid (Hub Pages) */
+.service-spoke-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 680px) {
+  .service-spoke-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .service-spoke-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Feature Card (Used across Hub pages) */
+.feature-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.recent-jobs-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS & ZERO-OVERFLOW OVERRIDES (< 640px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  /* Prevent horizontal pan / container blowout */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Header Compactness */
+  .header__actions .btn--outline-dark {
+    display: none !important; /* Persistent call action is in bottom sticky bar */
+  }
+
+  .brand__logo-img {
+    height: 38px;
+    max-height: 38px;
+    width: auto;
+    max-width: 140px;
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: auto;
+    padding: 48px 0 40px;
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    white-space: normal;
+    font-size: 0.76rem;
+    letter-spacing: normal;
+    padding: 6px 12px;
+    line-height: 1.45;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    max-width: 100%;
+  }
+
+  .hero__title {
+    font-size: clamp(1.75rem, 7.5vw, 2.3rem);
+    line-height: 1.18;
+    margin-bottom: 14px;
+    word-break: break-word;
+  }
+
+  .hero__subtitle {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .hero__cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin: 20px 0 24px 0 !important;
+  }
+
+  .hero__cta-group .btn {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 0.98rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .btn--xl {
+    padding: 14px 18px;
+    font-size: 1rem;
+  }
+
+  .hero__badges {
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .hero-badge {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  /* Trust Strip */
+  .trust-strip {
+    padding: 16px 0;
+  }
+
+  .trust-metric__number {
+    font-size: 1.7rem;
+  }
+
+  .trust-metric__label {
+    font-size: 0.75rem;
+  }
+
+  /* Service Hubs Banner */
+  .service-hubs-banner {
+    padding: 16px 14px;
+    margin-bottom: 20px;
+  }
+
+  .service-hubs-banner__header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .service-hubs-banner__header .btn {
+    width: 100%;
+  }
+
+  /* Service Filters */
+  .service-filters {
+    gap: 6px;
+    margin: 16px 0 24px;
+  }
+
+  .service-filter-btn {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+  }
+
+  /* Service Silos & Cards */
+  .service-silo {
+    margin-bottom: 36px;
+  }
+
+  .service-silo-header {
+    padding: 16px 14px;
+    gap: 12px;
+  }
+
+  .service-silo-header__icon {
+    font-size: 1.8rem;
+  }
+
+  .service-silo-header__title {
+    font-size: 1.15rem;
+  }
+
+  .service-card {
+    padding: 20px 16px;
+  }
+
+  .service-card__actions {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .service-card__actions .btn {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.88rem;
+    white-space: normal;
+  }
+
+  /* Recent Jobs Header */
+  .recent-jobs-header-actions {
+    justify-content: stretch;
+  }
+
+  .recent-jobs-header-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Reviews Actions */
+  .reviews-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .reviews-actions .btn {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    padding: 32px 16px;
+    margin: 36px 0;
+  }
+
+  .cta-banner__title {
+    font-size: 1.6rem;
+  }
+
+  .cta-banner__phone {
+    font-size: 1.55rem;
+  }
+
+  .cta-banner__buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .cta-banner__buttons .btn {
+    width: 100%;
+    white-space: normal;
+  }
+
+  /* Tables */
+  .table-responsive {
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+    margin: 18px 0;
+  }
+
+  .geo-table th,
+  .geo-table td {
+    padding: 10px 10px;
+    font-size: 0.82rem;
+  }
+
+  /* City Pills */
+  .cities-grid {
+    gap: 8px;
+  }
+
+  .city-pill {
+    padding: 7px 12px;
+    font-size: 0.82rem;
+  }
+
+  /* Service / Job Pages */
+  .job-article, .service-article {
+    padding: 24px 16px 40px;
+  }
+
+  .job-title, .service-page-title {
+    font-size: 1.55rem;
+    line-height: 1.25;
+  }
+
+  .job-telemetry-box {
+    padding: 18px 14px;
+    margin: 20px 0;
+  }
+
+  .service-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Mobile Sticky Bar Safe Area */
+  .mobile-sticky-bar {
+    padding: 10px 12px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+}
+
 
 

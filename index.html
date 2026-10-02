@@ -707,7 +707,7 @@
       <nav class="header__nav" aria-label="Main Navigation">
         <div class="nav-item-dropdown">
           <a href="services/" class="header__link">Services ▾</a>
-          <div class="nav-dropdown-menu" style="min-width: 280px;">
+          <div class="nav-dropdown-menu">
             <a href="services/" class="nav-dropdown-item" style="font-weight: 700; color: var(--primary); border-bottom: 1px solid #e2e8f0;">All Services Directory &rsaquo;</a>
             <a href="services/residential/" class="nav-dropdown-item">🏡 Residential Junk Removal</a>
             <a href="services/commercial/" class="nav-dropdown-item">🏢 Commercial Junk Removal</a>
@@ -727,7 +727,7 @@
 
         <div class="nav-item-dropdown">
           <a href="jobs/" class="header__link">Recent Jobs ▾</a>
-          <div class="nav-dropdown-menu" style="min-width: 290px;">
+          <div class="nav-dropdown-menu">
             <a href="jobs/" class="nav-dropdown-item" style="font-weight: 700; color: var(--primary); border-bottom: 1px solid #e2e8f0;">Field Operations Feed &rsaquo;</a>
             <a href="jobs/federal-way-commercial-refrigerator-extraction/" class="nav-dropdown-item">Federal Way Coolers (ANKO BAKE)</a>
             <a href="jobs/ne-tacoma-moving-cleanout/" class="nav-dropdown-item">NE Tacoma Moving Cleanout</a>
@@ -905,8 +905,8 @@
         </div>
 
         <!-- 6 MASTER SERVICE HUBS SHOWCASE BANNER -->
-        <div class="service-hubs-banner" style="background: #ffffff; border: 2px solid #fdba74; border-radius: 12px; padding: 22px 24px; margin-bottom: 28px; box-shadow: 0 4px 16px rgba(234, 88, 12, 0.08);">
-          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; border-bottom: 1px solid #fed7aa; padding-bottom: 12px;">
+        <div class="service-hubs-banner">
+          <div class="service-hubs-banner__header">
             <div>
               <span class="service-card__badge badge--popular" style="margin-bottom: 6px; display: inline-block;">Master Service Directory</span>
               <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin: 0;">Explore Our 6 Operational Service Hubs</h3>
@@ -917,33 +917,33 @@
             </a>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px;">
-            <a href="services/residential/" class="hub-pill-card" style="display: block; padding: 12px 14px; background: #fff7ed; border: 1px solid #ffedd5; border-radius: 8px; text-decoration: none;">
+          <div class="service-hubs-grid">
+            <a href="services/residential/" class="hub-pill-card">
               <div style="font-size: 0.78rem; font-weight: 700; color: #ea580c; text-transform: uppercase;">Hub 01</div>
               <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0 4px;">Residential Hauling &rsaquo;</div>
               <div style="font-size: 0.8rem; color: #64748b; line-height: 1.35;">Furniture, appliances, yard debris &amp; hoarder cleanouts.</div>
             </a>
-            <a href="services/commercial/" class="hub-pill-card" style="display: block; padding: 12px 14px; background: #fff7ed; border: 1px solid #ffedd5; border-radius: 8px; text-decoration: none;">
+            <a href="services/commercial/" class="hub-pill-card">
               <div style="font-size: 0.78rem; font-weight: 700; color: #ea580c; text-transform: uppercase;">Hub 02</div>
               <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0 4px;">Commercial Services &rsaquo;</div>
               <div style="font-size: 0.8rem; color: #64748b; line-height: 1.35;">Restaurant equipment, cubicles, retail fixtures &amp; e-waste.</div>
             </a>
-            <a href="services/industrial/" class="hub-pill-card" style="display: block; padding: 12px 14px; background: #fff7ed; border: 1px solid #ffedd5; border-radius: 8px; text-decoration: none;">
+            <a href="services/industrial/" class="hub-pill-card">
               <div style="font-size: 0.78rem; font-weight: 700; color: #ea580c; text-transform: uppercase;">Hub 03</div>
               <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0 4px;">Industrial &amp; Heavy &rsaquo;</div>
               <div style="font-size: 0.8rem; color: #64748b; line-height: 1.35;">Concrete slabs, steel machinery &amp; warehouse pallets.</div>
             </a>
-            <a href="services/sorting-donation/" class="hub-pill-card" style="display: block; padding: 12px 14px; background: #fff7ed; border: 1px solid #ffedd5; border-radius: 8px; text-decoration: none;">
+            <a href="services/sorting-donation/" class="hub-pill-card">
               <div style="font-size: 0.78rem; font-weight: 700; color: #ea580c; text-transform: uppercase;">Hub 04</div>
               <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0 4px;">Sorting &amp; Donations &rsaquo;</div>
               <div style="font-size: 0.8rem; color: #64748b; line-height: 1.35;">Estate triage, charity partnerships &amp; landfill diversion.</div>
             </a>
-            <a href="services/recurring/" class="hub-pill-card" style="display: block; padding: 12px 14px; background: #fff7ed; border: 1px solid #ffedd5; border-radius: 8px; text-decoration: none;">
+            <a href="services/recurring/" class="hub-pill-card">
               <div style="font-size: 0.78rem; font-weight: 700; color: #ea580c; text-transform: uppercase;">Hub 05</div>
               <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0 4px;">Recurring Routes &rsaquo;</div>
               <div style="font-size: 0.8rem; color: #64748b; line-height: 1.35;">Weekly dumpster sweeps, apartment turnovers &amp; HOA care.</div>
             </a>
-            <a href="services/contractual/" class="hub-pill-card" style="display: block; padding: 12px 14px; background: #fff7ed; border: 1px solid #ffedd5; border-radius: 8px; text-decoration: none;">
+            <a href="services/contractual/" class="hub-pill-card">
               <div style="font-size: 0.78rem; font-weight: 700; color: #ea580c; text-transform: uppercase;">Hub 06</div>
               <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin: 2px 0 4px;">Contractual MSAs &rsaquo;</div>
               <div style="font-size: 0.8rem; color: #64748b; line-height: 1.35;">General contractor vendor agreements, Net-30 &amp; COI.</div>
@@ -2510,7 +2510,7 @@ I would absolutely use them again and highly recommend their services!"</p>
           <p class="section-desc">Every job logged below represents an authentic local project completed by Martin Silch and the M&amp;M crew across Pierce and South King Counties, documented with load telemetry, equipment specs, and verified customer reviews.</p>
         </div>
 
-        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+        <div class="recent-jobs-header-actions">
           <a href="jobs/" class="btn btn--primary btn--sm">
             View All Job Stories &amp; Operations Feed &rsaquo;
           </a>
@@ -2576,7 +2576,7 @@ I would absolutely use them again and highly recommend their services!"</p>
         </div>
 
         <!-- 6 Job Cards Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+        <div class="jobs-grid">
           <div class="service-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #ffffff;">
             <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">
               <span>📍 Federal Way, WA (98003)</span>

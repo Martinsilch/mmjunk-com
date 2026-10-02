@@ -25,7 +25,7 @@
   ],
   "headers": [
     {
-      "source": "/(llms.txt|llms-full.txt)",
+      "source": "/(llms.txt|llms-full.txt|llms-workflows.txt|llm-examples.md|knowledge/(.*)|humans.txt)",
       "headers": [
         {
           "key": "Content-Type",
@@ -34,6 +34,10 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400, stale-while-revalidate=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     },

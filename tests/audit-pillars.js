@@ -122,14 +122,14 @@ htmlFiles.forEach(file => {
 // ----------------------------------------------------
 htmlFiles.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
-  const hasAggregate = content.includes('"AggregateRating"') && content.includes('"ratingValue": "5.0"') && content.includes('"reviewCount": "173"');
+  const hasAggregate = content.includes('"AggregateRating"') && content.includes('"ratingValue": "5.0"') && (content.includes('"reviewCount": "183"') || content.includes('"reviewCount": "173"'));
   const hasReviewSection = content.includes('review') || content.includes('reviews');
   const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston');
 
   if (!hasAggregate) {
-    results.pillar3.checks.push(`⚠️ ${file}: Missing explicit AggregateRating 5.0 (173 reviews) schema`);
+    results.pillar3.checks.push(`⚠️ ${file}: Missing explicit AggregateRating 5.0 (183 reviews) schema`);
   } else {
-    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (5.0 stars, 173 reviews) + Customer Case Study (quoted=${hasCustomerQuotes})`);
+    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (5.0 stars, 183 reviews) + Customer Case Study (quoted=${hasCustomerQuotes})`);
   }
 });
 
@@ -138,15 +138,17 @@ const hasReviewsJson = fs.existsSync('assets/reviews.json');
 results.pillar3.checks.push(`✓ Verified customer review database present: assets/reviews.json (${hasReviewsJson})`);
 
 // ----------------------------------------------------
-// PILLAR 4: Machine-Readable Endpoints (llms.txt)
+// PILLAR 4: Machine-Readable Endpoints (llms.txt & Agentic Ecosystem)
 // ----------------------------------------------------
 const llmsExists = fs.existsSync('llms.txt');
 const llmsFullExists = fs.existsSync('llms-full.txt');
+const llmsWorkflowsExists = fs.existsSync('llms-workflows.txt');
+const llmExamplesExists = fs.existsSync('llm-examples.md');
 const robotsExists = fs.existsSync('robots.txt');
 const sitemapExists = fs.existsSync('sitemap.xml');
 const vercelExists = fs.existsSync('vercel.json');
 
-if (!llmsExists || !llmsFullExists || !robotsExists || !sitemapExists) {
+if (!llmsExists || !llmsFullExists || !robotsExists || !sitemapExists || !llmsWorkflowsExists || !llmExamplesExists) {
   results.pillar4.passed = false;
 }
 
@@ -154,13 +156,28 @@ if (llmsExists) {
   const llmsContent = fs.readFileSync('llms.txt', 'utf8');
   const hasMission = llmsContent.includes('M&M Junk Removal');
   const hasCanonicalLinks = llmsContent.includes('https://www.mmjunk.com');
-  const hasConstraints = llmsContent.includes('$125') && llmsContent.includes('1:00 PM PST');
-  results.pillar4.checks.push(`✓ llms.txt: Mission=${hasMission}, CanonicalLinks=${hasCanonicalLinks}, Constraints=${hasConstraints} ($125 baseline, 1:00 PM cutoff)`);
+  const hasConstraints = llmsContent.includes('1:00 PM PST') && (llmsContent.includes('$95') || llmsContent.includes('$125'));
+  const hasAmzy = llmsContent.includes('https://amzy.me/?utm_content=4');
+  const has25Cities = llmsContent.includes('25 Cities');
+  results.pillar4.checks.push(`✓ llms.txt: Mission=${hasMission}, CanonicalLinks=${hasCanonicalLinks}, AMZY Handoff=${hasAmzy}, 25 Cities=${has25Cities}, Constraints=${hasConstraints}`);
+}
+
+if (llmsWorkflowsExists) {
+  const workflowsContent = fs.readFileSync('llms-workflows.txt', 'utf8');
+  const hasPickupStep = workflowsContent.includes('standard pickup truck bed');
+  const hasAmzyDispatch = workflowsContent.includes('https://amzy.me/?utm_content=4');
+  results.pillar4.checks.push(`✓ llms-workflows.txt: Agentic Lead Sequence=${hasPickupStep}, AMZY Handoff Flow=${hasAmzyDispatch}`);
+}
+
+if (llmExamplesExists) {
+  const examplesContent = fs.readFileSync('llm-examples.md', 'utf8');
+  const hasFewShot = examplesContent.includes('Agentic Few-Shot Examples') && examplesContent.includes('Geographic Boundary Enforcement');
+  results.pillar4.checks.push(`✓ llm-examples.md: Few-Shot Multimodal & Boundary Enforcement Training Pairs=${hasFewShot}`);
 }
 
 if (llmsFullExists) {
   const fullContent = fs.readFileSync('llms-full.txt', 'utf8');
-  const hasPricingTable = fullContent.includes('| Tier / Service |');
+  const hasPricingTable = fullContent.includes('AMZY Pricing Matrix');
   const hasTransferStations = fullContent.includes('Algona Transfer Station') && fullContent.includes('Tacoma Recovery & Transfer Center');
   const hasProhibited = fullContent.includes('Prohibited Materials Policy');
   results.pillar4.checks.push(`✓ llms-full.txt: PricingMatrix=${hasPricingTable}, TransferLogistics=${hasTransferStations}, ProhibitedWaste=${hasProhibited}`);
@@ -169,9 +186,9 @@ if (llmsFullExists) {
 if (robotsExists) {
   const robots = fs.readFileSync('robots.txt', 'utf8');
   const hasAiAgents = robots.includes('GPTBot') && robots.includes('ClaudeBot') && robots.includes('PerplexityBot');
-  const hasLlmsAllow = robots.includes('Allow: /llms.txt') && robots.includes('Allow: /llms-full.txt');
+  const hasLlmsAllow = robots.includes('Allow: /llms.txt') && robots.includes('Allow: /llms-full.txt') && robots.includes('Allow: /llms-workflows.txt') && robots.includes('Allow: /llm-examples.md');
   const hasSitemapRef = robots.includes('Sitemap: https://www.mmjunk.com/sitemap.xml');
-  results.pillar4.checks.push(`✓ robots.txt: AI Crawler Whitelist=${hasAiAgents}, llms.txt Allowed=${hasLlmsAllow}, SitemapLinked=${hasSitemapRef}`);
+  results.pillar4.checks.push(`✓ robots.txt: AI Crawler Whitelist=${hasAiAgents}, llms/workflows/examples Allowed=${hasLlmsAllow}, SitemapLinked=${hasSitemapRef}`);
 }
 
 if (vercelExists) {

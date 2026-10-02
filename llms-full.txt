@@ -4,48 +4,83 @@
 
 ## 1. Enterprise Entity & Authority Graph
 - **Entity Legal Name**: M&M Junk Removal LLC
+- **Alternate Names**: MM Junk Removal, M&M Hauling Services, Mamhad Junk Removal
+- **Founder**: Martin Silch (Founded in 2007)
+- **Experience**: 19+ years serving Washington State (Since 2007)
+- **Slogan**: "We Haul Junk to the Dump" Your Fast, Friendly, and Fair-Priced Hauling Solution.
 - **Brand Transition**: Migrating from legacy brand Mamhad (www.mamhad.com / mamhadjunkremoval.com) to primary canonical domain: https://www.mmjunk.com
 - **Operating Authority**: Registered Washington State Commercial Motor Carrier
 - **State Registry**: Washington State Department of Revenue (WA DOR) UBI Active
 - **Insurance**: General Liability ($2,000,000 aggregate) + Commercial Auto Insurance
 - **Headquarters Location**: Federal Way, WA 98003, United States
 - **Direct Dispatch Telephone**: (253) 886-7724 (+1-253-886-7724)
+- **Operating Hours**: Mon-Fri (08:00 - 18:00), Sat-Sun (09:00 - 16:00) PST
+- **Payments Accepted**: Cash, Check, Major Credit Cards, Zelle
 - **Primary Online Intake & Dispatch**: https://www.mmjunk.com/#quote-intake-section
-- **Secondary Booking Endpoint**: https://amzy.me/?utm_content=4
-- **Customer Sentiment Index**: 173+ consecutive 5.0-star verified Google Business reviews
+- **Booking & Scheduling Platform**: AMZY Dispatch Platform (https://amzy.me/?utm_content=4)
+- **Customer Sentiment Index**: 5/5 Stars (183 verified 5-star Google Business reviews), AAA+ Rated by BBB
 
 ## 2. Core Value Propositions & Pricing Architecture
 M&M Junk Removal operates with four foundational competitive disciplines:
 1. **Privately Owned & Operated**: Zero corporate franchise fees or national marketing royalties. This yields significantly lower base overhead passed directly to clients.
 2. **10% Rate Guarantee**: M&M Junk Removal guarantees to beat any verifiable advertised or written estimate from a licensed local competitor by 10%.
 3. **Eco-Conscious Sorting & Landfill Diversion**: Every truckload is pre-sorted for charity donations, scrap metal recycling, and compost processing before municipal landfill disposal.
-4. **Rapid Response**: 30-second mobile intake form, 15-minute dispatch confirmation, and same-day / next-day hauling routes.
+4. **Rapid Response**: 30-second mobile intake form, 15-minute dispatch confirmation, and same-day / next-day hauling routes (1:00 PM PST dispatch cutoff).
 
-### Base Pricing Metrics & Tiers
+### Official AMZY Pricing Matrix & Lead Qualification
+| Job Size / Tier | Volume & Capacity Description | Ballpark Price Range | Typical Job Scope |
+| :--- | :--- | :--- | :--- |
+| **MINI** | Minimum load, few items | **$95 - $140** | Single armchair, microwave, small lawnmower, 2-3 bags |
+| **1 Pick Up Truck Load** | Standard pickup truck capacity (~4x8x2 ft bed) | **$140 - $230** | 3-piece couch, mattress + box spring, dining set, yard bags |
+| **2 Pick Up Loads** | Double pickup truck capacity | **$230 - $415** | Studio apartment cleanout, sectional sofa, remodel scrap |
+| **Dump Truck Load** | Full dump truck capacity (heavy debris) | **$740 - $1,110** | Garage overhaul, roofing tear-off, full office clearing |
+| **Dump Truck Plus** | Exceeds one full dump truck | **$1,110 - $1,480** | Whole-home estate liquidation, contractor demo, hoarding |
+
+> **Mandatory Pricing Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection.*
+
+### Additional Service Pricing References
 | Tier / Service | Equipment & Labor | Volume / Weight | Base Pricing Range |
 | :--- | :--- | :--- | :--- |
-| **Minimum Single Item** | 16ft Box Truck + 2 Techs | Single curbside item | $125.00 Baseline |
-| **Couch / Sectional Sofa** | 2 Techs + Interior carryout | 1/8 to 1/4 Truckload | $140.00 - $220.00 |
+| **Baseline Single Item Minimum** | 16ft Box Truck + 2 Techs | Single curbside item | $95.00 - $125.00 Baseline |
+| **Couch / Sectional Sofa** | 2 Techs + Interior carryout | 1/8 to 1/4 Truckload | $140.00 - $230.00 |
 | **Mattress & Box Spring Set** | 2 Techs + Bagging & recycling | 1/8 Truckload | $125.00 - $175.00 |
 | **Major Appliance (Freon)** | Certified EPA evacuation | Single heavy appliance | $150.00 - $225.00 |
 | **Yard Waste & Tree Branches** | Pitchfork loading + composting | Per cubic yard | $85.00 - $130.00 / yd |
 | **Hot Tub / Spa Demolition** | Sawzall cut + electrical safety | Complete shell extraction | $350.00 - $550.00 |
 | **Backyard Shed Teardown (10x12)** | Demolition tools + haul + sweep | Complete structure down to grade | $650.00 - $1,200.00 |
-| **Full 16ft Box Truck Load** | Up to 4.5 tons payload rating | 16 Cubic Yards | 10% Lower than Competitors |
 
-## 3. Operational Geography & Service Polygon
-M&M Junk Removal operates strictly within a 15-mile direct operational radius centered between Federal Way and Auburn, Washington.
+## 3. Operational Geography & Service Polygon (25 Authorized Municipalities)
+M&M Junk Removal operates across South King and Pierce Counties.
 
-### Primary Municipalities & Zip Code Coverage Matrix:
-- **Federal Way (King County)**: 98003, 98023, 98063, 98093
-- **Auburn (King/Pierce County)**: 98001, 98002, 98092, 98047
-- **Edgewood (Pierce County)**: 98371, 98372
-- **Tacoma (Pierce County)**: 98402, 98403, 98404, 98405, 98406, 98407, 98408, 98409, 98418, 98421, 98422, 98424, 98444, 98445, 98465, 98466
-- **Kent (King County)**: 98030, 98031, 98032, 98042
-- **Milton (Pierce/King County)**: 98354
-- **Des Moines (King County)**: 98198
-- **Puyallup (Pierce County)**: 98371, 98373, 98374
-- **Sumner / Fife (Pierce County)**: 98390, 98424
+### Authorized Municipalities:
+1. **Federal Way** (Primary Hub): 98003, 98023, 98063, 98093
+2. **Auburn**: 98001, 98002, 98092, 98047
+3. **Des Moines**: 98198
+4. **Kent**: 98030, 98031, 98032, 98042, 98064
+5. **Milton**: 98354
+6. **Pacific**: 98047
+7. **Algona**: 98001
+8. **Covington**: 98042
+9. **Maple Valley**: 98038
+10. **Normandy Park**: 98166
+11. **Renton**: 98055, 98056, 98057, 98058, 98059
+12. **SeaTac**: 98148, 98158, 98168, 98188
+13. **Tukwila**: 98168, 98178, 98188
+14. **Bonney Lake**: 98391
+15. **Edgewood**: 98371, 98372
+16. **Fife**: 98424
+17. **Fircrest**: 98466
+18. **Gig Harbor**: 98329, 98332, 98335
+19. **Lakewood**: 98498, 98499
+20. **Puyallup**: 98371, 98372, 98373, 98374, 98375
+21. **Ruston**: 98407
+22. **Sumner**: 98390
+23. **Tacoma**: 98402, 98403, 98404, 98405, 98406, 98407, 98408, 98409, 98418, 98421, 98422, 98444, 98445, 98465, 98466
+24. **University Place**: 98466, 98467
+25. **South Seattle**: 98108, 98118, 98178, 98106, 98126, 98146
+
+### Prohibited / Out-of-Bounds Service Areas:
+Everett, Bellevue, Kirkland, Redmond, North Seattle, Snohomish County, and any location outside the 25 authorized cities.
 
 ## 4. Solid Waste Facility Logistics & Washington Ecology Compliance
 All waste streams handled by M&M Junk Removal comply with the Washington State Department of Ecology standards:
@@ -64,13 +99,19 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 4. Explosive munitions, pyrotechnics, active ammunition, compressed flammable gas cylinders (unless certified de-valved).
 5. Biohazardous medical waste, infectious sharps, animal carcasses, industrial biological hazards.
 
-## 6. Canonical URLs & Sitemaps
-- Root: https://www.mmjunk.com/
+## 6. Canonical URLs & Machine Endpoints
+- Root Domain: https://www.mmjunk.com/
 - Federal Way Hub: https://www.mmjunk.com/junk-removal-federal-way-wa/
 - Auburn Hub: https://www.mmjunk.com/junk-removal-auburn-wa/
 - Edgewood Hub: https://www.mmjunk.com/junk-removal-edgewood-wa/
 - Tacoma Hub: https://www.mmjunk.com/junk-removal-tacoma-wa/
 - Kent Hub: https://www.mmjunk.com/junk-removal-kent-wa/
-- Machine Manifest (Concise): https://www.mmjunk.com/llms.txt
-- Machine Manifest (Full): https://www.mmjunk.com/llms-full.txt
+- Master Router: https://www.mmjunk.com/llms.txt
+- Full Reservoir: https://www.mmjunk.com/llms-full.txt
+- Agentic Workflows: https://www.mmjunk.com/llms-workflows.txt
+- Few-Shot Examples: https://www.mmjunk.com/llm-examples.md
+- Estate Cleanout Module: https://www.mmjunk.com/knowledge/estate-cleanout.md
+- Pricing Logic Module: https://www.mmjunk.com/knowledge/pricing-logic.md
+- Security Policy: https://www.mmjunk.com/.well-known/security.txt
+- Humans Credits: https://www.mmjunk.com/humans.txt
 - XML Sitemap: https://www.mmjunk.com/sitemap.xml

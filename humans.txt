@@ -1,0 +1,11 @@
+/* TEAM */
+Founder & Operator: Martin Silch
+Entity: M&M Junk Removal LLC (Founded 2007)
+Contact: info@mmjunk.com / (253) 886-7724
+Location: Federal Way, WA (Serving South King & Pierce Counties)
+
+/* PLATFORM & TECH CREDITS */
+Scheduling Partner: AMZY Dispatch Platform (https://amzy.me/?utm_content=4)
+Architecture: Generative Engine Optimization (GEO) & Machine-Readable Linked Data
+Static Deployment: Vercel CDN
+Standard: HTML5, CSS3, JSON-LD Schema.org, llms.txt standard

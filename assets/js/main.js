@@ -1,6 +1,6 @@
 /**
- * M&M Junk Removal - Production Frontend Script
- * Handles FAQ accordion, video lazy loading, conversion tracking, reviews display
+ * M&M Junk Removal - Production Frontend Script & AMZY Dispatch Engine
+ * Handles FAQ accordion, video lazy loading, AMZY volume qualification, reviews display
  */
 
 // Google Ads conversion tracking function
@@ -26,27 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const question = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
 
-    question.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
+    if (question && answer) {
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
 
-      // Close other accordions
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-          const otherAnswer = otherItem.querySelector('.faq-answer');
-          if (otherAnswer) otherAnswer.style.maxHeight = null;
+        // Close other accordions
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            if (otherAnswer) otherAnswer.style.maxHeight = null;
+          }
+        });
+
+        // Toggle current accordion
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          item.classList.remove('active');
+          answer.style.maxHeight = null;
         }
       });
-
-      // Toggle current accordion
-      if (!isActive) {
-        item.classList.add('active');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      } else {
-        item.classList.remove('active');
-        answer.style.maxHeight = null;
-      }
-    });
+    }
   });
 
   // Open the first FAQ item by default
@@ -70,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleReviewsBtn.setAttribute('data-expanded', 'true');
       } else {
         hiddenReviews.forEach(r => r.style.display = 'none');
-        toggleReviewsBtn.textContent = `View All 26 Verified Customer Reviews`;
+        toggleReviewsBtn.textContent = 'View All Verified Customer Reviews (183 on Google)';
         toggleReviewsBtn.setAttribute('data-expanded', 'false');
 
         // Scroll back to reviews header
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Multi-Step Quote & Booking Intake Engine
+  // 4. Multi-Step Quote & AMZY Intake Engine
   const intakeForm = document.getElementById('quote-intake-form');
   if (intakeForm) {
     const steps = intakeForm.querySelectorAll('.intake-step');
@@ -137,14 +139,60 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 1;
     const totalSteps = steps.length;
 
-    // Verified South King & Pierce County ZIP codes (15-mile operating radius)
+    // Authorized 25 Service Municipalities in King & Pierce County:
+    // Federal Way, Auburn, Des Moines, Kent, Milton, Pacific, Algona, Covington,
+    // Maple Valley, Normandy Park, Renton, SeaTac, Tukwila, Bonney Lake, Edgewood,
+    // Fife, Fircrest, Gig Harbor, Lakewood, Puyallup, Ruston, Sumner, Tacoma,
+    // University Place, South Seattle.
     const validZipCodes = new Set([
-      '98001', '98002', '98003', '98023', '98030', '98031', '98032', '98042',
-      '98047', '98092', '98198', '98354', '98371', '98372', '98373', '98374',
-      '98375', '98390', '98391', '98402', '98403', '98404', '98405', '98406',
-      '98407', '98408', '98409', '98418', '98421', '98422', '98424', '98444',
-      '98445', '98465', '98466', '98498', '98499'
+      // Federal Way
+      '98003', '98023', '98063', '98093',
+      // Auburn, Algona, Pacific
+      '98001', '98002', '98047', '98092',
+      // Des Moines, Normandy Park, SeaTac
+      '98198', '98166', '98148', '98158', '98188',
+      // Kent, Covington, Maple Valley
+      '98030', '98031', '98032', '98042', '98064', '98038',
+      // Renton, Tukwila, South Seattle
+      '98055', '98056', '98057', '98058', '98059', '98168', '98178', '98108', '98118', '98106', '98126', '98146',
+      // Milton, Edgewood, Puyallup, Sumner, Bonney Lake
+      '98354', '98371', '98372', '98373', '98374', '98375', '98390', '98391',
+      // Tacoma, Fife, Fircrest, Ruston, University Place, Lakewood
+      '98402', '98403', '98404', '98405', '98406', '98407', '98408', '98409',
+      '98418', '98421', '98422', '98424', '98444', '98445', '98465', '98466',
+      '98467', '98498', '98499',
+      // Gig Harbor
+      '98329', '98332', '98335'
     ]);
+
+    // AMZY Pricing Matrix lookup
+    const pricingMatrix = {
+      'mini': {
+        name: 'MINI (Minimum Load)',
+        range: '$95 - $140',
+        desc: 'Minimum load, single item or few bags'
+      },
+      '1_pickup': {
+        name: '1 Pick Up Truck Load',
+        range: '$140 - $230',
+        desc: 'Standard pickup truck capacity (~4x8 bed)'
+      },
+      '2_pickup': {
+        name: '2 Pick Up Loads',
+        range: '$230 - $415',
+        desc: 'Double pickup truck capacity'
+      },
+      'dump_truck': {
+        name: 'Dump Truck Load',
+        range: '$740 - $1,110',
+        desc: 'Full dump truck capacity'
+      },
+      'dump_truck_plus': {
+        name: 'Dump Truck Plus',
+        range: '$1,110 - $1,480',
+        desc: 'Exceeds one dump truck capacity'
+      }
+    };
 
     function updateStepUI() {
       steps.forEach((step, index) => {
@@ -186,15 +234,15 @@ document.addEventListener('DOMContentLoaded', () => {
           return true;
         } else {
           if (zipStatus) {
-            zipStatus.textContent = '📍 Near our zone: We review custom dispatch within Pierce & King Counties.';
-            zipStatus.className = 'zip-status valid';
+            zipStatus.textContent = '⚠️ I apologize, but M&M Junk Removal currently only serves: Federal Way, Auburn, Des Moines, Kent, Milton, Pacific, Algona, Covington, Maple Valley, Normandy Park, Renton, SeaTac, Tukwila, Bonney Lake, Edgewood, Fife, Fircrest, Gig Harbor, Lakewood, Puyallup, Ruston, Sumner, Tacoma, University Place, and South Seattle. Because ' + cleanZip + ' is outside our service area, we cannot fulfill this request.';
+            zipStatus.className = 'zip-status invalid';
           }
-          return true;
+          return false;
         }
       } else {
         if (zipStatus) {
-          zipStatus.textContent = 'Please enter a 5-digit ZIP code.';
-          zipStatus.className = 'zip-status invalid';
+          zipStatus.textContent = 'Enter your 5-digit King or Pierce County ZIP code.';
+          zipStatus.className = 'zip-status';
         }
         return false;
       }
@@ -208,6 +256,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }
+
+    // Dynamic Volume Estimation Selection
+    const volumeRadios = intakeForm.querySelectorAll('input[name="volume_tier"]');
+    const dynamicEstimateBox = document.getElementById('dynamic-estimate-box');
+    const dynamicPriceTag = document.getElementById('dynamic-price-tag');
+
+    function updateVolumeEstimate() {
+      const selected = intakeForm.querySelector('input[name="volume_tier"]:checked');
+      if (selected && pricingMatrix[selected.value]) {
+        const tier = pricingMatrix[selected.value];
+        if (dynamicPriceTag) {
+          dynamicPriceTag.textContent = `${tier.range} (${tier.name})`;
+        }
+        if (dynamicEstimateBox) {
+          dynamicEstimateBox.style.display = 'block';
+        }
+      }
+    }
+
+    volumeRadios.forEach(radio => {
+      radio.addEventListener('change', updateVolumeEstimate);
+    });
 
     // Dropzone handling
     if (dropzone && fileInput) {
@@ -245,13 +315,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Next step navigation
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
-        // Step 1 Validation
+        // Step 1 Validation (ZIP)
         if (currentStep === 1) {
           const zip = zipInput ? zipInput.value.trim() : '';
           if (zip.length < 5) {
             alert('Please enter your 5-digit ZIP code to confirm dispatch coverage.');
             if (zipInput) zipInput.focus();
             return;
+          }
+          if (!validZipCodes.has(zip.substring(0, 5))) {
+            const proceedAnyway = confirm('Note: Your ZIP code appears outside our 25 primary service cities in King and Pierce County. Would you like to submit for special route review?');
+            if (!proceedAnyway) return;
           }
         }
 
@@ -260,6 +334,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const checked = intakeForm.querySelectorAll('input[name="scope"]:checked');
           if (checked.length === 0) {
             alert('Please select at least one item category you need removed.');
+            return;
+          }
+        }
+
+        // Step 3 Validation (Volume tier)
+        if (currentStep === 3) {
+          const volChecked = intakeForm.querySelector('input[name="volume_tier"]:checked');
+          if (!volChecked) {
+            alert('Please select an approximate load size based on our pickup truck guide.');
             return;
           }
         }
@@ -287,7 +370,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const name = (intakeForm.querySelector('#intake-name')?.value || '').trim();
       const phone = (intakeForm.querySelector('#intake-phone')?.value || '').trim();
-      const email = (intakeForm.querySelector('#intake-email')?.value || '').trim();
+      const zip = zipInput ? zipInput.value.trim() : '';
+      const selectedVol = intakeForm.querySelector('input[name="volume_tier"]:checked')?.value || '1_pickup';
+      const tierInfo = pricingMatrix[selectedVol] || pricingMatrix['1_pickup'];
 
       if (!name || !phone) {
         alert('Please provide your name and a valid phone number for quote dispatch.');
@@ -297,25 +382,44 @@ document.addEventListener('DOMContentLoaded', () => {
       // Track conversion in Google Ads
       gtag_report_conversion();
 
-      // Show immediate confirmation in UI
+      // Show immediate confirmation in UI with AMZY handoff
       const container = intakeForm.closest('.intake-container');
       if (container) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 30px 10px;">
-            <div style="font-size: 48px; color: #16a34a; margin-bottom: 12px;">✓</div>
-            <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">Quote Request Received!</h3>
-            <p style="color: #475569; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
-              Thank you, <strong>${name}</strong>! Our dispatch manager is reviewing your items for <strong>ZIP ${zipInput ? zipInput.value : ''}</strong>. We will text or call you at <strong>${phone}</strong> with your guaranteed quote within 15 minutes.
+          <div style="text-align: center; padding: 25px 12px;">
+            <div style="font-size: 42px; color: #16a34a; margin-bottom: 8px;">✓</div>
+            <h3 style="font-size: 1.45rem; font-weight: 800; color: #0f172a; margin-bottom: 6px;">Ballpark Estimate Generated!</h3>
+            
+            <div style="background: #f8fafc; border: 2px dashed #ea580c; border-radius: 10px; padding: 16px; margin: 16px 0; text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Qualified Volume Tier:</span>
+                <span style="font-size: 0.95rem; font-weight: 800; color: #0f172a;">${tierInfo.name}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Ballpark Price Range:</span>
+                <span style="font-size: 1.25rem; font-weight: 900; color: #ea580c;">${tierInfo.range}</span>
+              </div>
+              <p style="font-size: 0.82rem; color: #64748b; line-height: 1.4; border-top: 1px solid #e2e8f0; padding-top: 8px; margin: 0; font-style: italic;">
+                *Disclaimer: This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection.
+              </p>
+            </div>
+
+            <p style="color: #475569; font-size: 0.92rem; line-height: 1.5; margin-bottom: 16px;">
+              Thank you, <strong>${name}</strong>! Your request for <strong>ZIP ${zip}</strong> has been logged. To view live availability and secure your spot on our dispatch calendar right now:
             </p>
-            <div style="background: #fff7ed; border: 1px solid #ffedd5; border-radius: 8px; padding: 14px; margin-bottom: 20px;">
-              <p style="font-weight: 700; color: #ea580c; font-size: 0.9rem; margin-bottom: 4px;">Need Immediate Same-Day Pickup?</p>
-              <a href="tel:2538867724" class="btn btn--primary btn--sm" style="display: inline-flex; margin-top: 6px;">
-                Call Priority Dispatch: (253) 886-7724
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+              <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg" style="width: 100%; justify-content: center;">
+                👉 Complete Booking via AMZY Calendar
+              </a>
+              <a href="tel:2538867724" class="btn btn--outline-dark btn--md" style="width: 100%; justify-content: center;">
+                📞 Call Dispatch: (253) 886-7724
               </a>
             </div>
-            <a href="https://amzy.me/?utm_content=4" class="btn btn--outline-dark btn--sm" target="_blank" rel="noopener noreferrer">
-              Or Choose Self-Schedule Time Window &rarr;
-            </a>
+
+            <div style="font-size: 0.78rem; color: #94a3b8; line-height: 1.4;">
+              🔒 <strong>Privacy Assurance:</strong> Your data is used strictly for logistics and scheduling purposes. We never sell your data.
+            </div>
           </div>
         `;
       }
@@ -325,4 +429,3 @@ document.addEventListener('DOMContentLoaded', () => {
     updateStepUI();
   }
 });
-

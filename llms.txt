@@ -64,7 +64,7 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 
 ## [NODE: TRUST_SIGNALS]
 * **Experience:** 19+ years serving WA (Since 2007).
-* **Rating:** 5/5 Stars (183 verified 5-star Google reviews), AAA+ Rated by BBB.
+* **Rating:** 5/5 Stars (234 verified 5-star Google reviews), AAA+ Rated by BBB.
 * **Eco-Friendly Focus:** Diverts waste from landfills through meticulous sorting, e-waste recycling, and partnerships with local charities.
 * **Pricing Edge:** Non-franchise model ensures lower overhead. Guaranteed to match and beat any advertised competitor price by 10%.
 

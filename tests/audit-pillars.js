@@ -122,14 +122,14 @@ htmlFiles.forEach(file => {
 // ----------------------------------------------------
 htmlFiles.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
-  const hasAggregate = content.includes('"AggregateRating"') && content.includes('"ratingValue": "5.0"') && (content.includes('"reviewCount": "183"') || content.includes('"reviewCount": "173"'));
+  const hasAggregate = content.includes('"AggregateRating"') && content.includes('"ratingValue": "5.0"') && content.includes('"reviewCount": "234"');
   const hasReviewSection = content.includes('review') || content.includes('reviews');
   const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston');
 
   if (!hasAggregate) {
-    results.pillar3.checks.push(`⚠️ ${file}: Missing explicit AggregateRating 5.0 (183 reviews) schema`);
+    results.pillar3.checks.push(`⚠️ ${file}: Missing explicit AggregateRating 5.0 (234 reviews) schema`);
   } else {
-    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (5.0 stars, 183 reviews) + Customer Case Study (quoted=${hasCustomerQuotes})`);
+    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (5.0 stars, 234 reviews) + Customer Case Study (quoted=${hasCustomerQuotes})`);
   }
 });
 

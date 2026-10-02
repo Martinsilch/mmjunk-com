@@ -206,10 +206,86 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
+                "name": "2 Pick Up Loads"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "230.00",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Dump Truck Load"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "740.00",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Single Item Curbside Pickup"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "95.00",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Above-Ground Hot Tub Demolition"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "350.00",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Backyard Shed Demolition"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "650.00",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
                 "name": "10% Rate Guarantee Beat Competitor Price"
               }
             }
           ]
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-curbside",
+        "name": "Single-Item & Curbside Express Junk Pickup",
+        "serviceType": "Curbside Junk Removal",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "95.00",
+            "priceCurrency": "USD",
+            "description": "Baseline single-item curbside or driveway pickup minimum"
+          }
         }
       },
       {
@@ -222,9 +298,9 @@
           "@type": "Offer",
           "priceSpecification": {
             "@type": "PriceSpecification",
-            "price": "125.00",
+            "price": "140.00",
             "priceCurrency": "USD",
-            "description": "Flat-rate baseline single-item curbside pickup minimum"
+            "description": "Full interior carryout, disassembly, loading, and swept-clean guarantee"
           }
         }
       },
@@ -246,13 +322,40 @@
       },
       {
         "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-yard",
+        "name": "Yard Waste, Brush & Storm Debris Hauling",
+        "serviceType": "Yard Waste Removal",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "85.00",
+            "priceCurrency": "USD",
+            "description": "Clean vegetative debris hauled directly to certified composting facilities"
+          }
+        }
+      },
+      {
+        "@type": "Service",
         "@id": "https://www.mmjunk.com/#service-cleanout",
-        "name": "Estate Liquidation & Whole-Home Cleanouts",
+        "name": "Estate Liquidation, Attic & Garage Cleanouts",
         "serviceType": "Estate Cleanout",
         "provider": { "@id": "https://www.mmjunk.com/#business" },
         "offers": {
           "@type": "Offer",
           "description": "Comprehensive estate, foreclosure, and hoarder cleanout with 10% competitor price match guarantee"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-commercial",
+        "name": "Contractor & Jobsite Construction Debris Hauling",
+        "serviceType": "Commercial Junk Removal",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "description": "Heavy-duty 16ft box truck debris removal for general contractors and property managers"
         }
       },
       {
@@ -269,6 +372,17 @@
             "priceCurrency": "USD",
             "description": "Complete jacuzzi sawzall cut, electrical disconnect check, and disposal baseline"
           }
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-eco",
+        "name": "Puget Sound Eco-Disposal & Donation Diversion Logistics",
+        "serviceType": "Recycling & Donation Services",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "description": "Landfill diversion through certified Puget Sound scrap metal, charity thrift, and composting facilities"
         }
       },
       {
@@ -755,6 +869,614 @@
           <a href="tel:2538867724" class="btn btn--primary btn--lg" style="white-space: nowrap;">
             Claim 10% Match: (253) 886-7724
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR CORE SERVICES & SILOS (PILLAR 2: CHUNK-LEVEL INFORMATION ARCHITECTURE) -->
+    <section class="section section--alt" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Hauling Silos &amp; Flat Rates</span>
+          <h2 class="section-title">Comprehensive Residential &amp; Commercial Solutions</h2>
+          <p class="section-desc">M&amp;M Junk Removal provides upfront flat rates, prompt 2-man dispatch, and eco-conscious sorting across South King and Pierce Counties. All jobs backed by our 10% rate beat guarantee.</p>
+        </div>
+
+        <!-- Interactive Category Filter Tabs -->
+        <div class="service-filters" role="tablist" aria-label="Service Category Filters">
+          <button class="service-filter-btn active" data-filter="all" role="tab" aria-selected="true">All Services</button>
+          <button class="service-filter-btn" data-filter="residential" role="tab" aria-selected="false">🛋️ Residential Clutter</button>
+          <button class="service-filter-btn" data-filter="appliances" role="tab" aria-selected="false">🧊 Appliances &amp; Furniture</button>
+          <button class="service-filter-btn" data-filter="commercial" role="tab" aria-selected="false">🏢 Commercial &amp; Jobsite</button>
+          <button class="service-filter-btn" data-filter="demolition" role="tab" aria-selected="false">🏚️ Demolition &amp; Hot Tubs</button>
+          <button class="service-filter-btn" data-filter="eco" role="tab" aria-selected="false">♻️ Eco-Disposal &amp; Recycling</button>
+          <button class="service-filter-btn" data-filter="materials" role="tab" aria-selected="false">📋 What We Take</button>
+        </div>
+
+        <!-- SILO 1: RESIDENTIAL JUNK REMOVAL -->
+        <article class="service-silo" id="residential-services" data-category="residential">
+          <div class="service-silo-header">
+            <span class="service-silo-header__icon">🛋️</span>
+            <div>
+              <h3 class="service-silo-header__title">Residential Junk Removal: Furniture, Appliances &amp; Cleanouts</h3>
+              <p class="service-silo-header__desc">Serving homeowners, renters, realtors, and estate executors across 25 King &amp; Pierce County cities.</p>
+            </div>
+          </div>
+          
+          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 20px;">
+            M&amp;M Junk Removal removes bulky residential clutter directly from interior rooms, attics, basements, and curbside driveways without requiring customer lifting. From heavy sectional sofas and deep freeze refrigerators to overgrown yard debris, our two-technician crews handle disassembly, loading, and swept-clean property care.
+          </p>
+
+          <div class="services-grid">
+            <!-- Card 1: Curbside Single Item -->
+            <div class="service-card" data-category="residential">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🚛</div>
+                <span class="service-card__badge badge--express">Curbside Express</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Baseline Rate</span>
+                <span class="price-val">$95 - $125</span>
+              </div>
+              <h4 class="service-card__title">Single-Item &amp; Curbside Pickup</h4>
+              <p class="service-card__desc">Fast, budget-friendly haul-away for single bulky items staged at curbside, driveway, or garage door with 15-minute dispatch windows.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Single armchairs, mattresses, or appliances</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Staged curbside or driveway pickup</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Guaranteed lowest baseline rate in WA</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 15-minute rapid truck turn</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 2: Furniture & Mattress -->
+            <div class="service-card" data-category="residential appliances">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🛋️</div>
+                <span class="service-card__badge badge--popular">Most Popular</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Starting At</span>
+                <span class="price-val">$140 - $230</span>
+              </div>
+              <h4 class="service-card__title">Furniture &amp; Mattress Removal</h4>
+              <p class="service-card__desc">We do 100% of the heavy lifting. Disassembly and careful extraction from upstairs bedrooms, basements, and tight hallways with zero doorway damage.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sofas, sectionals, recliners &amp; dining sets</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Mattresses, box springs &amp; bed frames</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full 2-technician interior carryout</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Swept-clean room guarantee</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 3: Appliance Recycling -->
+            <div class="service-card" data-category="residential appliances eco">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🧊</div>
+                <span class="service-card__badge badge--eco">EPA Certified</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Starting At</span>
+                <span class="price-val">$150 - $225</span>
+              </div>
+              <h4 class="service-card__title">Major Appliance Eco-Recycling</h4>
+              <p class="service-card__desc">Safe extraction and certified eco-disposal for heavy residential and commercial refrigeration, cooking, and laundry appliances.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Refrigerators, deep freezers &amp; wine coolers</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Washers, dryers, stoves &amp; dishwashers</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> EPA Section 608 Freon gas capture</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% metal recycling &amp; scrap reclaim</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 4: Estate & Attic Cleanouts -->
+            <div class="service-card" data-category="residential">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🏡</div>
+                <span class="service-card__badge badge--contractor">Whole-Property</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Volume Scale</span>
+                <span class="price-val">$230 - $740+</span>
+              </div>
+              <h4 class="service-card__title">Estate, Attic &amp; Garage Cleanouts</h4>
+              <p class="service-card__desc">Full-property clearing for estate executors, family downsizing, foreclosures, and hoarder clean-sweeps handled with utmost compassion.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Whole-home, attic, basement &amp; garage clearing</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Respectful, compassionate hoarder clearance</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Usable item sorting for charity donation</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 10% competitor price match guarantee</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 5: Yard Waste & Brush -->
+            <div class="service-card" data-category="residential eco">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🌿</div>
+                <span class="service-card__badge badge--eco">100% Composting</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Starting At</span>
+                <span class="price-val">$85/yd - $140</span>
+              </div>
+              <h4 class="service-card__title">Yard Waste &amp; Storm Debris</h4>
+              <p class="service-card__desc">Efficient hauling of organic outdoor debris, fallen tree limbs, overgrown blackberry vines, landscaping piles, and sod directly to compost hubs.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Fallen limbs, branches &amp; storm wreckage</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Blackberry briars, hedge trimmings &amp; brush</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Bagged leaves, turf &amp; landscaping scrap</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Zero landfill methane (100% composting)</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Semantic Table: AMZY Pricing Matrix & Specs -->
+          <div class="table-responsive">
+            <table class="geo-table">
+              <thead>
+                <tr>
+                  <th>Job Size / Service Tier</th>
+                  <th>Volume &amp; Capacity Description</th>
+                  <th>Typical Scope / Items</th>
+                  <th>Ballpark Estimate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>MINI (Minimum Load)</strong></td>
+                  <td>Minimum load, few small items</td>
+                  <td>Single armchair, small lawnmower, microwave, 2-3 bags</td>
+                  <td><span class="table-tag">$95 - $140</span></td>
+                </tr>
+                <tr>
+                  <td><strong>1 Pick Up Truck Load</strong></td>
+                  <td>Standard pickup truck capacity (~4x8 bed)</td>
+                  <td>3-piece couch, mattress + box spring, dining set, yard bags</td>
+                  <td><span class="table-tag">$140 - $230</span></td>
+                </tr>
+                <tr>
+                  <td><strong>2 Pick Up Loads</strong></td>
+                  <td>Double pickup truck capacity</td>
+                  <td>Studio apartment cleanout, sectional sofa, remodel scrap</td>
+                  <td><span class="table-tag">$230 - $415</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Dump Truck Load</strong></td>
+                  <td>Full dump truck capacity (heavy debris)</td>
+                  <td>Garage overhaul, roofing tear-off, full office clearing</td>
+                  <td><span class="table-tag">$740 - $1,110</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Dump Truck Plus</strong></td>
+                  <td>Exceeds one full dump truck</td>
+                  <td>Whole-home estate liquidation, contractor demo, hoarding</td>
+                  <td><span class="table-tag">$1,110 - $1,480</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="font-size: 0.82rem; color: #64748b; margin-top: 8px; font-style: italic;">
+              *Disclaimer: This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection.
+            </p>
+          </div>
+        </article>
+
+        <!-- SILO 2: COMMERCIAL & CONTRACTOR SERVICES -->
+        <article class="service-silo" id="commercial-services" data-category="commercial">
+          <div class="service-silo-header">
+            <span class="service-silo-header__icon">🏢</span>
+            <div>
+              <h3 class="service-silo-header__title">Commercial, Contractor &amp; Light Demolition Hauling</h3>
+              <p class="service-silo-header__desc">Trusted logistics partner for general contractors, property managers, and retail facilities.</p>
+            </div>
+          </div>
+
+          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 20px;">
+            M&amp;M Junk Removal provides rapid commercial debris dispatch for renovation sites, tenant turnover cleanouts, office liquidations, and light demolition projects. Our 16-foot high-wall box trucks handle up to 4.5 tons of payload, offering prompt digital invoicing, certificates of insurance (COI), and scheduled recurring waste routes.
+          </p>
+
+          <div class="services-grid">
+            <!-- Card 6: Construction Debris -->
+            <div class="service-card" data-category="commercial">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🔨</div>
+                <span class="service-card__badge badge--contractor">Contractor Priority</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Pricing Mode</span>
+                <span class="price-val">Volume &amp; Weight Tiers</span>
+              </div>
+              <h4 class="service-card__title">Construction &amp; Remodel Debris</h4>
+              <p class="service-card__desc">Dedicated jobsite waste hauling for general contractors, remodelers, and roofers. 16-foot high-wall box trucks with up to 4.5 tons payload.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Drywall, framing lumber, studs &amp; plywood</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Tile, carpet tear-out, insulation &amp; shingles</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Same-day dispatch &amp; scheduled recurring routes</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Licensed WA Motor Carrier, digital invoicing &amp; COI</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 7: Office Furniture & E-Waste -->
+            <div class="service-card" data-category="commercial">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🖥️</div>
+                <span class="service-card__badge badge--express">Office Turnaround</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Pricing Mode</span>
+                <span class="price-val">Custom Commercial Quotes</span>
+              </div>
+              <h4 class="service-card__title">Office Liquidation &amp; E-Waste</h4>
+              <p class="service-card__desc">Seamless commercial office turnovers, tenant relocations, workstation dismantling, and certified R2-compliant electronics recycling.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Cubicle partitions, modular desks &amp; ergonomic chairs</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Metal filing cabinets, conference tables &amp; shelving</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Computers, monitors, servers &amp; telecom cabling</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Fast turnaround to minimize office downtime</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 8: Hot Tub Disassembly -->
+            <div class="service-card" data-category="commercial demolition">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">♨️</div>
+                <span class="service-card__badge badge--demo">Specialty Teardown</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Starting At</span>
+                <span class="price-val">$350 - $550</span>
+              </div>
+              <h4 class="service-card__title">Above-Ground Hot Tub Demolition</h4>
+              <p class="service-card__desc">Complete end-to-end hot tub dismantle and removal. Wiring verification, Sawzall shell sectioning, heavy pump extraction, and clean sweep.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sawzall shell cut &amp; modular sectional extraction</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Electrical disconnect check &amp; component sorting</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Zero damage to decks, pavers, or landscaping</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Complete sweep of all fiberglass shavings</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 9: Shed & Deck Demolition -->
+            <div class="service-card" data-category="commercial demolition">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🏚️</div>
+                <span class="service-card__badge badge--demo">Structure Teardown</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Starting At</span>
+                <span class="price-val">$650 - $1,200</span>
+              </div>
+              <h4 class="service-card__title">Shed, Deck &amp; Fence Demolition</h4>
+              <p class="service-card__desc">Tear-down and removal of deteriorating wooden sheds, rotting backyard decks, pergolas, chain-link fences, and old children's playsets.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Structural dismantling down to clean ground level</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sledgehammer, pry bar &amp; Sawzall demo crew</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Magnetic nail roller sweep of yard &amp; lawn</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Hauling of all lumber, roofing, metal &amp; siding</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Semantic Table: Commercial & Demolition Specs -->
+          <div class="table-responsive">
+            <table class="geo-table">
+              <thead>
+                <tr>
+                  <th>Commercial Debris Category</th>
+                  <th>Payload &amp; Equipment Rating</th>
+                  <th>Compliance &amp; Invoicing</th>
+                  <th>Rate Structure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Drywall, Framing &amp; Remodel Trash</strong></td>
+                  <td>Heavy-duty 16ft box truck (up to 4.5 ton cap)</td>
+                  <td>Licensed WA Motor Carrier (UBI Active)</td>
+                  <td><span class="table-tag">Volume + Weight Tiers</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Backyard Shed Teardown (10x12)</strong></td>
+                  <td>Reciprocating saws, safety sledge, magnets</td>
+                  <td>Full site broom-sweep included</td>
+                  <td><span class="table-tag">$650 - $1,200</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Above-Ground Hot Tub / Jacuzzi</strong></td>
+                  <td>Sawzall sectional cut &amp; shell extraction</td>
+                  <td>Wiring check, component sorting</td>
+                  <td><span class="table-tag">$350 - $550</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Property Management Tenant Eviction</strong></td>
+                  <td>Rapid 24-hr emergency crew dispatch</td>
+                  <td>Itemized photo log &amp; net-30 terms</td>
+                  <td><span class="table-tag">Hourly / Truck Rate</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- SILO 3: ECO-DISPOSAL & RECYCLING LOGISTICS -->
+        <article class="service-silo" id="eco-disposal" data-category="eco">
+          <div class="service-silo-header">
+            <span class="service-silo-header__icon">♻️</span>
+            <div>
+              <h3 class="service-silo-header__title">Eco-Disposal, Donation &amp; Recycling Logistics</h3>
+              <p class="service-silo-header__desc">Maximum landfill diversion through certified Puget Sound scrap, charity, and transfer facilities.</p>
+            </div>
+          </div>
+
+          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 20px;">
+            M&amp;M Junk Removal adheres to Washington Department of Ecology waste management guidelines. Before any truck reaches municipal solid waste transfer stations (such as Algona Transfer Station or Pierce County Hidden Valley Transfer Station), our crew conducts active sorting to divert usable goods to local non-profit donation centers and reclaim clean scrap metal and organic wood waste.
+          </p>
+
+          <div class="services-grid">
+            <!-- Card 10: Charity Donation -->
+            <div class="service-card" data-category="eco">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🤝</div>
+                <span class="service-card__badge badge--eco">100% Reuse Stream</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Eco-Commitment</span>
+                <span class="price-val">Included with Every Load</span>
+              </div>
+              <h4 class="service-card__title">Non-Profit Charity Donations</h4>
+              <p class="service-card__desc">We partner with local Puget Sound non-profits and thrift organizations to give reusable furniture, clothing, and household goods a second life.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Goodwill, St. Vincent de Paul &amp; local shelters</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Careful loading &amp; handling of reusable items</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Landfill diversion prioritized on every haul</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Itemized donation tracking available upon request</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 11: Scrap Metal -->
+            <div class="service-card" data-category="eco commercial">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">⚙️</div>
+                <span class="service-card__badge badge--popular">Infinite Lifecycle</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Eco-Sorting</span>
+                <span class="price-val">100% Metal Reclaim</span>
+              </div>
+              <h4 class="service-card__title">Scrap Metal Recycling &amp; Smelting</h4>
+              <p class="service-card__desc">Ferrous and non-ferrous metals are magnetically separated and routed directly to Puget Sound industrial smelting recyclers for complete reuse.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Steel bed frames, pipes, ductwork &amp; rebar</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Aluminum siding, gutters &amp; patio furniture</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copper plumbing, brass fixtures &amp; wire scrap</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Diverted away from solid waste transfer stations</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 12: Freon & E-Waste -->
+            <div class="service-card" data-category="eco appliances">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">♻️</div>
+                <span class="service-card__badge badge--express">EPA Section 608</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Eco-Protocol</span>
+                <span class="price-val">Zero Atmospheric Release</span>
+              </div>
+              <h4 class="service-card__title">EPA Refrigerant &amp; E-Waste Hub</h4>
+              <p class="service-card__desc">Strict environmental compliance for appliances and electronics. Freon coolant is vacuum-evacuated by certified technicians to protect the ozone layer.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Certified Freon gas recovery for cooling units</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Toxic cathode ray, lead &amp; mercury containment</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Licensed WA e-waste disposal channels</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full compliance with WA Dept of Ecology</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+
+            <!-- Card 13: Green Waste Composting -->
+            <div class="service-card" data-category="eco">
+              <div class="service-card__top">
+                <div class="service-card__icon-box">🌱</div>
+                <span class="service-card__badge badge--eco">Zero Methane</span>
+              </div>
+              <div class="service-card__price">
+                <span class="price-label">Eco-Protocol</span>
+                <span class="price-val">Compost Station Delivery</span>
+              </div>
+              <h4 class="service-card__title">Clean Green Composting</h4>
+              <p class="service-card__desc">All clean vegetative material, logs, and shrubbery are transported to regional industrial composting centers and converted into rich organic soil.</p>
+              <ul class="service-card__items">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% organic waste diversion from landfills</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Prevents anaerobic methane greenhouse gas</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Transformed into high-grade Puget Sound compost</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Delivered to certified municipal green centers</li>
+              </ul>
+              <div class="service-card__actions">
+                <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--sm">Book Online ↗</a>
+                <a href="tel:2538867724" class="btn btn--outline-dark btn--sm">Call (253) 886-7724</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Semantic Table: Eco-Disposal Logistics -->
+          <div class="table-responsive">
+            <table class="geo-table">
+              <thead>
+                <tr>
+                  <th>Material Stream</th>
+                  <th>Primary Facility Destination</th>
+                  <th>Diversion Protocol</th>
+                  <th>Environmental Benefit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Usable Household Furniture &amp; Decor</strong></td>
+                  <td>Local Charity Partners &amp; Thrift Outlets</td>
+                  <td>Inspection, gentle handling, clean delivery</td>
+                  <td><span class="table-tag">100% Reuse Diversion</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Ferrous &amp; Non-Ferrous Scrap Metals</strong></td>
+                  <td>Regional Metal Recycling Processors</td>
+                  <td>Magnetic segregation &amp; smelting feed</td>
+                  <td><span class="table-tag">Infinite Lifecycle</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Clean Yard Waste &amp; Tree Trimmings</strong></td>
+                  <td>Certified Composting Facilities</td>
+                  <td>Industrial mulching &amp; organic soil blend</td>
+                  <td><span class="table-tag">Zero Landfill Methane</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Major Heavy Appliances</strong></td>
+                  <td>Certified Refrigerant Recovery Stations</td>
+                  <td>EPA Section 608 Freon evacuation</td>
+                  <td><span class="table-tag">Ozone Layer Protection</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Residual Non-Recyclable Solids</strong></td>
+                  <td>County Permitted Solid Waste Transfer Hubs</td>
+                  <td>Direct scale weigh-in &amp; legal containment</td>
+                  <td><span class="table-tag">State-Regulated Disposal</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- WHAT WE TAKE VS PROHIBITED MATERIALS GUIDE -->
+        <div class="materials-guide" id="materials-guide">
+          <div class="materials-guide__header">
+            <span class="section-tag">Accepted vs. Prohibited Materials</span>
+            <h3 class="materials-guide__title">What We Haul Away vs. Regulated Substances</h3>
+            <p class="materials-guide__desc">Under Washington Administrative Code (WAC) and municipal solid waste regulations, here is an itemized breakdown of what our crews can haul:</p>
+          </div>
+
+          <div class="materials-guide__grid">
+            <!-- Accepted Items Column -->
+            <div class="materials-col materials-col--accepted">
+              <div class="materials-col__header">
+                <span class="materials-icon" style="color: #16a34a;">✅</span>
+                <h4 class="materials-col__title">What We Take &amp; Recycle</h4>
+              </div>
+              <ul class="materials-list">
+                <li>
+                  <span class="materials-icon">🛋️</span>
+                  <div><strong>Living Room &amp; Bedroom Furniture:</strong> Sofas, recliners, sectionals, mattresses, box springs, dressers, bed frames, tables, and chairs.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">🧊</span>
+                  <div><strong>Kitchen &amp; Laundry Appliances:</strong> Refrigerators, freezers, washing machines, dryers, dishwashers, microwaves, and stoves.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">🔨</span>
+                  <div><strong>Construction &amp; Remodel Debris:</strong> Drywall, framing lumber, studs, plywood, laminate flooring, tile, carpet, and roofing shingles.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">🌿</span>
+                  <div><strong>Yard Waste &amp; Outdoor Structures:</strong> Tree branches, shrub trimmings, blackberry brush, sod, rotting decks, fences, and above-ground hot tubs.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">🖥️</span>
+                  <div><strong>Electronics &amp; Office Gear:</strong> Computers, monitors, TVs, printers, server racks, cubicle walls, and office desks.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">📦</span>
+                  <div><strong>Storage &amp; Estate Clutter:</strong> Garage storage bins, boxes, exercise equipment, sporting goods, tools, and general house cleanouts.</div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Prohibited Items Column -->
+            <div class="materials-col materials-col--prohibited">
+              <div class="materials-col__header">
+                <span class="materials-icon" style="color: #dc2626;">🚫</span>
+                <h4 class="materials-col__title">What We Cannot Accept (Prohibited)</h4>
+              </div>
+              <ul class="materials-list">
+                <li>
+                  <span class="materials-icon">🧪</span>
+                  <div><strong>Wet Paints, Solvents &amp; Chemicals:</strong> Wet oil/latex paints, chemical strippers, solvents, and pesticides (*fully dried, cured latex paint is accepted*).</div>
+                </li>
+                <li>
+                  <span class="materials-icon">🛢️</span>
+                  <div><strong>Automotive Fluids:</strong> Used engine oil, transmission fluids, radiator antifreeze, brake fluids, and contaminated fuels.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">⛽</span>
+                  <div><strong>Flammable Fuels &amp; Gas Cylinders:</strong> Gasoline, diesel, kerosene, and pressurized propane tanks (unless certified de-valved and empty).</div>
+                </li>
+                <li>
+                  <span class="materials-icon">⚠️</span>
+                  <div><strong>Asbestos &amp; Toxic Insulation:</strong> Transite siding, asbestos-containing pipe wrap, and loose acoustic vermiculite.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">💥</span>
+                  <div><strong>Explosives &amp; Ammunition:</strong> Fireworks, safety flares, live firearm ammunition, and pyrotechnics.</div>
+                </li>
+                <li>
+                  <span class="materials-icon">☣️</span>
+                  <div><strong>Biohazardous &amp; Medical Waste:</strong> Infectious medical sharps, biohazard bags, pathology waste, and industrial animal carcasses.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="materials-notice">
+            <span style="font-size: 1.3rem; flex-shrink: 0;">ℹ️</span>
+            <div>
+              <strong>Need to dispose of hazardous household materials?</strong>
+              Washington residents can drop off regulated chemicals and automotive fluids free of charge at certified municipal facilities:
+              <strong>King County Hazardous Waste</strong> (206) 296-4692 or <strong>Pierce County Solid Waste</strong> (253) 798-2179.
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1597,242 +2319,6 @@ I would absolutely use them again and highly recommend their services!"</p>
       </div>
     </section>
 
-    <!-- OUR CORE SERVICES & SILOS (PILLAR 2: CHUNK-LEVEL INFORMATION ARCHITECTURE) -->
-    <section class="section section--alt" id="services">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Core Hauling Silos</span>
-          <h2 class="section-title">Comprehensive Residential &amp; Commercial Solutions</h2>
-          <p class="section-desc">M&amp;M Junk Removal provides upfront flat rates, prompt dispatch, and eco-conscious sorting across South King and Pierce Counties.</p>
-        </div>
-
-        <!-- SILO 1: RESIDENTIAL JUNK REMOVAL -->
-        <article class="service-silo" id="residential-services" style="margin-bottom: 50px;">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-            <span style="font-size: 2rem;">🛋️</span>
-            <div>
-              <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">Residential Junk Removal: Furniture, Appliances &amp; Cleanouts</h3>
-              <p style="color: #64748b; font-size: 0.9rem;">Serving homeowners, renters, and property executors across 25 King &amp; Pierce County cities.</p>
-            </div>
-          </div>
-          
-          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-            M&amp;M Junk Removal removes bulky residential clutter directly from interior rooms, attics, basements, and curbside driveways without requiring customer lifting. From heavy 4-piece sectional sofas and deep freeze refrigerators to overgrown yard debris, our two-technician crews handle disassembly, loading, and property sweeping.
-          </p>
-
-          <div class="services-grid" style="margin-bottom: 24px;">
-            <div class="service-card">
-              <div class="service-card__icon-box">🛋️</div>
-              <h4 class="service-card__title">Furniture &amp; Mattress Hauling</h4>
-              <p class="service-card__desc">M&amp;M Junk Removal hauls sofas, recliners, dressers, dining sets, mattresses, and box springs with zero damage to doorways.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-card__icon-box">🧊</div>
-              <h4 class="service-card__title">Appliance Recycling</h4>
-              <p class="service-card__desc">M&amp;M Junk Removal extracts refrigerators, freezers, washers, dryers, and stoves for certified eco-recovery.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-card__icon-box">🌿</div>
-              <h4 class="service-card__title">Yard Waste &amp; Brush</h4>
-              <p class="service-card__desc">M&amp;M Junk Removal chips and removes fallen branches, shrub trimmings, sod, blackberries, and storm debris.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-card__icon-box">🏡</div>
-              <h4 class="service-card__title">Estate &amp; Attic Cleanouts</h4>
-              <p class="service-card__desc">M&amp;M Junk Removal performs complete estate liquidations, hoarder cleanouts, and garage clean-sweeps with compassion.</p>
-            </div>
-          </div>
-
-          <!-- Semantic Table: AMZY Pricing Matrix & Specs -->
-          <div class="table-responsive">
-            <table class="geo-table">
-              <thead>
-                <tr>
-                  <th>Job Size / Service Tier</th>
-                  <th>Volume &amp; Capacity Description</th>
-                  <th>Typical Scope / Items</th>
-                  <th>Ballpark Estimate</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>MINI (Minimum Load)</strong></td>
-                  <td>Minimum load, few small items</td>
-                  <td>Single armchair, small lawnmower, microwave, 2-3 bags</td>
-                  <td><span class="table-tag">$95 - $140</span></td>
-                </tr>
-                <tr>
-                  <td><strong>1 Pick Up Truck Load</strong></td>
-                  <td>Standard pickup truck capacity (~4x8 bed)</td>
-                  <td>3-piece couch, mattress + box spring, dining set, yard bags</td>
-                  <td><span class="table-tag">$140 - $230</span></td>
-                </tr>
-                <tr>
-                  <td><strong>2 Pick Up Loads</strong></td>
-                  <td>Double pickup truck capacity</td>
-                  <td>Studio apartment cleanout, sectional sofa, remodel scrap</td>
-                  <td><span class="table-tag">$230 - $415</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Dump Truck Load</strong></td>
-                  <td>Full dump truck capacity (heavy debris)</td>
-                  <td>Garage overhaul, roofing tear-off, full office clearing</td>
-                  <td><span class="table-tag">$740 - $1,110</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Dump Truck Plus</strong></td>
-                  <td>Exceeds one full dump truck</td>
-                  <td>Whole-home estate liquidation, contractor demo, hoarding</td>
-                  <td><span class="table-tag">$1,110 - $1,480</span></td>
-                </tr>
-              </tbody>
-            </table>
-            <p style="font-size: 0.82rem; color: #64748b; margin-top: 8px; font-style: italic;">
-              *Disclaimer: This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection.
-            </p>
-          </div>
-        </article>
-
-        <!-- SILO 2: COMMERCIAL & CONTRACTOR SERVICES -->
-        <article class="service-silo" id="commercial-services" style="margin-bottom: 50px;">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-            <span style="font-size: 2rem;">🏢</span>
-            <div>
-              <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">Commercial, Contractor &amp; Light Demolition Hauling</h3>
-              <p style="color: #64748b; font-size: 0.9rem;">Trusted logistics partner for general contractors, property managers, and retail facilities.</p>
-            </div>
-          </div>
-
-          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-            M&amp;M Junk Removal provides rapid commercial debris dispatch for renovation sites, tenant turnover cleanouts, office liquidations, and light demolition projects. Our 16-foot high-wall box trucks handle up to 4.5 tons of payload, offering prompt digital invoicing, certificates of insurance (COI), and scheduled recurring waste routes.
-          </p>
-
-          <div class="services-grid" style="margin-bottom: 24px;">
-            <div class="service-card">
-              <div class="service-card__icon-box">🔨</div>
-              <h4 class="service-card__title">Construction &amp; Renovation Debris</h4>
-              <p class="service-card__desc">Drywall, framing lumber, tile, roofing shingles, carpet, and jobsite scrap hauled promptly for contractors.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-card__icon-box">🖥️</div>
-              <h4 class="service-card__title">Office Furniture &amp; E-Waste</h4>
-              <p class="service-card__desc">Cubicle partition breakdown, ergonomic desks, filing cabinets, and certified electronic equipment recycling.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-card__icon-box">🏚️</div>
-              <h4 class="service-card__title">Shed &amp; Deck Demolition</h4>
-              <p class="service-card__desc">Dismantling old wooden sheds, rotting backyard decks, chain-link fences, and playsets down to clean ground.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-card__icon-box">♨️</div>
-              <h4 class="service-card__title">Hot Tub &amp; Spa Disassembly</h4>
-              <p class="service-card__desc">Safe electrical disconnection, shell saw-cutting, loading, and disposal with zero damage to concrete patios.</p>
-            </div>
-          </div>
-
-          <!-- Semantic Table: Commercial & Demolition Specs -->
-          <div class="table-responsive">
-            <table class="geo-table">
-              <thead>
-                <tr>
-                  <th>Commercial Debris Category</th>
-                  <th>Payload &amp; Equipment Rating</th>
-                  <th>Compliance &amp; Invoicing</th>
-                  <th>Rate Structure</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Drywall, Framing &amp; Remodel Trash</strong></td>
-                  <td>Heavy-duty 16ft box truck (up to 4.5 ton cap)</td>
-                  <td>Licensed WA Motor Carrier (UBI Active)</td>
-                  <td><span class="table-tag">Volume + Weight Tiers</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Backyard Shed Teardown (10x12)</strong></td>
-                  <td>Reciprocating saws, safety sledge, magnets</td>
-                  <td>Full site broom-sweep included</td>
-                  <td><span class="table-tag">$650 - $1,200</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Above-Ground Hot Tub / Jacuzzi</strong></td>
-                  <td>Sawzall sectional cut &amp; shell extraction</td>
-                  <td>Wiring check, component sorting</td>
-                  <td><span class="table-tag">$350 - $550</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Property Management Tenant Eviction</strong></td>
-                  <td>Rapid 24-hr emergency crew dispatch</td>
-                  <td>Itemized photo log &amp; net-30 terms</td>
-                  <td><span class="table-tag">Hourly / Truck Rate</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
-
-        <!-- SILO 3: ECO-DISPOSAL & RECYCLING LOGISTICS -->
-        <article class="service-silo" id="eco-disposal">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-            <span style="font-size: 2rem;">♻️</span>
-            <div>
-              <h3 style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">Eco-Disposal, Donation &amp; Recycling Logistics</h3>
-              <p style="color: #64748b; font-size: 0.9rem;">Maximum landfill diversion through certified Puget Sound scrap, charity, and transfer facilities.</p>
-            </div>
-          </div>
-
-          <p style="font-size: 0.96rem; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-            M&amp;M Junk Removal adheres to Washington Department of Ecology waste management guidelines. Before any truck reaches municipal solid waste transfer stations (such as Algona Transfer Station or Pierce County Hidden Valley Transfer Station), our crew conducts active sorting to divert usable goods to local non-profit donation centers and reclaim clean scrap metal and organic wood waste.
-          </p>
-
-          <!-- Semantic Table: Eco-Disposal Logistics -->
-          <div class="table-responsive">
-            <table class="geo-table">
-              <thead>
-                <tr>
-                  <th>Material Stream</th>
-                  <th>Primary Facility Destination</th>
-                  <th>Diversion Protocol</th>
-                  <th>Environmental Benefit</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Usable Household Furniture &amp; Decor</strong></td>
-                  <td>Local Charity Partners &amp; Thrift Outlets</td>
-                  <td>Inspection, gentle handling, clean delivery</td>
-                  <td><span class="table-tag">100% Reuse Diversion</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Ferrous &amp; Non-Ferrous Scrap Metals</strong></td>
-                  <td>Regional Metal Recycling Processors</td>
-                  <td>Magnetic segregation &amp; smelting feed</td>
-                  <td><span class="table-tag">Infinite Lifecycle</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Clean Yard Waste &amp; Tree Trimmings</strong></td>
-                  <td>Certified Composting Facilities</td>
-                  <td>Industrial mulching &amp; organic soil blend</td>
-                  <td><span class="table-tag">Zero Landfill Methane</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Major Heavy Appliances</strong></td>
-                  <td>Certified Refrigerant Recovery Stations</td>
-                  <td>EPA Section 608 Freon evacuation</td>
-                  <td><span class="table-tag">Ozone Layer Protection</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Residual Non-Recyclable Solids</strong></td>
-                  <td>County Permitted Solid Waste Transfer Hubs</td>
-                  <td>Direct scale weigh-in &amp; legal containment</td>
-                  <td><span class="table-tag">State-Regulated Disposal</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
-      </div>
-    </section>
 
     <!-- REAL WORK GALLERY (BEFORE & AFTER) -->
     <section class="section" id="gallery">

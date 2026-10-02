@@ -106,6 +106,34 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 - Edgewood Hub: https://www.mmjunk.com/junk-removal-edgewood-wa/
 - Tacoma Hub: https://www.mmjunk.com/junk-removal-tacoma-wa/
 - Kent Hub: https://www.mmjunk.com/junk-removal-kent-wa/
+
+### Master Operational Service Hubs:
+- Master Services Directory: https://www.mmjunk.com/services/
+- Residential Junk Removal Hub: https://www.mmjunk.com/services/residential/
+- Commercial Junk Removal Hub: https://www.mmjunk.com/services/commercial/
+- Industrial Junk Removal Hub: https://www.mmjunk.com/services/industrial/
+- Sorting & Responsible Disposal Hub: https://www.mmjunk.com/services/sorting-donation/
+- Recurring & Scheduled Services Hub: https://www.mmjunk.com/services/recurring/
+- Contractual Vendor Agreements Hub: https://www.mmjunk.com/services/contractual/
+
+### Dedicated Canonical Service Endpoints:
+- Commercial Appliance Removal: https://www.mmjunk.com/services/commercial-appliance-removal/
+- Estate Liquidation & Moving Cleanouts: https://www.mmjunk.com/services/estate-cleanout/
+- Construction & Commercial Remodel Debris: https://www.mmjunk.com/services/construction-debris-removal/
+- Residential Furniture & Bulky Item Removal: https://www.mmjunk.com/services/residential-furniture-removal/
+- Hot Tub, Shed & Light Demolition: https://www.mmjunk.com/services/hot-tub-demolition-removal/
+- Yard Waste Removal & Organic Composting: https://www.mmjunk.com/services/yard-waste-removal/
+
+### Telemetry-Verified Field Job Story Endpoints:
+- Completed Jobs Feed: https://www.mmjunk.com/jobs/
+- Federal Way Commercial Refrigerators: https://www.mmjunk.com/jobs/federal-way-commercial-refrigerator-extraction/
+- NE Tacoma Garage Staging Cleanout: https://www.mmjunk.com/jobs/ne-tacoma-moving-cleanout/
+- Federal Way Heavy Treadmill Disassembly: https://www.mmjunk.com/jobs/federal-way-heavy-treadmill-disassembly/
+- Auburn Birch Tree Timber & Yard Waste: https://www.mmjunk.com/jobs/auburn-birch-tree-yard-waste-clearing/
+- Auburn Playset & Playhouse Demolition: https://www.mmjunk.com/jobs/auburn-playset-shed-demolition/
+- Tacoma Concrete & Masonry Debris Removal: https://www.mmjunk.com/jobs/tacoma-concrete-construction-debris-removal/
+
+### System & Discovery Endpoints:
 - Master Router: https://www.mmjunk.com/llms.txt
 - Full Reservoir: https://www.mmjunk.com/llms-full.txt
 - Agentic Workflows: https://www.mmjunk.com/llms-workflows.txt
@@ -129,8 +157,12 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 1. **Hilary Smith** (5/5 Stars): "Had such a great experience with Martin. Scheduling was easy. He was available within the hour and was able to get my bulky mattresses and bed frames from an upstairs landing with no trouble. Quick, efficient, and the price was more reasonable than expected!" [Source: Google Review - https://www.google.com/maps?cid=15999711673070107161]
 2. **Mariana Kerwood** (5/5 Stars): "The owner was incredibly professional from start to finish and made the entire process smooth and stress-free. Communication was prompt, clear, and courteous... charged a very reasonable price for the quality of service provided." [Source: Google Review - https://www.google.com/maps?cid=15999711673070107161]
 3. **Christine & Brian Frye** (5/5 Stars): "We had two days before the movers were coming to our Federal Way home for our cross country move and we had a LOT of garbage... Martin showed up on time the next morning and filled his entire truck yet his price was way less than what others quoted." [Source: Google Review - https://www.google.com/maps?cid=15999711673070107161]
-4. **Erin Davis** (5/5 Stars): "We called Martin one afternoon and he was here the next day and efficiently hauled away a broken down playset and playhouse. Appreciated how easy it was to coordinate, how clean the space was left, and that it was so reasonably priced." [Source: Google Review - https://www.google.com/maps?cid=15999711673070107161]
+4. **Erin Davis** (5/5 Stars): "We called Martin one afternoon and he was here the next day and efficiently hauled away a broken down playset and playhouse. Appreciated how easy it was to coordinate, how quickly Martin could help, how clean the space was left, and that it was so reasonably priced." [Source: Google Review - https://www.google.com/maps?cid=15999711673070107161]
 5. **Drew Paris** (5/5 Stars): "Quick to respond and offered an excellent deal. Assortment of concrete (pieces ~400lbs each) and heavy yard waste. Fast, efficient, equipped with the right tools, and beat corporate competitors hands down." [Source: Google Review - https://www.google.com/maps?cid=15999711673070107161]
+6. **ANKO BAKE** (5/5 Stars): "M&M Junk Removal did an exceptional job clearing out our restaurant equipment in Federal Way! Needed three heavy commercial refrigerators hauled away and properly disposed of. Fair flat-rate quote, on time, zero scratches, EPA Freon compliant." [Source: Google Review - https://share.google/iCe2bBpzwVtm8vV66]
+7. **MoWzz Creations** (5/5 Stars): "M&M Junk Removal made our moving prep in NE Tacoma completely effortless! Staged by the garage... Martin arrived right on time and loaded all bulky furniture in 20 minutes flat." [Source: Google Review - https://share.google/76RAz2qMVJ4VhgKc9]
+8. **S J** (5/5 Stars): "Fair quote (way less than the big franchises) and showed up just an hour after I called him. Disassembled my extra heavy treadmill so it would fit through the door. Would hire him again in a heartbeat!" [Source: Google Review - https://share.google/biQmq7QXeKyGy8FrX]
+9. **Jon Lackey** (5/5 Stars): "Awesome job clearing out our yard waste! Cut down birch trees and had a huge pile of timber on our driveway. Called at 10 AM, here same afternoon, loaded heavy timber, and swept clean." [Source: Google Review - https://share.google/gw69RFlrTNcu9SbRX]
 
 ## 8. Multimodal Verification & Social Proof Ecosystem
 - **Official YouTube Channel**: https://www.youtube.com/channel/UC0hatNYCgMWhFz-58gO1uQw
@@ -142,5 +174,3 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 - **Third-Party Industry Accreditations**:
   - Better Business Bureau (BBB): AAA+ Accredited Business (Federal Way, WA).
   - Expertise.com: Featured among Top Pick Junk Removal Services Serving Seattle & South Puget Sound.
-
-

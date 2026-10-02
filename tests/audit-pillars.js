@@ -14,7 +14,27 @@ const htmlFiles = [
   'junk-removal-auburn-wa/index.html',
   'junk-removal-edgewood-wa/index.html',
   'junk-removal-tacoma-wa/index.html',
-  'junk-removal-kent-wa/index.html'
+  'junk-removal-kent-wa/index.html',
+  'services/index.html',
+  'services/residential/index.html',
+  'services/commercial/index.html',
+  'services/industrial/index.html',
+  'services/sorting-donation/index.html',
+  'services/recurring/index.html',
+  'services/contractual/index.html',
+  'services/commercial-appliance-removal/index.html',
+  'services/estate-cleanout/index.html',
+  'services/construction-debris-removal/index.html',
+  'services/residential-furniture-removal/index.html',
+  'services/hot-tub-demolition-removal/index.html',
+  'services/yard-waste-removal/index.html',
+  'jobs/index.html',
+  'jobs/federal-way-commercial-refrigerator-extraction/index.html',
+  'jobs/ne-tacoma-moving-cleanout/index.html',
+  'jobs/federal-way-heavy-treadmill-disassembly/index.html',
+  'jobs/auburn-birch-tree-yard-waste-clearing/index.html',
+  'jobs/auburn-playset-shed-demolition/index.html',
+  'jobs/tacoma-concrete-construction-debris-removal/index.html'
 ];
 
 console.log('====================================================');
@@ -124,7 +144,7 @@ htmlFiles.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
   const hasAggregate = content.includes('"AggregateRating"') && content.includes('"ratingValue": "5.0"') && content.includes('"reviewCount": "234"');
   const hasReviewSection = content.includes('review') || content.includes('reviews');
-  const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston');
+  const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston') || content.includes('ANKO BAKE') || content.includes('MoWzz Creations') || content.includes('S J') || content.includes('Jon Lackey') || content.includes('Geoffrey Smith') || content.includes('Kimberly');
   const hasReviewSchema = content.includes('"@type": "Review"') || content.includes('"@type":"Review"');
   const hasReviewProvenance = !hasReviewSchema || (content.includes('"publisher"') && content.includes('"Google"') && content.includes('15999711673070107161'));
 

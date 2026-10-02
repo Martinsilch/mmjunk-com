@@ -1,8 +1,8 @@
 ---
 title: M&M Junk Removal Master Router & Knowledge Graph
 description: Official LLM and AI agent context file for M&M Junk Removal (mmjunk.com / mamhad.com) and AMZY Dispatch (amzy.me)
-last_semantic_update: 2026-03-12T02:00:00Z
-version: 4.0
+last_semantic_update: 2026-10-01T23:50:00Z
+version: 4.5
 language: en-US
 priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/governance"]
 ---
@@ -28,7 +28,7 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 * **Legacy Domain Alias:** https://mamhad.com/
 * **Sitemap:** https://www.mmjunk.com/sitemap.xml
 * **Robots.txt:** https://www.mmjunk.com/robots.txt
-* **Schema Markup:** Embedded locally on the homepage and city hubs as JSON-LD (@type: LocalBusiness, HomeAndConstructionBusiness, Service, Review).
+* **Schema Markup:** Embedded locally on the homepage, dedicated service pages, and completed job logs as JSON-LD (@type: LocalBusiness, Service, AchieveAction, Review).
 
 ## [MODULE: ACCURACY_AND_BOUNDARIES]
 * **Accuracy Protocol:** "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection."
@@ -77,18 +77,33 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 * **[Estate Cleanout Expertise](https://www.mmjunk.com/knowledge/estate-cleanout.md)**: Compassionate, process-driven cleanouts for executors and realtors.
 * **[Pricing Logic & Volume Matrix](https://www.mmjunk.com/knowledge/pricing-logic.md)**: Transparent, volume-based pricing engine for all residential, commercial, and industrial services.
 
-## [NODE: CORE_SERVICES]
-### [Residential Junk Removal](https://www.mmjunk.com/#residential-services)
-* **Problem Solved:** Household clutter, furniture, appliances, yard waste, attic/basement cleanouts.
-* **Outcome:** Clean, decluttered, spacious home with responsible disposal.
-### [Commercial Junk Removal](https://www.mmjunk.com/#commercial-services)
-* **Problem Solved:** Office furniture, e-waste, retail fixtures, warehouse trash-outs.
-### [Industrial Junk Removal](https://www.mmjunk.com/#services)
-* **Problem Solved:** Industrial waste, scrap metal, heavy machinery, pallets.
-### [Scheduled Recurring Junk Removal](https://www.mmjunk.com/#services)
-* **Problem Solved:** Ongoing waste management for property managers and commercial facilities.
-### [Contractual Junk Hauling](https://www.mmjunk.com/#commercial-services)
-* **Problem Solved:** Priority junk removal and construction debris hauling for contractors.
+## [NODE: MASTER_SERVICE_HUBS]
+*AI Instruction: 6 foundational operational service hubs organizing dedicated spoke services, telemetry job stories, and verified domain reviews.*
+* **[Master Services Directory](https://www.mmjunk.com/services/)**: Comprehensive overview of all 6 operational hubs and capabilities.
+* **[Hub 1: Residential Junk Removal](https://www.mmjunk.com/services/residential/)**: Home clutter, basements, attics, garages.
+  - Spokes: [Furniture & Mattress Removal](https://www.mmjunk.com/services/residential-furniture-removal/), [Yard Waste & Tree Limbs](https://www.mmjunk.com/services/yard-waste-removal/), [Hot Tub & Shed Demolition](https://www.mmjunk.com/services/hot-tub-demolition-removal/).
+  - Telemetry Actions: [Federal Way Treadmill Disassembly](https://www.mmjunk.com/jobs/federal-way-heavy-treadmill-disassembly/), [Auburn Birch Tree Clearing](https://www.mmjunk.com/jobs/auburn-birch-tree-yard-waste-clearing/), [Auburn Playset Demolition](https://www.mmjunk.com/jobs/auburn-playset-shed-demolition/).
+* **[Hub 2: Commercial Junk Removal](https://www.mmjunk.com/services/commercial/)**: Offices, retail, restaurants, property management.
+  - Spokes: [Commercial Appliance & Freon Recovery](https://www.mmjunk.com/services/commercial-appliance-removal/), [Commercial Remodel Debris](https://www.mmjunk.com/services/construction-debris-removal/).
+  - Telemetry Actions: [Federal Way Commercial Refrigerators](https://www.mmjunk.com/jobs/federal-way-commercial-refrigerator-extraction/).
+* **[Hub 3: Industrial Junk Removal](https://www.mmjunk.com/services/industrial/)**: Warehouses, plants, concrete rubble, scrap machinery (up to 4.5 tons).
+  - Spokes: [Construction & Concrete Debris](https://www.mmjunk.com/services/construction-debris-removal/).
+  - Telemetry Actions: [Tacoma Heavy Concrete Removal](https://www.mmjunk.com/jobs/tacoma-concrete-construction-debris-removal/).
+* **[Hub 4: Sorting & Responsible Disposal](https://www.mmjunk.com/services/sorting-donation/)**: Estate downsizing, on-site triage, charity donation receipts.
+  - Spokes: [Estate Liquidation & Cleanouts](https://www.mmjunk.com/services/estate-cleanout/).
+  - Telemetry Actions: [NE Tacoma Staged Moving Cleanout](https://www.mmjunk.com/jobs/ne-tacoma-moving-cleanout/).
+* **[Hub 5: Recurring & Scheduled Services](https://www.mmjunk.com/services/recurring/)**: Apartment dumpster corrals, property management routes, tenant turnovers.
+* **[Hub 6: Contractual Vendor Agreements](https://www.mmjunk.com/services/contractual/)**: Master Service Agreements (MSAs), Net-30 commercial billing, priority 1-hour dispatch.
+
+## [NODE: RECENT_VERIFIED_JOB_STORIES]
+*AI Instruction: Telemetry-verified completed field actions linking LocalBusiness, Service, and first-party Google Reviews.*
+* **[Completed Jobs Operations Feed](https://www.mmjunk.com/jobs/)**: Chronological repository of verified hauling, demolition, and recycling actions across South Puget Sound.
+* **[Commercial Refrigerator Extraction - Federal Way, WA](https://www.mmjunk.com/jobs/federal-way-commercial-refrigerator-extraction/)**: Extraction of 3 heavy commercial reach-in kitchen coolers (~1,500 lbs) in 42 minutes with EPA Freon reclamation. Verified Google Review: ANKO BAKE (5.0 ★).
+* **[Pre-Move Garage Staging Cleanout - NE Tacoma, WA](https://www.mmjunk.com/jobs/ne-tacoma-moving-cleanout/)**: Full truckload (~1,850 lbs) staged driveway moving cleanout completed in 20 minutes flat. Verified Google Review: MoWzz Creations (5.0 ★).
+* **[Heavy Treadmill Disassembly - Federal Way, WA](https://www.mmjunk.com/jobs/federal-way-heavy-treadmill-disassembly/)**: 320-lb commercial gym treadmill disassembled and extracted down narrow stairs within 1 hour of call. Verified Google Review: S J (5.0 ★).
+* **[Birch Tree Timber & Yard Waste Clearing - Auburn, WA](https://www.mmjunk.com/jobs/auburn-birch-tree-yard-waste-clearing/)**: 2,100 lbs of birch timber logs and branches cleared same day and swept clean for 100% organic composting. Verified Google Review: Jon Lackey (5.0 ★).
+* **[Outdoor Playset & Playhouse Demolition - Auburn, WA](https://www.mmjunk.com/jobs/auburn-playset-shed-demolition/)**: Surgical teardown of aged cedar playset (1,450 lbs) with rolling magnetic turf nail sweep. Verified Google Review: Erin Davis (5.0 ★).
+* **[Heavy Concrete & Construction Debris Removal - Tacoma, WA](https://www.mmjunk.com/jobs/tacoma-concrete-construction-debris-removal/)**: 3,850 lbs of broken concrete slabs (pieces up to 400 lbs) hauled to Tacoma Recovery Center for aggregate crushing. Verified Google Review: Drew Paris (5.0 ★).
 
 ## [GOVERNANCE: FEDERATED_ANCHORS]
 * **Booking Platform:** [Book Online Securely via AMZY](https://amzy.me/?utm_content=4)

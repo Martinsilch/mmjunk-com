@@ -428,4 +428,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize UI
     updateStepUI();
   }
+
+  // 5. Interactive Service Category Filter Engine
+  const filterBtns = document.querySelectorAll('.service-filter-btn');
+  const serviceCards = document.querySelectorAll('.service-card[data-category]');
+  const serviceSilos = document.querySelectorAll('.service-silo[data-category]');
+  const materialsGuide = document.getElementById('materials-guide');
+
+  if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Update active class & ARIA
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        // Filter cards and silos
+        if (filter === 'all') {
+          serviceCards.forEach(c => c.style.display = 'flex');
+          serviceSilos.forEach(s => s.style.display = 'block');
+          if (materialsGuide) materialsGuide.style.display = 'block';
+        } else if (filter === 'materials') {
+          serviceCards.forEach(c => c.style.display = 'none');
+          serviceSilos.forEach(s => s.style.display = 'none');
+          if (materialsGuide) {
+            materialsGuide.style.display = 'block';
+            materialsGuide.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        } else {
+          if (materialsGuide) materialsGuide.style.display = 'none';
+
+          serviceCards.forEach(c => {
+            const categories = c.getAttribute('data-category').split(' ');
+            if (categories.includes(filter)) {
+              c.style.display = 'flex';
+            } else {
+              c.style.display = 'none';
+            }
+          });
+
+          serviceSilos.forEach(s => {
+            const siloCat = s.getAttribute('data-category');
+            if (siloCat === filter || (filter === 'appliances' && siloCat === 'residential') || (filter === 'demolition' && siloCat === 'commercial')) {
+              s.style.display = 'block';
+            } else {
+              s.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  }
 });
+

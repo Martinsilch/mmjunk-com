@@ -21,6 +21,76 @@
       "source": "/junk-removal-tacoma",
       "destination": "/junk-removal-tacoma-wa/",
       "permanent": true
+    },
+    {
+      "source": "/junk-removal-services",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/residential",
+      "destination": "/services/residential/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/residential/",
+      "destination": "/services/residential/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/commercial-junk-removal",
+      "destination": "/services/commercial/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/commercial-junk-removal/",
+      "destination": "/services/commercial/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/industrial-junk-removal",
+      "destination": "/services/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/industrial-junk-removal/",
+      "destination": "/services/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/junk-sorting-donation-services",
+      "destination": "/services/sorting-donation/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/junk-sorting-donation-services/",
+      "destination": "/services/sorting-donation/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/scheduled-recurring-junk-removal",
+      "destination": "/services/recurring/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/scheduled-recurring-junk-removal/",
+      "destination": "/services/recurring/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/contractual-junk-removal-services",
+      "destination": "/services/contractual/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-services/contractual-junk-removal-services/",
+      "destination": "/services/contractual/",
+      "permanent": true
     }
   ],
   "headers": [

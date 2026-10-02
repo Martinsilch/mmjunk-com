@@ -117,7 +117,14 @@
           { "@type": "City", "name": "Des Moines", "sameAs": "https://en.wikipedia.org/wiki/Des_Moines,_Washington" },
           { "@type": "City", "name": "Puyallup", "sameAs": "https://en.wikipedia.org/wiki/Puyallup,_Washington" },
           { "@type": "AdministrativeArea", "name": "Pierce County", "sameAs": "https://en.wikipedia.org/wiki/Pierce_County,_Washington" },
-          { "@type": "AdministrativeArea", "name": "South King County", "sameAs": "https://en.wikipedia.org/wiki/King_County,_Washington" }
+          { "@type": "AdministrativeArea", "name": "South King County", "sameAs": "https://en.wikipedia.org/wiki/King_County,_Washington" },
+          { "@type": "PostalCode", "postalCode": "98003" },
+          { "@type": "PostalCode", "postalCode": "98023" },
+          { "@type": "PostalCode", "postalCode": "98001" },
+          { "@type": "PostalCode", "postalCode": "98002" },
+          { "@type": "PostalCode", "postalCode": "98371" },
+          { "@type": "PostalCode", "postalCode": "98402" },
+          { "@type": "PostalCode", "postalCode": "98030" }
         ],
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -150,6 +157,97 @@
             }
           ]
         }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-residential",
+        "name": "Residential Furniture & Bulky Item Hauling",
+        "serviceType": "Residential Junk Removal",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "125.00",
+            "priceCurrency": "USD",
+            "description": "Flat-rate baseline single-item curbside pickup minimum"
+          }
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-appliances",
+        "name": "Commercial & Residential Appliance Removal & Eco-Recycling",
+        "serviceType": "Appliance Disposal",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "150.00",
+            "priceCurrency": "USD",
+            "description": "Certified Freon evacuation and appliance recovery baseline"
+          }
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-cleanout",
+        "name": "Estate Liquidation & Whole-Home Cleanouts",
+        "serviceType": "Estate Cleanout",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "description": "Comprehensive estate, foreclosure, and hoarder cleanout with 10% competitor price match guarantee"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.mmjunk.com/#service-demolition",
+        "name": "Hot Tub & Backyard Shed Demolition & Hauling",
+        "serviceType": "Light Demolition",
+        "provider": { "@id": "https://www.mmjunk.com/#business" },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "350.00",
+            "priceCurrency": "USD",
+            "description": "Complete jacuzzi sawzall cut, electrical disconnect check, and disposal baseline"
+          }
+        }
+      },
+      {
+        "@type": "Review",
+        "@id": "https://www.mmjunk.com/#review-1",
+        "author": {
+          "@type": "Person",
+          "name": "Christine & Brian Frye"
+        },
+        "datePublished": "2026-07-20",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "We had two days before movers were coming to our Federal Way home for our cross country move and had a LOT of garbage. Martin quickly returned my call, showed up on time the next morning, and filled his entire truck. Yet his price was way less than what others quoted. Great communication, great guy, great service!",
+        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
+      },
+      {
+        "@type": "Review",
+        "@id": "https://www.mmjunk.com/#review-2",
+        "author": {
+          "@type": "Person",
+          "name": "Hilary Smith"
+        },
+        "datePublished": "2026-08-10",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Had such a great experience with Martin. Scheduling was easy. He was available within the hour and was able to get my bulky mattresses and bed frames from an upstairs landing with no trouble. Quick, efficient, and the price was more reasonable than expected!",
+        "itemReviewed": { "@id": "https://www.mmjunk.com/#business" }
       },
       {
         "@type": "FAQPage",

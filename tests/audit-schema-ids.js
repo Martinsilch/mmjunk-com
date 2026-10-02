@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const allHtml = fs.readdirSync('.', { recursive: true })
-  .filter(f => f.endsWith('.html') && !f.includes('archive'));
+  .filter(f => f.endsWith('.html') && !f.includes('archive') && !f.includes('node_modules') && !f.includes('.next'));
 
 console.log('====================================================');
 console.log('SCHEMA.ORG ENTITY GRAPH & DANGLING ID INTEGRITY AUDIT');

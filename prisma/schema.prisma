@@ -1,0 +1,48 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model LocationSpoke {
+  id          String     @id @default(cuid())
+  slug        String     @unique // "federal-way", "auburn", "tacoma"
+  cityName    String
+  county      String     // "King County", "Pierce County"
+  zipCodes    String[]   // ["98003", "98023"]
+  coordinates Float[]    // [47.3073, -122.3107]
+  wikidataUri String     // "https://www.wikidata.org/wiki/Q852586"
+  jobs        JobStory[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([slug])
+  @@index([county])
+}
+
+model JobStory {
+  id              String        @id @default(cuid())
+  locationId      String
+  location        LocationSpoke @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  serviceType     String        // "Commercial Appliance", "Estate Cleanout"
+  itemCategory    String        // "Reach-in Cooler", "Hot Tub"
+  weightLbs       Int?
+  equipmentUsed   String        // "Hydraulic Liftgate, Box Truck"
+  disposalSite    String        // "Bow Lake Transfer Station"
+  disposalReceipt String?
+  customerReview  String?
+  reviewRating    Int?          @default(5)
+  reviewerName    String?
+  reviewPlatform  String?       @default("Google")
+  reviewUrl       String?
+  completedAt     DateTime      @default(now())
+  createdAt       DateTime      @default(now())
+
+  @@index([locationId])
+  @@index([serviceType])
+  @@index([completedAt(sort: Desc)])
+}

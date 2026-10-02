@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const allHtml = fs.readdirSync('.', { recursive: true })
-  .filter(f => f.endsWith('.html') && !f.includes('archive'));
+  .filter(f => f.endsWith('.html') && !f.includes('archive') && !f.includes('node_modules') && !f.includes('.next'));
 console.log(`Auditing ${allHtml.length} active HTML files...`);
 
 console.log('\n=== CHECKING ALL HTML FILES FOR FIXED INLINE WIDTHS > 280PX ===');

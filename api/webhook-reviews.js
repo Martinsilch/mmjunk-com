@@ -1,28 +1,25 @@
 /**
- * M&M Junk Removal - Google Business Profile Reviews Webhook Endpoint
+ * M&M Junk Removal - Google Business Profile Reviews Webhook Endpoint (Consolidated)
  * Path: /api/webhook-reviews
  * 
- * Supports:
- * 1. Google Business Profile API / PubSub webhook notifications
- * 2. Zapier / Make.com / Custom webhook forwarders
- * 3. Automated GitOps persistence to assets/reviews.json
- * 4. Google 90-day recency qualification & exact review URL validation
+ * Functions as a unified proxy & fallback for incoming GBP reviews:
+ * 1. Evaluates 90-day recency qualification and exact review URLs
+ * 2. Persists to assets/reviews.json (local / GitOps fallback)
+ * 3. Asynchronously forwards unified telemetry payload to /api/ingest-job
  */
 
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const http = require('http');
 
 const GOOGLE_PLACE_ID = 'ChIJAcpZtwpXkFQRGSpNEcXWFt4';
 const GOOGLE_MAPS_CID = '15999711673070107161';
 const CANONICAL_REVIEWS_URL = `https://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}`;
 const GITHUB_REPO = process.env.GITHUB_REPOSITORY || 'Martinsilch/mmjunk-com';
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
-const MAX_RECENCY_DAYS = 90; // Google Local Recency standard cutoff
+const MAX_RECENCY_DAYS = 90;
 
-/**
- * Normalizes star ratings from numbers or strings ("FIVE", "5", 5)
- */
 function parseRating(rating) {
   if (typeof rating === 'number') return rating;
   if (!rating) return 5;
@@ -33,9 +30,6 @@ function parseRating(rating) {
   return isNaN(num) ? 5 : num;
 }
 
-/**
- * Calculates days between past date and now
- */
 function calculateDaysAgo(dateInput) {
   if (!dateInput) return 0;
   const parsed = new Date(dateInput);
@@ -44,9 +38,6 @@ function calculateDaysAgo(dateInput) {
   return Math.max(0, Math.floor(diffMs / (1000 * 60 * 60 * 24)));
 }
 
-/**
- * Human readable relative time format
- */
 function formatRelativeTime(daysAgo) {
   if (daysAgo < 1) return 'Today';
   if (daysAgo === 1) return '1 day ago';
@@ -63,87 +54,51 @@ function formatRelativeTime(daysAgo) {
   return `${years} ${years === 1 ? 'year' : 'years'} ago`;
 }
 
-/**
- * Persist reviews.json to GitHub repository via GitOps REST API
- */
-async function commitToGitHub(updatedReviews, token) {
-  const filePath = 'assets/reviews.json';
-  const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
-  const contentBase64 = Buffer.from(JSON.stringify(updatedReviews, null, 2) + '\n').toString('base64');
+function forwardToIngestJob(unifiedPayload, headers) {
+  const host = headers?.['x-forwarded-host'] || headers?.host || 'localhost:3000';
+  const proto = headers?.['x-forwarded-proto'] || (host.includes('localhost') ? 'http' : 'https');
+  const targetUrl = `${proto}://${host}/api/ingest-job`;
 
-  // 1. Get current file SHA
-  const getSha = () => new Promise((resolve, reject) => {
-    const req = https.request(url, {
-      method: 'GET',
+  try {
+    const isHttps = proto === 'https';
+    const client = isHttps ? https : http;
+    const parsedUrl = new URL(targetUrl);
+
+    const req = client.request({
+      hostname: parsedUrl.hostname,
+      port: parsedUrl.port || (isHttps ? 443 : 80),
+      path: '/api/ingest-job',
+      method: 'POST',
       headers: {
-        'User-Agent': 'MMJunk-Reviews-Webhook',
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github.v3+json'
-      }
-    }, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        if (res.statusCode === 200) {
-          const parsed = JSON.parse(data);
-          resolve(parsed.sha);
-        } else {
-          resolve(null);
-        }
-      });
-    });
-    req.on('error', reject);
-    req.end();
-  });
-
-  const sha = await getSha();
-
-  // 2. Put updated content
-  return new Promise((resolve, reject) => {
-    const body = JSON.stringify({
-      message: 'feat(reviews): auto-sync verified Google review via webhook [skip ci]',
-      content: contentBase64,
-      branch: GITHUB_BRANCH,
-      ...(sha ? { sha } : {})
-    });
-
-    const req = https.request(url, {
-      method: 'PUT',
-      headers: {
-        'User-Agent': 'MMJunk-Reviews-Webhook',
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(body)
-      }
-    }, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(JSON.parse(data));
-        } else {
-          reject(new Error(`GitHub API commit failed with status ${res.statusCode}: ${data}`));
-        }
-      });
+        'Authorization': headers?.['authorization'] || `Bearer ${process.env.DISPATCH_WEBHOOK_SECRET || process.env.REVIEWS_WEBHOOK_SECRET || ''}`,
+        'x-webhook-secret': headers?.['x-webhook-secret'] || process.env.REVIEWS_WEBHOOK_SECRET || ''
+      },
+      timeout: 3000
     });
-    req.on('error', reject);
-    req.write(body);
+
+    req.on('error', () => {
+      // Fire-and-forget background forwarding
+    });
+    req.write(JSON.stringify(unifiedPayload));
     req.end();
-  });
+  } catch {
+    // Non-blocking
+  }
 }
 
 module.exports = async function handler(req, res) {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-webhook-secret');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+  if (res.setHeader) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-webhook-secret');
   }
 
-  // Handle GET - Return current recent reviews database status
+  if (req.method === 'OPTIONS') {
+    return res.status ? res.status(200).end() : res.end();
+  }
+
+  // Handle GET - Return current reviews database status
   if (req.method === 'GET') {
     try {
       const localPath = path.join(process.cwd(), 'assets', 'reviews.json');
@@ -161,7 +116,8 @@ module.exports = async function handler(req, res) {
         googleRecencyCutoffDays: MAX_RECENCY_DAYS,
         canonicalReviewsUrl: CANONICAL_REVIEWS_URL,
         placeId: GOOGLE_PLACE_ID,
-        cid: GOOGLE_MAPS_CID
+        cid: GOOGLE_MAPS_CID,
+        unifiedEndpoint: '/api/ingest-job'
       });
     } catch (err) {
       return res.status(500).json({ error: 'Failed to read reviews database', message: err.message });
@@ -170,9 +126,8 @@ module.exports = async function handler(req, res) {
 
   // Handle POST - Process new incoming Google review
   if (req.method === 'POST') {
-    // 1. Verify Secret Token if configured
     const expectedSecret = process.env.REVIEWS_WEBHOOK_SECRET;
-    if (expectedSecret) {
+    if (expectedSecret && req.headers) {
       const providedSecret = req.headers['x-webhook-secret'] || (req.headers['authorization'] || '').replace(/^Bearer\s+/i, '');
       if (providedSecret !== expectedSecret) {
         return res.status(401).json({ error: 'Unauthorized: Invalid or missing webhook secret token' });
@@ -180,8 +135,6 @@ module.exports = async function handler(req, res) {
     }
 
     const payload = req.body || {};
-
-    // 2. Extract and Normalize Review Fields
     const reviewerName = payload.name || payload.reviewerName || payload.author_name || (payload.reviewer && payload.reviewer.displayName);
     const commentText = payload.text || payload.comment || payload.reviewBody || '';
     const rating = parseRating(payload.rating || payload.starRating || 5);
@@ -193,88 +146,67 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required field: reviewer name' });
     }
 
-    // 3. Compute Google Recency Qualification
     const daysAgo = calculateDaysAgo(datePublished);
     const isRecent = daysAgo <= MAX_RECENCY_DAYS;
     const timeString = payload.time || formatRelativeTime(daysAgo);
 
-    const newReview = {
-      name: reviewerName.trim(),
-      rating: rating,
+    const reviewEntry = {
+      name: reviewerName,
+      avatar,
+      rating,
       time: timeString,
-      datePublished: new Date(datePublished).toISOString().split('T')[0],
-      daysAgo: daysAgo,
+      datePublished: datePublished.split('T')[0],
+      daysAgo,
       recencyQualified: isRecent,
-      text: commentText.trim(),
-      avatar: avatar,
+      authorUrl: payload.authorUrl || '',
+      exactReviewUrl,
+      text: commentText,
       platform: 'Google',
       verified: true,
-      exactReviewUrl: exactReviewUrl,
       originUrl: `https://www.google.com/maps?cid=${GOOGLE_MAPS_CID}`,
       placeId: GOOGLE_PLACE_ID
     };
 
-    // 4. Load Current reviews.json
-    const localPath = path.join(process.cwd(), 'assets', 'reviews.json');
-    let currentReviews = [];
-    if (fs.existsSync(localPath)) {
-      try {
+    // Update local assets/reviews.json fallback
+    try {
+      const localPath = path.join(process.cwd(), 'assets', 'reviews.json');
+      let reviews = [];
+      if (fs.existsSync(localPath)) {
         const raw = fs.readFileSync(localPath, 'utf8').replace(/^\uFEFF/, '');
-        currentReviews = JSON.parse(raw);
-      } catch (e) {
-        currentReviews = [];
+        reviews = JSON.parse(raw);
       }
+      const existingIdx = reviews.findIndex(r => r.name.toLowerCase() === reviewerName.toLowerCase() && r.text === commentText);
+      if (existingIdx >= 0) {
+        reviews[existingIdx] = { ...reviews[existingIdx], ...reviewEntry };
+      } else {
+        reviews.unshift(reviewEntry);
+      }
+      fs.writeFileSync(localPath, JSON.stringify(reviews, null, 2) + '\n', 'utf8');
+    } catch (fsErr) {
+      console.warn('Local reviews.json update fallback notice:', fsErr.message);
     }
 
-    // 5. Deduplicate (prevent duplicate entries for same reviewer)
-    const existingIndex = currentReviews.findIndex(r => 
-      r.name.toLowerCase() === newReview.name.toLowerCase() || 
-      (newReview.text && r.text && r.text.includes(newReview.text.substring(0, 40)))
-    );
-
-    if (existingIndex >= 0) {
-      // Update existing review
-      currentReviews[existingIndex] = { ...currentReviews[existingIndex], ...newReview };
-    } else {
-      // Prepend newest review to beginning of array
-      currentReviews.unshift(newReview);
-    }
-
-    // 6. Persistence: Commit to GitHub (GitOps) or Local File
-    const githubToken = process.env.GITHUB_TOKEN || process.env.GH_PAT;
-    let persistenceResult = 'local_file_written';
-
-    if (githubToken) {
-      try {
-        await commitToGitHub(currentReviews, githubToken);
-        persistenceResult = 'committed_to_github_main';
-      } catch (ghErr) {
-        console.error('GitHub API Commit error:', ghErr);
-        // Fallback to local file write if GitHub API fails
-        try {
-          fs.writeFileSync(localPath, JSON.stringify(currentReviews, null, 2) + '\n', 'utf8');
-          persistenceResult = 'github_failed_fallback_local_saved';
-        } catch (fsErr) {
-          return res.status(500).json({ error: 'Failed to persist review', details: ghErr.message });
-        }
-      }
-    } else {
-      try {
-        fs.writeFileSync(localPath, JSON.stringify(currentReviews, null, 2) + '\n', 'utf8');
-      } catch (fsErr) {
-        console.warn('Filesystem write notice (read-only serverless environment):', fsErr.message);
-        persistenceResult = 'in_memory_success_no_github_token';
-      }
-    }
+    // Forward to unified /api/ingest-job
+    const unifiedPayload = {
+      city: payload.city || 'Federal Way',
+      zip: payload.zip || '98003',
+      serviceType: payload.serviceType || 'Junk Removal & Hauling',
+      itemCategory: payload.itemCategory || 'General Clutter & Bulky Waste',
+      review: commentText,
+      rating,
+      customerName: reviewerName,
+      reviewPlatform: 'Google',
+      reviewUrl: exactReviewUrl,
+      completedAt: datePublished
+    };
+    forwardToIngestJob(unifiedPayload, req.headers);
 
     return res.status(200).json({
       success: true,
-      action: persistenceResult,
-      review: newReview,
+      action: 'SYNCED_GOOGLE_REVIEW',
       recencyStatus: isRecent ? 'QUALIFIED_RECENT_GOOGLE_REVIEW' : 'EXCEEDS_90_DAY_THRESHOLD',
-      totalReviews: currentReviews.length
+      review: reviewEntry,
+      unifiedIngestForwarded: true
     });
   }
-
-  return res.status(405).json({ error: 'Method Not Allowed. Use GET or POST.' });
 };

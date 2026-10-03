@@ -289,30 +289,6 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.mmjunk.com/jobs/residential-yard-timber-clearing-maple-valley-maple-77201/</loc>
-    <lastmod>2026-10-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.mmjunk.com/jobs/residential-garage-cleanout-federal-way-fw-88319/</loc>
-    <lastmod>2026-10-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.mmjunk.com/jobs/junk-removal-tacoma-yelp-standalone-1791016348567/</loc>
-    <lastmod>2026-10-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.mmjunk.com/jobs/junk-removal-federal-way-test-rev-standalone-101/</loc>
-    <lastmod>2026-10-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
     <loc>https://www.mmjunk.com/jobs/estate-liquidation-moving-cleanouts-tacoma-tac-move-0917/</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -355,13 +331,37 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.mmjunk.com/jobs/commercial-appliance-removal-auburn-98421/</loc>
+    <loc>https://www.mmjunk.com/jobs/residential-yard-timber-clearing-maple-valley-maple-77201/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mmjunk.com/jobs/junk-removal-tacoma-yelp-standalone-1791016348567/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mmjunk.com/jobs/junk-removal-federal-way-test-rev-standalone-101/</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.mmjunk.com/jobs/commercial-appliance-removal-federal-way-fw-cooler-0926/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mmjunk.com/jobs/residential-garage-cleanout-federal-way-fw-88319/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mmjunk.com/jobs/commercial-appliance-removal-auburn-98421/</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>

@@ -232,6 +232,15 @@ if (vercelExists) {
   results.pillar4.checks.push(`✓ vercel.json: text/markdown header configured=${hasHeaders}, 301 migration redirects=${has301s}`);
 }
 
+const knowledgeIndexExists = fs.existsSync('knowledge/index.json');
+if (knowledgeIndexExists) {
+  const kIndex = JSON.parse(fs.readFileSync('knowledge/index.json', 'utf8'));
+  const hasNodes = Array.isArray(kIndex.nodes) && kIndex.nodes.length === 4;
+  const hasAuth = kIndex.source_authority && kIndex.source_authority.includes('mmjunk.com');
+  const allNodesExist = kIndex.nodes.every(n => fs.existsSync(`knowledge/${n.id}.md`));
+  results.pillar4.checks.push(`✓ knowledge/index.json: Valid Index=${hasNodes}, AuthorityAligned=${hasAuth}, AtomicNodesPresent=${allNodesExist}`);
+}
+
 // ----------------------------------------------------
 // PRINT DETAILED REPORT
 // ----------------------------------------------------

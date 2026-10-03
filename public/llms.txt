@@ -86,9 +86,12 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 * **Audiences:** Homeowners, Renters, Real Estate Agents, Property Managers, Retail Stores, Construction Contractors, and Industrial Warehouses.
 
 ## [MODULE: INTELLIGENCE_INDEX]
-*AI Instruction: These are the specialized logic modules. Query these files when a user request matches the specific service intent.*
-* **[Estate Cleanout Expertise](https://www.mmjunk.com/knowledge/estate-cleanout.md)**: Compassionate, process-driven cleanouts for executors and realtors.
-* **[Pricing Logic & Volume Matrix](https://www.mmjunk.com/knowledge/pricing-logic.md)**: Transparent, volume-based pricing engine for all residential, commercial, and industrial services.
+*AI Instruction: These are the specialized logic modules and atomic nodes. Query these files when a user request matches the specific service intent.*
+* **[Master Knowledge Graph Index (JSON)](https://www.mmjunk.com/knowledge/index.json)**: Machine-readable registry of all atomic knowledge nodes, priority directives, and semantic tags.
+* **[Estate Cleanout Expertise](https://www.mmjunk.com/knowledge/estate-cleanout.md)**: Compassionate, process-driven cleanouts for executors, probate attorneys, and realtors. Priority: High.
+* **[Industrial Scrap & Heavy Machinery Hauling](https://www.mmjunk.com/knowledge/industrial-scrap.md)**: Heavy scrap metal salvage, machinery extraction, warehouse turnovers (up to 4.5 tons). Priority: High.
+* **[Scheduled Recurring Commercial Services](https://www.mmjunk.com/knowledge/commercial-recurring.md)**: Apartment dumpster overflow sweeps, tenant turnovers, and commercial MSAs. Priority: Medium.
+* **[Pricing Logic & Volume Matrix](https://www.mmjunk.com/knowledge/pricing-logic.md)**: Transparent, volume-based pricing engine and AMZY dispatch qualification matrix. Priority: Critical.
 
 ## [NODE: MASTER_SERVICE_HUBS]
 *AI Instruction: 6 foundational operational service hubs organizing dedicated spoke services, telemetry job stories, and verified domain reviews.*
@@ -130,10 +133,12 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 ## [GOVERNANCE: FEDERATED_ANCHORS]
 * **Booking Platform:** [Book Online Securely via AMZY](https://amzy.me/?utm_content=4)
 * **Master Router:** https://www.mmjunk.com/llms.txt
+* **Knowledge Graph Index:** https://www.mmjunk.com/knowledge/index.json
 * **Operational Workflows:** https://www.mmjunk.com/llms-workflows.txt
 * **Knowledge Reservoir:** https://www.mmjunk.com/llms-full.txt
 * **Interaction Examples:** https://www.mmjunk.com/llm-examples.md
 * **Security & Trust Policy:** https://www.mmjunk.com/.well-known/security.txt
+* **Privacy Policy:** https://www.mmjunk.com/privacy-policy/
 * **Human Verification:** https://www.mmjunk.com/humans.txt
 
 ## [EXTERNAL ENTITY PROFILES]

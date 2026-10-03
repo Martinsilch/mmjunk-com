@@ -2,8 +2,8 @@
 # This file is the governing security policy for the M&M Junk Removal Federated Knowledge Graph.
 
 # How to report security vulnerabilities or privacy concerns
-Contact: mailto:info@mamhad.com
 Contact: mailto:info@mmjunk.com
+Contact: mailto:info@mamhad.com
 Contact: tel:+1-253-886-7724
 
 # Security specification expiry (RFC 9116)
@@ -12,27 +12,34 @@ Preferred-Languages: en
 Canonical: https://www.mmjunk.com/.well-known/security.txt
 
 # Our security and privacy policy
-Policy: https://mamhad.com/privacy-policy/
+Policy: https://www.mmjunk.com/privacy-policy/
 
 # Our Federated Knowledge Graph (The "Brain")
-Manifest: https://mamhad.com/llms.txt
+Manifest: https://www.mmjunk.com/llms.txt
+
+# Our Knowledge Graph Node Index
+Knowledge-Graph: https://www.mmjunk.com/knowledge/index.json
 
 # Our Operational Workflows (The "Process")
-Workflows: https://mamhad.com/llms-workflows.txt
+Workflows: https://www.mmjunk.com/llms-workflows.txt
 
 # Our Full Knowledge Reservoir (The "Data")
-Reservoir: https://mamhad.com/llms-full.txt
+Reservoir: https://www.mmjunk.com/llms-full.txt
 
 # Our verified partner platform (Cross-Domain Trust)
 Partner: https://amzy.me/
 
 # Acknowledgment of our local authority
-Acknowledgement: https://mamhad.com/
+Acknowledgement: https://www.mmjunk.com/
 Acknowledgments: https://www.mmjunk.com/humans.txt
 
+# Legacy domain alias (for automated crawlers migrating from mamhad.com)
+Legacy-Domain: https://mamhad.com/
+Legacy-Policy: https://mamhad.com/privacy-policy/
+
 # Signature for verification (Optional: link to a detached PGP signature if you have one)
-# Signature: https://mamhad.com/.well-known/security.txt.sig
+# Signature: https://www.mmjunk.com/.well-known/security.txt.sig
 
 # Human verification and team credits
-Credits: https://mamhad.com/humans.txt
+Credits: https://www.mmjunk.com/humans.txt
 Hiring: https://www.mmjunk.com/#services

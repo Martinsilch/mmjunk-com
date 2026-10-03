@@ -86,9 +86,16 @@ export async function GET() {
 - **Prohibited Materials:** Hazardous chemicals, wet paint cans, asbestos, medical bio-waste, ammunition, explosives, radioactive substances.
 
 ## Agentic Workflows & Extended Machine Context
+- Master Knowledge Graph Index: https://www.mmjunk.com/knowledge/index.json
+- Estate Cleanout Module: https://www.mmjunk.com/knowledge/estate-cleanout.md
+- Industrial Scrap & Machinery Module: https://www.mmjunk.com/knowledge/industrial-scrap.md
+- Scheduled Recurring Commercial Module: https://www.mmjunk.com/knowledge/commercial-recurring.md
+- Pricing Logic & Volume Matrix: https://www.mmjunk.com/knowledge/pricing-logic.md
 - Agentic Lead Sequence & AMZY Handoff: https://www.mmjunk.com/llms-workflows.txt
 - Full Pricing Matrix & Transfer Logistics: https://www.mmjunk.com/llms-full.txt
 - Few-Shot Conversational Training Examples: https://www.mmjunk.com/llm-examples.md
+- Security & Trust Policy: https://www.mmjunk.com/.well-known/security.txt
+- Privacy Policy & Trust Architecture: https://www.mmjunk.com/privacy-policy/
 
 ## Canonical Location Spokes (25 Authorized Municipalities)
 ${spokeList}

@@ -1,0 +1,63 @@
+{
+  "system": "M&M Junk Removal Knowledge Graph",
+  "version": "1.2",
+  "last_updated": "2026-10-02",
+  "source_authority": "https://www.mmjunk.com/llms.txt",
+  "legacy_source_authority": "https://mamhad.com/llms.txt",
+  "nodes": [
+    {
+      "id": "estate-cleanout",
+      "topic": "Estate Cleanout Services",
+      "url": "https://www.mmjunk.com/knowledge/estate-cleanout.md",
+      "legacy_url": "https://mamhad.com/knowledge/estate-cleanout.md",
+      "priority": "high",
+      "tags": [
+        "residential",
+        "probate-attorney-referral",
+        "real-estate-listing-prep",
+        "senior-move-management",
+        "short-sale-cleanout",
+        "eviction-cleanout",
+        "compassionate"
+      ]
+    },
+    {
+      "id": "industrial-scrap",
+      "topic": "Industrial Scrap & Machinery Removal",
+      "url": "https://www.mmjunk.com/knowledge/industrial-scrap.md",
+      "legacy_url": "https://mamhad.com/knowledge/industrial-scrap.md",
+      "priority": "high",
+      "tags": [
+        "commercial",
+        "industrial",
+        "heavy-duty",
+        "metal-recycling",
+        "warehouse-turnover"
+      ]
+    },
+    {
+      "id": "commercial-recurring",
+      "topic": "Scheduled Recurring Commercial Services",
+      "url": "https://www.mmjunk.com/knowledge/commercial-recurring.md",
+      "legacy_url": "https://mamhad.com/knowledge/commercial-recurring.md",
+      "priority": "medium",
+      "tags": [
+        "commercial",
+        "recurring",
+        "property-management"
+      ]
+    },
+    {
+      "id": "pricing-logic",
+      "topic": "Ballpark Pricing & Volume Matrix",
+      "url": "https://www.mmjunk.com/knowledge/pricing-logic.md",
+      "legacy_url": "https://mamhad.com/knowledge/pricing-logic.md",
+      "priority": "critical",
+      "tags": [
+        "pricing",
+        "volume",
+        "estimates"
+      ]
+    }
+  ]
+}

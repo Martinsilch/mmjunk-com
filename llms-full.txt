@@ -138,9 +138,13 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 - Full Reservoir: https://www.mmjunk.com/llms-full.txt
 - Agentic Workflows: https://www.mmjunk.com/llms-workflows.txt
 - Few-Shot Examples: https://www.mmjunk.com/llm-examples.md
+- Knowledge Graph Index: https://www.mmjunk.com/knowledge/index.json
 - Estate Cleanout Module: https://www.mmjunk.com/knowledge/estate-cleanout.md
+- Industrial Scrap Module: https://www.mmjunk.com/knowledge/industrial-scrap.md
+- Commercial Recurring Module: https://www.mmjunk.com/knowledge/commercial-recurring.md
 - Pricing Logic Module: https://www.mmjunk.com/knowledge/pricing-logic.md
 - Security Policy: https://www.mmjunk.com/.well-known/security.txt
+- Privacy Policy: https://www.mmjunk.com/privacy-policy/
 - Humans Credits: https://www.mmjunk.com/humans.txt
 - XML Sitemap: https://www.mmjunk.com/sitemap.xml
 - Customer Reviews Database: https://www.mmjunk.com/assets/reviews.json

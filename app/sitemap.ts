@@ -9,16 +9,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString().split('T')[0];
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/`, lastModified: currentDate, changeFrequency: 'daily', priority: 1.0 },
-    { url: `${baseUrl}/services/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/services/residential/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${baseUrl}/services/commercial/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${baseUrl}/services/industrial/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${baseUrl}/services/sorting-donation/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${baseUrl}/services/commercial-appliance-removal/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${baseUrl}/services/estate-cleanout/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${baseUrl}/services/construction-debris-removal/`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
-    { url: `${baseUrl}/jobs/`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${baseUrl}`, lastModified: currentDate, changeFrequency: 'daily', priority: 1.0 },
+    { url: `${baseUrl}/services`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/services/residential`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/commercial`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/industrial`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/sorting-donation`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/recurring`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/contractual`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/commercial-appliance-removal`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/estate-cleanout`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/construction-debris-removal`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/residential-furniture-removal`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/hot-tub-demolition-removal`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/services/yard-waste-removal`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.88 },
+    { url: `${baseUrl}/jobs`, lastModified: currentDate, changeFrequency: 'daily', priority: 0.9 },
+    { url: `${baseUrl}/privacy-policy`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.5 },
   ];
 
   // Fetch all location spokes from DB and fallback map
@@ -33,22 +39,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   const spokeRoutes: MetadataRoute.Sitemap = Array.from(spokeSlugs).map((slug) => ({
-    url: `${baseUrl}/junk-removal-${slug}-wa/`,
+    url: `${baseUrl}/junk-removal-${slug}-wa`,
     lastModified: currentDate,
     changeFrequency: 'weekly',
     priority: 0.9
   }));
 
-  // Fetch all completed jobs with canonical slugs
+  // Fetch all completed jobs with canonical slugs (excluding testing records)
   let jobRoutes: MetadataRoute.Sitemap = [];
   try {
     const dbJobs = await db.jobStory.findMany({
-      where: { slug: { not: null } },
+      where: {
+        slug: { not: null },
+        NOT: [
+          { slug: { contains: 'test' } }
+        ]
+      },
       select: { slug: true, completedAt: true }
     });
 
     jobRoutes = dbJobs.map((job) => ({
-      url: `${baseUrl}/jobs/${job.slug}/`,
+      url: `${baseUrl}/jobs/${job.slug}`,
       lastModified: job.completedAt ? new Date(job.completedAt).toISOString().split('T')[0] : currentDate,
       changeFrequency: 'monthly',
       priority: 0.8

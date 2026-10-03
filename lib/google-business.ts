@@ -17,6 +17,10 @@ export interface DecodedReview {
   starRating: number;
   comment: string;
   createTime: string;
+  ownerReply?: string;
+  ownerReplyDate?: string;
+  reviewerPhotoUrl?: string;
+  photos?: string[];
 }
 
 let mockReviewOverride: DecodedReview | null = null;
@@ -50,7 +54,13 @@ export async function fetchGoogleReview(reviewName: string): Promise<DecodedRevi
       comment: isKent
         ? 'Martin did an amazing job clearing out old furniture and appliances in Kent! Punctual, polite, and great price.'
         : 'Prompt junk removal in Federal Way. Fair rate, transparent pricing, and super fast.',
-      createTime: new Date().toISOString()
+      createTime: new Date().toISOString(),
+      ownerReply: isKent
+        ? 'Thank you David! It was great working with you in Kent. Glad we could load everything onto our 16ft box truck and recycle the appliances properly.'
+        : 'Thank you Rachel! We appreciate your business and review in Federal Way.',
+      ownerReplyDate: new Date().toISOString(),
+      reviewerPhotoUrl: 'https://lh3.googleusercontent.com/a/default-user',
+      photos: isKent ? ['https://lh3.googleusercontent.com/p/AF1QipNkent-appliances-proof.jpg'] : []
     };
   }
 
@@ -83,12 +93,24 @@ export async function fetchGoogleReview(reviewName: string): Promise<DecodedRevi
       FIVE: 5,
     };
 
+    const photos: string[] = [];
+    if (Array.isArray(data.photos)) {
+      photos.push(...data.photos.map((p: any) => p.photoUrl || p.url || p).filter(Boolean));
+    }
+    if (Array.isArray(data.media)) {
+      photos.push(...data.media.map((m: any) => m.googleUrl || m.thumbnailUrl || m.url).filter(Boolean));
+    }
+
     return {
       reviewId: data.reviewId || reviewName.split('/').pop() || '',
       reviewerName: data.reviewer?.displayName || 'Verified Customer',
       starRating: starMap[data.starRating] || 5,
       comment: data.comment || '',
       createTime: data.createTime || new Date().toISOString(),
+      ownerReply: data.reviewReply?.comment || undefined,
+      ownerReplyDate: data.reviewReply?.updateTime || undefined,
+      reviewerPhotoUrl: data.reviewer?.profilePhotoUrl || undefined,
+      photos: photos.length > 0 ? photos : undefined,
     };
   } catch (error) {
     console.error('[fetchGoogleReview] Exception:', error);

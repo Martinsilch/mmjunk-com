@@ -55,7 +55,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Failed to fetch review from Google API' }, { status: 502 });
     }
 
-    const { reviewerName, starRating, comment, createTime, reviewId } = reviewData;
+    const { reviewerName, starRating, comment, createTime, reviewId, ownerReply, ownerReplyDate, photos } = reviewData;
     const reviewFirstName = extractFirstName(reviewerName);
 
     // 4. Match & Merge Engine
@@ -88,8 +88,11 @@ export async function POST(req: Request) {
     let targetLocationSlug = targetSpokeSlug;
     let jobSlugToInvalidate: string | null = null;
 
+    const incomingPhotos = photos || [];
+
     if (candidateJob) {
       // Direct Match: Merge review into existing Amzy telemetry record
+      const updatedMedia = Array.from(new Set([...candidateJob.mediaUrls, ...incomingPhotos]));
       const updated = await db.jobStory.update({
         where: { id: candidateJob.id },
         data: {
@@ -98,6 +101,9 @@ export async function POST(req: Request) {
           reviewSource: 'google',
           reviewPlatform: 'Google',
           reviewerName: reviewerName,
+          ownerReply: ownerReply || candidateJob.ownerReply,
+          ownerReplyDate: ownerReplyDate ? new Date(ownerReplyDate) : candidateJob.ownerReplyDate,
+          mediaUrls: updatedMedia,
         },
       });
 
@@ -139,6 +145,7 @@ export async function POST(req: Request) {
 
       let standaloneJob;
       if (existingJobWithSlug) {
+        const updatedMedia = Array.from(new Set([...existingJobWithSlug.mediaUrls, ...incomingPhotos]));
         standaloneJob = await db.jobStory.update({
           where: { id: existingJobWithSlug.id },
           data: {
@@ -147,6 +154,9 @@ export async function POST(req: Request) {
             reviewSource: 'google',
             reviewPlatform: 'Google',
             reviewerName: reviewerName,
+            ownerReply: ownerReply || existingJobWithSlug.ownerReply,
+            ownerReplyDate: ownerReplyDate ? new Date(ownerReplyDate) : existingJobWithSlug.ownerReplyDate,
+            mediaUrls: updatedMedia,
           }
         });
       } else {
@@ -161,6 +171,9 @@ export async function POST(req: Request) {
             reviewSource: 'google',
             reviewPlatform: 'Google',
             reviewerName: reviewerName,
+            ownerReply: ownerReply || null,
+            ownerReplyDate: ownerReplyDate ? new Date(ownerReplyDate) : null,
+            mediaUrls: incomingPhotos,
             completedAt: reviewDate,
           },
         });

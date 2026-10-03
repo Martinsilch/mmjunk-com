@@ -139,7 +139,10 @@ async function testGoogleWebhook() {
   assert.ok(caseStudyHtml.includes('David K.'), 'Case study should include reviewer name David K.');
   assert.ok(caseStudyHtml.includes('980 lbs'), 'Case study should preserve weight telemetry');
   assert.ok(caseStudyHtml.includes('Bow Lake Transfer Station'), 'Case study should preserve disposal site');
-  console.log('✓ Merged case study verified with both Amzy telemetry and Google Review!\n');
+  assert.ok(caseStudyHtml.includes('Response from Owner (Martin)'), 'Case study should render owner reply badge');
+  assert.ok(caseStudyHtml.includes('Thank you David!'), 'Case study should include owner reply text');
+  assert.ok(caseStudyHtml.includes('AF1QipNkent-appliances-proof.jpg'), 'Case study should render review photo');
+  console.log('✓ Merged case study verified with Amzy telemetry, Google Review, Owner Reply, and Review Photos!\n');
 
   // Test 6: Standalone Google Review (No preceding Amzy job)
   console.log('--- Test 6: Standalone Review Ingestion ---');

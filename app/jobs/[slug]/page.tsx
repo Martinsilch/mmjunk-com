@@ -192,7 +192,17 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             publisher: {
               '@type': 'Organization',
               name: job.reviewPlatform || 'Amzy / Google Verified'
-            }
+            },
+            ...(job.ownerReply ? {
+              comment: {
+                '@type': 'Comment',
+                text: job.ownerReply,
+                author: {
+                  '@type': 'Person',
+                  name: 'Martin Silch (Owner)'
+                }
+              }
+            } : {})
           }
         } : {})
       }
@@ -367,7 +377,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                     loading="lazy"
                   />
                   <div style={{ padding: '10px 12px', fontSize: '12px', color: '#64748b' }}>
-                    Proof Photo #{idx + 1} • Amzy Dispatch Telemetry
+                    Proof Photo #{idx + 1} • {job.reviewPlatform || 'Operational'} Verification
                   </div>
                 </div>
               ))}
@@ -395,6 +405,23 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                   </a>
                 )}
               </div>
+
+              {/* Owner Response Badge */}
+              {job.ownerReply && (
+                <div style={{ marginTop: '16px', paddingTop: '14px', borderTop: '1px solid #e2e8f0' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+                    <span style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a' }}>
+                      💬 Response from Owner (Martin)
+                    </span>
+                    <span style={{ fontSize: '11px', backgroundColor: '#e2e8f0', color: '#475569', padding: '1px 6px', borderRadius: '4px' }}>
+                      Official
+                    </span>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '14px', color: '#475569', lineHeight: 1.6, fontStyle: 'normal' }}>
+                    {job.ownerReply}
+                  </p>
+                </div>
+              )}
             </blockquote>
           </section>
         )}

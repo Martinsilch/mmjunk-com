@@ -43,6 +43,8 @@ model JobStory {
   reviewerName    String?
   reviewPlatform  String?       @default("Google")
   reviewUrl       String?
+  ownerReply      String?
+  ownerReplyDate  DateTime?
   mediaUrls       String[]      @default([])
   completedAt     DateTime      @default(now())
   createdAt       DateTime      @default(now())

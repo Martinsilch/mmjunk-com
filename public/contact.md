@@ -30,3 +30,7 @@ last_updated: "2026-10-02"
 ## Service Area
 15-mile operating radius centered in Federal Way covering 25 municipalities:
 Federal Way, Auburn, Des Moines, Kent, Milton, Pacific, Algona, Covington, Maple Valley, Normandy Park, Renton, SeaTac, Tukwila, Bonney Lake, Edgewood, Fife, Fircrest, Gig Harbor, Lakewood, Puyallup, Ruston, Sumner, Tacoma, University Place, South Seattle.
+
+## Privacy & Security
+- **Privacy Policy:** [https://www.mmjunk.com/privacy-policy/](https://www.mmjunk.com/privacy-policy/)
+- **Security Policy:** [https://www.mmjunk.com/.well-known/security.txt](https://www.mmjunk.com/.well-known/security.txt)

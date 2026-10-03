@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
+import { getReputationMetrics } from '@/lib/reputation';
 
 interface PageProps {
   params: { slug: string };
@@ -85,6 +86,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
   const HUB_PHONE = '+1-253-886-7724';
   const HUB_URL = 'https://www.mmjunk.com';
   const AMZY_BOOKING_URL = 'https://amzy.me/?utm_content=4';
+  const reputation = getReputationMetrics();
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -114,8 +116,8 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         },
         'aggregateRating': {
           '@type': 'AggregateRating',
-          'ratingValue': '5.0',
-          'reviewCount': '234',
+          'ratingValue': reputation.aggregateRating,
+          'reviewCount': String(reputation.reviewCount),
           'bestRating': '5'
         },
         'areaServed': {
@@ -308,7 +310,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         </h2>
         {jobs.filter((j) => j.customerReview).length === 0 ? (
           <p style={{ color: '#6b7280', fontStyle: 'italic' }}>
-            5.0-Star Google & Amzy Verified Hauling. Over 234 verified reviews across South King & Pierce Counties.
+            {reputation.aggregateRating}-Star Google & Amzy Verified Hauling. Over {reputation.reviewCount} verified reviews across South King & Pierce Counties.
           </p>
         ) : (
           jobs

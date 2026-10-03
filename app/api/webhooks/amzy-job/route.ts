@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { db } from '@/lib/db';
 import { resolveMunicipality } from '@/lib/geo-resolver';
 import { generateJobSlug, extractFirstName, serviceMatches, sanitizeReviewText } from '@/lib/job-utils';
+import { recordReviewMetric } from '@/lib/reputation';
 
 const AmzyCustomerSchema = z.object({
   name: z.string().optional(),
@@ -234,7 +235,17 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 7. On-Demand Incremental Static Regeneration (ISR)
+  // 7. Ingest into Canonical Reputation Engine if customer review was included
+  let updatedReputation = null;
+  const ratingToRecord = reviewRating || 5;
+  if (customerReview && ratingToRecord >= 4) {
+    const isNewCustomerReview = action === 'CREATED_NEW_JOB_STORY' || action === 'MERGED_REVIEW_AND_TELEMETRY';
+    if (isNewCustomerReview) {
+      updatedReputation = recordReviewMetric({ platform: 'amzy', rating: ratingToRecord });
+    }
+  }
+
+  // 8. On-Demand Incremental Static Regeneration (ISR)
   const targetSlug = jobRecord.slug || canonicalJobSlug;
   const tagsToInvalidate = [
     `location-${spoke.slug}`,
@@ -272,6 +283,7 @@ export async function POST(req: NextRequest) {
     spokeSlug: spoke.slug,
     cityName: spoke.cityName,
     revalidatedTags: tagsToInvalidate,
+    reputation: updatedReputation,
     timestamp: new Date().toISOString()
   });
 }

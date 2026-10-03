@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { fetchGoogleReview } from '@/lib/google-business';
 import { resolveMunicipality, generateJobSlug, extractFirstName, sanitizeReviewText } from '@/lib/job-utils';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
+import { recordReviewMetric } from '@/lib/reputation';
 
 export async function POST(req: Request) {
   try {
@@ -101,11 +102,13 @@ export async function POST(req: Request) {
     let mergedJobId: string | null = null;
     let targetLocationSlug = targetSpokeSlug;
     let jobSlugToInvalidate: string | null = null;
+    let isNewReview = false;
 
     const incomingPhotos = photos || [];
 
     if (candidateJob) {
       // Direct Match: Merge review into existing Amzy telemetry record
+      isNewReview = !candidateJob.customerReview;
       const updatedMedia = Array.from(new Set([...candidateJob.mediaUrls, ...incomingPhotos]));
       const updated = await db.jobStory.update({
         where: { id: candidateJob.id },
@@ -159,6 +162,7 @@ export async function POST(req: Request) {
 
       let standaloneJob;
       if (existingJobWithSlug) {
+        isNewReview = false;
         const updatedMedia = Array.from(new Set([...existingJobWithSlug.mediaUrls, ...incomingPhotos]));
         standaloneJob = await db.jobStory.update({
           where: { id: existingJobWithSlug.id },
@@ -174,6 +178,7 @@ export async function POST(req: Request) {
           }
         });
       } else {
+        isNewReview = true;
         standaloneJob = await db.jobStory.create({
           data: {
             locationId: location.id,
@@ -198,7 +203,13 @@ export async function POST(req: Request) {
       revalidatePath(`/jobs/${fallbackSlug}`);
     }
 
-    // 5. Invalidate Edge Caches
+    // 5. Ingest into Canonical Reputation Engine
+    let updatedReputation = null;
+    if (isNewReview) {
+      updatedReputation = recordReviewMetric({ platform: 'google', rating: starRating });
+    }
+
+    // 6. Invalidate Edge Caches
     revalidateTag(`location-${targetLocationSlug}`);
     revalidateTag(`location-junk-removal-${targetLocationSlug}-wa`);
     revalidateTag('llms-manifest');
@@ -215,6 +226,7 @@ export async function POST(req: Request) {
       jobId: mergedJobId,
       location: targetLocationSlug,
       jobSlug: jobSlugToInvalidate,
+      reputation: updatedReputation,
     });
   } catch (error) {
     console.error('[Google PubSub Webhook Error]:', error);

@@ -5,6 +5,7 @@ import { db } from '@/lib/db';
 import { fetchYelpReviews } from '@/lib/yelp';
 import { resolveMunicipality, generateJobSlug, extractFirstName, sanitizeReviewText } from '@/lib/job-utils';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
+import { recordReviewMetric } from '@/lib/reputation';
 
 const YelpPayloadSchema = z.object({
   reviewId: z.string().optional(),
@@ -178,6 +179,13 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
       revalidatePath(`/jobs/${fallbackSlug}`);
     }
 
+    // Ingest into Canonical Reputation Engine
+    const isNewReview = action === 'CREATED_NEW_STANDALONE_YELP_REVIEW' || (action === 'MERGED_WITH_AMZY_JOB' && !candidateJob?.customerReview);
+    let updatedReputation = null;
+    if (isNewReview) {
+      updatedReputation = recordReviewMetric({ platform: 'yelp', rating: r.starRating });
+    }
+
     // Invalidate Edge Caches
     const tagsToInvalidate = [
       `location-${targetLocationSlug}`,
@@ -209,7 +217,8 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
       jobId: mergedJobId,
       canonicalSlug: jobSlugToInvalidate,
       canonicalUrl: `/jobs/${jobSlugToInvalidate}`,
-      location: targetLocationSlug
+      location: targetLocationSlug,
+      reputation: updatedReputation
     });
   }
 

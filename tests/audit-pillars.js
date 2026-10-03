@@ -140,20 +140,29 @@ htmlFiles.forEach(file => {
 // ----------------------------------------------------
 // PILLAR 3: Social Proof & Review Synthesis Vectors
 // ----------------------------------------------------
+const repPath = 'knowledge/reputation.json';
+const repData = fs.existsSync(repPath)
+  ? JSON.parse(fs.readFileSync(repPath, 'utf8').replace(/^\uFEFF/, ''))
+  : { reviewCount: 234, aggregateRating: '5.0' };
+const expectedReviewCount = String(repData.reviewCount);
+const expectedRating = String(repData.aggregateRating);
+
 htmlFiles.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
-  const hasAggregate = content.includes('"AggregateRating"') && content.includes('"ratingValue": "5.0"') && content.includes('"reviewCount": "234"');
+  const hasAggregate = content.includes('"AggregateRating"') &&
+    content.includes(`"ratingValue": "${expectedRating}"`) &&
+    content.includes(`"reviewCount": "${expectedReviewCount}"`);
   const hasReviewSection = content.includes('review') || content.includes('reviews');
   const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston') || content.includes('ANKO BAKE') || content.includes('MoWzz Creations') || content.includes('S J') || content.includes('Jon Lackey') || content.includes('Geoffrey Smith') || content.includes('Kimberly');
   const hasReviewSchema = content.includes('"@type": "Review"') || content.includes('"@type":"Review"');
   const hasReviewProvenance = !hasReviewSchema || (content.includes('"publisher"') && content.includes('"Google"') && content.includes('15999711673070107161'));
 
   if (!hasAggregate) {
-    results.pillar3.checks.push(`⚠️ ${file}: Missing explicit AggregateRating 5.0 (234 reviews) schema`);
+    results.pillar3.checks.push(`⚠️ ${file}: Missing explicit AggregateRating ${expectedRating} (${expectedReviewCount} reviews) schema`);
   } else if (!hasReviewProvenance) {
     results.pillar3.checks.push(`⚠️ ${file}: Review schema present but missing Google publisher CID provenance`);
   } else {
-    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (5.0 stars, 234 reviews) + Review Provenance (quoted=${hasCustomerQuotes})`);
+    results.pillar3.checks.push(`✓ ${file}: Verified AggregateRating (${expectedRating} stars, ${expectedReviewCount} reviews) + Review Provenance (quoted=${hasCustomerQuotes})`);
   }
 });
 

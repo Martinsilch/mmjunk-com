@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
+import { getReputationMetrics } from '@/lib/reputation';
 
 interface JobPageProps {
   params: { slug: string };
@@ -88,6 +89,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const HUB_PHONE_RAW = '2538867724';
   const HUB_URL = 'https://www.mmjunk.com';
   const AMZY_BOOKING_URL = 'https://amzy.me/?utm_content=4';
+  const reputation = getReputationMetrics();
 
   const canonicalUrl = `${HUB_URL}/jobs/${job.slug || slug}/`;
 
@@ -112,8 +114,8 @@ export default async function JobStoryPage({ params }: JobPageProps) {
         },
         aggregateRating: {
           '@type': 'AggregateRating',
-          ratingValue: '5.0',
-          reviewCount: '234',
+          ratingValue: reputation.aggregateRating,
+          reviewCount: String(reputation.reviewCount),
           bestRating: '5'
         },
         potentialAction: [

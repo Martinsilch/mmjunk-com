@@ -550,5 +550,11 @@
         }
       ]
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/webhooks/yelp?sync=true",
+      "schedule": "0 14 * * *"
+    }
   ]
 }

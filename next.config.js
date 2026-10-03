@@ -1,5 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.amzy.me',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3-media*.fl.yelpcdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.mmjunk.com',
+      },
+    ],
+  },
   async rewrites() {
     return [
       {

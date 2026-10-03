@@ -25,6 +25,178 @@ const YelpPayloadSchema = z.object({
   }).optional()
 });
 
+interface ReviewInput {
+  reviewId: string;
+  reviewerName: string;
+  starRating: number;
+  comment: string;
+  timeCreated: string;
+  url: string;
+}
+
+async function processReviews(reviewsToProcess: ReviewInput[]) {
+  const results = [];
+
+  for (const r of reviewsToProcess) {
+    const reviewFirstName = extractFirstName(r.reviewerName);
+    const reviewDate = r.timeCreated ? new Date(r.timeCreated) : new Date();
+    const windowStart = new Date(reviewDate.getTime() - 3 * 24 * 60 * 60 * 1000);
+    const windowEnd = new Date(reviewDate.getTime() + 3 * 24 * 60 * 60 * 1000);
+
+    // Infer city from review text or fallback to Federal Way
+    const inferredCity = resolveMunicipality(r.comment) || 'Federal Way';
+    const targetSpokeSlug = inferredCity.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+    // Check candidates in 3-day rolling window
+    const candidates = await db.jobStory.findMany({
+      where: {
+        completedAt: { gte: windowStart, lte: windowEnd },
+      },
+      include: { location: true },
+      orderBy: { completedAt: 'desc' },
+    });
+
+    const candidateJob = candidates.find(c => {
+      const candidateFirst = extractFirstName(c.reviewerName);
+      return candidateFirst && reviewFirstName && candidateFirst === reviewFirstName && c.customerReview === null;
+    }) || candidates.find(c => {
+      const candidateFirst = extractFirstName(c.reviewerName);
+      return candidateFirst && reviewFirstName && candidateFirst === reviewFirstName;
+    });
+
+    let mergedJobId: string | null = null;
+    let targetLocationSlug = targetSpokeSlug;
+    let jobSlugToInvalidate: string | null = null;
+    let action = 'CREATED_NEW_STANDALONE_YELP_REVIEW';
+
+    if (candidateJob) {
+      // Direct Match: Merge Yelp review into existing Amzy telemetry record
+      const updated = await db.jobStory.update({
+        where: { id: candidateJob.id },
+        data: {
+          customerReview: r.comment,
+          reviewRating: r.starRating,
+          reviewSource: 'yelp',
+          reviewPlatform: 'Yelp',
+          reviewUrl: r.url,
+          reviewerName: r.reviewerName,
+        },
+      });
+
+      mergedJobId = updated.id;
+      targetLocationSlug = candidateJob.location.slug;
+      jobSlugToInvalidate = updated.slug;
+      action = 'MERGED_WITH_AMZY_JOB';
+
+      if (updated.slug) {
+        revalidateTag(`job-${updated.slug}`);
+        revalidatePath(`/jobs/${updated.slug}`);
+      }
+    } else {
+      // Standalone Yelp Review: Upsert spoke and create JobStory
+      const meta = AUTHORIZED_MUNICIPALITIES[targetSpokeSlug];
+      const cityName = meta ? meta.cityName : inferredCity;
+      const county = meta ? meta.county : 'King County';
+      const zipCodes = meta ? meta.zipCodes : ['98003'];
+      const coordinates = meta ? meta.coords : [47.3223, -122.3126];
+      const wikidataUri = meta ? meta.wikidataUri : 'https://www.wikidata.org/wiki/Q852586';
+
+      const location = await db.locationSpoke.upsert({
+        where: { slug: targetLocationSlug },
+        update: {},
+        create: {
+          slug: targetLocationSlug,
+          cityName,
+          county,
+          zipCodes,
+          coordinates,
+          wikidataUri,
+        },
+      });
+
+      const fallbackSlug = generateJobSlug('Junk Removal', 'Verified Pickup', targetLocationSlug, r.reviewId);
+      jobSlugToInvalidate = fallbackSlug;
+
+      const existingJobWithSlug = await db.jobStory.findUnique({
+        where: { slug: fallbackSlug }
+      });
+
+      let standaloneJob;
+      if (existingJobWithSlug) {
+        standaloneJob = await db.jobStory.update({
+          where: { id: existingJobWithSlug.id },
+          data: {
+            customerReview: r.comment,
+            reviewRating: r.starRating,
+            reviewSource: 'yelp',
+            reviewPlatform: 'Yelp',
+            reviewUrl: r.url,
+            reviewerName: r.reviewerName,
+          }
+        });
+        action = 'UPDATED_EXISTING_YELP_REVIEW';
+      } else {
+        standaloneJob = await db.jobStory.create({
+          data: {
+            locationId: location.id,
+            slug: fallbackSlug,
+            serviceType: 'Junk Removal & Hauling',
+            itemCategory: 'Customer Pickup & Recycling',
+            customerReview: r.comment,
+            reviewRating: r.starRating,
+            reviewSource: 'yelp',
+            reviewPlatform: 'Yelp',
+            reviewUrl: r.url,
+            reviewerName: r.reviewerName,
+            completedAt: reviewDate,
+          },
+        });
+        action = 'CREATED_NEW_STANDALONE_YELP_REVIEW';
+      }
+
+      mergedJobId = standaloneJob.id;
+      revalidateTag(`job-${fallbackSlug}`);
+      revalidatePath(`/jobs/${fallbackSlug}`);
+    }
+
+    // Invalidate Edge Caches
+    const tagsToInvalidate = [
+      `location-${targetLocationSlug}`,
+      `location-junk-removal-${targetLocationSlug}-wa`,
+      'llms-manifest',
+      'root-sitemap'
+    ];
+
+    for (const tag of tagsToInvalidate) {
+      try {
+        revalidateTag(tag);
+      } catch (err) {
+        console.warn(`Tag invalidation warning:`, err);
+      }
+    }
+
+    try {
+      revalidatePath(`/junk-removal-${targetLocationSlug}-wa`);
+      revalidatePath('/jobs');
+      revalidatePath('/llms.txt');
+      revalidatePath('/sitemap.xml');
+    } catch (err) {
+      console.warn('Path invalidation warning:', err);
+    }
+
+    results.push({
+      reviewId: r.reviewId,
+      action,
+      jobId: mergedJobId,
+      canonicalSlug: jobSlugToInvalidate,
+      canonicalUrl: `/jobs/${jobSlugToInvalidate}`,
+      location: targetLocationSlug
+    });
+  }
+
+  return results;
+}
+
 export async function POST(req: NextRequest) {
   try {
     // 1. Authenticate Request
@@ -63,15 +235,7 @@ export async function POST(req: NextRequest) {
 
     const p = parsed.data;
 
-    // Support trigger for full Yelp review sync
-    let reviewsToProcess: Array<{
-      reviewId: string;
-      reviewerName: string;
-      starRating: number;
-      comment: string;
-      timeCreated: string;
-      url: string;
-    }> = [];
+    let reviewsToProcess: ReviewInput[] = [];
 
     if (p.event === 'SYNC_REVIEWS' || (!p.text && !p.comment && !p.reviewId)) {
       const fetched = await fetchYelpReviews(p.businessAlias);
@@ -94,164 +258,7 @@ export async function POST(req: NextRequest) {
       }];
     }
 
-    const results = [];
-
-    for (const r of reviewsToProcess) {
-      const reviewFirstName = extractFirstName(r.reviewerName);
-      const reviewDate = r.timeCreated ? new Date(r.timeCreated) : new Date();
-      const windowStart = new Date(reviewDate.getTime() - 3 * 24 * 60 * 60 * 1000);
-      const windowEnd = new Date(reviewDate.getTime() + 3 * 24 * 60 * 60 * 1000);
-
-      // Infer city from review text or fallback to Federal Way
-      const inferredCity = resolveMunicipality(r.comment) || 'Federal Way';
-      const targetSpokeSlug = inferredCity.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-      // Check candidates in 3-day rolling window
-      const candidates = await db.jobStory.findMany({
-        where: {
-          completedAt: { gte: windowStart, lte: windowEnd },
-        },
-        include: { location: true },
-        orderBy: { completedAt: 'desc' },
-      });
-
-      const candidateJob = candidates.find(c => {
-        const candidateFirst = extractFirstName(c.reviewerName);
-        return candidateFirst && reviewFirstName && candidateFirst === reviewFirstName && c.customerReview === null;
-      }) || candidates.find(c => {
-        const candidateFirst = extractFirstName(c.reviewerName);
-        return candidateFirst && reviewFirstName && candidateFirst === reviewFirstName;
-      });
-
-      let mergedJobId: string | null = null;
-      let targetLocationSlug = targetSpokeSlug;
-      let jobSlugToInvalidate: string | null = null;
-      let action = 'CREATED_NEW_STANDALONE_YELP_REVIEW';
-
-      if (candidateJob) {
-        // Direct Match: Merge Yelp review into existing Amzy telemetry record
-        const updated = await db.jobStory.update({
-          where: { id: candidateJob.id },
-          data: {
-            customerReview: r.comment,
-            reviewRating: r.starRating,
-            reviewSource: 'yelp',
-            reviewPlatform: 'Yelp',
-            reviewUrl: r.url,
-            reviewerName: r.reviewerName,
-          },
-        });
-
-        mergedJobId = updated.id;
-        targetLocationSlug = candidateJob.location.slug;
-        jobSlugToInvalidate = updated.slug;
-        action = 'MERGED_WITH_AMZY_JOB';
-
-        if (updated.slug) {
-          revalidateTag(`job-${updated.slug}`);
-          revalidatePath(`/jobs/${updated.slug}`);
-        }
-      } else {
-        // Standalone Yelp Review: Upsert spoke and create JobStory
-        const meta = AUTHORIZED_MUNICIPALITIES[targetSpokeSlug];
-        const cityName = meta ? meta.cityName : inferredCity;
-        const county = meta ? meta.county : 'King County';
-        const zipCodes = meta ? meta.zipCodes : ['98003'];
-        const coordinates = meta ? meta.coords : [47.3223, -122.3126];
-        const wikidataUri = meta ? meta.wikidataUri : 'https://www.wikidata.org/wiki/Q852586';
-
-        const location = await db.locationSpoke.upsert({
-          where: { slug: targetLocationSlug },
-          update: {},
-          create: {
-            slug: targetLocationSlug,
-            cityName,
-            county,
-            zipCodes,
-            coordinates,
-            wikidataUri,
-          },
-        });
-
-        const fallbackSlug = generateJobSlug('Junk Removal', 'Verified Pickup', targetLocationSlug, r.reviewId);
-        jobSlugToInvalidate = fallbackSlug;
-
-        const existingJobWithSlug = await db.jobStory.findUnique({
-          where: { slug: fallbackSlug }
-        });
-
-        let standaloneJob;
-        if (existingJobWithSlug) {
-          standaloneJob = await db.jobStory.update({
-            where: { id: existingJobWithSlug.id },
-            data: {
-              customerReview: r.comment,
-              reviewRating: r.starRating,
-              reviewSource: 'yelp',
-              reviewPlatform: 'Yelp',
-              reviewUrl: r.url,
-              reviewerName: r.reviewerName,
-            }
-          });
-          action = 'UPDATED_EXISTING_YELP_REVIEW';
-        } else {
-          standaloneJob = await db.jobStory.create({
-            data: {
-              locationId: location.id,
-              slug: fallbackSlug,
-              serviceType: 'Junk Removal & Hauling',
-              itemCategory: 'Customer Pickup & Recycling',
-              customerReview: r.comment,
-              reviewRating: r.starRating,
-              reviewSource: 'yelp',
-              reviewPlatform: 'Yelp',
-              reviewUrl: r.url,
-              reviewerName: r.reviewerName,
-              completedAt: reviewDate,
-            },
-          });
-          action = 'CREATED_NEW_STANDALONE_YELP_REVIEW';
-        }
-
-        mergedJobId = standaloneJob.id;
-        revalidateTag(`job-${fallbackSlug}`);
-        revalidatePath(`/jobs/${fallbackSlug}`);
-      }
-
-      // Invalidate Edge Caches
-      const tagsToInvalidate = [
-        `location-${targetLocationSlug}`,
-        `location-junk-removal-${targetLocationSlug}-wa`,
-        'llms-manifest',
-        'root-sitemap'
-      ];
-
-      for (const tag of tagsToInvalidate) {
-        try {
-          revalidateTag(tag);
-        } catch (err) {
-          console.warn(`Tag invalidation warning:`, err);
-        }
-      }
-
-      try {
-        revalidatePath(`/junk-removal-${targetLocationSlug}-wa`);
-        revalidatePath('/jobs');
-        revalidatePath('/llms.txt');
-        revalidatePath('/sitemap.xml');
-      } catch (err) {
-        console.warn('Path invalidation warning:', err);
-      }
-
-      results.push({
-        reviewId: r.reviewId,
-        action,
-        jobId: mergedJobId,
-        canonicalSlug: jobSlugToInvalidate,
-        canonicalUrl: `/jobs/${jobSlugToInvalidate}`,
-        location: targetLocationSlug
-      });
-    }
+    const results = await processReviews(reviewsToProcess);
 
     return NextResponse.json({
       success: true,
@@ -267,13 +274,34 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const triggerSync = url.searchParams.get('sync') === 'true';
+  const queryToken = url.searchParams.get('token');
+  const authHeader = req.headers.get('authorization');
+  const cronHeader = req.headers.get('x-vercel-cron');
+  const expectedSecret = process.env.YELP_WEBHOOK_SECRET;
 
   if (triggerSync) {
-    const reviews = await fetchYelpReviews();
+    // Authenticate if expectedSecret is configured
+    if (expectedSecret) {
+      const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
+      const isCron = cronHeader || (process.env.CRON_SECRET && bearerToken === process.env.CRON_SECRET);
+      const isAuthorized = isCron || bearerToken === expectedSecret || queryToken === expectedSecret;
+      if (!isAuthorized) {
+        return NextResponse.json(
+          { error: 'Unauthorized: invalid or missing Yelp webhook secret' },
+          { status: 401 }
+        );
+      }
+    }
+
+    const fetchedReviews = await fetchYelpReviews();
+    const results = await processReviews(fetchedReviews);
+
     return NextResponse.json({
-      status: 'ONLINE',
-      endpoint: '/api/webhooks/yelp',
-      syncResult: reviews
+      success: true,
+      status: 'SYNC_COMPLETED',
+      fetched: fetchedReviews.length,
+      processed: results.length,
+      reviews: results
     });
   }
 

@@ -132,6 +132,21 @@ async function testYelpPipeline() {
   assert.strictEqual(standaloneJson.reviews[0].location, 'tacoma');
   console.log('✓ Standalone Yelp review successfully resolved to Tacoma spoke!\n');
 
+  // Test 5: GET /api/webhooks/yelp?sync=true
+  console.log('--- Test 5: GET Scheduled Sync Endpoint ---');
+  const unauthSyncRes = await fetch(`${baseUrl}/api/webhooks/yelp?sync=true`);
+  console.log(`Unauthenticated sync status: ${unauthSyncRes.status} (Expected: 401)`);
+  assert.strictEqual(unauthSyncRes.status, 401);
+
+  const authSyncRes = await fetch(`${baseUrl}/api/webhooks/yelp?sync=true&token=${yelpSecret}`);
+  console.log(`Authenticated sync status: ${authSyncRes.status} (Expected: 200)`);
+  assert.strictEqual(authSyncRes.status, 200);
+  const syncJson = await authSyncRes.json();
+  console.log('Sync Result:', syncJson);
+  assert.strictEqual(syncJson.success, true);
+  assert.strictEqual(syncJson.status, 'SYNC_COMPLETED');
+  console.log('✓ Scheduled Yelp review sync verified via GET endpoint!\n');
+
   console.log('================================================================');
   console.log('🎉 ALL YELP INGESTION PIPELINE TESTS PASSED 100%');
   console.log('================================================================');

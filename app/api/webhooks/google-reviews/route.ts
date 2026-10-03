@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     const reviewFirstName = extractFirstName(reviewerName);
 
     // 4. Match & Merge Engine
-    // Look back 3 days for an unreviewed job matching customer first name
+    // Look back 3 days for a job matching customer first name
     const reviewDate = createTime ? new Date(createTime) : new Date();
     const windowStart = new Date(reviewDate.getTime() - 3 * 24 * 60 * 60 * 1000);
     const windowEnd = new Date(reviewDate.getTime() + 3 * 24 * 60 * 60 * 1000);
@@ -70,13 +70,16 @@ export async function POST(req: Request) {
     const candidates = await db.jobStory.findMany({
       where: {
         completedAt: { gte: windowStart, lte: windowEnd },
-        customerReview: null, // Awaiting review
       },
       include: { location: true },
       orderBy: { completedAt: 'desc' },
     });
 
+    // Prioritize candidates awaiting review (customerReview === null)
     const candidateJob = candidates.find(c => {
+      const candidateFirst = extractFirstName(c.reviewerName);
+      return candidateFirst && reviewFirstName && candidateFirst === reviewFirstName && c.customerReview === null;
+    }) || candidates.find(c => {
       const candidateFirst = extractFirstName(c.reviewerName);
       return candidateFirst && reviewFirstName && candidateFirst === reviewFirstName;
     });
@@ -130,22 +133,40 @@ export async function POST(req: Request) {
       const fallbackSlug = generateJobSlug('Junk Removal', 'Verified Pickup', targetLocationSlug, reviewId);
       jobSlugToInvalidate = fallbackSlug;
 
-      const newJob = await db.jobStory.create({
-        data: {
-          locationId: location.id,
-          slug: fallbackSlug,
-          serviceType: 'Junk Removal & Hauling',
-          itemCategory: 'Customer Pickup & Recycling',
-          customerReview: comment,
-          reviewRating: starRating,
-          reviewSource: 'google',
-          reviewPlatform: 'Google',
-          reviewerName: reviewerName,
-          completedAt: reviewDate,
-        },
+      const existingJobWithSlug = await db.jobStory.findUnique({
+        where: { slug: fallbackSlug }
       });
 
-      mergedJobId = newJob.id;
+      let standaloneJob;
+      if (existingJobWithSlug) {
+        standaloneJob = await db.jobStory.update({
+          where: { id: existingJobWithSlug.id },
+          data: {
+            customerReview: comment,
+            reviewRating: starRating,
+            reviewSource: 'google',
+            reviewPlatform: 'Google',
+            reviewerName: reviewerName,
+          }
+        });
+      } else {
+        standaloneJob = await db.jobStory.create({
+          data: {
+            locationId: location.id,
+            slug: fallbackSlug,
+            serviceType: 'Junk Removal & Hauling',
+            itemCategory: 'Customer Pickup & Recycling',
+            customerReview: comment,
+            reviewRating: starRating,
+            reviewSource: 'google',
+            reviewPlatform: 'Google',
+            reviewerName: reviewerName,
+            completedAt: reviewDate,
+          },
+        });
+      }
+
+      mergedJobId = standaloneJob.id;
       revalidateTag(`job-${fallbackSlug}`);
       revalidatePath(`/jobs/${fallbackSlug}`);
     }

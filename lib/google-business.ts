@@ -46,6 +46,16 @@ export async function fetchGoogleReview(reviewName: string): Promise<DecodedRevi
     process.env.GOOGLE_CLIENT_ID?.startsWith('mock-') ||
     !process.env.GOOGLE_CLIENT_ID
   ) {
+    if (reviewName.includes('low-star') || reviewName.includes('test-low')) {
+      return {
+        reviewId: reviewName.split('/').pop() || 'test-low-star',
+        reviewerName: 'Unhappy User',
+        starRating: 2,
+        comment: 'Driver was late to 32511 7th Pl S. Call me at 253-555-0199 or email me@test.com',
+        createTime: new Date().toISOString()
+      };
+    }
+
     const isKent = reviewName.includes('kent') || reviewName.includes('999');
     return {
       reviewId: reviewName.split('/').pop() || 'test-rev-999',

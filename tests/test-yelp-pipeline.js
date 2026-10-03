@@ -147,6 +147,31 @@ async function testYelpPipeline() {
   assert.strictEqual(syncJson.status, 'SYNC_COMPLETED');
   console.log('✓ Scheduled Yelp review sync verified via GET endpoint!\n');
 
+  // Test 6: 4-Star Publishing Guard & Owner Reply
+  console.log('--- Test 6: 4-Star Publishing Guard & Owner Reply ---');
+  const lowRatingYelp = {
+    reviewId: `yelp-low-rating-${Date.now()}`,
+    rating: 2,
+    text: "Martin was busy today and couldn't come immediately. Call 253-555-9999 or email test@example.com for info.",
+    reviewerName: "Angry User",
+    url: "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
+    timeCreated: new Date().toISOString()
+  };
+
+  const lowRatingRes = await fetch(`${baseUrl}/api/webhooks/yelp`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-webhook-secret': yelpSecret
+    },
+    body: JSON.stringify(lowRatingYelp)
+  });
+  const lowRatingJson = await lowRatingRes.json();
+  console.log('Low Rating Result:', lowRatingJson);
+  assert.strictEqual(lowRatingRes.status, 200);
+  assert.strictEqual(lowRatingJson.reviews[0].action, 'SKIPPED_BELOW_RATING_THRESHOLD');
+  console.log('✓ Reviews below 4 stars successfully suppressed from public case studies!\n');
+
   console.log('================================================================');
   console.log('🎉 ALL YELP INGESTION PIPELINE TESTS PASSED 100%');
   console.log('================================================================');

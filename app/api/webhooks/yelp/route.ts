@@ -3,7 +3,7 @@ import { revalidateTag, revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { db } from '@/lib/db';
 import { fetchYelpReviews } from '@/lib/yelp';
-import { resolveMunicipality, generateJobSlug, extractFirstName } from '@/lib/job-utils';
+import { resolveMunicipality, generateJobSlug, extractFirstName, sanitizeReviewText } from '@/lib/job-utils';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
 
 const YelpPayloadSchema = z.object({
@@ -19,6 +19,8 @@ const YelpPayloadSchema = z.object({
   time_created: z.string().optional(),
   event: z.string().optional(),
   businessAlias: z.string().optional(),
+  ownerReply: z.string().optional(),
+  owner_reply: z.string().optional(),
   user: z.object({
     name: z.string().optional(),
     profile_url: z.string().optional()
@@ -32,19 +34,33 @@ interface ReviewInput {
   comment: string;
   timeCreated: string;
   url: string;
+  ownerReply?: string;
 }
 
 async function processReviews(reviewsToProcess: ReviewInput[]) {
   const results = [];
 
   for (const r of reviewsToProcess) {
+    // Quality Guard: Only auto-publish reviews with 4 or 5 stars as case studies
+    if (r.starRating < 4) {
+      console.log(`[Yelp Guard] Review ${r.reviewId} (${r.starRating}★) is below the 4-star publishing threshold. Suppressed from public case study generation.`);
+      results.push({
+        reviewId: r.reviewId,
+        action: 'SKIPPED_BELOW_RATING_THRESHOLD',
+        rating: r.starRating,
+        message: `Review rating (${r.starRating} stars) below 4-star publishing threshold. Suppressed from public case study generation.`
+      });
+      continue;
+    }
+
+    const cleanComment = sanitizeReviewText(r.comment);
     const reviewFirstName = extractFirstName(r.reviewerName);
     const reviewDate = r.timeCreated ? new Date(r.timeCreated) : new Date();
     const windowStart = new Date(reviewDate.getTime() - 3 * 24 * 60 * 60 * 1000);
     const windowEnd = new Date(reviewDate.getTime() + 3 * 24 * 60 * 60 * 1000);
 
     // Infer city from review text or fallback to Federal Way
-    const inferredCity = resolveMunicipality(r.comment) || 'Federal Way';
+    const inferredCity = resolveMunicipality(cleanComment) || 'Federal Way';
     const targetSpokeSlug = inferredCity.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
     // Check candidates in 3-day rolling window
@@ -74,12 +90,13 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
       const updated = await db.jobStory.update({
         where: { id: candidateJob.id },
         data: {
-          customerReview: r.comment,
+          customerReview: cleanComment,
           reviewRating: r.starRating,
           reviewSource: 'yelp',
           reviewPlatform: 'Yelp',
           reviewUrl: r.url,
           reviewerName: r.reviewerName,
+          ownerReply: r.ownerReply || candidateJob.ownerReply,
         },
       });
 
@@ -126,12 +143,13 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
         standaloneJob = await db.jobStory.update({
           where: { id: existingJobWithSlug.id },
           data: {
-            customerReview: r.comment,
+            customerReview: cleanComment,
             reviewRating: r.starRating,
             reviewSource: 'yelp',
             reviewPlatform: 'Yelp',
             reviewUrl: r.url,
             reviewerName: r.reviewerName,
+            ownerReply: r.ownerReply || existingJobWithSlug.ownerReply,
           }
         });
         action = 'UPDATED_EXISTING_YELP_REVIEW';
@@ -142,12 +160,13 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
             slug: fallbackSlug,
             serviceType: 'Junk Removal & Hauling',
             itemCategory: 'Customer Pickup & Recycling',
-            customerReview: r.comment,
+            customerReview: cleanComment,
             reviewRating: r.starRating,
             reviewSource: 'yelp',
             reviewPlatform: 'Yelp',
             reviewUrl: r.url,
             reviewerName: r.reviewerName,
+            ownerReply: r.ownerReply || null,
             completedAt: reviewDate,
           },
         });
@@ -247,6 +266,7 @@ export async function POST(req: NextRequest) {
       const starRating = Number(p.rating) || 5;
       const timeCreated = p.timeCreated || p.time_created || new Date().toISOString();
       const reviewUrl = p.url || `https://www.yelp.com/biz/${process.env.YELP_BUSINESS_ALIAS || 'm-and-m-junk-removal-federal-way-3'}`;
+      const ownerReply = p.ownerReply || p.owner_reply || undefined;
 
       reviewsToProcess = [{
         reviewId,
@@ -254,7 +274,8 @@ export async function POST(req: NextRequest) {
         starRating,
         comment,
         timeCreated,
-        url: reviewUrl
+        url: reviewUrl,
+        ownerReply
       }];
     }
 

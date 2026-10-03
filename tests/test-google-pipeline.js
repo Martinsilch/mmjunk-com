@@ -171,7 +171,30 @@ async function testGoogleWebhook() {
     standaloneJson.action === 'CREATED_NEW_STANDALONE_REVIEW' || standaloneJson.action === 'MERGED_WITH_AMZY_JOB',
     `Expected creation or merge, got ${standaloneJson.action}`
   );
-  console.log('✓ Standalone Google review successfully created and linked to location spoke!\n');
+  // Test 7: 4-Star Publishing Guard
+  console.log('--- Test 7: 4-Star Publishing Guard ---');
+  const lowStarPayload = {
+    message: {
+      data: Buffer.from(
+        JSON.stringify({
+          eventType: 'NEW_REVIEW',
+          resourceName: 'accounts/123/locations/456/reviews/test-low-star-999',
+        })
+      ).toString('base64'),
+      messageId: 'mock-msg-003',
+    },
+  };
+
+  const lowStarRes = await fetch(`${baseUrl}/api/webhooks/google-reviews?token=${token}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(lowStarPayload),
+  });
+  const lowStarJson = await lowStarRes.json();
+  console.log('Low-star Result:', lowStarJson);
+  assert.strictEqual(lowStarRes.status, 200);
+  assert.strictEqual(lowStarJson.action, 'SKIPPED_BELOW_RATING_THRESHOLD');
+  console.log('✓ Reviews below 4 stars successfully intercepted and suppressed from public case studies!\n');
 
   console.log('================================================================');
   console.log('🎉 ALL GOOGLE PUB/SUB PIPELINE TESTS PASSED 100%');

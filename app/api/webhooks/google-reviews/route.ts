@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { revalidateTag, revalidatePath } from 'next/cache';
 import { db } from '@/lib/db';
 import { fetchGoogleReview } from '@/lib/google-business';
-import { resolveMunicipality, generateJobSlug, extractFirstName } from '@/lib/job-utils';
+import { resolveMunicipality, generateJobSlug, extractFirstName, sanitizeReviewText } from '@/lib/job-utils';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
 
 export async function POST(req: Request) {
@@ -56,6 +56,20 @@ export async function POST(req: Request) {
     }
 
     const { reviewerName, starRating, comment, createTime, reviewId, ownerReply, ownerReplyDate, photos } = reviewData;
+
+    // Quality Guard: Only auto-publish reviews with 4 or 5 stars as case studies
+    if (starRating < 4) {
+      console.log(`[Google Review Guard] Review ${reviewId} rating (${starRating}★) is below the 4-star publishing threshold. Suppressed from public case study generation.`);
+      return NextResponse.json({
+        success: true,
+        action: 'SKIPPED_BELOW_RATING_THRESHOLD',
+        message: `Review rating (${starRating} stars) below 4-star publishing threshold. Suppressed from public case study generation.`,
+        reviewId,
+        rating: starRating
+      }, { status: 200 });
+    }
+
+    const cleanComment = sanitizeReviewText(comment);
     const reviewFirstName = extractFirstName(reviewerName);
 
     // 4. Match & Merge Engine
@@ -64,7 +78,7 @@ export async function POST(req: Request) {
     const windowStart = new Date(reviewDate.getTime() - 3 * 24 * 60 * 60 * 1000);
     const windowEnd = new Date(reviewDate.getTime() + 3 * 24 * 60 * 60 * 1000);
 
-    const inferredCity = resolveMunicipality(comment) || 'Federal Way';
+    const inferredCity = resolveMunicipality(cleanComment) || 'Federal Way';
     const targetSpokeSlug = inferredCity.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
     const candidates = await db.jobStory.findMany({
@@ -96,7 +110,7 @@ export async function POST(req: Request) {
       const updated = await db.jobStory.update({
         where: { id: candidateJob.id },
         data: {
-          customerReview: comment,
+          customerReview: cleanComment,
           reviewRating: starRating,
           reviewSource: 'google',
           reviewPlatform: 'Google',
@@ -149,7 +163,7 @@ export async function POST(req: Request) {
         standaloneJob = await db.jobStory.update({
           where: { id: existingJobWithSlug.id },
           data: {
-            customerReview: comment,
+            customerReview: cleanComment,
             reviewRating: starRating,
             reviewSource: 'google',
             reviewPlatform: 'Google',
@@ -166,7 +180,7 @@ export async function POST(req: Request) {
             slug: fallbackSlug,
             serviceType: 'Junk Removal & Hauling',
             itemCategory: 'Customer Pickup & Recycling',
-            customerReview: comment,
+            customerReview: cleanComment,
             reviewRating: starRating,
             reviewSource: 'google',
             reviewPlatform: 'Google',

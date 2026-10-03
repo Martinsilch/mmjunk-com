@@ -3,7 +3,7 @@ import { revalidateTag, revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { db } from '@/lib/db';
 import { resolveMunicipality } from '@/lib/geo-resolver';
-import { generateJobSlug, extractFirstName, serviceMatches } from '@/lib/job-utils';
+import { generateJobSlug, extractFirstName, serviceMatches, sanitizeReviewText } from '@/lib/job-utils';
 
 const AmzyCustomerSchema = z.object({
   name: z.string().optional(),
@@ -100,7 +100,8 @@ export async function POST(req: NextRequest) {
   const disposalSite = p.telemetry?.disposalFacility || p.disposalFacility || p.disposalSite || 'Regional Certified Transfer Station';
   const disposalReceipt = p.telemetry?.dumpReceiptNumber || p.dumpReceiptNumber || p.disposalReceipt || null;
   const mediaUrls = p.telemetry?.photos || p.photos || p.mediaUrls || [];
-  const customerReview = p.customerReview || p.review || p.comment || null;
+  const rawReview = p.customerReview || p.review || p.comment || null;
+  const customerReview = rawReview ? sanitizeReviewText(rawReview) : null;
   const reviewRating = p.reviewRating ?? p.rating ?? (customerReview ? 5 : null);
   const completedAt = p.completedAt ? new Date(p.completedAt) : new Date();
 

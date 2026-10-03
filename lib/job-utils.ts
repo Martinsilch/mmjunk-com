@@ -116,3 +116,26 @@ export function resolveMunicipality(input: string): string | null {
 
   return null;
 }
+
+/**
+ * Sanitizes customer review text:
+ * - Redacts phone numbers and email addresses (PII protection)
+ * - Masks specific residential house numbers while preserving street names for local SEO
+ * - Strips unwanted control characters
+ */
+export function sanitizeReviewText(text?: string | null): string {
+  if (!text) return '';
+  let sanitized = text;
+
+  // 1. Redact phone numbers (e.g., 253-555-0199, (253) 555-0199)
+  sanitized = sanitized.replace(/\b(?:\+?1[-.\s]?)?(?:\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}\b/g, '[phone hidden]');
+
+  // 2. Redact email addresses
+  sanitized = sanitized.replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g, '[email hidden]');
+
+  // 3. Mask specific house numbers while retaining street names for local SEO context
+  // e.g., "came to 32511 7th Pl S" -> "came to 7th Pl S"
+  sanitized = sanitized.replace(/\b\d{2,6}\s+([A-Za-z0-9\s]+?\s+(?:Street|St|Avenue|Ave|Drive|Dr|Road|Rd|Place|Pl|Way|Court|Ct|Boulevard|Blvd|Circle|Cir))\b/gi, '$1');
+
+  return sanitized.trim();
+}

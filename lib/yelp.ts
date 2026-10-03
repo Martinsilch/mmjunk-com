@@ -12,6 +12,7 @@ export interface DecodedYelpReview {
   timeCreated: string;
   url: string;
   userProfileUrl?: string;
+  ownerReply?: string;
 }
 
 let mockYelpOverride: DecodedYelpReview | null = null;

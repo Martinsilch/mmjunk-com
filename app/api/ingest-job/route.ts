@@ -139,6 +139,7 @@ export async function POST(req: NextRequest) {
 
   revalidatePath(`/junk-removal-${slug}-wa`);
   revalidatePath('/jobs');
+  revalidatePath('/llms.txt');
 
   return NextResponse.json({
     success: true,

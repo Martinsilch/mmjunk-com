@@ -73,6 +73,37 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://www.mmjunk.com/#webpage",
+      "url": "https://www.mmjunk.com/",
+      "name": "Junk Removal Pierce County | M&M Affordable Services WA",
+      "description": "Trusted junk removal in Pierce County, WA. M&M Junk Removal offers affordable prices and 18 years of local experience for homes and businesses.",
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://www.mmjunk.com/#website"
+      },
+      "publisher": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.mmjunk.com/#website",
+      "url": "https://www.mmjunk.com/",
+      "name": "M&M Junk Removal",
+      "publisher": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.mmjunk.com/?s={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
       "@type": [
         "LocalBusiness",
         "HomeAndConstructionBusiness",
@@ -114,19 +145,49 @@
         "Expertise.com Best Junk Removal Services Serving Seattle & South Sound",
         "Better Business Bureau (BBB) AAA+ Accredited Business"
       ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "320th St",
-        "addressLocality": "Federal Way",
-        "addressRegion": "WA",
-        "postalCode": "98003",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 47.3093,
-        "longitude": -122.324
-      },
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "32511 7th Pl S",
+          "addressLocality": "Federal Way",
+          "addressRegion": "WA",
+          "postalCode": "98003",
+          "addressCountry": "US"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "37856 42nd Ave S",
+          "addressLocality": "Auburn",
+          "addressRegion": "WA",
+          "postalCode": "98001",
+          "addressCountry": "US"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "15320 77th Ave Ct E",
+          "addressLocality": "Puyallup",
+          "addressRegion": "WA",
+          "postalCode": "98375",
+          "addressCountry": "US"
+        }
+      ],
+      "geo": [
+        {
+          "@type": "GeoCoordinates",
+          "latitude": "47.3109981",
+          "longitude": "-122.3260391"
+        },
+        {
+          "@type": "GeoCoordinates",
+          "latitude": "47.2612076",
+          "longitude": "-122.2815864"
+        },
+        {
+          "@type": "GeoCoordinates",
+          "latitude": "47.1171673",
+          "longitude": "-122.3262361"
+        }
+      ],
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -323,8 +384,128 @@
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "AMZY Pricing Matrix & Hauling Services",
+        "name": "Comprehensive Junk Removal and Hauling Services by M&M Junk Removal in WA",
         "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/residential/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/commercial/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/industrial/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/sorting-donation/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/recurring/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/contractual/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/commercial-appliance-removal/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/estate-cleanout/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/construction-debris-removal/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/residential-furniture-removal/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/hot-tub-demolition-removal/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/services/yard-waste-removal/#service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-curbside"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-residential"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-appliances"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-yard"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-cleanout"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-commercial"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-demolition"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@id": "https://www.mmjunk.com/#service-eco"
+            }
+          },
           {
             "@type": "Offer",
             "itemOffered": {
@@ -370,18 +551,6 @@
             "priceSpecification": {
               "@type": "PriceSpecification",
               "price": "740.00",
-              "priceCurrency": "USD"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Single Item Curbside Pickup"
-            },
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "price": "95.00",
               "priceCurrency": "USD"
             }
           },
@@ -448,6 +617,317 @@
               "http://schema.org/MobileWebPlatform"
             ]
           }
+        },
+        {
+          "@type": "QuoteAction",
+          "name": "Get a Free, No-Obligation Quote from M&M Junk Removal",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://amzy.me/?utm_content=4",
+            "inLanguage": "en-US",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform",
+              "http://schema.org/IOSPlatform",
+              "http://schema.org/AndroidPlatform"
+            ]
+          }
+        }
+      ],
+      "knowsLanguage": [
+        "en-US"
+      ],
+      "publicAccess": true,
+      "knowsAbout": [
+        {
+          "@type": "Thing",
+          "name": "M&M Core Knowledge Base",
+          "sameAs": "https://www.mmjunk.com/llms.txt"
+        },
+        {
+          "@type": "Thing",
+          "name": "M&M Agentic Operational Workflows",
+          "sameAs": "https://www.mmjunk.com/llms-workflows.txt"
+        },
+        {
+          "@type": "Thing",
+          "name": "M&M Security & Trust Policy",
+          "sameAs": "https://www.mmjunk.com/.well-known/security.txt"
+        },
+        {
+          "@type": "Thing",
+          "name": "Waste management",
+          "sameAs": "https://en.wikipedia.org/wiki/Waste_management"
+        },
+        {
+          "@type": "Thing",
+          "name": "Electronic waste recycling",
+          "sameAs": "https://en.wikipedia.org/wiki/Electronic_waste_recycling"
+        },
+        {
+          "@type": "Thing",
+          "name": "Construction waste",
+          "sameAs": "https://en.wikipedia.org/wiki/Construction_waste"
+        },
+        {
+          "@type": "Thing",
+          "name": "Hoarding disorder",
+          "sameAs": "https://en.wikipedia.org/wiki/Hoarding_disorder"
+        },
+        {
+          "@type": "Thing",
+          "name": "Recycling",
+          "sameAs": "https://en.wikipedia.org/wiki/Recycling"
+        },
+        {
+          "@type": "Thing",
+          "name": "Landfill diversion",
+          "sameAs": "https://en.wikipedia.org/wiki/Landfill_diversion"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/residential/#service",
+      "name": "Residential Junk Removal - Federal Way, Auburn, Puyallup, Tacoma, WA",
+      "description": "M&M Junk Removal provides top-rated residential junk removal for homeowners and renters in Federal Way, Auburn, Tacoma, Puyallup, and nearby Washington communities. We efficiently remove unwanted items such as old furniture, broken appliances, electronics (e-waste), yard debris, garage clutter, and general household waste for a complete home cleanout. Our fast, friendly team ensures a stress-free experience with responsible disposal.",
+      "url": "https://www.mmjunk.com/services/residential/",
+      "serviceType": [
+        "Residential Waste Collection",
+        "Home Cleanout Service",
+        "Bulk Item Pickup",
+        "Furniture Removal",
+        "Appliance Disposal"
+      ],
+      "category": "Home Services > Waste Management > Residential Junk Removal",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Federal Way",
+          "sameAs": "https://en.wikipedia.org/wiki/Federal_Way,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Auburn",
+          "sameAs": "https://en.wikipedia.org/wiki/Auburn,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Puyallup",
+          "sameAs": "https://en.wikipedia.org/wiki/Puyallup,_Washington"
+        },
+        {
+          "@type": "City",
+          "name": "Tacoma",
+          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Pierce County",
+          "sameAs": "https://en.wikipedia.org/wiki/Pierce_County,_Washington"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "South King County",
+          "sameAs": "https://en.wikipedia.org/wiki/King_County,_Washington"
+        }
+      ],
+      "audience": {
+        "@type": "Audience",
+        "audienceType": [
+          "Homeowners",
+          "Renters",
+          "Property Managers"
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Problem Solved",
+          "value": "How to clear out household clutter and unwanted items?"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Delivered Outcome",
+          "value": "A clean, decluttered, and more spacious home."
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/commercial/#service",
+      "name": "Commercial Junk Removal for Businesses - Pierce & South King County, WA",
+      "description": "M&M Junk Removal offers efficient commercial junk removal for businesses, offices, retail locations, and property management companies throughout Pierce County and South King County. We handle office furniture disposal, e-waste recycling, warehouse cleanouts, and debris from renovations. Trust our professional team for reliable service in Auburn, Federal Way, Tacoma, and Puyallup to keep your commercial space clear and operational.",
+      "url": "https://www.mmjunk.com/services/commercial/",
+      "serviceType": [
+        "Commercial Waste Collection",
+        "Office Cleanout Service",
+        "Business Junk Removal",
+        "Construction Debris Hauling"
+      ],
+      "category": "Business Services > Waste Management > Commercial Junk Removal",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": [
+          "Businesses",
+          "Office Managers",
+          "Retail Stores",
+          "Property Management"
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Problem Solved",
+          "value": "How to efficiently dispose of old office furniture, e-waste, and business junk?"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Delivered Outcome",
+          "value": "A clear, safe, and operational commercial space."
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/industrial/#service",
+      "name": "Heavy-Duty Industrial Junk Removal - Pierce & South King County, WA",
+      "description": "M&M Junk Removal is equipped to handle large-scale industrial junk removal for manufacturing plants, warehouses, and industrial sites across Pierce and South King County. We specialize in the removal of scrap metal, outdated machinery, industrial equipment, and other heavy-duty waste. Our team ensures a safe, efficient, and compliant cleanout process for industrial clients in Tacoma, Auburn, and Federal Way.",
+      "url": "https://www.mmjunk.com/services/industrial/",
+      "serviceType": [
+        "Industrial Waste Management",
+        "Scrap Metal Removal",
+        "Warehouse Cleanout",
+        "Heavy Machinery Disposal"
+      ],
+      "category": "Business Services > Waste Management > Industrial Junk Removal",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": [
+          "Manufacturing Facilities",
+          "Warehouses",
+          "Industrial Parks",
+          "Distribution Centers"
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Problem Solved",
+          "value": "How to handle the disposal of heavy industrial waste, scrap metal, and large machinery?"
+        },
+        {
+          "@type": "Delivered Outcome",
+          "value": "A safe, compliant, and cleared industrial site."
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/sorting-donation/#service",
+      "name": "Sorting & Responsible Disposal Services",
+      "description": "At the core of our service is a commitment to responsible disposal. We meticulously sort all collected items to maximize recycling and donation opportunities, significantly reducing landfill waste. Serving Federal Way, Puyallup, and the greater Tacoma area, we partner with local charities and certified recycling centers to ensure your unwanted goods are handled in the most eco-friendly way possible. Trust us for a green junk removal solution.",
+      "url": "https://www.mmjunk.com/services/sorting-donation/",
+      "serviceType": [
+        "Waste Sorting",
+        "Recycling Services",
+        "Donation Pickup Coordination",
+        "Eco-Friendly Disposal"
+      ],
+      "category": "Waste Management > Sustainability Services",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Problem Solved",
+          "value": "How can I ensure my junk is recycled or donated and not sent to a landfill?"
+        },
+        {
+          "@type": "Delivered Outcome",
+          "value": "Maximized recycling and donation of goods, minimizing landfill impact."
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/recurring/#service",
+      "name": "Recurring & Scheduled Junk Removal for WA Businesses",
+      "description": "Keep your commercial property consistently clean with M&M Junk Removal's recurring services. Ideal for property managers, retail stores, and offices in Federal Way, Auburn, and Puyallup, we offer flexible pickup schedules (daily, weekly, monthly) to suit your business needs. We handle overflowing dumpsters, ongoing debris, and regular cleanouts, providing a reliable waste management partnership.",
+      "url": "https://www.mmjunk.com/services/recurring/",
+      "serviceType": [
+        "Scheduled Waste Pickup",
+        "Regular Commercial Cleanout",
+        "Business Waste Management"
+      ],
+      "category": "Business Services > Waste Management > Scheduled Collection",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": [
+          "Property Managers",
+          "Retail Businesses",
+          "Restaurants",
+          "Office Parks"
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Problem Solved",
+          "value": "How to manage ongoing waste and maintain a consistently clean commercial property?"
+        },
+        {
+          "@type": "Delivered Outcome",
+          "value": "A reliable, scheduled waste management solution for continuous cleanliness."
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.mmjunk.com/services/contractual/#service",
+      "name": "Contractual Junk Hauling for Large-Scale Projects in WA",
+      "description": "M&M Junk Removal provides dedicated contractual services for construction companies, real estate developers, and large corporations throughout Pierce and South King Counties. We establish formal partnerships for ongoing projects like construction site cleanups and multi-unit property cleanouts. Our contractual clients in Tacoma, Federal Way, and beyond benefit from priority scheduling, customized service plans, and competitive volume-based pricing.",
+      "url": "https://www.mmjunk.com/services/contractual/",
+      "serviceType": [
+        "Contract Waste Hauling",
+        "Construction Site Cleanup Contracts",
+        "Property Management Waste Services"
+      ],
+      "category": "Business Services > Waste Management > Contractual Services",
+      "provider": {
+        "@id": "https://www.mmjunk.com/#business"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": [
+          "Construction Contractors",
+          "Real Estate Developers",
+          "Corporate Clients",
+          "Municipalities"
+        ]
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Problem Solved",
+          "value": "How to secure reliable, priority junk removal for a large-scale or ongoing project?"
+        },
+        {
+          "@type": "Delivered Outcome",
+          "value": "A formal waste management partnership with priority scheduling and customized plans."
         }
       ]
     },
@@ -898,6 +1378,54 @@
           }
         }
       ]
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-janed",
+      "url": "https://www.google.com/maps?cid=15999711673070107161",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Jane D."
+      },
+      "datePublished": "2024-05-09",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "If you need junk hauled away Martin is your guy!! He was very responsive, on time offered to take anything else that I may need to get rid of! Super kind and respectful! I 100% would recommend M&M for your junk removal needs! I believe that reviews are super important for small businesses!! Give this guy a chance he won�t let you down!",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
+    },
+    {
+      "@type": "Review",
+      "@id": "https://www.mmjunk.com/#review-roberts",
+      "url": "https://www.google.com/maps?cid=15999711673070107161",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com/maps?cid=15999711673070107161"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Robert S."
+      },
+      "datePublished": "2024-03-18",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "reviewBody": "M&M Junk Removal took away my junk extremely quickly (within minutes of my call!) and the man was friendly, efficient, and reasonably priced.",
+      "itemReviewed": {
+        "@id": "https://www.mmjunk.com/#business"
+      }
     }
   ]
 }

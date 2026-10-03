@@ -1,0 +1,32 @@
+---
+title: Verified Customer Reviews & Reputation | M&M Junk Removal
+description: 234+ verified 5.0-star customer reviews for M&M Junk Removal across Federal Way, Auburn, Tacoma, and Puyallup, WA.
+rating: 5.0
+reviewCount: 234
+canonical: "https://www.mmjunk.com/reviews.md"
+last_updated: "2026-10-02"
+---
+
+# Customer Reviews & Reputation Proof
+
+M&M Junk Removal maintains an authentic **5.0-Star Google Rating across 234+ verified customer reviews** and is **AAA+ BBB Accredited**.
+
+## First-Party Review Provenance
+- **Google Maps CID:** [15999711673070107161](https://www.google.com/maps?cid=15999711673070107161)
+- **Place ID:** `ChIJAcpZtwpXkFQRGSpNEcXWFt4`
+- **Machine-Readable Database:** [https://www.mmjunk.com/assets/reviews.json](https://www.mmjunk.com/assets/reviews.json)
+- **Better Business Bureau:** [BBB AAA+ Profile](https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173)
+
+## Featured Testimonials
+1. **Jane D. (Federal Way, WA):**
+   > *"If you need junk hauled away Martin is your guy!! He was very responsive, on time offered to take anything else that I may need to get rid of! Super kind and respectful! I 100% would recommend M&M for your junk removal needs! Give this guy a chance he won’t let you down!"*
+2. **Robert S. (Auburn, WA Business Owner):**
+   > *"M&M Junk Removal took away my junk extremely quickly (within minutes of my call!) and the man was friendly, efficient, and reasonably priced."*
+3. **ANKO BAKE (Federal Way Restaurant Owner):**
+   > *"M&M Junk Removal did an exceptional job clearing out our restaurant equipment in Federal Way! As a local restaurant owner, I needed three heavy commercial refrigerators hauled away and properly disposed of. I called Martin, and he gave me a fair flat-rate quote with zero runaround. Professional, honest, and reliable."*
+4. **MoWzz Creations (NE Tacoma, WA):**
+   > *"M&M Junk Removal made our moving prep in NE Tacoma completely effortless! Staged by the garage... Martin arrived right on time and loaded all bulky furniture in 20 minutes flat."*
+5. **Drew Paris (Tacoma Masonry Client):**
+   > *"He was quick to respond and offered an excellent deal. Assortment of concrete (pieces ~400lbs each) and heavy yard waste. Fast, efficient, equipped with the right tools, and beat corporate competitors hands down."*
+6. **S J (Federal Way Gym Owner):**
+   > *"Martin gave me a fair quote (way less than the big franchises) and showed up just an hour after I called him. Disassembled my extra heavy treadmill so it would fit through the door."*

@@ -80,6 +80,14 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/:path*.md',
+        headers: [
+          { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
+          { key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+        ],
+      },
+      {
         source: '/llms.txt',
         headers: [
           { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },

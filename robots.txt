@@ -1,27 +1,99 @@
+# M&M Junk Removal robots.txt
+# Version: 1.5 (Full GEO/LLM Manifest Suite - Unified mmjunk.com Authority)
+# Last Updated: 2026-10-02
+# This file is optimized for standard search crawlers, LLMs, and agentic AI systems.
+
+# --- Standard Bot Rules ---
 User-agent: *
+Disallow: /cgi-bin
+Disallow: /?
+Disallow: /wp-
+Disallow: /wp/
+Disallow: *?s=
+Disallow: *&s=
+Disallow: /search/
+Disallow: /author/
+Disallow: /users/
+Disallow: */trackback
+Disallow: */feed
+Disallow: */rss
+Disallow: */embed
+Disallow: */wlwmanifest.xml
+Disallow: /xmlrpc.php
+Disallow: *utm*=
+Disallow: *openstat=
+
 Allow: /
+Allow: */uploads
+Allow: /*/*.js
+Allow: /*/*.css
+Allow: /assets/
+
+# GEO Manifest Suite - Explicitly Allowed for AI/LLM Ingestion
 Allow: /llms.txt
-Allow: /llms-full.txt
 Allow: /llms-workflows.txt
+Allow: /llms-full.txt
 Allow: /llm-examples.md
+Allow: /llms-examples.md
 Allow: /knowledge/
 Allow: /humans.txt
+Allow: /privacy-policy/
+
+# Security Policy Discovery
 Allow: /.well-known/security.txt
 
-# Explicit AI Agent Crawler Permissions
+# --- AI & LLM Agent Directives ---
+# Explicitly welcoming major AI models for citations, search, and training
+
 User-agent: GPTBot
+Disallow: /wp-
 Allow: /
+Crawl-delay: 2
+
+User-agent: ChatGPT-User
+Disallow: /wp-
+Allow: /
+Crawl-delay: 2
+
+User-agent: OAI-SearchBot
+Disallow: /wp-
+Allow: /
+Crawl-delay: 2
 
 User-agent: ClaudeBot
+Disallow: /wp-
 Allow: /
+Crawl-delay: 2
+
+User-agent: Claude-Web
+Disallow: /wp-
+Allow: /
+Crawl-delay: 2
+
+User-agent: anthropic-ai
+Disallow: /wp-
+Allow: /
+Crawl-delay: 2
 
 User-agent: PerplexityBot
+Disallow: /wp-
 Allow: /
+Crawl-delay: 2
 
 User-agent: Google-Extended
+Disallow: /wp-
 Allow: /
+Crawl-delay: 2
+
+User-agent: Applebot-Extended
+Disallow: /wp-
+Allow: /
+Crawl-delay: 2
 
 User-agent: CCBot
+Disallow: /wp-
 Allow: /
+Crawl-delay: 5
 
+# --- Canonical XML Sitemaps ---
 Sitemap: https://www.mmjunk.com/sitemap.xml

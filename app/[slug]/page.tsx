@@ -89,6 +89,15 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         'url': HUB_URL,
         'telephone': HUB_PHONE,
         'priceRange': '$$',
+        'sameAs': [
+          'https://www.google.com/maps?cid=15999711673070107161',
+          'https://ccfs.sos.wa.gov/#/BusinessSearch/BusinessInformation',
+          'https://dor.wa.gov/',
+          'https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173',
+          'https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3',
+          'https://www.facebook.com/mmjunkremoval/',
+          AMZY_BOOKING_URL
+        ],
         'address': {
           '@type': 'PostalAddress',
           'addressLocality': 'Federal Way',
@@ -105,7 +114,11 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         'areaServed': {
           '@type': 'City',
           'name': cityName,
-          'sameAs': wikidataUri
+          '@id': wikidataUri,
+          'sameAs': [
+            wikidataUri,
+            `https://en.wikipedia.org/wiki/${encodeURIComponent(cityName)},_Washington`
+          ]
         },
         'potentialAction': [
           {
@@ -178,10 +191,9 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       </h1>
 
       <p style={{ fontSize: '18px', color: '#374151', marginBottom: '24px' }}>
-        M&M Junk Removal operates full-service commercial, residential, and estate cleanouts across 
-        <strong> {cityName}</strong> and surrounding <strong>{county}</strong> communities. 
+        M&M Junk Removal provides commercial and residential hauling across <strong>{cityName}, WA</strong> (ZIPs: {zipCodes.join(', ')}) with a $125 baseline minimum. 
         Equipped with 16-foot high-wall box trucks (rated up to 4.5 tons) with hydraulic liftgate rigging, our single-operator dispatch 
-        handles everything from heavy commercial appliance recycling to complete property cleanouts with an upfront $125 baseline rate.
+        handles everything from heavy commercial appliance recycling to complete property cleanouts across {county} communities.
       </p>
 
       <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '36px' }}>

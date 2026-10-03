@@ -58,6 +58,23 @@ const nextConfig = {
         source: '/locations/kent/',
         destination: '/junk-removal-kent-wa/index.html',
       },
+      {
+        source: '/privacy-policy',
+        destination: '/privacy-policy/index.html',
+      },
+      {
+        source: '/privacy-policy/',
+        destination: '/privacy-policy/index.html',
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/security.txt',
+        destination: '/.well-known/security.txt',
+        permanent: true,
+      },
     ];
   },
   async headers() {
@@ -91,6 +108,22 @@ const nextConfig = {
         headers: [
           { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
           { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=3600' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+        ],
+      },
+      {
+        source: '/.well-known/security.txt',
+        headers: [
+          { key: 'Content-Type', value: 'text/plain; charset=utf-8' },
+          { key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+        ],
+      },
+      {
+        source: '/humans.txt',
+        headers: [
+          { key: 'Content-Type', value: 'text/plain; charset=utf-8' },
+          { key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
         ],
       },

@@ -321,6 +321,11 @@
       "source": "/tacoma-concrete-construction-debris-removal/",
       "destination": "/jobs/tacoma-concrete-construction-debris-removal/",
       "permanent": true
+    },
+    {
+      "source": "/security.txt",
+      "destination": "/.well-known/security.txt",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -363,6 +368,14 @@
     {
       "source": "/locations/kent/",
       "destination": "/junk-removal-kent-wa/index.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy/index.html"
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/privacy-policy/index.html"
     }
   ],
   "headers": [

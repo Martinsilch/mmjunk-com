@@ -1,8 +1,9 @@
 /* TEAM */
 Founder & Operator: Martin Silch
 Entity: M&M Junk Removal LLC (Founded 2007)
-Contact: info@mmjunk.com / (253) 886-7724
+Contact: info@mmjunk.com / info@mamhad.com / (253) 886-7724
 Location: Federal Way, WA (Serving South King & Pierce Counties)
+Brand Transition: Migrating from legacy brand Mamhad (mamhad.com) to mmjunk.com
 
 /* PLATFORM & TECH CREDITS */
 Scheduling Partner: AMZY Dispatch Platform (https://amzy.me/?utm_content=4)

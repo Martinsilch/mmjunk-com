@@ -53,13 +53,15 @@ const AmzyJobPayloadSchema = z.object({
 
 export async function POST(req: NextRequest) {
   // 1. Authenticate Request
+  const url = new URL(req.url);
+  const queryToken = url.searchParams.get('token');
   const authHeader = req.headers.get('authorization');
   const secretHeader = req.headers.get('x-webhook-secret') || req.headers.get('x-amzy-secret');
   const expectedSecret = process.env.DISPATCH_WEBHOOK_SECRET || process.env.AMZY_WEBHOOK_SECRET;
 
   if (expectedSecret) {
     const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
-    const provided = bearerToken || secretHeader;
+    const provided = bearerToken || secretHeader || queryToken;
     if (!provided || provided !== expectedSecret) {
       return NextResponse.json(
         { error: 'Unauthorized: invalid or missing webhook secret token' },

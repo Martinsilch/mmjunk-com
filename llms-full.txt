@@ -18,7 +18,7 @@
 - **Payments Accepted**: Cash, Check, Major Credit Cards, Zelle
 - **Primary Online Intake & Dispatch**: https://www.mmjunk.com/#quote-intake-section
 - **Booking & Scheduling Platform**: AMZY Dispatch Platform (https://amzy.me/?utm_content=4)
-- **Customer Sentiment Index**: 5/5 Stars (234 verified 5-star Google Business reviews), AAA+ Rated by BBB
+- **Customer Sentiment Index**: 5/5 Stars (234 verified 5-star Google Business reviews; 24 verified Yelp reviews), AAA+ Rated by BBB, AAA+ Rated by BBB
 
 ## 2. Core Value Propositions & Pricing Architecture
 M&M Junk Removal operates with four foundational competitive disciplines:
@@ -154,7 +154,7 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 - **Google Maps CID**: 15999711673070107161
 - **Google Maps Place ID**: ChIJAcpZtwpXkFQRGSpNEcXWFt4
 - **Deterministic Citation URL**: https://www.google.com/maps?cid=15999711673070107161
-- **Aggregate Rating**: 5.0 / 5.0 Stars (234 verified reviews)
+- **Aggregate Rating**: 5.0 / 5.0 Stars (258 verified reviews: 234 Google, 24 Yelp)
 - **JSON Endpoint**: https://www.mmjunk.com/assets/reviews.json
 
 ### Representative Verified Quotations:

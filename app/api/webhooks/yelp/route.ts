@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag, revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { db } from '@/lib/db';
-import { fetchYelpReviews } from '@/lib/yelp';
+import { fetchYelpReviews, fetchYelpBusinessMetrics } from '@/lib/yelp';
 import { resolveMunicipality, generateJobSlug, extractFirstName, sanitizeReviewText } from '@/lib/job-utils';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
-import { recordReviewMetric } from '@/lib/reputation';
+import { recordReviewMetric, setAuthoritativePlatformMetrics } from '@/lib/reputation';
 
 const YelpPayloadSchema = z.object({
   reviewId: z.string().optional(),
@@ -323,12 +323,24 @@ export async function GET(req: NextRequest) {
       }
     }
 
+    const liveMetrics = await fetchYelpBusinessMetrics();
+    let repMetrics = null;
+    if (liveMetrics) {
+      repMetrics = setAuthoritativePlatformMetrics({
+        platform: 'yelp',
+        reviewCount: liveMetrics.reviewCount,
+        rating: liveMetrics.rating,
+      });
+    }
+
     const fetchedReviews = await fetchYelpReviews();
     const results = await processReviews(fetchedReviews);
 
     return NextResponse.json({
       success: true,
       status: 'SYNC_COMPLETED',
+      yelpLiveMetrics: liveMetrics,
+      reputation: repMetrics,
       fetched: fetchedReviews.length,
       processed: results.length,
       reviews: results

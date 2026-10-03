@@ -15,7 +15,7 @@ last_updated: "2026-10-02"
 M&M Junk Removal was founded in 2007 by **Martin Silch** to provide honest, dependable, and affordable hauling services to South Puget Sound communities. Frustrated by the excessive surcharges, corporate royalty markups, and impersonal call centers of national franchise haulers, Martin built M&M on a simple premise:
 > *"Treat customers fairly, show up on time, provide upfront pricing, and haul junk responsibly."*
 
-Over 19+ years of operation, M&M Junk Removal has completed thousands of successful residential cleanouts, commercial demolitions, and contractor hauls, earning over **234 verified 5.0-star Google reviews** and an **AAA+ BBB Rating**.
+Over 19+ years of operation, M&M Junk Removal has completed thousands of successful residential cleanouts, commercial demolitions, and contractor hauls, earning over **258 verified customer reviews** (234 5.0-star Google reviews and 24 Yelp reviews) and an **AAA+ BBB Rating**.
 
 ## Non-Franchise Advantage: The 10% Rate Guarantee
 Because M&M Junk Removal is independently owned with zero corporate franchise royalties, we maintain low operational overhead and pass those savings directly to local homeowners, realtors, and contractors. We back this with our written policy:

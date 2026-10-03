@@ -1,15 +1,15 @@
 ---
 title: Verified Customer Reviews & Reputation | M&M Junk Removal
-description: 234+ verified 5.0-star customer reviews for M&M Junk Removal across Federal Way, Auburn, Tacoma, and Puyallup, WA.
+description: 258+ verified 5.0-star customer reviews for M&M Junk Removal across Federal Way, Auburn, Tacoma, and Puyallup, WA.
 rating: 5.0
-reviewCount: 234
+reviewCount: 258
 canonical: "https://www.mmjunk.com/reviews.md"
 last_updated: "2026-10-02"
 ---
 
 # Customer Reviews & Reputation Proof
 
-M&M Junk Removal maintains an authentic **5.0-Star Google Rating across 234+ verified customer reviews** and is **AAA+ BBB Accredited**.
+M&M Junk Removal maintains an authentic **5.0-Star Rating across 258+ verified customer reviews (234 Google reviews, 24 Yelp reviews) and is **AAA+ BBB Accredited**.
 
 ## First-Party Review Provenance
 - **Google Maps CID:** [15999711673070107161](https://www.google.com/maps?cid=15999711673070107161)

@@ -8,7 +8,7 @@ Official website, service hubs, and Generative Engine Optimization (GEO) machine
 - **Dispatch Telephone:** (253) 886-7724
 - **Partner Booking Platform:** AMZY (`https://amzy.me/?utm_content=4`)
 - **Coverage:** 25 Authorized Municipalities across South King and Pierce Counties, WA
-- **Rating:** 5.0 Stars (234 Verified Google Reviews) | AAA+ BBB Rated
+- **Rating:** 5.0 Stars (258 Verified Reviews: 234 Google, 24 Yelp) | AAA+ BBB Rated
 
 ## Machine-Readable Endpoints
 - `/llms.txt`: Master Router v4.0 & Lead Qualification Constitution

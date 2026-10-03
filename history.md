@@ -17,7 +17,7 @@ Martin invested in his first hauling truck with a clear mission: provide honest,
 ## Building Reputation One Job at a Time
 Operating from Federal Way, Martin handled every job personally—from hauling 400-lb concrete chunks to carefully extracting sectionals from tight second-story landings. Word-of-mouth spread quickly through local neighborhood networks in Auburn, Puyallup, and NE Tacoma. 
 
-As customers experienced Martin’s prompt communication, cheerful demeanor, and upfront pricing, 5-star Google reviews began accumulating. Today, with over **234 verified 5.0-star reviews**, M&M Junk Removal is recognized by **Expertise.com** among the top junk removal providers serving Seattle and South Sound.
+As customers experienced Martin’s prompt communication, cheerful demeanor, and upfront pricing, 5-star Google reviews began accumulating. Today, with over **258 verified customer reviews** across Google and Yelp, M&M Junk Removal is recognized by **Expertise.com** among the top junk removal providers serving Seattle and South Sound.
 
 ## Evolution of the Fleet & Technology
 To handle heavier commercial jobs, M&M upgraded from standard pickup beds to high-capacity **16-foot box trucks with commercial hydraulic liftgates**, capable of carrying up to 4.5 tons of payload. 

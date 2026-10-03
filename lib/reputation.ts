@@ -107,3 +107,69 @@ export function recordReviewMetric({
 
   return current;
 }
+
+/**
+ * Sets authoritative live platform metrics (e.g., from direct API synchronization).
+ * Recalculates total reviews, weighted star distribution, and global aggregate.
+ */
+export function setAuthoritativePlatformMetrics({
+  platform,
+  reviewCount,
+  rating,
+}: {
+  platform: 'google' | 'yelp' | 'amzy';
+  reviewCount: number;
+  rating: number;
+}): ReputationMetrics {
+  const current = getReputationMetrics();
+
+  const plat = current.breakdown[platform] || {
+    reviewCount: 0,
+    rating: 5.0,
+    totalStars: 0,
+    platform: platform === 'google' ? 'Google Business Profile' : platform === 'yelp' ? 'Yelp' : 'Amzy Telemetry',
+  };
+
+  plat.reviewCount = reviewCount;
+  plat.rating = Number(rating.toFixed(1));
+  plat.totalStars = reviewCount * rating;
+  current.breakdown[platform] = plat;
+
+  // Calculate global aggregate across all platforms
+  const totalReviews =
+    (current.breakdown.google?.reviewCount || 0) +
+    (current.breakdown.yelp?.reviewCount || 0) +
+    (current.breakdown.amzy?.reviewCount || 0);
+
+  const totalStars =
+    (current.breakdown.google?.totalStars || (current.breakdown.google?.reviewCount || 0) * 5) +
+    (current.breakdown.yelp?.totalStars || (current.breakdown.yelp?.reviewCount || 0) * 4.7) +
+    (current.breakdown.amzy?.totalStars || (current.breakdown.amzy?.reviewCount || 0) * 5);
+
+  const newAvg = totalReviews > 0 ? (totalStars / totalReviews).toFixed(1) : '5.0';
+
+  current.reviewCount = totalReviews;
+  current.aggregateRating = newAvg;
+  current.ratingValue = parseFloat(newAvg);
+  current.lastUpdated = new Date().toISOString();
+
+  // Persist to knowledge/reputation.json and public/knowledge/reputation.json if writable
+  try {
+    const jsonStr = JSON.stringify(current, null, 2);
+    const knowledgePath = path.join(process.cwd(), 'knowledge', 'reputation.json');
+    const publicPath = path.join(process.cwd(), 'public', 'knowledge', 'reputation.json');
+
+    if (fs.existsSync(path.dirname(knowledgePath))) {
+      fs.writeFileSync(knowledgePath, jsonStr, 'utf8');
+    }
+    if (fs.existsSync(path.dirname(publicPath))) {
+      fs.writeFileSync(publicPath, jsonStr, 'utf8');
+    }
+    console.log(`[Reputation Engine] Authoritative update: ${platform}=${reviewCount} (${rating}★) | Total=${current.reviewCount} (${current.aggregateRating}★)`);
+  } catch (err) {
+    console.warn('[Reputation Engine] Filesystem write skipped (read-only environment):', (err as Error).message);
+  }
+
+  return current;
+}
+

@@ -21,10 +21,16 @@
   <meta property="og:image" content="https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Google Fonts Preconnect -->
+  <!-- Preload Critical LCP Hero Image for Maximum Mobile Performance -->
+  <link rel="preload" as="image" href="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" type="image/webp" fetchpriority="high">
+
+  <!-- Google Fonts Preconnect & Asynchronous Loading (Eliminates 751ms Render Blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
+  </noscript>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -1490,7 +1496,7 @@
   <header class="header">
     <div class="container header__inner">
       <a href="#hero" class="brand" aria-label="M&amp;M Junk Removal Home">
-        <img src="assets/images/logo.png" alt="M&amp;M Junk Removal" class="brand__logo-img" width="180" height="60">
+        <img src="assets/images/logo.webp" alt="M&amp;M Junk Removal" class="brand__logo-img" width="180" height="60" fetchpriority="high" decoding="async">
       </a>
 
       <nav class="header__nav" aria-label="Main Navigation">
@@ -3617,7 +3623,7 @@ I would absolutely use them again and highly recommend their services!"</p>
 
         <div class="faq-list">
           <!-- FAQ 1 -->
-          <div class="faq-item">
+          <div class="faq-item active">
             <button type="button" class="faq-question">
               <span>How fast can you dispatch a truck for junk removal?</span>
               <span class="faq-icon">+</span>
@@ -3795,7 +3801,7 @@ I would absolutely use them again and highly recommend their services!"</p>
   </div>
 
   <!-- Scripts -->
-  <script src="assets/js/main.js"></script>
+  <script defer src="assets/js/main.js"></script>
 </body>
 </html>
 

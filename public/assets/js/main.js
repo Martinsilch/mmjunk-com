@@ -20,13 +20,11 @@ function gtag_report_conversion(url) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. FAQ Accordion
+  // 1. FAQ Accordion (Pure CSS transition without forced synchronous reflow)
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-
-    if (question && answer) {
+    if (question) {
       question.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
 
@@ -34,29 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
         faqItems.forEach(otherItem => {
           if (otherItem !== item) {
             otherItem.classList.remove('active');
-            const otherAnswer = otherItem.querySelector('.faq-answer');
-            if (otherAnswer) otherAnswer.style.maxHeight = null;
           }
         });
 
         // Toggle current accordion
         if (!isActive) {
           item.classList.add('active');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
         } else {
           item.classList.remove('active');
-          answer.style.maxHeight = null;
         }
       });
     }
   });
-
-  // Open the first FAQ item by default
-  if (faqItems.length > 0) {
-    faqItems[0].classList.add('active');
-    const firstAnswer = faqItems[0].querySelector('.faq-answer');
-    if (firstAnswer) firstAnswer.style.maxHeight = firstAnswer.scrollHeight + 'px';
-  }
 
   // 2. Reviews Show More / Toggle (Progressive Disclosure - Clean crawlability without display:none)
   const toggleReviewsBtn = document.getElementById('toggle-reviews-btn');

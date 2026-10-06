@@ -108,6 +108,7 @@ button {
   color: #e2e8f0;
   font-size: 0.88rem;
   padding: 8px 16px;
+  min-height: 38px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -191,6 +192,7 @@ button {
   height: 48px;
   width: auto;
   max-height: 48px;
+  aspect-ratio: 584 / 196;
   object-fit: contain;
   display: block;
   transition: var(--transition);
@@ -204,6 +206,7 @@ button {
   .brand__logo-img {
     height: 40px;
     max-height: 40px;
+    aspect-ratio: 584 / 196;
   }
 }
 
@@ -386,7 +389,7 @@ button {
 .hero__bg {
   position: absolute;
   inset: 0;
-  background: url('../images/Federal Way WA Junk and Trash Removal.png') center/cover no-repeat;
+  background: url('../images/Federal Way WA Junk and Trash Removal.webp') center/cover no-repeat;
   filter: brightness(0.35) contrast(1.15);
   transform: scale(1.04);
   transition: transform 10s ease;
@@ -2062,6 +2065,7 @@ button {
 }
 
 .faq-item.active .faq-answer {
+  max-height: 600px;
   padding-bottom: 20px;
 }
 
@@ -3153,6 +3157,7 @@ button {
     max-height: 38px;
     width: auto;
     max-width: 140px;
+    aspect-ratio: 584 / 196;
   }
 
   /* Hero Section */

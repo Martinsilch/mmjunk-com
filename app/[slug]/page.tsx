@@ -378,7 +378,16 @@ export default async function DynamicSpokePage({ params }: PageProps) {
                     />
                   </div>
                 ) : (
-                  <img src={post.mediaUrl} alt={post.caption} style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <img
+                    src={post.mediaUrl}
+                    alt={`${post.caption} - M&M Junk Removal ${cityName}, WA`}
+                    title={`${post.caption} - Verified Field Proof`}
+                    width={480}
+                    height={360}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block', aspectRatio: '4/3' }}
+                  />
                 )}
                 <div style={{ padding: '12px 16px' }}>
                   <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#ea580c' }}>

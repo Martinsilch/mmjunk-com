@@ -207,7 +207,16 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             } : {})
           }
         } : {})
-      }
+      },
+      ...job.mediaUrls.map((url, idx) => ({
+        '@type': 'ImageObject',
+        '@id': `${canonicalUrl}#image-${idx + 1}`,
+        url: url,
+        contentUrl: url,
+        caption: `${job.serviceType} in ${cityName}, WA - Operational Field Proof Photo #${idx + 1}`,
+        description: `Field photo documenting ${job.itemCategory || 'junk removal haul'} performed by M&M Junk Removal in ${cityName}, WA. Scale weight: ${weightText}.`,
+        author: { '@id': `${HUB_URL}/#business` }
+      }))
     ]
   };
 
@@ -374,9 +383,13 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                 <div key={idx} style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#f8fafc' }}>
                   <img
                     src={url}
-                    alt={`${job.serviceType} in ${cityName} operational photo ${idx + 1}`}
-                    style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }}
+                    alt={`${job.serviceType} (${job.itemCategory || 'Hauling'}) operational proof photo #${idx + 1} in ${cityName}, WA - M&M Junk Removal`}
+                    title={`${job.serviceType} in ${cityName}, WA - Verified Operational Evidence #${idx + 1}`}
+                    width={600}
+                    height={450}
+                    style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block', aspectRatio: '4/3' }}
                     loading="lazy"
+                    decoding="async"
                   />
                   <div style={{ padding: '10px 12px', fontSize: '12px', color: '#64748b' }}>
                     Proof Photo #{idx + 1} • {job.reviewPlatform || 'Operational'} Verification

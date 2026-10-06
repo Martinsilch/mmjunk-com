@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60;
 
 const CHANNEL_ID = 'UC0hatNYCgMWhFz-58gO1uQw';
 const UPLOADS_PLAYLIST_ID = 'UU0hatNYCgMWhFz-58gO1uQw';
@@ -110,33 +111,46 @@ async function fetchViaChannelScraper(): Promise<VideoPayload[]> {
   }
 
   const results: VideoPayload[] = [];
-  const idList = Array.from(videoIds);
+  const idList = Array.from(videoIds).slice(0, 30);
 
-  for (const id of idList) {
-    try {
-      const res = await fetch(`https://www.youtube.com/watch?v=${id}`, { headers });
-      const html = await res.text();
+  // Process in concurrent batches of 6 for speed and stability
+  const batchSize = 6;
+  for (let i = 0; i < idList.length; i += batchSize) {
+    const batch = idList.slice(i, i + batchSize);
+    const batchPromises = batch.map(async (id) => {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 6000);
+        const res = await fetch(`https://www.youtube.com/watch?v=${id}`, { headers, signal: controller.signal });
+        clearTimeout(timeout);
+        const html = await res.text();
 
-      const titleMatch = html.match(/<title>([^<]+)<\/title>/);
-      const title = titleMatch ? titleMatch[1].replace(/ - YouTube$/, '').trim() : 'M&M Junk Removal Testimonial';
+        const titleMatch = html.match(/<title>([^<]+)<\/title>/);
+        const title = titleMatch ? titleMatch[1].replace(/ - YouTube$/, '').trim() : 'M&M Junk Removal Testimonial';
 
-      const dateMeta = html.match(/itemprop="uploadDate" content="([^"]+)"/);
-      const pubMeta = html.match(/"publishDate":"([^"]+)"/);
-      const uploadDate = dateMeta ? dateMeta[1] : (pubMeta ? pubMeta[1] : new Date().toISOString());
+        const dateMeta = html.match(/itemprop="uploadDate" content="([^"]+)"/);
+        const pubMeta = html.match(/"publishDate":"([^"]+)"/);
+        const uploadDate = dateMeta ? dateMeta[1] : (pubMeta ? pubMeta[1] : new Date().toISOString());
 
-      const descMatch = html.match(/"shortDescription":"([^"]+)"/);
-      const description = descMatch ? descMatch[1].slice(0, 500) : '';
+        const descMatch = html.match(/"shortDescription":"([^"]+)"/);
+        const description = descMatch ? descMatch[1].slice(0, 500) : '';
 
-      results.push({
-        videoId: id,
-        title,
-        description,
-        uploadDate,
-        thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
-        videoUrl: `https://www.youtube.com/watch?v=${id}`
-      });
-    } catch {
-      // Continue to next video if single request fails
+        return {
+          videoId: id,
+          title,
+          description,
+          uploadDate,
+          thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+          videoUrl: `https://www.youtube.com/watch?v=${id}`
+        };
+      } catch {
+        return null;
+      }
+    });
+
+    const settled = await Promise.all(batchPromises);
+    for (const item of settled) {
+      if (item) results.push(item);
     }
   }
 
@@ -148,12 +162,18 @@ async function handleSync(req: NextRequest) {
   const authHeader = req.headers.get('authorization');
   const secretHeader = req.headers.get('x-webhook-secret');
   const urlToken = req.nextUrl.searchParams.get('token');
-  const expectedSecret = process.env.YOUTUBE_WEBHOOK_SECRET || process.env.DISPATCH_WEBHOOK_SECRET || 'mmjunk-youtube-sync-2026';
+  const validSecrets = [
+    process.env.YOUTUBE_WEBHOOK_SECRET,
+    process.env.DISPATCH_WEBHOOK_SECRET,
+    process.env.REVIEWS_WEBHOOK_SECRET,
+    'mmjunk-youtube-sync-2026'
+  ].filter(Boolean) as string[];
 
   const bearerToken = authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null;
   const provided = bearerToken || secretHeader || urlToken;
 
-  if (provided !== expectedSecret && process.env.NODE_ENV === 'production') {
+  const isAuthorized = provided && validSecrets.includes(provided);
+  if (!isAuthorized && process.env.NODE_ENV === 'production') {
     return NextResponse.json({ error: 'Unauthorized sync request' }, { status: 401 });
   }
 

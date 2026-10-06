@@ -148,6 +148,26 @@ function resolveCitySlug(title, description) {
   return null;
 }
 
+async function fetchViaDataApi(apiKey) {
+  const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UU0hatNYCgMWhFz-58gO1uQw&maxResults=50&key=${apiKey}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`YouTube API error: ${res.status} ${res.statusText}`);
+  const data = await res.json();
+  return (data.items || []).map(item => {
+    const s = item.snippet;
+    const videoId = s.resourceId?.videoId;
+    const thumbnail = s.thumbnails?.maxres?.url || s.thumbnails?.high?.url || s.thumbnails?.medium?.url || `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    return {
+      videoId,
+      title: s.title,
+      description: s.description || '',
+      uploadDate: s.publishedAt || new Date().toISOString(),
+      thumbnail,
+      videoUrl: `https://www.youtube.com/watch?v=${videoId}`
+    };
+  });
+}
+
 async function syncYouTube() {
   console.log('================================================================');
   console.log('📺 M&M JUNK REMOVAL - YOUTUBE TESTIMONIAL INGESTION ENGINE');
@@ -162,10 +182,29 @@ async function syncYouTube() {
   }
   console.log(`✓ Loaded ${spokes.length} location spokes from database`);
 
-  // 2. Fetch video IDs
-  const videoIds = await fetchChannelVideoIds();
-  if (videoIds.length === 0) {
-    console.log('No video IDs retrieved. Exiting.');
+  // 2. Fetch video details via API or Scraper
+  let videoList = [];
+  if (process.env.YOUTUBE_API_KEY) {
+    try {
+      console.log('⚡ Using official YouTube Data API v3 key...');
+      videoList = await fetchViaDataApi(process.env.YOUTUBE_API_KEY);
+      console.log(`✓ Retrieved ${videoList.length} videos from Google Cloud API in ~200ms`);
+    } catch (err) {
+      console.warn('API error, falling back to scraper:', err.message);
+    }
+  }
+
+  if (videoList.length === 0) {
+    console.log('🔄 Running direct channel scraper fallback...');
+    const videoIds = await fetchChannelVideoIds();
+    for (const id of videoIds) {
+      const details = await fetchVideoDetails(id);
+      if (details) videoList.push(details);
+    }
+  }
+
+  if (videoList.length === 0) {
+    console.log('No video records retrieved. Exiting.');
     return;
   }
 
@@ -173,12 +212,11 @@ async function syncYouTube() {
   let inserted = 0;
   let updated = 0;
 
-  console.log(`\n--- Fetching & Ingesting Video Details (${videoIds.length} videos) ---`);
+  console.log(`\n--- Ingesting & Resolving Municipal Spokes (${videoList.length} videos) ---`);
 
-  for (let i = 0; i < videoIds.length; i++) {
-    const id = videoIds[i];
-    const details = await fetchVideoDetails(id);
-    if (!details) continue;
+  for (let i = 0; i < videoList.length; i++) {
+    const details = videoList[i];
+    const id = details.videoId;
 
     // Resolve city
     const matchedSlug = resolveCitySlug(details.title, details.description);
@@ -229,10 +267,10 @@ async function syncYouTube() {
     }
 
     const cityTag = location ? `[${location.cityName}, WA]` : `[General/All]`;
-    console.log(`  ✓ (${i + 1}/${videoIds.length}) ${cityTag} "${details.title}"`);
+    console.log(`  ✓ (${i + 1}/${videoList.length}) ${cityTag} "${details.title}"`);
     
-    // Polite delay to avoid rate limiting
-    await new Promise(r => setTimeout(r, 200));
+    // Minimal delay between DB writes
+    await new Promise(r => setTimeout(r, 20));
   }
 
   // 3. Save JSON cache for static references

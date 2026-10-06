@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && node scripts/minify-assets.js && next build",
+    "minify": "node scripts/minify-assets.js",
     "start": "next start",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
@@ -31,7 +32,9 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/ws": "^8.5.14",
+    "clean-css": "^5.3.3",
     "sharp": "^0.35.5",
+    "terser": "^5.51.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }

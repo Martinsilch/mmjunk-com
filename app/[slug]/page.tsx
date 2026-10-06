@@ -77,7 +77,19 @@ export default async function DynamicSpokePage({ params }: PageProps) {
   const zipCodes = (spoke?.zipCodes && spoke.zipCodes.length > 0) ? spoke.zipCodes : (meta?.zipCodes || ['98001']);
   const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || 'https://www.wikidata.org/wiki/Q852586';
   const jobs = spoke?.jobs || [];
-  const socialPosts = spoke?.socialPosts || [];
+  let socialPosts = spoke?.socialPosts || [];
+  if (socialPosts.length === 0) {
+    socialPosts = await db.socialPost.findMany({
+      where: {
+        OR: [
+          { locationId: null },
+          { location: { slug: 'federal-way' } }
+        ]
+      },
+      orderBy: { publishedAt: 'desc' },
+      take: 4
+    }).catch(() => []);
+  }
 
   if (!cityName) {
     notFound();
@@ -186,7 +198,8 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         'description': post.caption,
         'thumbnailUrl': post.mediaUrl,
         'uploadDate': post.publishedAt.toISOString(),
-        'contentUrl': post.videoUrl || post.mediaUrl
+        'contentUrl': post.videoUrl || `https://www.youtube.com/watch?v=${post.externalId}`,
+        'embedUrl': `https://www.youtube-nocookie.com/embed/${post.externalId}`
       }))
     ]
   };
@@ -353,12 +366,14 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
             {socialPosts.map((post) => (
               <div key={post.id} style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden', backgroundColor: '#ffffff' }}>
-                {post.platform === 'youtube' && post.videoUrl ? (
-                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+                {post.platform === 'youtube' ? (
+                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', backgroundColor: '#000000' }}>
                     <iframe
-                      src={post.videoUrl.replace('watch?v=', 'embed/')}
+                      src={`https://www.youtube-nocookie.com/embed/${post.externalId}?rel=0&modestbranding=1`}
                       title={post.caption}
+                      loading="lazy"
                       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     />
                   </div>

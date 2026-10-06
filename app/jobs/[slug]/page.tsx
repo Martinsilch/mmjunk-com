@@ -84,6 +84,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const county = spoke?.county || 'King County';
   const zipCodes = spoke?.zipCodes || ['98003'];
   const logId = job.disposalReceipt || job.externalJobId || `MMJ-${job.id.slice(-6).toUpperCase()}`;
+  const weightText = job.weightLbs ? `${job.weightLbs.toLocaleString()} lbs` : 'Standard Volume Tier';
 
   const HUB_PHONE = '+1-253-886-7724';
   const HUB_PHONE_RAW = '2538867724';

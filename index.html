@@ -2871,8 +2871,12 @@
               Verified on Google Maps
             </a>
           </div>
+        </div>
+
+        <!-- Additional verified reviews with smooth progressive disclosure (no display:none for clean crawlability) -->
+        <div class="reviews-extra-grid" id="extra-reviews" aria-hidden="true">
           <!-- Review 7: Gabriel Carhart -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">GC</div>
@@ -2907,7 +2911,7 @@
             </a>
           </div>
           <!-- Review 8: Geoffrey Smith -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">GS</div>
@@ -2942,7 +2946,7 @@
             </a>
           </div>
           <!-- Review 9: Amy Z -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">AZ</div>
@@ -2967,7 +2971,7 @@
             </a>
           </div>
           <!-- Review 10: Hilary Smith -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">HS</div>
@@ -2988,7 +2992,7 @@
             </a>
           </div>
           <!-- Review 11: Mariana Kerwood -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">MK</div>
@@ -3013,7 +3017,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 12: K.G. Schneider -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">KS</div>
@@ -3034,7 +3038,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 13: Erin Davis -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">ED</div>
@@ -3055,7 +3059,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 14: Cliff McDonald -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">CM</div>
@@ -3076,7 +3080,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 15: Kimberly -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">KI</div>
@@ -3097,7 +3101,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 16: Christine &amp; Brian Frye -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">CF</div>
@@ -3118,7 +3122,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 17: Audra Edmiston -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">AE</div>
@@ -3139,7 +3143,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 18: Drew Paris -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">DP</div>
@@ -3160,7 +3164,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 19: Amber Muggy -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">AM</div>
@@ -3181,7 +3185,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
             </a>
           </div>
           <!-- Review 20: Meilynn Taugaiasi -->
-          <div class="review-card review--hidden" style="display:none;">
+          <div class="review-card">
             <div class="review-card__header">
               <div class="review-card__author">
                 <div class="review-card__avatar">MT</div>
@@ -3212,7 +3216,7 @@ I would absolutely use them again and highly recommend their services!"</p>
         </div>
 
         <div class="reviews-actions" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-          <button type="button" class="btn btn--outline-dark btn--sm" id="toggle-reviews-btn" data-expanded="false">
+          <button type="button" class="btn btn--outline-dark btn--sm" id="toggle-reviews-btn" data-expanded="false" aria-expanded="false" aria-controls="extra-reviews">
             View All 20 Recent Verified Reviews
           </button>
           <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">

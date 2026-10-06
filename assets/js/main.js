@@ -58,22 +58,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (firstAnswer) firstAnswer.style.maxHeight = firstAnswer.scrollHeight + 'px';
   }
 
-  // 2. Reviews Show More / Toggle
+  // 2. Reviews Show More / Toggle (Progressive Disclosure - Clean crawlability without display:none)
   const toggleReviewsBtn = document.getElementById('toggle-reviews-btn');
-  const hiddenReviews = document.querySelectorAll('.review-card.review--hidden');
+  const extraReviewsGrid = document.getElementById('extra-reviews');
 
-  if (toggleReviewsBtn && hiddenReviews.length > 0) {
+  if (toggleReviewsBtn && extraReviewsGrid) {
     toggleReviewsBtn.addEventListener('click', () => {
       const isExpanded = toggleReviewsBtn.getAttribute('data-expanded') === 'true';
 
       if (!isExpanded) {
-        hiddenReviews.forEach(r => r.style.display = 'flex');
+        extraReviewsGrid.classList.add('is-expanded');
+        extraReviewsGrid.setAttribute('aria-hidden', 'false');
         toggleReviewsBtn.textContent = 'Show Fewer Reviews';
         toggleReviewsBtn.setAttribute('data-expanded', 'true');
+        toggleReviewsBtn.setAttribute('aria-expanded', 'true');
       } else {
-        hiddenReviews.forEach(r => r.style.display = 'none');
-        toggleReviewsBtn.textContent = `View All ${hiddenReviews.length + 6} Recent Verified Reviews`;
+        extraReviewsGrid.classList.remove('is-expanded');
+        extraReviewsGrid.setAttribute('aria-hidden', 'true');
+        toggleReviewsBtn.textContent = 'View All 20 Recent Verified Reviews';
         toggleReviewsBtn.setAttribute('data-expanded', 'false');
+        toggleReviewsBtn.setAttribute('aria-expanded', 'false');
 
         // Scroll back to reviews header
         const reviewsSection = document.getElementById('reviews');

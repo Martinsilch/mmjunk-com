@@ -1996,6 +1996,7 @@ button {
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--text-main);
+  text-decoration: none;
   box-shadow: var(--shadow-sm);
   display: inline-flex;
   align-items: center;

@@ -14,312 +14,312 @@
     },
     {
       "source": "/tacoma",
-      "destination": "/junk-removal-tacoma-wa/",
+      "destination": "/junk-removal-tacoma-wa",
       "permanent": true
     },
     {
       "source": "/junk-removal-tacoma",
-      "destination": "/junk-removal-tacoma-wa/",
+      "destination": "/junk-removal-tacoma-wa",
       "permanent": true
     },
     {
       "source": "/junk-removal-services",
-      "destination": "/services/",
+      "destination": "/services",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/",
-      "destination": "/services/",
+      "destination": "/services",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/residential",
-      "destination": "/services/residential/",
+      "destination": "/services/residential",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/residential/",
-      "destination": "/services/residential/",
+      "destination": "/services/residential",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/commercial-junk-removal",
-      "destination": "/services/commercial/",
+      "destination": "/services/commercial",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/commercial-junk-removal/",
-      "destination": "/services/commercial/",
+      "destination": "/services/commercial",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/industrial-junk-removal",
-      "destination": "/services/industrial/",
+      "destination": "/services/industrial",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/industrial-junk-removal/",
-      "destination": "/services/industrial/",
+      "destination": "/services/industrial",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/junk-sorting-donation-services",
-      "destination": "/services/sorting-donation/",
+      "destination": "/services/sorting-donation",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/junk-sorting-donation-services/",
-      "destination": "/services/sorting-donation/",
+      "destination": "/services/sorting-donation",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/scheduled-recurring-junk-removal",
-      "destination": "/services/recurring/",
+      "destination": "/services/recurring",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/scheduled-recurring-junk-removal/",
-      "destination": "/services/recurring/",
+      "destination": "/services/recurring",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/contractual-junk-removal-services",
-      "destination": "/services/contractual/",
+      "destination": "/services/contractual",
       "permanent": true
     },
     {
       "source": "/junk-removal-services/contractual-junk-removal-services/",
-      "destination": "/services/contractual/",
+      "destination": "/services/contractual",
       "permanent": true
     },
     {
       "source": "/services/appliance-removal",
-      "destination": "/services/commercial-appliance-removal/",
+      "destination": "/services/commercial-appliance-removal",
       "permanent": true
     },
     {
       "source": "/services/appliance-removal/",
-      "destination": "/services/commercial-appliance-removal/",
+      "destination": "/services/commercial-appliance-removal",
       "permanent": true
     },
     {
       "source": "/services/scrap-metal",
-      "destination": "/services/industrial/",
+      "destination": "/services/industrial",
       "permanent": true
     },
     {
       "source": "/services/scrap-metal/",
-      "destination": "/services/industrial/",
+      "destination": "/services/industrial",
       "permanent": true
     },
     {
       "source": "/services/commercial-junk-removal",
-      "destination": "/services/commercial/",
+      "destination": "/services/commercial",
       "permanent": true
     },
     {
       "source": "/services/commercial-junk-removal/",
-      "destination": "/services/commercial/",
+      "destination": "/services/commercial",
       "permanent": true
     },
     {
       "source": "/services/residential-cleanouts",
-      "destination": "/services/residential/",
+      "destination": "/services/residential",
       "permanent": true
     },
     {
       "source": "/services/residential-cleanouts/",
-      "destination": "/services/residential/",
+      "destination": "/services/residential",
       "permanent": true
     },
     {
       "source": "/residential",
-      "destination": "/services/residential/",
+      "destination": "/services/residential",
       "permanent": true
     },
     {
       "source": "/residential/",
-      "destination": "/services/residential/",
+      "destination": "/services/residential",
       "permanent": true
     },
     {
       "source": "/commercial",
-      "destination": "/services/commercial/",
+      "destination": "/services/commercial",
       "permanent": true
     },
     {
       "source": "/commercial/",
-      "destination": "/services/commercial/",
+      "destination": "/services/commercial",
       "permanent": true
     },
     {
       "source": "/industrial",
-      "destination": "/services/industrial/",
+      "destination": "/services/industrial",
       "permanent": true
     },
     {
       "source": "/industrial/",
-      "destination": "/services/industrial/",
+      "destination": "/services/industrial",
       "permanent": true
     },
     {
       "source": "/sorting-donation",
-      "destination": "/services/sorting-donation/",
+      "destination": "/services/sorting-donation",
       "permanent": true
     },
     {
       "source": "/sorting-donation/",
-      "destination": "/services/sorting-donation/",
+      "destination": "/services/sorting-donation",
       "permanent": true
     },
     {
       "source": "/recurring",
-      "destination": "/services/recurring/",
+      "destination": "/services/recurring",
       "permanent": true
     },
     {
       "source": "/recurring/",
-      "destination": "/services/recurring/",
+      "destination": "/services/recurring",
       "permanent": true
     },
     {
       "source": "/contractual",
-      "destination": "/services/contractual/",
+      "destination": "/services/contractual",
       "permanent": true
     },
     {
       "source": "/contractual/",
-      "destination": "/services/contractual/",
+      "destination": "/services/contractual",
       "permanent": true
     },
     {
       "source": "/commercial-appliance-removal",
-      "destination": "/services/commercial-appliance-removal/",
+      "destination": "/services/commercial-appliance-removal",
       "permanent": true
     },
     {
       "source": "/commercial-appliance-removal/",
-      "destination": "/services/commercial-appliance-removal/",
+      "destination": "/services/commercial-appliance-removal",
       "permanent": true
     },
     {
       "source": "/estate-cleanout",
-      "destination": "/services/estate-cleanout/",
+      "destination": "/services/estate-cleanout",
       "permanent": true
     },
     {
       "source": "/estate-cleanout/",
-      "destination": "/services/estate-cleanout/",
+      "destination": "/services/estate-cleanout",
       "permanent": true
     },
     {
       "source": "/construction-debris-removal",
-      "destination": "/services/construction-debris-removal/",
+      "destination": "/services/construction-debris-removal",
       "permanent": true
     },
     {
       "source": "/construction-debris-removal/",
-      "destination": "/services/construction-debris-removal/",
+      "destination": "/services/construction-debris-removal",
       "permanent": true
     },
     {
       "source": "/residential-furniture-removal",
-      "destination": "/services/residential-furniture-removal/",
+      "destination": "/services/residential-furniture-removal",
       "permanent": true
     },
     {
       "source": "/residential-furniture-removal/",
-      "destination": "/services/residential-furniture-removal/",
+      "destination": "/services/residential-furniture-removal",
       "permanent": true
     },
     {
       "source": "/furniture-removal",
-      "destination": "/services/residential-furniture-removal/",
+      "destination": "/services/residential-furniture-removal",
       "permanent": true
     },
     {
       "source": "/furniture-removal/",
-      "destination": "/services/residential-furniture-removal/",
+      "destination": "/services/residential-furniture-removal",
       "permanent": true
     },
     {
       "source": "/hot-tub-demolition-removal",
-      "destination": "/services/hot-tub-demolition-removal/",
+      "destination": "/services/hot-tub-demolition-removal",
       "permanent": true
     },
     {
       "source": "/hot-tub-demolition-removal/",
-      "destination": "/services/hot-tub-demolition-removal/",
+      "destination": "/services/hot-tub-demolition-removal",
       "permanent": true
     },
     {
       "source": "/yard-waste-removal",
-      "destination": "/services/yard-waste-removal/",
+      "destination": "/services/yard-waste-removal",
       "permanent": true
     },
     {
       "source": "/yard-waste-removal/",
-      "destination": "/services/yard-waste-removal/",
+      "destination": "/services/yard-waste-removal",
       "permanent": true
     },
     {
       "source": "/federal-way-commercial-refrigerator-extraction",
-      "destination": "/jobs/federal-way-commercial-refrigerator-extraction/",
+      "destination": "/jobs/federal-way-commercial-refrigerator-extraction",
       "permanent": true
     },
     {
       "source": "/federal-way-commercial-refrigerator-extraction/",
-      "destination": "/jobs/federal-way-commercial-refrigerator-extraction/",
+      "destination": "/jobs/federal-way-commercial-refrigerator-extraction",
       "permanent": true
     },
     {
       "source": "/ne-tacoma-moving-cleanout",
-      "destination": "/jobs/ne-tacoma-moving-cleanout/",
+      "destination": "/jobs/ne-tacoma-moving-cleanout",
       "permanent": true
     },
     {
       "source": "/ne-tacoma-moving-cleanout/",
-      "destination": "/jobs/ne-tacoma-moving-cleanout/",
+      "destination": "/jobs/ne-tacoma-moving-cleanout",
       "permanent": true
     },
     {
       "source": "/federal-way-heavy-treadmill-disassembly",
-      "destination": "/jobs/federal-way-heavy-treadmill-disassembly/",
+      "destination": "/jobs/federal-way-heavy-treadmill-disassembly",
       "permanent": true
     },
     {
       "source": "/federal-way-heavy-treadmill-disassembly/",
-      "destination": "/jobs/federal-way-heavy-treadmill-disassembly/",
+      "destination": "/jobs/federal-way-heavy-treadmill-disassembly",
       "permanent": true
     },
     {
       "source": "/auburn-birch-tree-yard-waste-clearing",
-      "destination": "/jobs/auburn-birch-tree-yard-waste-clearing/",
+      "destination": "/jobs/auburn-birch-tree-yard-waste-clearing",
       "permanent": true
     },
     {
       "source": "/auburn-birch-tree-yard-waste-clearing/",
-      "destination": "/jobs/auburn-birch-tree-yard-waste-clearing/",
+      "destination": "/jobs/auburn-birch-tree-yard-waste-clearing",
       "permanent": true
     },
     {
       "source": "/auburn-playset-shed-demolition",
-      "destination": "/jobs/auburn-playset-shed-demolition/",
+      "destination": "/jobs/auburn-playset-shed-demolition",
       "permanent": true
     },
     {
       "source": "/auburn-playset-shed-demolition/",
-      "destination": "/jobs/auburn-playset-shed-demolition/",
+      "destination": "/jobs/auburn-playset-shed-demolition",
       "permanent": true
     },
     {
       "source": "/tacoma-concrete-construction-debris-removal",
-      "destination": "/jobs/tacoma-concrete-construction-debris-removal/",
+      "destination": "/jobs/tacoma-concrete-construction-debris-removal",
       "permanent": true
     },
     {
       "source": "/tacoma-concrete-construction-debris-removal/",
-      "destination": "/jobs/tacoma-concrete-construction-debris-removal/",
+      "destination": "/jobs/tacoma-concrete-construction-debris-removal",
       "permanent": true
     },
     {

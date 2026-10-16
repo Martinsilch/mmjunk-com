@@ -15,11 +15,13 @@ for (const link of links) {
   if (link.startsWith('http') || link.startsWith('tel:') || link.startsWith('mailto:') || link.startsWith('javascript:')) {
     continue;
   }
-  let target = link;
+  let target = decodeURIComponent(link);
   if (target.endsWith('/')) {
-    target += 'index.html';
+    target = target.slice(0, -1);
   }
-  if (!fs.existsSync(target)) {
+  const existsStatic = fs.existsSync(target) || fs.existsSync(target + '/index.html') || fs.existsSync(target + '.html');
+  const existsNext = fs.existsSync(path.join('.next/server/app', target + '.html')) || fs.existsSync('app/[slug]');
+  if (!existsStatic && !existsNext) {
     console.error(`❌ BROKEN LINK: "${link}" => File does not exist: "${target}"`);
     broken++;
   } else {

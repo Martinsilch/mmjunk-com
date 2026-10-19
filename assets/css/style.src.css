@@ -32,8 +32,17 @@
   --shadow-lg: 0 20px 35px -5px rgba(0,0,0,0.12);
   --shadow-glow: 0 10px 25px -3px var(--primary-glow);
 
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Arial');
+  ascent-override: 99.4%;
+  descent-override: 26.6%;
+  line-gap-override: 0%;
+  size-adjust: 104.7%;
 }
 
 /* Reset & Base */
@@ -128,19 +137,32 @@ button {
 }
 
 .live-pulse {
+  position: relative;
   width: 10px;
   height: 10px;
   background-color: #f97316;
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
-  animation: pulse 1.8s infinite;
+}
+
+.live-pulse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #f97316;
+  animation: pulse 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  z-index: -1;
+  pointer-events: none;
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(249, 115, 22, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+  0% { transform: scale(0.95); opacity: 0.8; }
+  70% { transform: scale(2.4); opacity: 0; }
+  100% { transform: scale(2.4); opacity: 0; }
 }
 
 .top-bar__contact {
@@ -462,6 +484,7 @@ button {
   gap: 16px;
   justify-content: center;
   margin-bottom: 40px;
+  contain: layout style;
 }
 
 .hero__badges {
@@ -1618,7 +1641,7 @@ button {
 .price-val {
   font-size: 1.08rem;
   font-weight: 800;
-  color: #ea580c;
+  color: #c2410c;
 }
 
 .service-card__title {
@@ -2266,8 +2289,8 @@ button {
   align-items: center;
   gap: 6px;
   background: #fff7ed;
-  color: var(--primary);
-  border: 1px solid #ffedd5;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
   font-size: 0.78rem;
   font-weight: 700;
   padding: 4px 10px;
@@ -3197,6 +3220,7 @@ button {
     width: 100%;
     gap: 12px;
     margin: 20px 0 24px 0 !important;
+    min-height: 112px;
   }
 
   .hero__cta-group .btn {

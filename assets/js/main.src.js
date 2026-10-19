@@ -56,12 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isExpanded) {
         extraReviewsGrid.classList.add('is-expanded');
         extraReviewsGrid.setAttribute('aria-hidden', 'false');
+        extraReviewsGrid.removeAttribute('inert');
         toggleReviewsBtn.textContent = 'Show Fewer Reviews';
         toggleReviewsBtn.setAttribute('data-expanded', 'true');
         toggleReviewsBtn.setAttribute('aria-expanded', 'true');
       } else {
         extraReviewsGrid.classList.remove('is-expanded');
         extraReviewsGrid.setAttribute('aria-hidden', 'true');
+        extraReviewsGrid.setAttribute('inert', '');
         toggleReviewsBtn.textContent = 'View All 20 Recent Verified Reviews';
         toggleReviewsBtn.setAttribute('data-expanded', 'false');
         toggleReviewsBtn.setAttribute('aria-expanded', 'false');

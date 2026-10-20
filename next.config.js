@@ -88,54 +88,6 @@ const nextConfig = {
         destination: '/jobs/tacoma-concrete-construction-debris-removal/index.html',
       },
       {
-        source: '/locations/federal-way-junk-removal',
-        destination: '/junk-removal-federal-way-wa',
-      },
-      {
-        source: '/locations/federal-way-junk-removal/',
-        destination: '/junk-removal-federal-way-wa',
-      },
-      {
-        source: '/locations/:slug',
-        destination: '/:slug',
-      },
-      {
-        source: '/locations/:slug/',
-        destination: '/:slug',
-      },
-      {
-        source: '/locations/auburn',
-        destination: '/junk-removal-auburn-wa/index.html',
-      },
-      {
-        source: '/locations/auburn/',
-        destination: '/junk-removal-auburn-wa/index.html',
-      },
-      {
-        source: '/locations/tacoma',
-        destination: '/junk-removal-tacoma-wa/index.html',
-      },
-      {
-        source: '/locations/tacoma/',
-        destination: '/junk-removal-tacoma-wa/index.html',
-      },
-      {
-        source: '/locations/edgewood',
-        destination: '/junk-removal-edgewood-wa/index.html',
-      },
-      {
-        source: '/locations/edgewood/',
-        destination: '/junk-removal-edgewood-wa/index.html',
-      },
-      {
-        source: '/locations/kent',
-        destination: '/junk-removal-kent-wa/index.html',
-      },
-      {
-        source: '/locations/kent/',
-        destination: '/junk-removal-kent-wa/index.html',
-      },
-      {
         source: '/privacy-policy',
         destination: '/privacy-policy/index.html',
       },

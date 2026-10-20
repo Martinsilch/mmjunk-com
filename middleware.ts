@@ -20,6 +20,15 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
+  // Redirect /locations/* paths to canonical /junk-removal-[city]-wa spokes
+  if (pathname.startsWith('/locations/')) {
+    const raw = pathname.replace(/^\/locations\//, '').replace(/\/$/, '');
+    const canonicalSlug = raw.startsWith('junk-removal-') ? raw : `junk-removal-${raw}-wa`;
+    const url = request.nextUrl.clone();
+    url.pathname = `/${canonicalSlug}`;
+    return NextResponse.redirect(url, 301);
+  }
+
   return NextResponse.next();
 }
 

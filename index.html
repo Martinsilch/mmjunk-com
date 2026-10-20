@@ -21,8 +21,8 @@
   <meta property="og:image" content="https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Preload Critical LCP Hero Image for Maximum Mobile Performance -->
-  <link rel="preload" as="image" href="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" type="image/webp" fetchpriority="high">
+  <!-- Preload Critical LCP Hero Image for Maximum Mobile & Desktop Performance -->
+  <link rel="preload" as="image" href="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp" imagesrcset="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp 640w, assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp 1000w" imagesizes="100vw" fetchpriority="high">
 
   <!-- Google Fonts Preconnect & Asynchronous Loading (Eliminates 751ms Render Blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,13 +40,27 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- Google Analytics & Google Tag Manager (Optimized & Deferred to Eliminate 557ms Main-Thread Delay) -->
+  <!-- Google Analytics & Google Tag Manager (Optimized & Deferred to Eliminate Main-Thread Blocking) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
 
+    var _analyticsLoaded = false;
+    function initAnalytics() {
+      if (_analyticsLoaded) return;
+      _analyticsLoaded = true;
+
+      // Load GTM container (which dispatches GTM-MBS5CM, GT-TBB9FCL, and AW-1064983468)
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MBS5CM');
+    }
+
     function gtag_report_conversion(url) {
+      initAnalytics();
       var callback = function () {
         if (typeof(url) !== 'undefined') {
           window.location = url;
@@ -61,42 +75,13 @@
       return false;
     }
 
-    // Deferred Tag Manager / Analytics Loader (Frees main thread for instant FCP & LCP)
+    // Deferred Tag Manager Loader: Load on first interaction or late fallback
     (function() {
-      var loaded = false;
-      function initAnalytics() {
-        if (loaded) return;
-        loaded = true;
-
-        // Load gtag.js
-        var s1 = document.createElement('script');
-        s1.src = 'https://www.googletagmanager.com/gtag/js?id=GT-TBB9FCL';
-        s1.async = true;
-        document.head.appendChild(s1);
-        gtag('config', 'GT-TBB9FCL');
-        gtag('config', 'AW-1064983468');
-
-        // Load GTM
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MBS5CM');
-      }
-
-      if ('requestIdleCallback' in window) {
-        window.addEventListener('load', function() {
-          requestIdleCallback(initAnalytics, { timeout: 3500 });
-        });
-      } else {
-        window.addEventListener('load', function() {
-          setTimeout(initAnalytics, 2000);
-        });
-      }
-
-      ['scroll', 'touchstart', 'click', 'mousemove'].forEach(function(evt) {
+      ['scroll', 'touchstart', 'pointerdown', 'click', 'keydown'].forEach(function(evt) {
         window.addEventListener(evt, initAnalytics, { once: true, passive: true });
       });
+      // Fallback for non-interactive sessions
+      setTimeout(initAnalytics, 9000);
     })();
   </script>
 
@@ -1589,9 +1574,14 @@
   </header>
 
   <main>
-    <!-- HERO SECTION WITH EMBEDDED 6-STEP INTAKE FORM -->
     <section class="hero" id="hero">
-      <img class="hero__bg" src="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" alt="M&amp;M Junk Removal Truck Fleet in Pierce &amp; South King County" width="1920" height="1080" fetchpriority="high" decoding="async">
+      <img class="hero__bg" 
+           src="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" 
+           srcset="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp 640w, assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp 1000w" 
+           sizes="100vw" 
+           alt="M&amp;M Junk Removal Truck Fleet in Pierce &amp; South King County" 
+           width="1000" height="463" 
+           fetchpriority="high" decoding="async">
       <div class="hero__overlay"></div>
 
       <div class="container hero__content">
@@ -2722,7 +2712,7 @@
                   <div class="review-card__date">2 days ago</div>
                 </div>
               </div>
-              <a href="https://share.google/biQmq7QXeKyGy8FrX" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://share.google/biQmq7QXeKyGy8FrX" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by S J on Google Maps" aria-label="Verified review by S J on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2732,7 +2722,7 @@
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Martin gave me a fair quote (way less than the big franchises) and showed up just an hour after I called him. He was courteous, competent, and cheerfully worked really hard to get my extra heavy treadmill disassembled so it would fit through the door. Really impressed with his work ethic and communication. Would hire him again in a heartbeat!"</p>
-            <a href="https://share.google/biQmq7QXeKyGy8FrX" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://share.google/biQmq7QXeKyGy8FrX" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by S J">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2747,7 +2737,7 @@
                   <div class="review-card__date">6 days ago</div>
                 </div>
               </div>
-              <a href="https://share.google/iCe2bBpzwVtm8vV66" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://share.google/iCe2bBpzwVtm8vV66" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by ANKO BAKE on Google Maps" aria-label="Verified review by ANKO BAKE on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2757,7 +2747,7 @@
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"M&amp;M Junk Removal did an exceptional job clearing out our restaurant equipment in Federal Way! As a local restaurant owner, I needed three heavy commercial refrigerators hauled away and properly disposed of. I called Martin, and he gave me a fair flat-rate quote with zero runaround. He showed up on time, carefully navigated tight kitchen doors without scratching anything, and loaded everything quickly. Professional, honest, and reliable. Highly recommend M&amp;M Junk Removal for any commercial or business cleanouts!"</p>
-            <a href="https://share.google/iCe2bBpzwVtm8vV66" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://share.google/iCe2bBpzwVtm8vV66" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by ANKO BAKE">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2772,7 +2762,7 @@
                   <div class="review-card__date">2 weeks ago</div>
                 </div>
               </div>
-              <a href="https://share.google/76RAz2qMVJ4VhgKc9" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://share.google/76RAz2qMVJ4VhgKc9" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by MoWzz Creations on Google Maps" aria-label="Verified review by MoWzz Creations on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2792,7 +2782,7 @@
                 <div class="review-card__reply-a">A: Yes, we absolutely do! Operating as an efficient Junk Removal Service and full-scale Waste Management Service, we specialize in same-day moving cleanouts, staged driveway pickups, NE Tacoma property clearing, and fast bed frame or mattress disposal.</div>
               </div>
             </div>
-            <a href="https://share.google/76RAz2qMVJ4VhgKc9" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://share.google/76RAz2qMVJ4VhgKc9" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by MoWzz Creations">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2807,7 +2797,7 @@
                   <div class="review-card__date">2 weeks ago</div>
                 </div>
               </div>
-              <a href="https://share.google/JKDlJBzLyvLYbHaeV" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://share.google/JKDlJBzLyvLYbHaeV" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Alex Fil on Google Maps" aria-label="Verified review by Alex Fil on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2828,7 +2818,7 @@
                 <div class="review-card__reply-a">A: Yes, we absolutely do! Operating as a dependable Waste Management Service and responsive Junk Removal Service, we specialize in fast yard waste removal, tree branch hauling, organic leaf pile cleanups, and green waste recycling in Auburn.</div>
               </div>
             </div>
-            <a href="https://share.google/JKDlJBzLyvLYbHaeV" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://share.google/JKDlJBzLyvLYbHaeV" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Alex Fil">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2843,7 +2833,7 @@
                   <div class="review-card__date">2 weeks ago</div>
                 </div>
               </div>
-              <a href="https://share.google/gw69RFlrTNcu9SbRX" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://share.google/gw69RFlrTNcu9SbRX" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Jon Lackey on Google Maps" aria-label="Verified review by Jon Lackey on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2863,7 +2853,7 @@
                 <div class="review-card__reply-a">A: Yes, we absolutely do! Operating as a rapid-response Waste Management Service and dedicated Tree Service cleanup partner, we specialize in same-day yard waste removal, tree branch disposal, driveway brush clearing, and organic wood recycling.</div>
               </div>
             </div>
-            <a href="https://share.google/gw69RFlrTNcu9SbRX" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://share.google/gw69RFlrTNcu9SbRX" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Jon Lackey">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2878,7 +2868,7 @@
                   <div class="review-card__date">2 weeks ago</div>
                 </div>
               </div>
-              <a href="https://share.google/bTFm05jFE0ocjlZLb" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://share.google/bTFm05jFE0ocjlZLb" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Samuel Fola on Google Maps" aria-label="Verified review by Samuel Fola on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2899,7 +2889,7 @@
                 <div class="review-card__reply-a">A: Yes, we absolutely do! Operating as a responsive Junk Removal Service and competitive Waste Management Service, we specialize in 1-hour rapid dispatch, guaranteed price matching, same-day garage cleanouts, and residential clutter disposal across Auburn.</div>
               </div>
             </div>
-            <a href="https://share.google/bTFm05jFE0ocjlZLb" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://share.google/bTFm05jFE0ocjlZLb" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Samuel Fola">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2918,7 +2908,7 @@
                   <div class="review-card__date">2 weeks ago</div>
                 </div>
               </div>
-              <a href="https://www.google.com/maps/contrib/112372417766336862822/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://www.google.com/maps/contrib/112372417766336862822/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Gabriel Carhart on Google Maps" aria-label="Verified review by Gabriel Carhart on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2938,7 +2928,7 @@
                 <div class="review-card__reply-a">A: Yes, we absolutely do! Operating as a responsive Junk Removal Service and certified Recycling Center partner, we specialize in same-day storage unit cleanouts, moving deadline hauling, furniture removal, and complimentary computer e-waste recycling in Federal Way.</div>
               </div>
             </div>
-            <a href="https://www.google.com/maps/contrib/112372417766336862822/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://www.google.com/maps/contrib/112372417766336862822/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Gabriel Carhart">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2953,7 +2943,7 @@
                   <div class="review-card__date">2 weeks ago</div>
                 </div>
               </div>
-              <a href="https://www.google.com/maps/contrib/112831820990922965141/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://www.google.com/maps/contrib/112831820990922965141/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Geoffrey Smith on Google Maps" aria-label="Verified review by Geoffrey Smith on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2973,7 +2963,7 @@
                 <div class="review-card__reply-a">A: Yes, we absolutely do! Operating as a responsive Junk Removal Service and dependable Waste Management Service, we specialize in ongoing residential property cleanouts, multi-year estate waste remediation, and reliable large-scale junk hauling.</div>
               </div>
             </div>
-            <a href="https://www.google.com/maps/contrib/112831820990922965141/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://www.google.com/maps/contrib/112831820990922965141/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Geoffrey Smith">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -2988,7 +2978,7 @@
                   <div class="review-card__date">3 weeks ago</div>
                 </div>
               </div>
-              <a href="https://www.google.com/maps/contrib/116136621274601011419/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://www.google.com/maps/contrib/116136621274601011419/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Amy Z on Google Maps" aria-label="Verified review by Amy Z on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -2998,7 +2988,7 @@
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Our house is sold and the garage needed to be cleared out. I contacted M&amp;M Junk Removal online in the morning, and Martin arrived just a couple of hours later. He cleared out all our remaining moving clutter, patio furniture, and garage debris quickly and left the concrete swept clean. Reasonable price and super friendly. Highly recommend!"</p>
-            <a href="https://www.google.com/maps/contrib/116136621274601011419/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://www.google.com/maps/contrib/116136621274601011419/reviews?hl=en-US" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Amy Z">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3013,13 +3003,13 @@
                   <div class="review-card__date">1 month ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Hilary Smith on Google Maps" aria-label="Verified review by Hilary Smith on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Had such a great experience with Martin. Scheduling was easy. He was available within the hour and was able to get my bulky mattresses and bed frames from an upstairs landing with no trouble. He was quick and efficient and the price was more reasonable than I expected. Would highly recommend!"</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Hilary Smith">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3034,7 +3024,7 @@
                   <div class="review-card__date">1 month ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Mariana Kerwood on Google Maps" aria-label="Verified review by Mariana Kerwood on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -3044,7 +3034,7 @@
 They arrived right on time, handled everything efficiently, and charged a very reasonable price for the quality of service provided. It&#039;s refreshing to work with someone who is reliable, honest, and genuinely cares about their customers.
 
 If you&#039;re looking for a dependable drunk removal service with outstanding professionalism, great communication, fair pricing, and timely service, I highly recommend them. I&#039;ll definitely use them again if the need arises."</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Mariana Kerwood">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3059,13 +3049,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">1 month ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by K.G. Schneider on Google Maps" aria-label="Verified review by K.G. Schneider on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"M&amp;amp;M Junk Removal helped me dispose of an old wood-burning fireplace insert. The process was quick and easy. Martin responded swiftly, arrived on time, and completed the job efficiently. Thank you, Martin!"</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by K.G. Schneider">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3080,13 +3070,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">1 month ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Erin Davis on Google Maps" aria-label="Verified review by Erin Davis on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Martin and his crew were great! We called Martin one afternoon and he was here the next day and efficiently hauled away a broken down playset and playhouse. We appreciated how easy it was to coordinate, how quickly Martin could help, how clean the space was left, and that it was so reasonably priced. Weâ€™d use M&amp;amp;M again and highly recommend!"</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Erin Davis">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3101,13 +3091,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">2 months ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Cliff McDonald on Google Maps" aria-label="Verified review by Cliff McDonald on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"I had a great experience with M&amp;amp;M Junk Removal in Federal Way. They were responsive, showed up on time, worked quickly, and made the entire process easy. They were professional, friendly, and took care of everything without any hassle. Pricing was fair and the service exceeded my expectations. If youâ€™re looking for reliable junk removal or hauling services in the Federal Way area, I highly recommend M&amp;amp;M Junk Removal."</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Cliff McDonald">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3122,13 +3112,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">2 months ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Kimberly on Google Maps" aria-label="Verified review by Kimberly on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Martin was SO AMAZING!!! He is such a great helper cleaning out our estate when we needed it most. He has an online scheduler which was so easy!! He came the same day! He was early and guided us through a really rough time in our lives. Hauled very heavy equipment! He was a great sorter and organizer which helped immensely!!!"</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Kimberly">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3143,13 +3133,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">2 months ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Christine &amp; Brian Frye on Google Maps" aria-label="Verified review by Christine &amp; Brian Frye on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Wonderful experience! We had two days before the movers were coming to our Federal Way home for our cross country move and we had a LOT of garbage and just stuff that had to go ASAP. Martin quickly returned my call showed up on time the next morning and very quickly had everything cleared out of the house and yard. We filled his entire truck yet his new price was still way less than what others were quoting for a smaller amount of junk (I had really underestimated how much we had). Great communication, great guy, great service, great price. We highly recommend going with Martin!"</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Christine &amp; Brian Frye">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3164,13 +3154,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">2 months ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Audra Edmiston on Google Maps" aria-label="Verified review by Audra Edmiston on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Martin was great and very affordable. I was getting estimates and was going to go with a big box style company that also took military discounts. When I messaged Martin to let him know, he said he would beat their price and he definitely did that. We had a 4pc sectional couch, counter top, desk, and glass. They came in and were fast and affordable. I would recommend them and definitely use them again."</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Audra Edmiston">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3185,13 +3175,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">2 months ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Drew Paris on Google Maps" aria-label="Verified review by Drew Paris on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"I had an excellent experience with Martin. He was quick to respond and offered me an excellent deal for what I needed to be hauled away. I had an assortment of concrete and heavy yard/ house waste materials that needed to be removed. His communication was awesome throughout and showed up on time and ready to work. He was fast and efficient and was prepared with the necessary tools to complete the job. Don&#039;t let the picture fool you, it was a lot of heavy concrete with some pieces that were approximately 400lbs each. I highly recommend him. He&#039;s a small business over fighting against the larger corporations and deserves a slice of the pie like everyone else. He&#039;s fair and has great pricing compared to his competitors. I will be using him in the future."</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Drew Paris">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3206,13 +3196,13 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">3 months ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Amber Muggy on Google Maps" aria-label="Verified review by Amber Muggy on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
             <div class="review-card__stars">★★★★★</div>
             <p class="review-card__text">"Martin with M&amp;amp;M Junk Removal was very prompt with scheduling and so efficient with the whole moving process! They quoted me very reasonably and hauled my old furniture out the day after contacting them. I highly recommend booking with them, they even have an app with referral bonuses! Great service."</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Amber Muggy">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>
@@ -3227,7 +3217,7 @@ If you&#039;re looking for a dependable drunk removal service with outstanding p
                   <div class="review-card__date">3 months ago</div>
                 </div>
               </div>
-              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified Review on Google Maps" aria-label="Verified Review on Google Maps">
+              <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__google-link" title="Verified review by Meilynn Taugaiasi on Google Maps" aria-label="Verified review by Meilynn Taugaiasi on Google Maps">
                 <svg class="review-card__google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
               </a>
             </div>
@@ -3241,7 +3231,7 @@ Pricing was transparent and fair, with no surprises. Honestly, they saved me so 
 Special shoutout to Mark, who was extremely kind and professional throughout the entire process.
 
 I would absolutely use them again and highly recommend their services!"</p>
-            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link">
+            <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" class="review-card__source-link" aria-label="Read full Google review by Meilynn Taugaiasi">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               Verified on Google Maps
             </a>

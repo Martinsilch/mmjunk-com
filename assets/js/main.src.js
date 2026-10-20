@@ -5,6 +5,9 @@
 
 // Google Ads conversion tracking function
 function gtag_report_conversion(url) {
+  if (typeof window.initAnalytics === 'function') {
+    window.initAnalytics();
+  }
   var callback = function () {
     if (typeof(url) !== 'undefined') {
       window.location = url;
@@ -19,8 +22,8 @@ function gtag_report_conversion(url) {
   return false;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. FAQ Accordion (Pure CSS transition without forced synchronous reflow)
+// 1. FAQ Accordion (Pure CSS transition without forced synchronous reflow)
+function initFAQ() {
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
@@ -44,8 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+}
 
-  // 2. Reviews Show More / Toggle (Progressive Disclosure - Clean crawlability without display:none)
+// 2. Reviews Show More / Toggle (Progressive Disclosure - Clean crawlability without display:none)
+function initReviewsToggle() {
   const toggleReviewsBtn = document.getElementById('toggle-reviews-btn');
   const extraReviewsGrid = document.getElementById('extra-reviews');
 
@@ -76,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+}
 
-  // 3. Lazy Load YouTube iframes when near viewport
+// 3. Lazy Load YouTube iframes when near viewport
+function initVideoLazyLoad() {
   const videoWrappers = document.querySelectorAll('.video-wrapper[data-video-id]');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries, obs) => {
@@ -113,8 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+}
 
-  // 4. Multi-Step Quote & AMZY Intake Engine
+// 4. Multi-Step Quote & AMZY Intake Engine
+function initIntakeEngine() {
   const intakeForm = document.getElementById('quote-intake-form');
   if (intakeForm) {
     const steps = intakeForm.querySelectorAll('.intake-step');
@@ -421,61 +430,78 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize UI
     updateStepUI();
   }
+}
 
   // 5. Interactive Service Category Filter Engine
-  const filterBtns = document.querySelectorAll('.service-filter-btn');
-  const serviceCards = document.querySelectorAll('.service-card[data-category]');
-  const serviceSilos = document.querySelectorAll('.service-silo[data-category]');
-  const materialsGuide = document.getElementById('materials-guide');
+  function initServiceFilters() {
+    const filterBtns = document.querySelectorAll('.service-filter-btn');
+    const serviceCards = document.querySelectorAll('.service-card[data-category]');
+    const serviceSilos = document.querySelectorAll('.service-silo[data-category]');
+    const materialsGuide = document.getElementById('materials-guide');
 
-  if (filterBtns.length > 0) {
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter');
+    if (filterBtns.length > 0) {
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
 
-        // Update active class & ARIA
-        filterBtns.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
+          // Update active class & ARIA
+          filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
 
-        // Filter cards and silos
-        if (filter === 'all') {
-          serviceCards.forEach(c => c.style.display = 'flex');
-          serviceSilos.forEach(s => s.style.display = 'block');
-          if (materialsGuide) materialsGuide.style.display = 'block';
-        } else if (filter === 'materials') {
-          serviceCards.forEach(c => c.style.display = 'none');
-          serviceSilos.forEach(s => s.style.display = 'none');
-          if (materialsGuide) {
-            materialsGuide.style.display = 'block';
-            materialsGuide.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          // Filter cards and silos
+          if (filter === 'all') {
+            serviceCards.forEach(c => c.style.display = 'flex');
+            serviceSilos.forEach(s => s.style.display = 'block');
+            if (materialsGuide) materialsGuide.style.display = 'block';
+          } else if (filter === 'materials') {
+            serviceCards.forEach(c => c.style.display = 'none');
+            serviceSilos.forEach(s => s.style.display = 'none');
+            if (materialsGuide) {
+              materialsGuide.style.display = 'block';
+              materialsGuide.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          } else {
+            if (materialsGuide) materialsGuide.style.display = 'none';
+
+            serviceCards.forEach(c => {
+              const categories = c.getAttribute('data-category').split(' ');
+              if (categories.includes(filter)) {
+                c.style.display = 'flex';
+              } else {
+                c.style.display = 'none';
+              }
+            });
+
+            serviceSilos.forEach(s => {
+              const siloCat = s.getAttribute('data-category');
+              if (siloCat === filter || (filter === 'appliances' && siloCat === 'residential') || (filter === 'demolition' && siloCat === 'commercial')) {
+                s.style.display = 'block';
+              } else {
+                s.style.display = 'none';
+              }
+            });
           }
-        } else {
-          if (materialsGuide) materialsGuide.style.display = 'none';
-
-          serviceCards.forEach(c => {
-            const categories = c.getAttribute('data-category').split(' ');
-            if (categories.includes(filter)) {
-              c.style.display = 'flex';
-            } else {
-              c.style.display = 'none';
-            }
-          });
-
-          serviceSilos.forEach(s => {
-            const siloCat = s.getAttribute('data-category');
-            if (siloCat === filter || (filter === 'appliances' && siloCat === 'residential') || (filter === 'demolition' && siloCat === 'commercial')) {
-              s.style.display = 'block';
-            } else {
-              s.style.display = 'none';
-            }
-          });
-        }
+        });
       });
-    });
+    }
   }
-});
+
+  // 6. Microtask Bootstrapper to prevent long tasks and eliminate Total Blocking Time (TBT)
+  function boot() {
+    initIntakeEngine();
+    setTimeout(initServiceFilters, 0);
+    setTimeout(initFAQ, 0);
+    setTimeout(initReviewsToggle, 0);
+    setTimeout(initVideoLazyLoad, 0);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 

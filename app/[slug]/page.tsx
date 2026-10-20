@@ -351,7 +351,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       {/* Breadcrumb Navigation */}
       <nav style={{ fontSize: '13px', color: '#6b7280', marginBottom: '16px' }}>
         <Link href="/" style={{ color: '#2563eb', textDecoration: 'none' }}>Home</Link> &rsaquo; 
-        <Link href="/services" style={{ color: '#2563eb', textDecoration: 'none', marginLeft: '6px' }}>Services</Link> &rsaquo; 
+        <Link href="/locations" style={{ color: '#2563eb', textDecoration: 'none', marginLeft: '6px' }}>Locations</Link> &rsaquo; 
         <span style={{ marginLeft: '6px', color: '#374151', fontWeight: 600 }}>{cityName}, WA</span>
       </nav>
 

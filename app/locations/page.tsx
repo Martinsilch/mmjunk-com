@@ -183,7 +183,6 @@ export default async function LocationsHubPage() {
       {/* Breadcrumb Navigation */}
       <nav style={{ fontSize: '13px', color: '#6b7280', marginBottom: '16px' }}>
         <Link href="/" style={{ color: '#2563eb', textDecoration: 'none' }}>Home</Link> &rsaquo; 
-        <Link href="/services" style={{ color: '#2563eb', textDecoration: 'none', marginLeft: '6px' }}>Services</Link> &rsaquo; 
         <span style={{ marginLeft: '6px', color: '#374151', fontWeight: 600 }}>Locations</span>
       </nav>
 

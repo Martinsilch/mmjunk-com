@@ -95,140 +95,220 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     county: 'King County',
     zipCodes: ['98198'],
     coords: [47.4018, -122.3243],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852581'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852581',
+    neighborhoods: ['Marina District', 'North Hill', 'Pacific Ridge', 'Woodmont Beach', 'Redondo Beach'],
+    majorCorridors: ['Marine View Dr S', 'Pacific Hwy S (SR-99)', 'Kent-Des Moines Rd (SR-516)', 'I-5'],
+    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    donationPartners: ['Des Moines Goodwill', 'St. Vincent de Paul']
   },
   'milton': {
     cityName: 'Milton',
     county: 'Pierce County',
     zipCodes: ['98354'],
     coords: [47.2498, -122.3168],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q1936495'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q1936495',
+    neighborhoods: ['North Milton', 'Surprise Lake Border', 'Fife Heights Border', 'Milton Interurban'],
+    majorCorridors: ['Meridian Ave E (SR-161)', 'Milton Way', 'Pacific Hwy E'],
+    transferStation: 'Pierce County Hidden Valley Transfer Station',
+    donationPartners: ['Puyallup Valley Goodwill', 'St. Francis House']
   },
   'pacific': {
     cityName: 'Pacific',
     county: 'King County',
     zipCodes: ['98047'],
     coords: [47.2648, -122.2479],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852601'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852601',
+    neighborhoods: ['City Center', 'White River Border', 'Milwaukee Ave District', 'Pacific Meadows'],
+    majorCorridors: ['SR-167', 'Valentine Ave SE', 'Thornton Ave SW', '3rd Ave SE'],
+    transferStation: 'King County Algona Transfer Station',
+    donationPartners: ['Auburn Goodwill', 'Auburn Valley Humane Society Thrift']
   },
   'algona': {
     cityName: 'Algona',
     county: 'King County',
     zipCodes: ['98001'],
     coords: [47.2798, -122.2501],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852569'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852569',
+    neighborhoods: ['Algona City Center', 'Matchett District', 'Algona Wetland Buffer'],
+    majorCorridors: ['SR-167', 'Algona Blvd N', '1st Ave N', 'West Valley Hwy'],
+    transferStation: 'King County Algona Transfer Station',
+    donationPartners: ['Auburn Goodwill', 'Algona Community Food & Clothing Bank']
   },
   'covington': {
     cityName: 'Covington',
     county: 'King County',
     zipCodes: ['98042'],
     coords: [47.3643, -122.0948],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852580'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852580',
+    neighborhoods: ['Timberlane', 'Jenkins Creek', 'Covington Town Center', 'Mattson', 'Crestview'],
+    majorCorridors: ['SR-516 (SE 272nd St)', 'SR-18', '164th Ave SE', '180th Ave SE'],
+    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    donationPartners: ['Covington Goodwill', 'Kent St. Vincent de Paul']
   },
   'maple-valley': {
     cityName: 'Maple Valley',
     county: 'King County',
     zipCodes: ['98038'],
     coords: [47.3984, -122.0498],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852594'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852594',
+    neighborhoods: ['Lake Wilderness', 'Four Corners', 'Hobart Border', 'Tahoma High Area', 'Pipe Lake'],
+    majorCorridors: ['SR-169 (Maple Valley Hwy)', 'SR-516', 'SE 240th St', 'Witte Rd SE'],
+    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    donationPartners: ['Maple Valley Goodwill', 'Maple Valley Food Bank']
   },
   'normandy-park': {
     cityName: 'Normandy Park',
     county: 'King County',
     zipCodes: ['98166'],
     coords: [47.4418, -122.3418],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852598'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852598',
+    neighborhoods: ['The Cove', 'Manhattan', 'Normandy Terrace', 'Marine View Estates'],
+    majorCorridors: ['First Ave S (SR-509)', 'SW Normandy Rd', 'Marine View Dr SW'],
+    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    donationPartners: ['Burien Goodwill', 'St. Vincent de Paul Burien']
   },
   'renton': {
     cityName: 'Renton',
     county: 'King County',
     zipCodes: ['98055', '98056', '98057', '98058', '98059'],
     coords: [47.4829, -122.2171],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852604'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852604',
+    neighborhoods: ['Renton Highlands', 'Downtown Renton', 'Kennydale', 'Benson Hill', 'Talbot Hill', 'Fairwood'],
+    majorCorridors: ['I-405', 'SR-167', 'Sunset Blvd NE', 'Renton Pkwy', 'SR-900'],
+    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    donationPartners: ['Renton Goodwill', 'St. Vincent de Paul Renton']
   },
   'seatac': {
     cityName: 'SeaTac',
     county: 'King County',
     zipCodes: ['98148', '98158', '98168', '98188', '98198'],
     coords: [47.4435, -122.2961],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852607'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852607',
+    neighborhoods: ['Angle Lake', 'McMicken Heights', 'Bow Lake', 'Riverton Heights'],
+    majorCorridors: ['International Blvd (SR-99)', 'S 188th St', 'I-5', 'S 176th St', 'SR-518'],
+    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    donationPartners: ['SeaTac Goodwill', 'St. Vincent de Paul']
   },
   'tukwila': {
     cityName: 'Tukwila',
     county: 'King County',
     zipCodes: ['98168', '98188'],
     coords: [47.4740, -122.2610],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852614'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852614',
+    neighborhoods: ['Southcenter District', 'Tukwila Hill', 'Allentown', 'Foster', 'Thorndyke'],
+    majorCorridors: ['I-5', 'I-405', 'West Valley Hwy (SR-181)', 'Southcenter Pkwy', 'Tukwila International Blvd'],
+    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    donationPartners: ['Tukwila Foster Community Donations', 'Goodwill Tukwila']
   },
   'bonney-lake': {
     cityName: 'Bonney Lake',
     county: 'Pierce County',
     zipCodes: ['98391'],
     coords: [47.1776, -122.1818],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852572'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852572',
+    neighborhoods: ['Tehaleh', 'Lake Tapps Border', 'Midtown', 'Kelly Lake', 'Church Lake'],
+    majorCorridors: ['SR-410', '198th Ave E', '214th Ave E', 'South Prairie Rd E'],
+    transferStation: 'Pierce County Prairie Ridge Transfer Station & Hidden Valley Transfer Station',
+    donationPartners: ['Bonney Lake Goodwill', 'St. Francis House']
   },
   'fife': {
     cityName: 'Fife',
     county: 'Pierce County',
     zipCodes: ['98424'],
     coords: [47.2384, -122.3596],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852584'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852584',
+    neighborhoods: ['Fife Valley', 'Fife Heights Border', 'Wapato Creek Area', 'Port Logistics Corridor'],
+    majorCorridors: ['I-5 (Exit 137)', 'Pacific Hwy E (SR-99)', '54th Ave E', 'Valley Ave E'],
+    transferStation: 'City of Tacoma Recovery & Transfer Center',
+    donationPartners: ['Tacoma Goodwill', 'Rescue Mission Tacoma']
   },
   'fircrest': {
     cityName: 'Fircrest',
     county: 'Pierce County',
     zipCodes: ['98466'],
     coords: [47.2384, -122.5085],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852585'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852585',
+    neighborhoods: ['Whittier', 'Center St Corridor', 'Regents Blvd Area', 'Wapato Hills Border'],
+    majorCorridors: ['Regents Blvd', 'Center St', 'Orchard St', 'SR-16'],
+    transferStation: 'City of Tacoma Recovery & Transfer Center',
+    donationPartners: ['Tacoma Goodwill', 'St. Vincent de Paul']
   },
   'gig-harbor': {
     cityName: 'Gig Harbor',
     county: 'Pierce County',
     zipCodes: ['98332', '98335'],
     coords: [47.3293, -122.5801],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852587'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852587',
+    neighborhoods: ['Downtown Waterfront', 'Uptown', 'Canterwood', 'Wollochet Bay', 'Rosedale', 'Fox Island Border'],
+    majorCorridors: ['SR-16', 'Borgen Blvd', 'Olympic Dr NW', 'Point Fosdick Dr NW'],
+    transferStation: 'Pierce County Purdy Transfer Station',
+    donationPartners: ['Gig Harbor Goodwill', 'FISH Food Bank & Thrift']
   },
   'lakewood': {
     cityName: 'Lakewood',
     county: 'Pierce County',
     zipCodes: ['98496', '98497', '98498', '98499'],
     coords: [47.1718, -122.5185],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852592'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852592',
+    neighborhoods: ['Lakewood Towne Center', 'Oakbrook', 'Tillicum', 'Steilacoom Lake', 'American Lake', 'Lake City'],
+    majorCorridors: ['I-5 (Exit 125/127)', 'Lakewood Dr SW', 'Gravelly Lake Dr SW', 'Bridgeport Way SW'],
+    transferStation: 'Pierce County Hidden Valley Transfer Station',
+    donationPartners: ['Lakewood Goodwill', 'St. Vincent de Paul Lakewood']
   },
   'puyallup': {
     cityName: 'Puyallup',
     county: 'Pierce County',
     zipCodes: ['98371', '98372', '98373', '98374', '98375'],
     coords: [47.1854, -122.2929],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852603'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852603',
+    neighborhoods: ['Downtown Puyallup', 'South Hill', 'Shaw Road', 'Meridian Corridors', 'Meeker', 'Valley Green'],
+    majorCorridors: ['SR-512', 'Meridian Ave E (SR-161)', 'River Rd (SR-167)', 'Shaw Rd E', '39th Ave SW'],
+    transferStation: 'Pierce County Hidden Valley Transfer Station & Prairie Ridge Transfer Station',
+    donationPartners: ['Puyallup Valley Goodwill', 'St. Francis House Puyallup']
   },
   'ruston': {
     cityName: 'Ruston',
     county: 'Pierce County',
     zipCodes: ['98407'],
     coords: [47.2976, -122.5115],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852606'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852606',
+    neighborhoods: ['Point Ruston Waterfront', 'Winnifred St District', 'Point Defiance Gateway'],
+    majorCorridors: ['Ruston Way', 'N Pearl St (SR-163)', '51st St'],
+    transferStation: 'City of Tacoma Recovery & Transfer Center',
+    donationPartners: ['Tacoma Goodwill', 'Tacoma Rescue Mission']
   },
   'sumner': {
     cityName: 'Sumner',
     county: 'Pierce County',
     zipCodes: ['98390'],
     coords: [47.2032, -122.2407],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852611'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852611',
+    neighborhoods: ['Historic Downtown Sumner', 'Valley Industrial District', 'Orting Valley Border', 'Salmon Creek'],
+    majorCorridors: ['SR-410', 'SR-167', 'Main St', 'Valley Ave E', 'East Valley Hwy'],
+    transferStation: 'Pierce County Prairie Ridge Transfer Station',
+    donationPartners: ['Sumner Goodwill', 'St. Francis House']
   },
   'university-place': {
     cityName: 'University Place',
     county: 'Pierce County',
     zipCodes: ['98466', '98467'],
     coords: [47.2368, -122.5376],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852615'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852615',
+    neighborhoods: ['Chambers Bay', 'Sunset Beach', 'Beckonridge', 'Cirque Park', 'Homestead'],
+    majorCorridors: ['Bridgeport Way W', '27th St W', 'Grandview Dr W', 'Cirque Dr W'],
+    transferStation: 'City of Tacoma Recovery & Transfer Center',
+    donationPartners: ['Tacoma Goodwill', 'St. Vincent de Paul']
   },
   'south-seattle': {
     cityName: 'South Seattle',
     county: 'King County',
     zipCodes: ['98108', '98118', '98144', '98178'],
     coords: [47.5458, -122.2923],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q5083'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q5083',
+    neighborhoods: ['Columbia City', 'Beacon Hill', 'Rainier Valley', 'Georgetown', 'Seward Park', 'Rainier Beach'],
+    majorCorridors: ['I-5', 'Rainier Ave S', 'Martin Luther King Jr Way S', 'Airport Way S'],
+    transferStation: 'Seattle South Transfer Station (S Kenyon St)',
+    donationPartners: ['Seattle Goodwill Central Store', 'St. Vincent de Paul Georgetown']
   }
 };
 

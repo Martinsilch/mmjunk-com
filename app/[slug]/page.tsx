@@ -93,14 +93,13 @@ export default async function DynamicSpokePage({ params }: PageProps) {
   
   // Hyper-local geographic contextual datasets
   const neighborhoods = meta?.neighborhoods || [
-    'Twin Lakes', 'Campus Reserve', 'Marine Hills', 'Mirror Lake',
-    'Lakota & Buenna', 'Adelaide', 'Steel Lake', 'Redondo'
+    `${cityName} City Center`, `${cityName} Residential District`, `${cityName} Business Corridors`
   ];
   const corridors = meta?.majorCorridors || [
-    'Pacific Hwy S (Hwy 99)', 'SR-18', 'SW Campus Dr', 'SW 320th St near The Commons'
+    `${cityName} Main Arterials`, `${county} Transit Corridors`
   ];
-  const transferStation = meta?.transferStation || (county === 'King County' ? 'King County Algona Transfer Station & Bow Lake Recycling' : 'Pierce County Transfer Facility');
-  const donationPartners = meta?.donationPartners || ['Federal Way St. Vincent de Paul', 'Federal Way Goodwill'];
+  const transferStation = meta?.transferStation || (county === 'King County' ? 'King County Algona Transfer Station & Bow Lake Recycling' : 'Pierce County Hidden Valley Transfer Station');
+  const donationPartners = meta?.donationPartners || (county === 'King County' ? [`${cityName} St. Vincent de Paul`, `${cityName} Goodwill`] : ['Pierce County Goodwill', 'St. Francis House']);
 
   let socialPosts = spoke?.socialPosts || [];
   if (socialPosts.length === 0) {

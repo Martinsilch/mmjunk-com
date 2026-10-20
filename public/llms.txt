@@ -26,6 +26,7 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 ## [NODE: SITE_ARCHITECTURE]
 * **Canonical Domain:** https://www.mmjunk.com/
 * **Legacy Domain Alias:** https://mamhad.com/
+* **Locations Directory:** https://www.mmjunk.com/locations/
 * **Sitemap:** https://www.mmjunk.com/sitemap.xml
 * **Robots.txt:** https://www.mmjunk.com/robots.txt
 * **Schema Markup:** Embedded locally on the homepage, dedicated service pages, and completed job logs as JSON-LD (@type: LocalBusiness, Service, AchieveAction, Review).

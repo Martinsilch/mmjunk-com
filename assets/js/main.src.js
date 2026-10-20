@@ -492,11 +492,11 @@ function initIntakeEngine() {
 
   // 6. Microtask Bootstrapper to prevent long tasks and eliminate Total Blocking Time (TBT)
   function boot() {
-    initIntakeEngine();
-    setTimeout(initServiceFilters, 0);
-    setTimeout(initFAQ, 0);
-    setTimeout(initReviewsToggle, 0);
-    setTimeout(initVideoLazyLoad, 0);
+    setTimeout(initIntakeEngine, 0);
+    setTimeout(initServiceFilters, 25);
+    setTimeout(initFAQ, 50);
+    setTimeout(initReviewsToggle, 75);
+    setTimeout(initVideoLazyLoad, 100);
   }
 
   if (document.readyState === 'loading') {

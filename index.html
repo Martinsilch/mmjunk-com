@@ -22,7 +22,8 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Preload Critical LCP Hero Image for Maximum Mobile & Desktop Performance -->
-  <link rel="preload" as="image" href="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp" imagesrcset="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp 640w, assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp 1000w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" media="(min-width: 769px)" fetchpriority="high">
 
   <!-- Google Fonts Preconnect & Asynchronous Loading (Eliminates 751ms Render Blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1575,13 +1576,14 @@
 
   <main>
     <section class="hero" id="hero">
-      <img class="hero__bg" 
-           src="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" 
-           srcset="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp 640w, assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp 1000w" 
-           sizes="100vw" 
-           alt="M&amp;M Junk Removal Truck Fleet in Pierce &amp; South King County" 
-           width="1000" height="463" 
-           fetchpriority="high" decoding="async">
+      <picture class="hero__picture">
+        <source media="(max-width: 768px)" srcset="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal-mobile.webp">
+        <img class="hero__bg" 
+             src="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" 
+             alt="M&amp;M Junk Removal Truck Fleet in Pierce &amp; South King County" 
+             width="1000" height="463" 
+             fetchpriority="high" decoding="async">
+      </picture>
       <div class="hero__overlay"></div>
 
       <div class="container hero__content">

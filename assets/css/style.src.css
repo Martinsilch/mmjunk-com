@@ -411,11 +411,14 @@ button {
 .hero__bg {
   position: absolute;
   inset: 0;
-  background: url('../images/Federal Way WA Junk and Trash Removal.webp') center/cover no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   filter: brightness(0.35) contrast(1.15);
   transform: scale(1.04);
   transition: transform 10s ease;
   z-index: 1;
+  pointer-events: none;
 }
 
 .hero:hover .hero__bg {
@@ -783,7 +786,7 @@ button {
 }
 
 .btn--youtube {
-  background: #ff0000;
+  background: #c00000;
   color: #ffffff !important;
   border: none;
   font-weight: 700;
@@ -794,14 +797,14 @@ button {
 }
 
 .btn--youtube:hover {
-  background: #cc0000;
+  background: #990000;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(255, 0, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(192, 0, 0, 0.4);
 }
 
 .btn--facebook {
-  background: #1877f2;
+  background: #1565c0;
   color: #ffffff !important;
   border: none;
   font-weight: 700;
@@ -812,10 +815,10 @@ button {
 }
 
 .btn--facebook:hover {
-  background: #166fe5;
+  background: #0d47a1;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(24, 119, 242, 0.4);
+  box-shadow: 0 4px 14px rgba(21, 101, 192, 0.4);
 }
 
 /* Documented Field Jobs Grid */
@@ -909,7 +912,7 @@ button {
   gap: 6px;
   font-size: 0.82rem;
   font-weight: 700;
-  color: #1877f2;
+  color: #1565c0;
   text-decoration: none;
   margin-top: auto;
   padding-top: 10px;
@@ -918,7 +921,7 @@ button {
 }
 
 .field-dispatch-card__link:hover {
-  color: #166fe5;
+  color: #0d47a1;
   text-decoration: underline;
 }
 
@@ -992,9 +995,9 @@ button {
 .social-authority-card__bbb-badge {
   font-weight: 900;
   font-size: 0.8rem;
-  color: #16a34a;
+  color: #15803d;
   background: #ecfdf5;
-  border: 1.5px solid #a7f3d0;
+  border: 1.5px solid #86efac;
   padding: 3px 6px;
   border-radius: 6px;
   line-height: 1;
@@ -1273,7 +1276,7 @@ button {
 
 .review-card__date {
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: var(--text-muted);
 }
 
 .review-card__google-link {
@@ -1466,18 +1469,18 @@ button {
 }
 
 .service-filter-btn:hover {
-  border-color: var(--primary);
+  border-color: var(--primary-dark);
   background: #fff7ed;
-  color: var(--primary);
+  color: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.12);
+  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.12);
 }
 
 .service-filter-btn.active {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.3);
 }
 
 .service-silo {
@@ -1680,7 +1683,7 @@ button {
 .service-card__items li svg {
   flex-shrink: 0;
   margin-top: 3px;
-  color: #16a34a;
+  color: #15803d;
 }
 
 .service-card__actions {
@@ -2345,7 +2348,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #ea580c;
+  background: #9a3412;
   color: #ffffff;
   font-size: 0.8rem;
   font-weight: 800;
@@ -2572,7 +2575,7 @@ button {
 }
 
 .zip-status.valid {
-  color: #16a34a;
+  color: #15803d;
 }
 
 .zip-status.invalid {

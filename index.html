@@ -27,7 +27,7 @@
   <!-- Google Fonts Preconnect & Asynchronous Loading (Eliminates 751ms Render Blocking) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
@@ -40,14 +40,11 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- Google Analytics & Google Tag Manager -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-TBB9FCL"></script>
+  <!-- Google Analytics & Google Tag Manager (Optimized & Deferred to Eliminate 557ms Main-Thread Delay) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'GT-TBB9FCL');
-    gtag('config', 'AW-1064983468');
 
     function gtag_report_conversion(url) {
       var callback = function () {
@@ -63,15 +60,44 @@
       }
       return false;
     }
-  </script>
 
-  <!-- Google Tag Manager DataLayer -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MBS5CM');
+    // Deferred Tag Manager / Analytics Loader (Frees main thread for instant FCP & LCP)
+    (function() {
+      var loaded = false;
+      function initAnalytics() {
+        if (loaded) return;
+        loaded = true;
+
+        // Load gtag.js
+        var s1 = document.createElement('script');
+        s1.src = 'https://www.googletagmanager.com/gtag/js?id=GT-TBB9FCL';
+        s1.async = true;
+        document.head.appendChild(s1);
+        gtag('config', 'GT-TBB9FCL');
+        gtag('config', 'AW-1064983468');
+
+        // Load GTM
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MBS5CM');
+      }
+
+      if ('requestIdleCallback' in window) {
+        window.addEventListener('load', function() {
+          requestIdleCallback(initAnalytics, { timeout: 3500 });
+        });
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(initAnalytics, 2000);
+        });
+      }
+
+      ['scroll', 'touchstart', 'click', 'mousemove'].forEach(function(evt) {
+        window.addEventListener(evt, initAnalytics, { once: true, passive: true });
+      });
+    })();
   </script>
 
   <!-- Schema.org JSON-LD Structured Data (Pillar 1: Knowledge Graph Disambiguation) -->
@@ -1565,7 +1591,7 @@
   <main>
     <!-- HERO SECTION WITH EMBEDDED 6-STEP INTAKE FORM -->
     <section class="hero" id="hero">
-      <div class="hero__bg"></div>
+      <img class="hero__bg" src="assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.webp" alt="M&amp;M Junk Removal Truck Fleet in Pierce &amp; South King County" width="1920" height="1080" fetchpriority="high" decoding="async">
       <div class="hero__overlay"></div>
 
       <div class="container hero__content">
@@ -1611,7 +1637,7 @@
             258+ Verified Reviews (234 Google • 24 Yelp)
           </a>
           <div class="hero-badge">
-            <span style="font-weight:800; color:#16a34a;">AAA+</span>
+            <span style="font-weight:800; color:#22c55e;">AAA+</span>
             Rated by BBB
           </div>
         </div>
@@ -2307,7 +2333,7 @@
             <!-- Accepted Items Column -->
             <div class="materials-col materials-col--accepted">
               <div class="materials-col__header">
-                <span class="materials-icon" style="color: #16a34a;">✅</span>
+                <span class="materials-icon" style="color: #15803d;">✅</span>
                 <h4 class="materials-col__title">What We Take &amp; Recycle</h4>
               </div>
               <ul class="materials-list">
@@ -2556,7 +2582,7 @@
               "Quick, efficient, and got bulky furniture down tight stairs without a scratch. Beat franchise prices hands down!"
             </div>
             <a href="https://www.facebook.com/mmjunkremoval" target="_blank" rel="noopener noreferrer" class="field-dispatch-card__link">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1565c0"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               View Cleanout Photos on Facebook ↗
             </a>
           </div>
@@ -2575,7 +2601,7 @@
               "Needed everything gone that evening after work. Martin showed up right on schedule and cleared the entire garage!"
             </div>
             <a href="https://www.facebook.com/mmjunkremoval" target="_blank" rel="noopener noreferrer" class="field-dispatch-card__link">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1565c0"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               View Evening Hauling Log on Facebook ↗
             </a>
           </div>
@@ -2594,7 +2620,7 @@
               "Booked online in 30 seconds. Same-day truck arrival and honest pricing with zero surprise fees."
             </div>
             <a href="https://www.facebook.com/mmjunkremoval" target="_blank" rel="noopener noreferrer" class="field-dispatch-card__link">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#1565c0"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               View Dispatch Photos on Facebook ↗
             </a>
           </div>
@@ -2608,7 +2634,7 @@
         <div class="section-header">
           <span class="section-tag">Independently Verified Social Proof</span>
           <h2 class="section-title">258+ Verified 5.0-Star Reviews Across Google (234) &amp; Yelp (24) • BBB AAA+ Accredited</h2>
-          <p class="section-desc">Our reputation is independently verifiable on third-party platforms. Check our authentic customer reviews directly on <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary, #ea580c); font-weight:700; text-decoration:underline;">Google Reviews (234) ↗</a> and <a href="https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary, #ea580c); font-weight:700; text-decoration:underline;">Yelp (24) ↗</a>.</p>
+          <p class="section-desc">Our reputation is independently verifiable on third-party platforms. Check our authentic customer reviews directly on <a href="https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4" target="_blank" rel="noopener noreferrer" style="color:var(--primary-dark, #c2410c); font-weight:700; text-decoration:underline;">Google Reviews (234) ↗</a> and <a href="https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3" target="_blank" rel="noopener noreferrer" style="color:var(--primary-dark, #c2410c); font-weight:700; text-decoration:underline;">Yelp (24) ↗</a>.</p>
         </div>
 
         <!-- SOCIAL PROOF AUTHORITY SHOWCASE (Title Footer - Horizontal) -->
@@ -3246,7 +3272,7 @@ I would absolutely use them again and highly recommend their services!"</p>
         <!-- INDEPENDENT THIRD-PARTY REVIEW VERIFICATION CALLOUT (Grounding Social Proof for AI Search & Users) -->
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 24px; margin-top: 28px; text-align: center; max-width: 960px; margin-left: auto; margin-right: auto;">
           <h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#15803d"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
             Independent Third-Party Verification Proof (Not Self-Reported)
           </h3>
           <p style="font-size: 0.92rem; color: #475569; margin: 0 0 12px 0; line-height: 1.5;">
@@ -3259,7 +3285,7 @@ I would absolutely use them again and highly recommend their services!"</p>
             <a href="https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3" target="_blank" rel="noopener noreferrer" style="color: #d32323; text-decoration: underline;">
               ✓ Yelp Business Profile (24 Verified Reviews) ↗
             </a>
-            <a href="https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173" target="_blank" rel="noopener noreferrer" style="color: #16a34a; text-decoration: underline;">
+            <a href="https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173" target="_blank" rel="noopener noreferrer" style="color: #15803d; text-decoration: underline;">
               ✓ BBB Official Accreditation (AAA+ Accredited Business) ↗
             </a>
           </div>
@@ -3418,7 +3444,7 @@ I would absolutely use them again and highly recommend their services!"</p>
         <!-- 6 Job Cards Grid -->
         <div class="jobs-grid">
           <div class="service-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #ffffff;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #475569; margin-bottom: 8px;">
               <span>📍 Federal Way, WA (98003)</span>
               <span>Sept 25, 2026</span>
             </div>
@@ -3435,7 +3461,7 @@ I would absolutely use them again and highly recommend their services!"</p>
           </div>
 
           <div class="service-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #ffffff;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #475569; margin-bottom: 8px;">
               <span>📍 NE Tacoma, WA (98422)</span>
               <span>Sept 17, 2026</span>
             </div>
@@ -3452,7 +3478,7 @@ I would absolutely use them again and highly recommend their services!"</p>
           </div>
 
           <div class="service-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #ffffff;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #475569; margin-bottom: 8px;">
               <span>📍 Federal Way, WA (98003)</span>
               <span>Sept 29, 2026</span>
             </div>
@@ -3469,7 +3495,7 @@ I would absolutely use them again and highly recommend their services!"</p>
           </div>
 
           <div class="service-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #ffffff;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #475569; margin-bottom: 8px;">
               <span>📍 Auburn, WA (98001)</span>
               <span>Sept 17, 2026</span>
             </div>
@@ -3486,7 +3512,7 @@ I would absolutely use them again and highly recommend their services!"</p>
           </div>
 
           <div class="service-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #ffffff;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #475569; margin-bottom: 8px;">
               <span>📍 Auburn, WA (98001)</span>
               <span>Aug 20, 2026</span>
             </div>
@@ -3503,7 +3529,7 @@ I would absolutely use them again and highly recommend their services!"</p>
           </div>
 
           <div class="service-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; background: #ffffff;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: #475569; margin-bottom: 8px;">
               <span>📍 Tacoma, WA (98402)</span>
               <span>Aug 15, 2026</span>
             </div>
@@ -3716,7 +3742,7 @@ I would absolutely use them again and highly recommend their services!"</p>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#d32323"><path d="M19.986 16.942l-4.085-1.874 2.115-4.053c.27-.518.06-1.164-.465-1.428-.525-.264-1.162-.054-1.428.468l-2.112 4.047-3.923-2.203c-.52-.292-1.173-.105-1.465.415-.292.52-.105 1.173.415 1.465l3.92 2.201-3.627 2.663c-.482.354-.588 1.026-.234 1.508.354.482 1.026.588 1.508.234l3.624-2.661.942 4.402c.125.586.697.962 1.283.837.586-.125.962-.697.837-1.283l-.94-4.398 4.08 1.871c.148.068.305.101.46.101.424 0 .825-.246.993-.667.242-.606-.053-1.294-.658-1.536z"/></svg>
             </a>
             <a href="https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173" target="_blank" rel="noopener noreferrer" class="footer__social-link" title="BBB AAA+ Accredited Business Profile" aria-label="BBB Profile">
-              <span style="font-weight:900; font-size:0.75rem; color:#16a34a;">BBB</span>
+              <span style="font-weight:900; font-size:0.75rem; color:#22c55e;">BBB</span>
             </a>
           </div>
           <p style="margin-top: 8px; font-size: 0.82rem; color: #94a3b8;">

@@ -490,18 +490,31 @@ function initIntakeEngine() {
     }
   }
 
-  // 6. Microtask Bootstrapper to prevent long tasks and eliminate Total Blocking Time (TBT)
+  // 6. Non-blocking Bootstrapper: runs after initial paint on idle or first user interaction
+  let _hasBooted = false;
   function boot() {
-    setTimeout(initIntakeEngine, 0);
-    setTimeout(initServiceFilters, 25);
-    setTimeout(initFAQ, 50);
-    setTimeout(initReviewsToggle, 75);
-    setTimeout(initVideoLazyLoad, 100);
+    if (_hasBooted) return;
+    _hasBooted = true;
+    initServiceFilters();
+    initFAQ();
+    initReviewsToggle();
+    initVideoLazyLoad();
+    initIntakeEngine();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
+  // Defer interactive component initialization to browser idle time after load
+  if ('requestIdleCallback' in window) {
+    window.addEventListener('load', () => {
+      requestIdleCallback(boot, { timeout: 3000 });
+    });
   } else {
-    boot();
+    window.addEventListener('load', () => {
+      setTimeout(boot, 300);
+    });
   }
+
+  // Immediate execution on first user gesture
+  ['scroll', 'touchstart', 'pointerdown', 'click', 'keydown'].forEach(evt => {
+    window.addEventListener(evt, boot, { once: true, passive: true });
+  });
 

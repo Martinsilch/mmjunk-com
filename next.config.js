@@ -89,11 +89,19 @@ const nextConfig = {
       },
       {
         source: '/locations/federal-way-junk-removal',
-        destination: '/junk-removal-federal-way-wa/index.html',
+        destination: '/junk-removal-federal-way-wa',
       },
       {
         source: '/locations/federal-way-junk-removal/',
-        destination: '/junk-removal-federal-way-wa/index.html',
+        destination: '/junk-removal-federal-way-wa',
+      },
+      {
+        source: '/locations/:slug',
+        destination: '/:slug',
+      },
+      {
+        source: '/locations/:slug/',
+        destination: '/:slug',
       },
       {
         source: '/locations/auburn',

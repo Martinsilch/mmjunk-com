@@ -4,6 +4,11 @@ export interface MunicipalityMeta {
   zipCodes: string[];
   coords: [number, number];
   wikidataUri: string;
+  neighborhoods?: string[];
+  majorCorridors?: string[];
+  transferStation?: string;
+  donationPartners?: string[];
+  landmarks?: string[];
 }
 
 export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
@@ -12,35 +17,78 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     county: 'King County',
     zipCodes: ['98001', '98003', '98023', '98063', '98093'],
     coords: [47.3223, -122.3126],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852586'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852586',
+    neighborhoods: [
+      'Twin Lakes',
+      'Campus Reserve',
+      'Marine Hills',
+      'Mirror Lake',
+      'Lakota & Buenna',
+      'Adelaide',
+      'Steel Lake',
+      'Redondo'
+    ],
+    majorCorridors: [
+      'Pacific Hwy S (Hwy 99)',
+      'SR-18',
+      'SW Campus Dr',
+      'SW 320th St near The Commons'
+    ],
+    transferStation: 'King County Algona Transfer Station & Bow Lake Recycling',
+    donationPartners: [
+      'Federal Way St. Vincent de Paul',
+      'Federal Way Goodwill'
+    ],
+    landmarks: [
+      'The Commons at Federal Way',
+      'Celebration Park',
+      'Federal Way Community Center',
+      'Steel Lake Park'
+    ]
   },
   'auburn': {
     cityName: 'Auburn',
     county: 'King County',
     zipCodes: ['98001', '98002', '98071', '98092'],
     coords: [47.3073, -122.2285],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q758414'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q758414',
+    neighborhoods: ['Lea Hill', 'West Hill', 'Lakeland Hills', 'North Auburn', 'Game Farm Wilderness'],
+    majorCorridors: ['SR-167 (Valley Freeway)', 'SR-18', 'Auburn Way S / Auburn Way N'],
+    transferStation: 'Algona Transfer Station & Bow Lake Recycling',
+    donationPartners: ['Auburn Valley Humane Society Thrift', 'Auburn Goodwill']
   },
   'kent': {
     cityName: 'Kent',
     county: 'King County',
     zipCodes: ['98030', '98031', '98032', '98035', '98042', '98064'],
     coords: [47.3809, -122.2348],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852579'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852579',
+    neighborhoods: ['Kent East Hill', 'West Hill', 'Valley Industrial Park', 'Lake Meridian', 'Panther Lake'],
+    majorCorridors: ['SR-167', 'I-5 (Exit 149)', 'Central Ave', 'SE 256th St'],
+    transferStation: 'Bow Lake Recycling and Transfer Station',
+    donationPartners: ['Kent Valley Goodwill', 'St. Vincent de Paul Kent']
   },
   'tacoma': {
     cityName: 'Tacoma',
     county: 'Pierce County',
     zipCodes: ['98402', '98403', '98404', '98405', '98406', '98407', '98408', '98409', '98416', '98418', '98421', '98422'],
     coords: [47.2529, -122.4443],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q202488'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q202488',
+    neighborhoods: ['North End', 'Proctor District', 'South Tacoma', 'NE Tacoma', 'Hilltop', 'Point Ruston', 'Fern Hill'],
+    majorCorridors: ['I-5', 'SR-16', 'Pacific Ave', '6th Ave'],
+    transferStation: 'City of Tacoma Recovery & Transfer Center (S Mullen St)',
+    donationPartners: ['Tacoma Goodwill', 'St. Vincent de Paul Tacoma']
   },
   'edgewood': {
     cityName: 'Edgewood',
     county: 'Pierce County',
     zipCodes: ['98371', '98372'],
     coords: [47.2504, -122.2935],
-    wikidataUri: 'https://www.wikidata.org/wiki/Q852583'
+    wikidataUri: 'https://www.wikidata.org/wiki/Q852583',
+    neighborhoods: ['North Edgewood', 'Jovita', 'Surprise Lake', 'Edgewood Plateau'],
+    majorCorridors: ['Meridian Ave E (SR-161)', 'Freeman Rd E', 'Valley Ave E'],
+    transferStation: 'Pierce County Hidden Valley Transfer Station',
+    donationPartners: ['Puyallup Valley Goodwill', 'St. Francis House']
   },
   'des-moines': {
     cityName: 'Des Moines',

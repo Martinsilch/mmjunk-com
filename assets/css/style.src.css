@@ -3266,6 +3266,8 @@ button {
 
   .hero__bg {
     object-position: 58% center;
+    transform: none;
+    transition: none;
   }
 
   .hero__eyebrow {
@@ -3273,6 +3275,8 @@ button {
     white-space: normal;
     font-size: 0.76rem;
     letter-spacing: normal;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     padding: 6px 12px;
     line-height: 1.45;
     border-radius: 12px;

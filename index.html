@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Preload Critical LCP Hero Image & Font in First 500 Bytes for Sub-Second Discovery -->
+  <link rel="preload" as="image" href="assets/images/team-hero-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/team-hero.webp" media="(min-width: 769px)" fetchpriority="high">
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
+
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#ea580c">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -20,11 +25,6 @@
   <meta property="og:site_name" content="M&amp;M Junk Removal">
   <meta property="og:image" content="https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png">
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Preload Critical Local Font & LCP Hero Images (Eliminates CLS & Maximizes Speed) -->
-  <link rel="preload" href="assets/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/images/team-hero-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/images/team-hero.webp" media="(min-width: 769px)" fetchpriority="high">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.png">

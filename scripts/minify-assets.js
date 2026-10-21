@@ -16,6 +16,17 @@ async function run() {
   }
   console.log(`CSS: ${cssSrc.length} -> ${cssMinified.styles.length} bytes (saved ${(100 - (cssMinified.styles.length / cssSrc.length * 100)).toFixed(1)}%)`);
 
+  // 1b. Inline minified CSS in index.html to eliminate render-blocking CSS delay
+  if (fs.existsSync('index.html')) {
+    let indexHtml = fs.readFileSync('index.html', 'utf8');
+    const styleRegex = /<style id="app-styles">[\s\S]*?<\/style>/;
+    if (styleRegex.test(indexHtml)) {
+      indexHtml = indexHtml.replace(styleRegex, `<style id="app-styles">${cssMinified.styles}</style>`);
+      fs.writeFileSync('index.html', indexHtml);
+      console.log('Inlined minified CSS into index.html (0ms render-blocking)');
+    }
+  }
+
   // 2. Minify JS
   const jsSrc = fs.readFileSync('assets/js/main.src.js', 'utf8');
   const jsMinified = await minify(jsSrc, {

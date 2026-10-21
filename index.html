@@ -21,17 +21,10 @@
   <meta property="og:image" content="https://www.mmjunk.com/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Preload Critical LCP Hero Image for Maximum Mobile & Desktop Performance -->
+  <!-- Preload Critical Local Font & LCP Hero Images (Eliminates CLS & Maximizes Speed) -->
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/images/team-hero-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
   <link rel="preload" as="image" href="assets/images/team-hero.webp" media="(min-width: 769px)" fetchpriority="high">
-
-  <!-- Google Fonts Preconnect & Asynchronous Loading (Eliminates 751ms Render Blocking) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
-  </noscript>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
@@ -197,7 +190,7 @@
   <main>
     <section class="hero" id="hero">
       <picture class="hero__picture">
-        <source media="(max-width: 768px)" srcset="assets/images/team-hero-mobile.webp">
+        <source media="(max-width: 768px)" srcset="assets/images/team-hero-mobile.webp" width="680" height="900">
         <img class="hero__bg" 
              src="assets/images/team-hero.webp" 
              alt="M&amp;M Junk Removal Team and Truck Fleet in Pierce &amp; South King County" 

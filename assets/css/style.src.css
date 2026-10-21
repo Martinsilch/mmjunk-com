@@ -480,10 +480,7 @@ button {
 }
 
 .hero__title span {
-  background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7));
+  color: var(--primary);
 }
 
 .hero__subtitle {

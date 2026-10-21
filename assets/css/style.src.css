@@ -163,7 +163,7 @@ button {
   height: 100%;
   border-radius: 50%;
   background-color: #f97316;
-  animation: pulse 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  animation: pulse 1.8s cubic-bezier(0.24, 0, 0.38, 1) 3;
   z-index: -1;
   pointer-events: none;
 }
@@ -3246,6 +3246,10 @@ button {
   }
 
   /* Header Compactness */
+  .live-pulse::before {
+    animation: none;
+  }
+
   .header__actions .btn--outline-dark {
     display: none !important; /* Persistent call action is in bottom sticky bar */
   }

@@ -5,14 +5,17 @@
 
 // Google Ads conversion tracking function
 function gtag_report_conversion(url) {
-  if (typeof window.initAnalytics === 'function') {
-    window.initAnalytics();
-  }
   var callback = function () {
     if (typeof(url) !== 'undefined') {
       window.location = url;
     }
   };
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event': 'conversion',
+    'send_to': 'AW-1064983468/urRRCJDHq6obEKy36fsD',
+    'event_callback': callback
+  });
   if (typeof gtag === 'function') {
     gtag('event', 'conversion', {
       'send_to': 'AW-1064983468/urRRCJDHq6obEKy36fsD',

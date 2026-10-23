@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db';
-import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
+import { AUTHORIZED_MUNICIPALITIES, getNearbyMunicipalities } from '@/lib/geo-resolver';
 import { getReputationMetrics } from '@/lib/reputation';
 
 interface PageProps {
@@ -90,6 +90,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
   const zipCodes = (spoke?.zipCodes && spoke.zipCodes.length > 0) ? spoke.zipCodes : (meta?.zipCodes || ['98001']);
   const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || 'https://www.wikidata.org/wiki/Q852586';
   const jobs = spoke?.jobs || [];
+  const nearbyCities = getNearbyMunicipalities(cleanSlug, 4);
   
   // Hyper-local geographic contextual datasets
   const neighborhoods = meta?.neighborhoods || [
@@ -737,6 +738,53 @@ export default async function DynamicSpokePage({ params }: PageProps) {
                   </p>
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Section: Regional Fleet Coverage & Internal Linking Mesh */}
+      {nearbyCities.length > 0 && (
+        <section style={{ marginBottom: '44px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <span style={{ fontSize: '12px', textTransform: 'uppercase', fontWeight: 800, color: '#ea580c', letterSpacing: '0.05em' }}>
+              Regional Fleet Mesh
+            </span>
+          </div>
+          <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#111827', margin: '0 0 10px 0' }}>
+            Also Serving Nearby Communities from {cityName}
+          </h2>
+          <p style={{ fontSize: '15px', color: '#4b5563', margin: '0 0 20px 0', lineHeight: 1.6 }}>
+            Our radio-dispatched hauling trucks operate continuously across {county} and surrounding borders. Need same-day junk pickup or property cleanouts in an adjacent community? We provide direct service to our nearest municipal hubs:
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+            {nearbyCities.map((nearby) => (
+              <Link
+                key={nearby.slug}
+                href={`/junk-removal-${nearby.slug}-wa`}
+                style={{
+                  display: 'block',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '10px',
+                  padding: '20px',
+                  backgroundColor: '#ffffff',
+                  textDecoration: 'none',
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <span style={{ fontSize: '11px', fontWeight: 700, color: '#2563eb', textTransform: 'uppercase' }}>
+                    ~{nearby.distanceMiles} miles away
+                  </span>
+                  <span style={{ fontSize: '12px', color: '#9ca3af' }}>↗</span>
+                </div>
+                <h3 style={{ fontSize: '17px', fontWeight: 700, color: '#111827', margin: '0 0 6px 0' }}>
+                  {nearby.cityName} Junk Removal
+                </h3>
+                <p style={{ fontSize: '13px', color: '#4b5563', margin: 0, lineHeight: 1.4 }}>
+                  {nearby.corridor ? `Rapid dispatch via ${nearby.corridor}.` : `Local hauling & property cleanouts in ${nearby.cityName}.`}
+                </p>
+              </Link>
             ))}
           </div>
         </section>

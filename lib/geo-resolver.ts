@@ -327,3 +327,48 @@ export function resolveMunicipality(cityOrZip: string): MunicipalityMeta | null 
   }
   return null;
 }
+
+export interface NearbyMunicipality {
+  slug: string;
+  cityName: string;
+  county: 'King County' | 'Pierce County';
+  distanceMiles: number;
+  corridor?: string;
+}
+
+/**
+ * Calculates physically adjacent municipalities using the Haversine distance formula
+ * to establish a coherent internal linking mesh for local SEO & PageRank distribution.
+ */
+export function getNearbyMunicipalities(currentSlug: string, limit: number = 4): NearbyMunicipality[] {
+  const normalized = currentSlug.toLowerCase().trim().replace(/^junk-removal-/, '').replace(/-wa$/, '');
+  const current = AUTHORIZED_MUNICIPALITIES[normalized];
+  if (!current) return [];
+
+  const [lat1, lon1] = current.coords;
+  const R = 3958.8; // Earth's radius in miles
+
+  return Object.entries(AUTHORIZED_MUNICIPALITIES)
+    .filter(([slug]) => slug !== normalized)
+    .map(([slug, meta]) => {
+      const [lat2, lon2] = meta.coords;
+      const dLat = (lat2 - lat1) * (Math.PI / 180);
+      const dLon = (lon2 - lon1) * (Math.PI / 180);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const distanceMiles = Math.round(R * c * 10) / 10;
+      return {
+        slug,
+        cityName: meta.cityName,
+        county: meta.county,
+        distanceMiles,
+        corridor: meta.majorCorridors?.[0]
+      };
+    })
+    .sort((a, b) => a.distanceMiles - b.distanceMiles)
+    .slice(0, limit);
+}
+

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db';
-import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
+import { AUTHORIZED_MUNICIPALITIES, resolveNeighborhoodEntity } from '@/lib/geo-resolver';
 import { getReputationMetrics } from '@/lib/reputation';
 
 interface JobPageProps {
@@ -86,6 +86,16 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const logId = job.disposalReceipt || job.externalJobId || `MMJ-${job.id.slice(-6).toUpperCase()}`;
   const weightText = job.weightLbs ? `${job.weightLbs.toLocaleString()} lbs` : 'Standard Volume Tier';
 
+  const meta = spoke?.slug ? AUTHORIZED_MUNICIPALITIES[spoke.slug] : null;
+  const neighborhoodMatch = resolveNeighborhoodEntity(
+    `${job.slug || ''} ${job.itemCategory || ''} ${job.customerReview || ''}`,
+    meta
+  );
+  const neighborhoodName = neighborhoodMatch?.name;
+  const targetZip = neighborhoodMatch?.postalCode || zipCodes[0] || '98001';
+  const targetCoords = neighborhoodMatch?.coords || (spoke?.coordinates && spoke.coordinates.length === 2 ? (spoke.coordinates as [number, number]) : meta?.coords || null);
+  const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || 'https://www.wikidata.org/wiki/Q852586';
+
   const HUB_PHONE = '+1-253-886-7724';
   const HUB_PHONE_RAW = '2538867724';
   const HUB_URL = 'https://www.mmjunk.com';
@@ -162,21 +172,26 @@ export default async function JobStoryPage({ params }: JobPageProps) {
         endTime: job.completedAt ? new Date(job.completedAt).toISOString() : undefined,
         location: {
           '@type': 'Place',
-          name: `${cityName}, WA Operations`,
+          name: neighborhoodName ? `${neighborhoodName}, ${cityName}, WA` : `${cityName}, WA Operations`,
           address: {
             '@type': 'PostalAddress',
             addressLocality: cityName,
             addressRegion: 'WA',
-            postalCode: zipCodes[0] || '98001',
+            postalCode: targetZip,
             addressCountry: 'US'
           },
-          ...(spoke?.coordinates && spoke.coordinates.length === 2 ? {
+          ...(targetCoords ? {
             geo: {
               '@type': 'GeoCoordinates',
-              latitude: spoke.coordinates[0],
-              longitude: spoke.coordinates[1]
+              latitude: targetCoords[0],
+              longitude: targetCoords[1]
             }
-          } : {})
+          } : {}),
+          containedInPlace: {
+            '@type': 'City',
+            name: cityName,
+            '@id': wikidataUri
+          }
         },
         ...(job.customerReview ? {
           result: {
@@ -299,18 +314,18 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             {formattedDate}
           </span>
           <span style={{ backgroundColor: '#f1f5f9', color: '#475569', padding: '4px 10px', borderRadius: '9999px', fontSize: '12px', fontWeight: 600 }}>
-            {cityName}, WA ({zipCodes.join(', ')})
+            📍 {neighborhoodName ? `${neighborhoodName}, ${cityName}` : cityName}, WA ({targetZip})
           </span>
         </div>
 
         {/* Case Study Title */}
         <h1 style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: '0 0 16px 0', lineHeight: 1.25 }}>
-          {job.serviceType}: {cityName}, WA
+          {job.serviceType}: {neighborhoodName ? `${neighborhoodName}, ` : ''}{cityName}, WA
         </h1>
 
         {/* Executive Summary */}
         <p style={{ fontSize: '18px', color: '#334155', marginBottom: '32px', lineHeight: 1.6 }}>
-          Operational field summary: On {formattedDate}, M&M Junk Removal completed the rapid extraction, transport, and certified disposal of <strong>{job.itemCategory}</strong> in <strong>{cityName}, WA</strong>. 
+          Operational field summary: On {formattedDate}, M&M Junk Removal completed the rapid extraction, transport, and certified disposal of <strong>{job.itemCategory}</strong> in <strong>{neighborhoodName ? `${neighborhoodName}, ` : ''}{cityName}, WA</strong>. 
           Carried out via single-operator dispatch utilizing our {job.equipmentUsed || '16-foot high-wall box truck with hydraulic liftgate'}, materials were diverted for eco-sorting and compliant transfer at {job.disposalSite || 'the local transfer facility'}.
         </p>
 
@@ -338,6 +353,12 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                     <Link href={`/junk-removal-${spoke?.slug || cityName.toLowerCase()}-wa`} style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 600 }}>
                       {cityName}, WA ({county}) ↗
                     </Link>
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
+                  <td style={{ padding: '12px 20px', fontWeight: 700, color: '#64748b', backgroundColor: '#fafbfc' }}>Target Sector / Neighborhood</td>
+                  <td style={{ padding: '12px 20px', fontWeight: 600 }}>
+                    {neighborhoodName ? `${neighborhoodName} (${targetZip})` : `${cityName} Service Radius (${targetZip})`}
                   </td>
                 </tr>
                 <tr style={{ borderBottom: '1px solid #f1f5f9' }}>

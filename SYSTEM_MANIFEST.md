@@ -76,6 +76,10 @@ flowchart TD
   * Rather than creating spammy sitewide footer links, every city spoke page dynamically computes its **top 4 physically adjacent neighbors**.
   * Renders the **"Also Serving Nearby Communities"** component on each spoke page with exact driving distances, connecting corridors, and keyword-rich anchor text.
   * **SEO Benefit:** Creates a topographic mesh that circulates PageRank horizontally, eliminates orphan/doorway page risk, and boosts organic rankings in cross-municipal border zones.
+* **Semantic Neighborhood Clustering & Micro-Entity Containment (`getNeighborhoodEntities`):**
+  * Over 100+ micro-neighborhoods (e.g. Twin Lakes, Campus Reserve, Lakeland Hills, Proctor District, Point Ruston) are mapped to their specific postal codes and centroid coordinates.
+  * **Google-Compliant `containedInPlace` Schema:** Injects structured `Place` entities into `areaServed` and `AchieveAction` schemas nested within the parent Wikidata City entity, capturing hyper-local queries without triggering Google Search Console breadcrumb errors.
+  * **Visible On-Page Badges:** Renders interactive postal-code-anchored neighborhood badges (e.g. `📍 Twin Lakes (98023)`) linking search intent directly to local service areas.
 
 ### Subsystem B: Hub-and-Spoke Hierarchy
 * **Master Location Hub (`app/locations/page.tsx`):**

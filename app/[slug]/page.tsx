@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db';
-import { AUTHORIZED_MUNICIPALITIES, getNearbyMunicipalities } from '@/lib/geo-resolver';
+import { AUTHORIZED_MUNICIPALITIES, getNearbyMunicipalities, getNeighborhoodEntities } from '@/lib/geo-resolver';
 import { getReputationMetrics } from '@/lib/reputation';
 
 interface PageProps {
@@ -91,6 +91,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
   const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || 'https://www.wikidata.org/wiki/Q852586';
   const jobs = spoke?.jobs || [];
   const nearbyCities = getNearbyMunicipalities(cleanSlug, 4);
+  const neighborhoodEntities = meta ? getNeighborhoodEntities(meta) : [];
   
   // Hyper-local geographic contextual datasets
   const neighborhoods = meta?.neighborhoods || [
@@ -201,9 +202,28 @@ export default async function DynamicSpokePage({ params }: PageProps) {
             '@type': 'PostalCode',
             'postalCode': code
           })),
-          ...neighborhoods.map(n => ({
+          ...neighborhoodEntities.map(ne => ({
             '@type': 'Place',
-            'name': n
+            'name': `${ne.name}, ${cityName}, WA`,
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': cityName,
+              'addressRegion': 'WA',
+              'postalCode': ne.postalCode,
+              'addressCountry': 'US'
+            },
+            ...(ne.coords ? {
+              'geo': {
+                '@type': 'GeoCoordinates',
+                'latitude': ne.coords[0],
+                'longitude': ne.coords[1]
+              }
+            } : {}),
+            'containedInPlace': {
+              '@type': 'City',
+              'name': cityName,
+              '@id': wikidataUri
+            }
           }))
         ],
         'hasOfferCatalog': {
@@ -418,9 +438,36 @@ export default async function DynamicSpokePage({ params }: PageProps) {
             Neighborhoods We Actively Serve in {cityName}:
           </h3>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-            {neighborhoods.map((n) => (
-              <span key={n} style={{ backgroundColor: '#ffffff', border: '1px solid #d1d5db', borderRadius: '20px', padding: '6px 14px', fontSize: '13px', fontWeight: 600, color: '#374151' }}>
-                📍 {n}
+            {neighborhoodEntities.map((ne) => (
+              <span
+                key={ne.name}
+                style={{
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '20px',
+                  padding: '6px 14px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: '#374151',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                <span>📍</span>
+                <span>{ne.name}</span>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    color: '#6b7280',
+                    fontWeight: 600,
+                    backgroundColor: '#f3f4f6',
+                    padding: '2px 6px',
+                    borderRadius: '4px'
+                  }}
+                >
+                  {ne.postalCode}
+                </span>
               </span>
             ))}
           </div>

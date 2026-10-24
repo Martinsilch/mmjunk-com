@@ -1,3 +1,9 @@
+export interface NeighborhoodEntity {
+  name: string;
+  postalCode: string;
+  coords?: [number, number]; // [latitude, longitude]
+}
+
 export interface MunicipalityMeta {
   cityName: string;
   county: 'King County' | 'Pierce County';
@@ -5,6 +11,7 @@ export interface MunicipalityMeta {
   coords: [number, number];
   wikidataUri: string;
   neighborhoods?: string[];
+  neighborhoodEntities?: NeighborhoodEntity[];
   majorCorridors?: string[];
   transferStation?: string;
   donationPartners?: string[];
@@ -27,6 +34,16 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
       'Adelaide',
       'Steel Lake',
       'Redondo'
+    ],
+    neighborhoodEntities: [
+      { name: 'Twin Lakes', postalCode: '98023', coords: [47.3155, -122.3789] },
+      { name: 'Campus Reserve', postalCode: '98023', coords: [47.2975, -122.3550] },
+      { name: 'Marine Hills', postalCode: '98023', coords: [47.3385, -122.3550] },
+      { name: 'Mirror Lake', postalCode: '98003', coords: [47.3045, -122.3380] },
+      { name: 'Lakota & Buenna', postalCode: '98023', coords: [47.3275, -122.3850] },
+      { name: 'Adelaide', postalCode: '98023', coords: [47.3375, -122.3750] },
+      { name: 'Steel Lake', postalCode: '98003', coords: [47.3085, -122.3160] },
+      { name: 'Redondo', postalCode: '98023', coords: [47.3485, -122.3320] }
     ],
     majorCorridors: [
       'Pacific Hwy S (Hwy 99)',
@@ -53,6 +70,13 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     coords: [47.3073, -122.2285],
     wikidataUri: 'https://www.wikidata.org/wiki/Q758414',
     neighborhoods: ['Lea Hill', 'West Hill', 'Lakeland Hills', 'North Auburn', 'Game Farm Wilderness'],
+    neighborhoodEntities: [
+      { name: 'Lea Hill', postalCode: '98092', coords: [47.3285, -122.1850] },
+      { name: 'West Hill', postalCode: '98001', coords: [47.3100, -122.2550] },
+      { name: 'Lakeland Hills', postalCode: '98092', coords: [47.2750, -122.2150] },
+      { name: 'North Auburn', postalCode: '98002', coords: [47.3300, -122.2250] },
+      { name: 'Game Farm Wilderness', postalCode: '98002', coords: [47.2950, -122.2050] }
+    ],
     majorCorridors: ['SR-167 (Valley Freeway)', 'SR-18', 'Auburn Way S / Auburn Way N'],
     transferStation: 'Algona Transfer Station & Bow Lake Recycling',
     donationPartners: ['Auburn Valley Humane Society Thrift', 'Auburn Goodwill']
@@ -64,6 +88,13 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     coords: [47.3809, -122.2348],
     wikidataUri: 'https://www.wikidata.org/wiki/Q852579',
     neighborhoods: ['Kent East Hill', 'West Hill', 'Valley Industrial Park', 'Lake Meridian', 'Panther Lake'],
+    neighborhoodEntities: [
+      { name: 'Kent East Hill', postalCode: '98031', coords: [47.3850, -122.2050] },
+      { name: 'West Hill', postalCode: '98032', coords: [47.3850, -122.2650] },
+      { name: 'Valley Industrial Park', postalCode: '98032', coords: [47.4100, -122.2450] },
+      { name: 'Lake Meridian', postalCode: '98042', coords: [47.3650, -122.1650] },
+      { name: 'Panther Lake', postalCode: '98031', coords: [47.3750, -122.1950] }
+    ],
     majorCorridors: ['SR-167', 'I-5 (Exit 149)', 'Central Ave', 'SE 256th St'],
     transferStation: 'Bow Lake Recycling and Transfer Station',
     donationPartners: ['Kent Valley Goodwill', 'St. Vincent de Paul Kent']
@@ -75,6 +106,15 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     coords: [47.2529, -122.4443],
     wikidataUri: 'https://www.wikidata.org/wiki/Q202488',
     neighborhoods: ['North End', 'Proctor District', 'South Tacoma', 'NE Tacoma', 'Hilltop', 'Point Ruston', 'Fern Hill'],
+    neighborhoodEntities: [
+      { name: 'North End', postalCode: '98406', coords: [47.2650, -122.4850] },
+      { name: 'Proctor District', postalCode: '98406', coords: [47.2700, -122.4850] },
+      { name: 'South Tacoma', postalCode: '98409', coords: [47.2050, -122.4750] },
+      { name: 'NE Tacoma', postalCode: '98422', coords: [47.2850, -122.3850] },
+      { name: 'Hilltop', postalCode: '98405', coords: [47.2500, -122.4550] },
+      { name: 'Point Ruston', postalCode: '98407', coords: [47.3000, -122.5050] },
+      { name: 'Fern Hill', postalCode: '98408', coords: [47.1950, -122.4350] }
+    ],
     majorCorridors: ['I-5', 'SR-16', 'Pacific Ave', '6th Ave'],
     transferStation: 'City of Tacoma Recovery & Transfer Center (S Mullen St)',
     donationPartners: ['Tacoma Goodwill', 'St. Vincent de Paul Tacoma']
@@ -86,6 +126,12 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     coords: [47.2504, -122.2935],
     wikidataUri: 'https://www.wikidata.org/wiki/Q852583',
     neighborhoods: ['North Edgewood', 'Jovita', 'Surprise Lake', 'Edgewood Plateau'],
+    neighborhoodEntities: [
+      { name: 'North Edgewood', postalCode: '98371', coords: [47.2600, -122.2900] },
+      { name: 'Jovita', postalCode: '98372', coords: [47.2550, -122.2800] },
+      { name: 'Surprise Lake', postalCode: '98372', coords: [47.2500, -122.3000] },
+      { name: 'Edgewood Plateau', postalCode: '98371', coords: [47.2450, -122.2950] }
+    ],
     majorCorridors: ['Meridian Ave E (SR-161)', 'Freeman Rd E', 'Valley Ave E'],
     transferStation: 'Pierce County Hidden Valley Transfer Station',
     donationPartners: ['Puyallup Valley Goodwill', 'St. Francis House']
@@ -97,6 +143,13 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     coords: [47.4018, -122.3243],
     wikidataUri: 'https://www.wikidata.org/wiki/Q852581',
     neighborhoods: ['Marina District', 'North Hill', 'Pacific Ridge', 'Woodmont Beach', 'Redondo Beach'],
+    neighborhoodEntities: [
+      { name: 'Marina District', postalCode: '98198', coords: [47.4018, -122.3243] },
+      { name: 'North Hill', postalCode: '98198', coords: [47.4200, -122.3200] },
+      { name: 'Pacific Ridge', postalCode: '98198', coords: [47.3950, -122.3150] },
+      { name: 'Woodmont Beach', postalCode: '98198', coords: [47.3750, -122.3250] },
+      { name: 'Redondo Beach', postalCode: '98198', coords: [47.3550, -122.3250] }
+    ],
     majorCorridors: ['Marine View Dr S', 'Pacific Hwy S (SR-99)', 'Kent-Des Moines Rd (SR-516)', 'I-5'],
     transferStation: 'King County Bow Lake Recycling and Transfer Station',
     donationPartners: ['Des Moines Goodwill', 'St. Vincent de Paul']
@@ -371,4 +424,45 @@ export function getNearbyMunicipalities(currentSlug: string, limit: number = 4):
     .sort((a, b) => a.distanceMiles - b.distanceMiles)
     .slice(0, limit);
 }
+
+/**
+ * Resolves or dynamically synthesizes structured NeighborhoodEntity array with postalCode & centroid coordinates
+ */
+export function getNeighborhoodEntities(meta: MunicipalityMeta): NeighborhoodEntity[] {
+  if (meta.neighborhoodEntities && meta.neighborhoodEntities.length > 0) {
+    return meta.neighborhoodEntities;
+  }
+  if (!meta.neighborhoods || meta.neighborhoods.length === 0) {
+    return [];
+  }
+  const defaultZip = meta.zipCodes[0] || '98001';
+  return meta.neighborhoods.map((name, idx) => ({
+    name,
+    postalCode: meta.zipCodes[idx % meta.zipCodes.length] || defaultZip,
+    coords: meta.coords
+  }));
+}
+
+/**
+ * Searches for a matching neighborhood entity by name or postal code within a municipality
+ */
+export function resolveNeighborhoodEntity(
+  query: string,
+  meta?: MunicipalityMeta | null
+): NeighborhoodEntity | null {
+  if (!meta) return null;
+  const entities = getNeighborhoodEntities(meta);
+  const normalized = query.toLowerCase().trim();
+  
+  // Direct or partial name match
+  const nameMatch = entities.find(e => e.name.toLowerCase() === normalized || normalized.includes(e.name.toLowerCase()));
+  if (nameMatch) return nameMatch;
+
+  // Postal code match
+  const zipMatch = entities.find(e => e.postalCode === normalized);
+  if (zipMatch) return zipMatch;
+
+  return null;
+}
+
 

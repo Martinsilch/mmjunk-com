@@ -102,7 +102,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const socialPosts = spoke?.id
     ? await db.socialPost.findMany({
         where: { locationId: spoke.id },
-        orderBy: { publishedAt: 'desc' }
+        orderBy: { publishedAt: 'asc' }
       }).catch(() => [])
     : [];
 
@@ -372,6 +372,99 @@ export default async function JobStoryPage({ params }: JobPageProps) {
           Carried out via single-operator dispatch utilizing our {job.equipmentUsed || '16-foot high-wall box truck with hydraulic liftgate'}, materials were diverted for eco-sorting and compliant transfer at {job.disposalSite || 'the local transfer facility'}.
         </p>
 
+        {/* Before & After Visual Transformation Showcase */}
+        {job.mediaUrls && job.mediaUrls.length >= 2 && (
+          <section style={{ marginBottom: '36px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
+              <h2 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span>📸</span> Before &amp; After Project Transformation
+              </h2>
+              <span style={{ fontSize: '12px', fontWeight: 700, backgroundColor: '#dcfce7', color: '#15803d', padding: '4px 10px', borderRadius: '9999px', border: '1px solid #86efac' }}>
+                ✓ Verified First-Party Job Photos
+              </span>
+            </div>
+
+            {/* Main Side-by-Side: Before vs After */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px', marginBottom: job.mediaUrls.length > 2 ? '20px' : '0' }}>
+              {/* Card: BEFORE */}
+              <div style={{ borderRadius: '12px', overflow: 'hidden', border: '2px solid #ef4444', backgroundColor: '#ffffff', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
+                <div style={{ position: 'relative' }}>
+                  <img
+                    src={job.mediaUrls[0]}
+                    alt={`Before: ${job.serviceType} (${job.itemCategory}) in ${cityName}, WA - M&M Junk Removal`}
+                    width={600}
+                    height={450}
+                    style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }}
+                    loading="eager"
+                  />
+                  <div style={{ position: 'absolute', top: '12px', left: '12px', backgroundColor: '#dc2626', color: '#ffffff', padding: '6px 14px', borderRadius: '6px', fontWeight: 800, fontSize: '13px', letterSpacing: '0.05em', textTransform: 'uppercase', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                    🔴 Before Teardown
+                  </div>
+                </div>
+                <div style={{ padding: '16px' }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 6px 0', color: '#0f172a' }}>
+                    Standing Structure Prior to Teardown
+                  </h3>
+                  <p style={{ margin: 0, fontSize: '13px', color: '#64748b', lineHeight: 1.5 }}>
+                    Weathered framing, posts, and materials documented on site in {cityName}, WA prior to safe mechanical deconstruction.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card: AFTER */}
+              <div style={{ borderRadius: '12px', overflow: 'hidden', border: '2px solid #16a34a', backgroundColor: '#ffffff', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
+                <div style={{ position: 'relative' }}>
+                  <img
+                    src={job.mediaUrls[job.mediaUrls.length - 1]}
+                    alt={`After: ${job.serviceType} completed and cleaned in ${cityName}, WA - M&M Junk Removal`}
+                    width={600}
+                    height={450}
+                    style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }}
+                    loading="eager"
+                  />
+                  <div style={{ position: 'absolute', top: '12px', left: '12px', backgroundColor: '#16a34a', color: '#ffffff', padding: '6px 14px', borderRadius: '6px', fontWeight: 800, fontSize: '13px', letterSpacing: '0.05em', textTransform: 'uppercase', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                    🟢 After: Clean Finish &amp; 100% Recycled
+                  </div>
+                </div>
+                <div style={{ padding: '16px' }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 6px 0', color: '#0f172a' }}>
+                    Completed Teardown &amp; Magnetic Clean Sweep
+                  </h3>
+                  <p style={{ margin: 0, fontSize: '13px', color: '#64748b', lineHeight: 1.5 }}>
+                    Structure completely dismantled and hauled away. Ground magnet-swept clean for immediate safe use with 100% eco-diversion.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* In-Progress Steps */}
+            {job.mediaUrls.length > 2 && (
+              <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fit, minmax(260px, 1fr))`, gap: '16px' }}>
+                {job.mediaUrls.slice(1, -1).map((url, idx) => (
+                  <div key={idx} style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#f8fafc' }}>
+                    <img
+                      src={url}
+                      alt={`In-Progress: ${job.serviceType} deconstruction step #${idx + 1} in ${cityName}, WA`}
+                      width={600}
+                      height={450}
+                      style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block' }}
+                      loading="lazy"
+                    />
+                    <div style={{ padding: '12px' }}>
+                      <div style={{ fontWeight: 700, fontSize: '12px', color: '#ea580c', textTransform: 'uppercase', marginBottom: '2px' }}>
+                        Deconstruction Step #{idx + 1}
+                      </div>
+                      <div style={{ fontSize: '14px', fontWeight: 600, color: '#0f172a' }}>
+                        {idx === 0 ? 'Precision Framing Cuts & Post Extraction' : 'Material Sorting & Truck Loading for Eco-Recycling'}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
+
         {/* Operational Telemetry Box */}
         <section style={{ border: '1px solid #e2e8f0', borderRadius: '10px', overflow: 'hidden', marginBottom: '36px', backgroundColor: '#ffffff', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
           <div style={{ backgroundColor: '#f8fafc', padding: '14px 20px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
@@ -484,20 +577,51 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             <div style={{ display: 'grid', gridTemplateColumns: videoPosts.length > 1 ? 'repeat(auto-fit, minmax(300px, 1fr))' : '1fr', gap: '20px' }}>
               {videoPosts.map((post, idx) => {
                 const vidId = post.videoUrl?.match(/(?:shorts\/|[?&]v=)([a-zA-Z0-9_-]+)/)?.[1] || '';
+                const isBefore = post.caption?.toLowerCase().includes('before') || idx === 0;
                 return (
                   <div key={idx} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#0f172a', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
                     <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
                       <iframe
-                        src={`https://www.youtube-nocookie.com/embed/${vidId}`}
+                        src={`https://www.youtube.com/embed/${vidId}?rel=0&modestbranding=1`}
                         title={post.caption || `Field Video #${idx + 1}`}
                         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
                         loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                       />
                     </div>
-                    <div style={{ padding: '12px 14px', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', fontSize: '13px', fontWeight: 600, color: '#334155' }}>
-                      {post.caption}
+                    <div style={{ padding: '14px 16px', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>
+                        {post.caption}
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+                        <a
+                          href={post.videoUrl || `https://youtube.com/shorts/${vidId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            backgroundColor: '#ea580c',
+                            color: '#ffffff',
+                            padding: '6px 14px',
+                            borderRadius: '6px',
+                            fontWeight: 700,
+                            textDecoration: 'none',
+                            fontSize: '12px'
+                          }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                          Watch on YouTube ({isBefore ? 'Before' : 'After'}) ↗
+                        </a>
+                        <span style={{ fontSize: '11px', color: '#64748b' }}>
+                          Verified Dispatch
+                        </span>
+                      </div>
                     </div>
                   </div>
                 );
@@ -506,8 +630,8 @@ export default async function JobStoryPage({ params }: JobPageProps) {
           </section>
         )}
 
-        {/* Operational Proof Photos Gallery */}
-        {job.mediaUrls && job.mediaUrls.length > 0 && (
+        {/* Single Photo Fallback Gallery */}
+        {job.mediaUrls && job.mediaUrls.length === 1 && (
           <section style={{ marginBottom: '36px' }}>
             <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#0f172a', marginBottom: '16px' }}>
               📸 Operational Field Evidence & Proof

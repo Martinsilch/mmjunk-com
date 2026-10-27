@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Service Locations | M&M Junk Removal - South King & Pierce County',
   description: 'M&M Junk Removal serves 25 municipalities across South King and Pierce County. Fast local hauling in Federal Way, Auburn, Kent, Tacoma, Puyallup & surrounding areas. Upfront quotes!',
   alternates: {
-    canonical: 'https://www.mmjunk.com/locations/'
+    canonical: 'https://www.mmjunk.com/locations'
   }
 };
 

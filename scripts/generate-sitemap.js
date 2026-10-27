@@ -18,20 +18,20 @@ async function generateSitemap() {
 
   const staticUrls = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'daily' },
-    { loc: `${baseUrl}/services/`, priority: '0.90', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/residential/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/commercial/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/industrial/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/sorting-donation/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/recurring/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/contractual/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/commercial-appliance-removal/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/estate-cleanout/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/construction-debris-removal/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/residential-furniture-removal/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/hot-tub-demolition-removal/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services/yard-waste-removal/`, priority: '0.88', changefreq: 'weekly' },
-    { loc: `${baseUrl}/jobs/`, priority: '0.90', changefreq: 'daily' }
+    { loc: `${baseUrl}/services`, priority: '0.90', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/residential`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/commercial`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/industrial`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/sorting-donation`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/recurring`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/contractual`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/commercial-appliance-removal`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/estate-cleanout`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/construction-debris-removal`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/residential-furniture-removal`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/hot-tub-demolition-removal`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/yard-waste-removal`, priority: '0.88', changefreq: 'weekly' },
+    { loc: `${baseUrl}/jobs`, priority: '0.90', changefreq: 'daily' }
   ];
 
   // 25 Municipalities
@@ -60,7 +60,7 @@ async function generateSitemap() {
 
   const allSpokeSlugs = new Set([...MUNICIPALITIES, ...dbSpokes.map(s => s.slug)]);
   const spokeUrls = Array.from(allSpokeSlugs).map(slug => ({
-    loc: `${baseUrl}/junk-removal-${slug}-wa/`,
+    loc: `${baseUrl}/junk-removal-${slug}-wa`,
     priority: '0.90',
     changefreq: 'weekly'
   }));
@@ -77,7 +77,7 @@ async function generateSitemap() {
 
   const allJobSlugs = new Set([...legacyJobs, ...dbJobs.map(j => j.slug)]);
   const jobUrls = Array.from(allJobSlugs).map(slug => ({
-    loc: `${baseUrl}/jobs/${slug}/`,
+    loc: `${baseUrl}/jobs/${slug}`,
     priority: '0.80',
     changefreq: 'monthly'
   }));

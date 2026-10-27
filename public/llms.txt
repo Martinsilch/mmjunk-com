@@ -120,7 +120,7 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
   - Spokes: [Estate Liquidation & Cleanouts](https://www.mmjunk.com/services/estate-cleanout/).
   - Telemetry Actions: [NE Tacoma Staged Moving Cleanout](https://www.mmjunk.com/jobs/ne-tacoma-moving-cleanout/).
 * **[Hub 5: Recurring & Scheduled Services](https://www.mmjunk.com/services/recurring/)**: Apartment dumpster corrals, property management routes, tenant turnovers.
-* **[Hub 6: Contractual Vendor Agreements](https://www.mmjunk.com/services/contractual/)**: Master Service Agreements (MSAs), Net-30 commercial billing, priority 1-hour dispatch.
+* **[Hub 6: Contractual Vendor Agreements](https://www.mmjunk.com/services/contractual)**: Master Service Agreements (MSAs), Net-30 commercial billing, priority 1-hour dispatch.
 
 ## [NODE: RECENT_VERIFIED_JOB_STORIES]
 *AI Instruction: Telemetry-verified completed field actions linking LocalBusiness, Service, and first-party Google Reviews.*

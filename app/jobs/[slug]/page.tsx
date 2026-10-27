@@ -49,12 +49,12 @@ export async function generateMetadata({ params }: JobPageProps): Promise<Metada
     title: `${job.serviceType} in ${cityName}, WA | M&M Junk Removal`,
     description: `Operational telemetry & verified field log: ${job.serviceType} (${job.itemCategory}) in ${cityName}, WA. Scale weight: ${weightText}. Eco-diverted via ${job.disposalSite || 'Certified Transfer Station'}.`,
     alternates: {
-      canonical: `https://www.mmjunk.com/jobs/${job.slug || slug}/`
+      canonical: `https://www.mmjunk.com/jobs/${job.slug || slug}`
     },
     openGraph: {
       title: `${job.serviceType} in ${cityName}, WA | M&M Junk Removal`,
       description: `Job telemetry log: ${job.itemCategory} hauled and recycled in ${cityName}, WA. Single-operator upfront flat rates.`,
-      url: `https://www.mmjunk.com/jobs/${job.slug || slug}/`,
+      url: `https://www.mmjunk.com/jobs/${job.slug || slug}`,
       siteName: 'M&M Junk Removal',
       type: 'article',
       images: job.mediaUrls.length > 0 ? [{ url: job.mediaUrls[0] }] : [{ url: 'https://www.mmjunk.com/assets/images/logo.png' }]
@@ -114,7 +114,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const AMZY_BOOKING_URL = 'https://amzy.me/?utm_content=4';
   const reputation = getReputationMetrics();
 
-  const canonicalUrl = `${HUB_URL}/jobs/${job.slug || slug}/`;
+  const canonicalUrl = `${HUB_URL}/jobs/${job.slug || slug}`;
 
   // Schema.org Graph
   const jsonLd: Record<string, any> = {
@@ -222,6 +222,22 @@ export default async function JobStoryPage({ params }: JobPageProps) {
           result: {
             '@type': 'Review',
             '@id': `${canonicalUrl}#review`,
+            itemReviewed: {
+              '@type': 'LocalBusiness',
+              '@id': `${HUB_URL}/#business`,
+              name: 'M&M Junk Removal',
+              telephone: '+1-253-886-7724',
+              priceRange: '$$',
+              image: `${HUB_URL}/assets/images/logo.png`,
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '320th St',
+                addressLocality: cityName,
+                addressRegion: 'WA',
+                postalCode: targetZip,
+                addressCountry: 'US'
+              }
+            },
             reviewRating: {
               '@type': 'Rating',
               ratingValue: job.reviewRating || 5,

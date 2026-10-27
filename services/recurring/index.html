@@ -160,8 +160,59 @@
       },
       "reviewBody": "Martin has hauled a lot of junk off my old property for several years. He is very responsive and great to work with.",
       "itemReviewed": {
-        "@id": "https://www.mmjunk.com/#business"
+        "@type": "LocalBusiness",
+        "@id": "https://www.mmjunk.com/#business",
+        "name": "M&M Junk Removal",
+        "telephone": "+1-253-886-7724",
+        "priceRange": "$$",
+        "image": "https://www.mmjunk.com/assets/images/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "320th St",
+          "addressLocality": "Federal Way",
+          "addressRegion": "WA",
+          "postalCode": "98003",
+          "addressCountry": "US"
+        }
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.mmjunk.com/services/recurring/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How often can you schedule pickup sweeps for our property?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We offer flexible recurring schedules tailored to your facility: weekly, bi-weekly, monthly, or on-demand priority dispatch. Many apartment complexes and HOA communities choose weekly sweeps to keep dumpster corrals clean and avoid city code fines."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you require long-term contracts for recurring junk hauling?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No long-term lock-in is required. We offer flexible month-to-month arrangements or 12-month rate locks under a Master Service Agreement (MSA) with Net-30 invoicing and a guaranteed 10% rate beat over big franchise competitors."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What items can be collected on our scheduled routes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our routes handle bulky furniture, abandoned mattresses, appliances (with EPA-certified Freon reclamation), broken shipping pallets, renovation drywall/timber, and yard waste. Hazardous liquids and chemical paints are prohibited."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we receive before-and-after photo verification for each scheduled sweep?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every route sweep includes digital before-and-after photo manifests and scale tickets delivered via email or commercial portal to ensure complete operational accountability for property managers."
+          }
+        }
+      ]
     }
   ]
 }
@@ -294,7 +345,7 @@
             <p style="font-size: 0.9rem; color: #475569; line-height: 1.5; margin-bottom: 12px;">
               Keep your apartment trash corrals compliant with city code. We clear abandoned couches and mattresses before municipal fines occur.
             </p>
-            <a href="../contractual/" style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">View Partnership Options &rsaquo;</a>
+            <a href="/services/contractual" style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">View Partnership Options &rsaquo;</a>
           </div>
 
           <div class="feature-card">
@@ -304,7 +355,27 @@
             <p style="font-size: 0.9rem; color: #475569; line-height: 1.5; margin-bottom: 12px;">
               Avoid unsightly roll-off dumpsters that block driveways and attract illegal dumping. We provide live-load sweeps on your remodel schedule.
             </p>
-            <a href="../construction-debris-removal/" style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">View Construction Details &rsaquo;</a>
+            <a href="/services/construction-debris-removal" style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">View Construction Details &rsaquo;</a>
+          </div>
+
+          <div class="feature-card">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">
+              📦 Retail &amp; Warehouse Pallet Sweeps
+            </h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.5; margin-bottom: 12px;">
+              Regularly scheduled collection of damaged wooden pallets, industrial packing crates, corrugated cardboard, and packaging accumulation to maintain warehouse safety and fire code clearance.
+            </p>
+            <a href="/services/industrial" style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">View Industrial Solutions &rsaquo;</a>
+          </div>
+
+          <div class="feature-card">
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 8px;">
+              🔑 Tenant Eviction &amp; Turnover Cleanouts
+            </h3>
+            <p style="font-size: 0.9rem; color: #475569; line-height: 1.5; margin-bottom: 12px;">
+              Priority same-day dispatch for apartment managers and landlords across South King and Pierce County to clear abandoned furniture, personal effects, and trash within 24 hours of tenant vacancy.
+            </p>
+            <a href="/services/contractual" style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">View Commercial MSA Terms &rsaquo;</a>
           </div>
 
         </div>
@@ -330,6 +401,53 @@
             </a>
           </div>
         </blockquote>
+      </section>
+
+      <!-- Declarative Chunk 4: FAQ Section with Schema Match -->
+      <section id="faq" style="margin: 40px 0;">
+        <h2 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin-bottom: 20px;">
+          Frequently Asked Questions About Recurring &amp; Scheduled Hauling
+        </h2>
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div class="feature-card" style="padding: 20px;">
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+              How often can you schedule pickup sweeps for our property?
+            </h3>
+            <p style="font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 0;">
+              We offer flexible recurring schedules tailored to your facility: weekly, bi-weekly, monthly, or on-demand priority dispatch. Many apartment complexes and HOA communities choose weekly sweeps to keep dumpster corrals clean and avoid city code fines.
+            </p>
+          </div>
+
+          <div class="feature-card" style="padding: 20px;">
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+              Do you require long-term contracts for recurring junk hauling?
+            </h3>
+            <p style="font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 0;">
+              No long-term lock-in is required. We offer flexible month-to-month arrangements or 12-month rate locks under a Master Service Agreement (MSA) with Net-30 invoicing and a guaranteed 10% rate beat over big franchise competitors.
+            </p>
+          </div>
+
+          <div class="feature-card" style="padding: 20px;">
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+              What items can be collected on our scheduled routes?
+            </h3>
+            <p style="font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 0;">
+              Our routes handle bulky furniture, abandoned mattresses, appliances (with EPA-certified Freon reclamation), broken shipping pallets, renovation drywall/timber, and yard waste. Hazardous liquids and chemical paints are prohibited.
+            </p>
+          </div>
+
+          <div class="feature-card" style="padding: 20px;">
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+              Can we receive before-and-after photo verification for each scheduled sweep?
+            </h3>
+            <p style="font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 0;">
+              Yes. Every route sweep includes digital before-and-after photo manifests and scale tickets delivered via email or commercial portal to ensure complete operational accountability for property managers.
+            </p>
+          </div>
+
+        </div>
       </section>
 
       <!-- CTA Banner -->

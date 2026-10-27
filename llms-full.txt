@@ -114,7 +114,7 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 - Industrial Junk Removal Hub: https://www.mmjunk.com/services/industrial/
 - Sorting & Responsible Disposal Hub: https://www.mmjunk.com/services/sorting-donation/
 - Recurring & Scheduled Services Hub: https://www.mmjunk.com/services/recurring/
-- Contractual Vendor Agreements Hub: https://www.mmjunk.com/services/contractual/
+- Contractual Vendor Agreements Hub: https://www.mmjunk.com/services/contractual
 
 ### Dedicated Canonical Service Endpoints:
 - Commercial Appliance Removal: https://www.mmjunk.com/services/commercial-appliance-removal/

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && node scripts/minify-assets.js && next build",
+    "build": "node tests/audit-pillars.js && node tests/seo-safeguard.js && prisma generate && node scripts/minify-assets.js && next build",
     "minify": "node scripts/minify-assets.js",
     "start": "next start",
     "lint": "next lint",
@@ -12,7 +12,7 @@
     "prisma:push": "prisma db push",
     "prisma:migrate": "prisma migrate dev",
     "seed": "ts-node -r dotenv/config prisma/seed.ts",
-    "test": "node tests/audit-pillars.js"
+    "test": "node tests/audit-pillars.js && node tests/seo-safeguard.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",

@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: 'Junk Removal Federal Way WA | Fast Local Hauling | M&M Junk Removal',
       description: 'Local junk removal in Federal Way, WA. Same-day appliance removal, cleanouts & yard waste hauling across Twin Lakes, Redondo & Campus. Free upfront quote!',
       alternates: {
-        canonical: 'https://www.mmjunk.com/junk-removal-federal-way-wa/'
+        canonical: 'https://www.mmjunk.com/junk-removal-federal-way-wa'
       }
     };
   }
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `Junk Removal ${cityName} WA | Fast Local Hauling | M&M Junk Removal`,
     description: `Local junk removal in ${cityName}, WA. Same-day appliance removal, cleanouts & yard waste hauling${geoContext}. Upfront flat-rate quote! Call (253) 886-7724.`,
     alternates: {
-      canonical: `https://www.mmjunk.com/junk-removal-${cleanSlug}-wa/`
+      canonical: `https://www.mmjunk.com/junk-removal-${cleanSlug}-wa`
     }
   };
 }
@@ -346,7 +346,23 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           '@type': 'Review',
           'reviewRating': { '@type': 'Rating', 'ratingValue': job.reviewRating || 5, 'bestRating': 5 },
           'reviewBody': job.customerReview,
-          'author': { '@type': 'Person', 'name': job.reviewerName || 'Verified Client' }
+          'author': { '@type': 'Person', 'name': job.reviewerName || 'Verified Client' },
+          'itemReviewed': {
+            '@type': 'LocalBusiness',
+            '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#business`,
+            'name': 'M&M Junk Removal',
+            'telephone': '+1-253-886-7724',
+            'priceRange': '$$',
+            'image': `${HUB_URL}/assets/images/logo.png`,
+            'address': {
+              '@type': 'PostalAddress',
+              'streetAddress': '320th St',
+              'addressLocality': cityName,
+              'addressRegion': 'WA',
+              'postalCode': zipCodes[0] || '98003',
+              'addressCountry': 'US'
+            }
+          }
         } : undefined
       })),
       ...socialPosts.filter(p => p.videoUrl || p.platform === 'youtube').map((post) => {

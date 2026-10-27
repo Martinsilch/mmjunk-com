@@ -226,9 +226,18 @@ export const AUTHORIZED_MUNICIPALITIES: Record<string, MunicipalityMeta> = {
     zipCodes: ['98055', '98056', '98057', '98058', '98059'],
     coords: [47.4829, -122.2171],
     wikidataUri: 'https://www.wikidata.org/wiki/Q852604',
-    neighborhoods: ['Renton Highlands', 'Downtown Renton', 'Kennydale', 'Benson Hill', 'Talbot Hill', 'Fairwood'],
+    neighborhoods: ['Renton Highlands', 'Downtown Renton', 'Kennydale', 'Benson Hill', 'Talbot Hill', 'Fairwood', 'Skyway-West Hill'],
+    neighborhoodEntities: [
+      { name: 'Skyway-West Hill', postalCode: '98057', coords: [47.4984, -122.2479] },
+      { name: 'Downtown Renton', postalCode: '98057', coords: [47.4800, -122.2030] },
+      { name: 'Renton Highlands', postalCode: '98056', coords: [47.5020, -122.1670] },
+      { name: 'Kennydale', postalCode: '98056', coords: [47.5250, -122.2010] },
+      { name: 'Benson Hill', postalCode: '98055', coords: [47.4580, -122.1950] },
+      { name: 'Talbot Hill', postalCode: '98055', coords: [47.4650, -122.2150] },
+      { name: 'Fairwood', postalCode: '98058', coords: [47.4510, -122.1480] }
+    ],
     majorCorridors: ['I-405', 'SR-167', 'Sunset Blvd NE', 'Renton Pkwy', 'SR-900'],
-    transferStation: 'King County Bow Lake Recycling and Transfer Station',
+    transferStation: 'DTG Recycle Center (Renton) / Bow Lake Transfer Station',
     donationPartners: ['Renton Goodwill', 'St. Vincent de Paul Renton']
   },
   'seatac': {

@@ -96,6 +96,18 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const targetCoords = neighborhoodMatch?.coords || (spoke?.coordinates && spoke.coordinates.length === 2 ? (spoke.coordinates as [number, number]) : meta?.coords || null);
   const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || 'https://www.wikidata.org/wiki/Q852586';
 
+  const isDemolition = job.serviceType?.toLowerCase().includes('demolition') || (job.slug?.includes('demolition') ?? false);
+  const isZeroWaste = (job.disposalSite?.includes('100%') || job.disposalSite?.includes('Diverted')) ?? false;
+
+  const socialPosts = spoke?.id
+    ? await db.socialPost.findMany({
+        where: { locationId: spoke.id },
+        orderBy: { publishedAt: 'desc' }
+      }).catch(() => [])
+    : [];
+
+  const videoPosts = socialPosts.filter(p => p.platform === 'youtube' && p.videoUrl);
+
   const HUB_PHONE = '+1-253-886-7724';
   const HUB_PHONE_RAW = '2538867724';
   const HUB_URL = 'https://www.mmjunk.com';
@@ -105,7 +117,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const canonicalUrl = `${HUB_URL}/jobs/${job.slug || slug}/`;
 
   // Schema.org Graph
-  const jsonLd = {
+  const jsonLd: Record<string, any> = {
     '@context': 'https://schema.org',
     '@graph': [
       {
@@ -160,9 +172,22 @@ export default async function JobStoryPage({ params }: JobPageProps) {
       },
       {
         '@type': 'Service',
-        '@id': `${HUB_URL}/services/#service`,
+        '@id': `${canonicalUrl}#service`,
         name: job.serviceType,
-        provider: { '@id': `${HUB_URL}/#business` }
+        provider: { '@id': `${HUB_URL}/#business` },
+        ...(isDemolition ? {
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'Light Demolition & Dismantling Capabilities',
+            itemListElement: [
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Shed Dismantling and Demolition' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Fence Tear-Out and Removal' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Deck Dismantling and Hauling' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Small Structure & Sports Court Teardown' } },
+              { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Odd Jobs Demolition & Site Clearing' } }
+            ]
+          }
+        } : {})
       },
       {
         '@type': 'AchieveAction',
@@ -209,7 +234,8 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             },
             publisher: {
               '@type': 'Organization',
-              name: job.reviewPlatform || 'Amzy / Google Verified'
+              name: job.reviewPlatform || 'Google Verified Reviews',
+              sameAs: 'https://www.google.com/maps?cid=15999711673070107161'
             },
             ...(job.ownerReply ? {
               comment: {
@@ -232,7 +258,19 @@ export default async function JobStoryPage({ params }: JobPageProps) {
         caption: `${job.serviceType} in ${cityName}, WA - Operational Field Proof Photo #${idx + 1}`,
         description: `Field photo documenting ${job.itemCategory || 'junk removal haul'} performed by M&M Junk Removal in ${cityName}, WA. Scale weight: ${weightText}.`,
         author: { '@id': `${HUB_URL}/#business` }
-      }))
+      })),
+      ...videoPosts.map((post, idx) => {
+        const vidId = post.videoUrl?.match(/(?:shorts\/|[?&]v=)([a-zA-Z0-9_-]+)/)?.[1] || '';
+        return {
+          '@type': 'VideoObject',
+          '@id': `${canonicalUrl}#video-${idx + 1}`,
+          name: post.caption || `${job.serviceType} in ${cityName}, WA`,
+          description: post.caption || `Field video documenting ${job.itemCategory} by M&M Junk Removal in ${cityName}, WA.`,
+          thumbnailUrl: post.mediaUrl || `https://img.youtube.com/vi/${vidId}/maxresdefault.jpg`,
+          uploadDate: post.publishedAt ? new Date(post.publishedAt).toISOString() : new Date().toISOString(),
+          embedUrl: `https://www.youtube-nocookie.com/embed/${vidId}`
+        };
+      })
     ]
   };
 
@@ -307,6 +345,11 @@ export default async function JobStoryPage({ params }: JobPageProps) {
           <span style={{ backgroundColor: '#ecfdf5', color: '#047857', border: '1px solid #a7f3d0', padding: '4px 10px', borderRadius: '9999px', fontSize: '12px', fontWeight: 700 }}>
             ✓ Verified Action
           </span>
+          {isZeroWaste && (
+            <span style={{ backgroundColor: '#059669', color: '#ffffff', padding: '4px 10px', borderRadius: '9999px', fontSize: '12px', fontWeight: 700 }}>
+              ♻️ 100% Diverted from Landfill
+            </span>
+          )}
           <span style={{ backgroundColor: '#eff6ff', color: '#1d4ed8', border: '1px solid #bfdbfe', padding: '4px 10px', borderRadius: '9999px', fontSize: '12px', fontWeight: 700 }}>
             ⚡ Telemetry Verified
           </span>
@@ -342,6 +385,12 @@ export default async function JobStoryPage({ params }: JobPageProps) {
 
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ backgroundColor: '#f1f5f9', borderBottom: '2px solid #e2e8f0' }}>
+                  <th scope="col" style={{ padding: '12px 20px', fontWeight: 700, color: '#475569', width: '220px' }}>Operational Parameter</th>
+                  <th scope="col" style={{ padding: '12px 20px', fontWeight: 700, color: '#475569' }}>Verified Field Metric</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr style={{ borderBottom: '1px solid #f1f5f9' }}>
                   <td style={{ padding: '12px 20px', fontWeight: 700, color: '#64748b', width: '220px', backgroundColor: '#fafbfc' }}>Service Category</td>
@@ -393,6 +442,69 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             </table>
           </div>
         </section>
+
+        {/* Demolition Methodology Narrative */}
+        {isDemolition && (
+          <section style={{ marginBottom: '36px' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#0f172a', marginBottom: '16px' }}>
+              Demolition Methodology: How We Executed the Teardown
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+              <div style={{ padding: '18px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+                <div style={{ fontWeight: 700, color: '#ea580c', fontSize: '13px', textTransform: 'uppercase', marginBottom: '4px' }}>Step 1</div>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0', color: '#0f172a' }}>Structural De-tensioning</h3>
+                <p style={{ margin: 0, fontSize: '14px', color: '#475569', lineHeight: 1.5 }}>
+                  Severed wire ties and tension bands from galvanized top rails, unrolling and bundling chain-link fabric without dragging steel across the finished asphalt court.
+                </p>
+              </div>
+              <div style={{ padding: '18px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+                <div style={{ fontWeight: 700, color: '#ea580c', fontSize: '13px', textTransform: 'uppercase', marginBottom: '4px' }}>Step 2</div>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0', color: '#0f172a' }}>Framing & Post Dismantling</h3>
+                <p style={{ margin: 0, fontSize: '14px', color: '#475569', lineHeight: 1.5 }}>
+                  Cut through 4x4 structural wood posts and 2x6 runners using heavy-duty reciprocating saws. Concrete baseline anchors were cleanly flush-cut to eliminate trip hazards.
+                </p>
+              </div>
+              <div style={{ padding: '18px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+                <div style={{ fontWeight: 700, color: '#ea580c', fontSize: '13px', textTransform: 'uppercase', marginBottom: '4px' }}>Step 3</div>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0', color: '#0f172a' }}>Magnetic Clean Sweep</h3>
+                <p style={{ margin: 0, fontSize: '14px', color: '#475569', lineHeight: 1.5 }}>
+                  Ran continuous passes with industrial magnetic floor sweepers across the entire court perimeter, capturing every screw, nail, and metal shaving for 100% player safety.
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Multi-Modal Video Dispatch Documentation */}
+        {videoPosts && videoPosts.length > 0 && (
+          <section style={{ marginBottom: '36px' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: 700, color: '#0f172a', marginBottom: '16px' }}>
+              📹 Operational Field Video Proof
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: videoPosts.length > 1 ? 'repeat(auto-fit, minmax(300px, 1fr))' : '1fr', gap: '20px' }}>
+              {videoPosts.map((post, idx) => {
+                const vidId = post.videoUrl?.match(/(?:shorts\/|[?&]v=)([a-zA-Z0-9_-]+)/)?.[1] || '';
+                return (
+                  <div key={idx} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#0f172a', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+                    <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${vidId}`}
+                        title={post.caption || `Field Video #${idx + 1}`}
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                    <div style={{ padding: '12px 14px', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', fontSize: '13px', fontWeight: 600, color: '#334155' }}>
+                      {post.caption}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* Operational Proof Photos Gallery */}
         {job.mediaUrls && job.mediaUrls.length > 0 && (
@@ -460,6 +572,59 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                 </div>
               )}
             </blockquote>
+          </section>
+        )}
+
+        {/* Specialized Demolition Services Grid */}
+        {isDemolition && (
+          <section style={{ borderTop: '1px solid #e2e8f0', paddingTop: '32px', marginBottom: '36px' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
+              Light Demolition & Dismantling Services in {cityName} & King County
+            </h2>
+            <p style={{ fontSize: '15px', color: '#64748b', marginBottom: '20px' }}>
+              In addition to outdoor sports courts, M&M Junk Removal specializes in residential and commercial small-structure teardowns throughout {cityName} and nearby communities:
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
+              <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '8px', backgroundColor: '#ffffff' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 6px 0', color: '#0f172a' }}>Shed Dismantling & Demolition</h3>
+                <p style={{ margin: 0, fontSize: '13px', color: '#475569' }}>
+                  Complete teardown of rotted wooden garden sheds, metal storage units, and vinyl outbuildings with foundation slab clearing.
+                </p>
+              </div>
+              <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '8px', backgroundColor: '#ffffff' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 6px 0', color: '#0f172a' }}>Fence Tear-Out & Removal</h3>
+                <p style={{ margin: 0, fontSize: '13px', color: '#475569' }}>
+                  Removal of cedar privacy fencing, split-rail boundaries, and rusted chain link, including concrete footing extraction.
+                </p>
+              </div>
+              <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '8px', backgroundColor: '#ffffff' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 6px 0', color: '#0f172a' }}>Deck Dismantling & Hauling</h3>
+                <p style={{ margin: 0, fontSize: '13px', color: '#475569' }}>
+                  Systematic deconstruction of weathered multi-tier decks, dry-rotted stairs, railings, and framing down to ground level.
+                </p>
+              </div>
+              <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '8px', backgroundColor: '#ffffff' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 6px 0', color: '#0f172a' }}>Small Structures & Enclosures</h3>
+                <p style={{ margin: 0, fontSize: '13px', color: '#475569' }}>
+                  Pergolas, gazebos, sports court half-walls, animal coops, and custom outdoor play structures safely disassembled.
+                </p>
+              </div>
+              <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '8px', backgroundColor: '#ffffff' }}>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 6px 0', color: '#0f172a' }}>Odd Jobs Demolition & Teardown</h3>
+                <p style={{ margin: 0, fontSize: '13px', color: '#475569' }}>
+                  Non-loadbearing interior wall tear-outs, drywall, carpet stripping, hot tubs, and custom residential dismantling tasks.
+                </p>
+              </div>
+              <div style={{ padding: '16px', border: '1px solid #bfdbfe', borderRadius: '8px', backgroundColor: '#eff6ff', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ fontWeight: 700, color: '#1e40af', fontSize: '15px', marginBottom: '4px' }}>Got a Structure to Teardown?</div>
+                <p style={{ margin: '0 0 12px 0', fontSize: '13px', color: '#1e3a8a' }}>
+                  We beat competitor written estimates by 10% with zero landfill waste.
+                </p>
+                <a href={AMZY_BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#ea580c', fontWeight: 700, textDecoration: 'none', fontSize: '13px' }}>
+                  Book Free Estimate Online ↗
+                </a>
+              </div>
+            </div>
           </section>
         )}
 

@@ -34,7 +34,8 @@ const htmlFiles = [
   'jobs/federal-way-heavy-treadmill-disassembly/index.html',
   'jobs/auburn-birch-tree-yard-waste-clearing/index.html',
   'jobs/auburn-playset-shed-demolition/index.html',
-  'jobs/tacoma-concrete-construction-debris-removal/index.html'
+  'jobs/tacoma-concrete-construction-debris-removal/index.html',
+  'jobs/basketball-court-wall-demolition-renton-skyway/index.html'
 ];
 
 console.log('====================================================');
@@ -153,7 +154,7 @@ htmlFiles.forEach(file => {
     content.includes(`"ratingValue": "${expectedRating}"`) &&
     content.includes(`"reviewCount": "${expectedReviewCount}"`);
   const hasReviewSection = content.includes('review') || content.includes('reviews');
-  const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston') || content.includes('ANKO BAKE') || content.includes('MoWzz Creations') || content.includes('S J') || content.includes('Jon Lackey') || content.includes('Geoffrey Smith') || content.includes('Kimberly');
+  const hasCustomerQuotes = content.includes('Hilary Smith') || content.includes('Christine & Brian Frye') || content.includes('Erin Davis') || content.includes('Drew Paris') || content.includes('Audra Edmiston') || content.includes('ANKO BAKE') || content.includes('MoWzz Creations') || content.includes('S J') || content.includes('Jon Lackey') || content.includes('Geoffrey Smith') || content.includes('Kimberly') || content.includes('Rick');
   const hasReviewSchema = content.includes('"@type": "Review"') || content.includes('"@type":"Review"');
   const hasReviewProvenance = !hasReviewSchema || (content.includes('"publisher"') && content.includes('"Google"') && content.includes('15999711673070107161'));
 

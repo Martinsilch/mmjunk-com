@@ -3,7 +3,7 @@
  * Supports automated ingestion from Amzy Dispatch, Google Reviews, and Meta webhooks.
  */
 
-import { resolveMunicipality as resolveByLocation, AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
+import { resolveMunicipality as resolveByLocation, AUTHORIZED_MUNICIPALITIES } from './geo-resolver';
 
 export interface JobSlugParams {
   service: string;

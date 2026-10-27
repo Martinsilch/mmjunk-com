@@ -78,7 +78,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         take: 15
       },
       socialPosts: {
-        orderBy: { publishedAt: 'desc' },
+        orderBy: { publishedAt: 'asc' },
         take: 6
       }
     }
@@ -349,16 +349,19 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           'author': { '@type': 'Person', 'name': job.reviewerName || 'Verified Client' }
         } : undefined
       })),
-      ...socialPosts.filter(p => p.videoUrl || p.platform === 'youtube').map((post) => ({
-        '@type': 'VideoObject',
-        '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#video-${post.id}`,
-        'name': `${cityName}, WA Junk Removal Action: ${post.caption.slice(0, 60)}`,
-        'description': post.caption,
-        'thumbnailUrl': post.mediaUrl,
-        'uploadDate': post.publishedAt.toISOString(),
-        'contentUrl': post.videoUrl || `https://www.youtube.com/watch?v=${post.externalId}`,
-        'embedUrl': `https://www.youtube-nocookie.com/embed/${post.externalId}`
-      }))
+      ...socialPosts.filter(p => p.videoUrl || p.platform === 'youtube').map((post) => {
+        const cleanVidId = post.videoUrl?.match(/(?:shorts\/|[?&]v=)([a-zA-Z0-9_-]+)/)?.[1] || post.externalId?.replace(/^yt-/, '') || '';
+        return {
+          '@type': 'VideoObject',
+          '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#video-${post.id}`,
+          'name': `${cityName}, WA Junk Removal Action: ${post.caption.slice(0, 60)}`,
+          'description': post.caption,
+          'thumbnailUrl': post.mediaUrl || `https://img.youtube.com/vi/${cleanVidId}/maxresdefault.jpg`,
+          'uploadDate': post.publishedAt.toISOString(),
+          'contentUrl': post.videoUrl || `https://www.youtube.com/watch?v=${cleanVidId}`,
+          'embedUrl': `https://www.youtube.com/embed/${cleanVidId}`
+        };
+      })
     ]
   };
 
@@ -703,6 +706,86 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Featured Project Proof & Before/After in City */}
+      {jobs.filter((j) => j.mediaUrls && j.mediaUrls.length > 0).length > 0 && (
+        <section style={{ marginBottom: '44px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#111827', margin: 0 }}>
+              📸 Featured Project Proof &amp; Before/After in {cityName}
+            </h2>
+            <span style={{ fontSize: '12px', fontWeight: 700, backgroundColor: '#dcfce7', color: '#15803d', padding: '4px 10px', borderRadius: '9999px', border: '1px solid #86efac' }}>
+              ✓ Verified Job Photos
+            </span>
+          </div>
+
+          {jobs
+            .filter((j) => j.mediaUrls && j.mediaUrls.length > 0)
+            .map((featuredJob) => (
+              <div key={featuredJob.id} style={{ border: '1px solid #e5e7eb', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#ffffff', marginBottom: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                <div style={{ padding: '16px 20px', backgroundColor: '#f9fafb', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+                  <div>
+                    <h3 style={{ fontSize: '18px', fontWeight: 700, margin: 0, color: '#0f172a' }}>
+                      {featuredJob.serviceType}
+                    </h3>
+                    <div style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
+                      {featuredJob.itemCategory} • {featuredJob.disposalSite || 'Eco Transfer Facility'}
+                    </div>
+                  </div>
+                  {featuredJob.slug && (
+                    <Link
+                      href={`/jobs/${featuredJob.slug}`}
+                      style={{ backgroundColor: '#ea580c', color: '#ffffff', padding: '8px 16px', borderRadius: '6px', fontWeight: 700, textDecoration: 'none', fontSize: '13px' }}
+                    >
+                      View Full Case Study &rsaquo;
+                    </Link>
+                  )}
+                </div>
+
+                {/* Side-by-Side Before & After */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', padding: '20px' }}>
+                  <div style={{ borderRadius: '8px', overflow: 'hidden', border: '2px solid #ef4444', backgroundColor: '#ffffff' }}>
+                    <div style={{ position: 'relative' }}>
+                      <img
+                        src={featuredJob.mediaUrls[0]}
+                        alt={`Before: ${featuredJob.serviceType} in ${cityName}, WA`}
+                        width={600}
+                        height={400}
+                        style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }}
+                        loading="lazy"
+                      />
+                      <div style={{ position: 'absolute', top: '10px', left: '10px', backgroundColor: '#dc2626', color: '#ffffff', padding: '4px 10px', borderRadius: '4px', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                        🔴 Before Teardown
+                      </div>
+                    </div>
+                    <div style={{ padding: '12px 14px', fontSize: '13px', fontWeight: 600, color: '#334155' }}>
+                      Standing Structure Prior to Teardown
+                    </div>
+                  </div>
+
+                  <div style={{ borderRadius: '8px', overflow: 'hidden', border: '2px solid #16a34a', backgroundColor: '#ffffff' }}>
+                    <div style={{ position: 'relative' }}>
+                      <img
+                        src={featuredJob.mediaUrls[featuredJob.mediaUrls.length - 1]}
+                        alt={`After: ${featuredJob.serviceType} in ${cityName}, WA`}
+                        width={600}
+                        height={400}
+                        style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }}
+                        loading="lazy"
+                      />
+                      <div style={{ position: 'absolute', top: '10px', left: '10px', backgroundColor: '#16a34a', color: '#ffffff', padding: '4px 10px', borderRadius: '4px', fontWeight: 800, fontSize: '11px', textTransform: 'uppercase', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
+                        🟢 After: 100% Recycled &amp; Cleaned
+                      </div>
+                    </div>
+                    <div style={{ padding: '12px 14px', fontSize: '13px', fontWeight: 600, color: '#334155' }}>
+                      Clean Surface &amp; Magnetic Nail Sweep Complete
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </section>
+      )}
+
       {/* Section 6: Verified Client Reviews */}
       <section style={{ marginBottom: '44px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#111827', marginBottom: '16px' }}>
@@ -748,44 +831,72 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       {socialPosts.length > 0 && (
         <section style={{ marginBottom: '44px' }}>
           <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#111827', marginBottom: '16px' }}>
-            Field Demonstrations & Social Signals: {cityName}
+            Field Demonstrations &amp; Social Signals: {cityName}
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-            {socialPosts.map((post) => (
-              <div key={post.id} style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden', backgroundColor: '#ffffff' }}>
-                {post.platform === 'youtube' ? (
-                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', backgroundColor: '#000000' }}>
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${post.externalId}?rel=0&modestbranding=1`}
-                      title={post.caption}
+            {socialPosts.map((post) => {
+              const cleanVidId = post.videoUrl?.match(/(?:shorts\/|[?&]v=)([a-zA-Z0-9_-]+)/)?.[1] || post.externalId?.replace(/^yt-/, '') || '';
+              return (
+                <div key={post.id} style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden', backgroundColor: '#ffffff', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                  {post.platform === 'youtube' && cleanVidId ? (
+                    <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', backgroundColor: '#000000' }}>
+                      <iframe
+                        src={`https://www.youtube.com/embed/${cleanVidId}?rel=0&modestbranding=1`}
+                        title={post.caption}
+                        loading="lazy"
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <img
+                      src={post.mediaUrl}
+                      alt={`${post.caption} - M&M Junk Removal ${cityName}, WA`}
+                      title={`${post.caption} - Verified Field Proof`}
+                      width={480}
+                      height={360}
                       loading="lazy"
-                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
+                      decoding="async"
+                      style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block', aspectRatio: '4/3' }}
                     />
+                  )}
+                  <div style={{ padding: '14px 16px' }}>
+                    <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#ea580c' }}>
+                      {post.platform} • Verified Signal
+                    </span>
+                    <p style={{ margin: '6px 0 10px 0', fontSize: '13px', color: '#374151', fontWeight: 500 }}>
+                      {post.caption}
+                    </p>
+                    {post.platform === 'youtube' && cleanVidId && (
+                      <a
+                        href={post.videoUrl || `https://youtube.com/shorts/${cleanVidId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          backgroundColor: '#ea580c',
+                          color: '#ffffff',
+                          padding: '6px 14px',
+                          borderRadius: '6px',
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          fontSize: '12px'
+                        }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                        Watch on YouTube Shorts ↗
+                      </a>
+                    )}
                   </div>
-                ) : (
-                  <img
-                    src={post.mediaUrl}
-                    alt={`${post.caption} - M&M Junk Removal ${cityName}, WA`}
-                    title={`${post.caption} - Verified Field Proof`}
-                    width={480}
-                    height={360}
-                    loading="lazy"
-                    decoding="async"
-                    style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block', aspectRatio: '4/3' }}
-                  />
-                )}
-                <div style={{ padding: '12px 16px' }}>
-                  <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#ea580c' }}>
-                    {post.platform} • Verified Signal
-                  </span>
-                  <p style={{ margin: '6px 0 0 0', fontSize: '13px', color: '#374151' }}>
-                    {post.caption}
-                  </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}

@@ -95,10 +95,54 @@ const nextConfig = {
         source: '/privacy-policy/',
         destination: '/privacy-policy/index.html',
       },
+      {
+        source: '/jobs/:path*',
+        destination: '/jobs/:path*/index.html',
+      },
     ];
   },
   async redirects() {
     return [
+      {
+        source: '/light-demolition-services',
+        destination: '/services/light-demolition-services',
+        permanent: true,
+      },
+      {
+        source: '/light-demolition-services/',
+        destination: '/services/light-demolition-services',
+        permanent: true,
+      },
+      {
+        source: '/light-demolition',
+        destination: '/services/light-demolition-services',
+        permanent: true,
+      },
+      {
+        source: '/light-demolition/',
+        destination: '/services/light-demolition-services',
+        permanent: true,
+      },
+      {
+        source: '/shed-demolition',
+        destination: '/services/light-demolition-services',
+        permanent: true,
+      },
+      {
+        source: '/shed-demolition/',
+        destination: '/services/light-demolition-services',
+        permanent: true,
+      },
+      {
+        source: '/basketball-court-wall-demolition-renton-skyway',
+        destination: '/jobs/basketball-court-wall-demolition-renton-skyway',
+        permanent: true,
+      },
+      {
+        source: '/basketball-court-wall-demolition-renton-skyway/',
+        destination: '/jobs/basketball-court-wall-demolition-renton-skyway',
+        permanent: true,
+      },
       {
         source: '/security.txt',
         destination: '/.well-known/security.txt',

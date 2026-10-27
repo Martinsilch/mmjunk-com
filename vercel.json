@@ -263,6 +263,36 @@
       "permanent": true
     },
     {
+      "source": "/light-demolition-services",
+      "destination": "/services/light-demolition-services",
+      "permanent": true
+    },
+    {
+      "source": "/light-demolition-services/",
+      "destination": "/services/light-demolition-services",
+      "permanent": true
+    },
+    {
+      "source": "/light-demolition",
+      "destination": "/services/light-demolition-services",
+      "permanent": true
+    },
+    {
+      "source": "/light-demolition/",
+      "destination": "/services/light-demolition-services",
+      "permanent": true
+    },
+    {
+      "source": "/shed-demolition",
+      "destination": "/services/light-demolition-services",
+      "permanent": true
+    },
+    {
+      "source": "/shed-demolition/",
+      "destination": "/services/light-demolition-services",
+      "permanent": true
+    },
+    {
       "source": "/federal-way-commercial-refrigerator-extraction",
       "destination": "/jobs/federal-way-commercial-refrigerator-extraction",
       "permanent": true
@@ -320,6 +350,16 @@
     {
       "source": "/tacoma-concrete-construction-debris-removal/",
       "destination": "/jobs/tacoma-concrete-construction-debris-removal",
+      "permanent": true
+    },
+    {
+      "source": "/basketball-court-wall-demolition-renton-skyway",
+      "destination": "/jobs/basketball-court-wall-demolition-renton-skyway",
+      "permanent": true
+    },
+    {
+      "source": "/basketball-court-wall-demolition-renton-skyway/",
+      "destination": "/jobs/basketball-court-wall-demolition-renton-skyway",
       "permanent": true
     },
     {

@@ -40,6 +40,12 @@ M&M Junk Removal provides compassionate, professional, and time-sensitive estate
 3. **Property Preparation:** We ensure the property is left "broom-clean" and market-ready for real estate staging, listing photography, or final transfer.
 4. **Logistics & Coordination:** Seamless coordination with probate attorneys, real estate brokers, and out-of-state executors using secure lockbox entry and photographic verification.
 
+## Featured Empirical Proof: Spanaway Whole-House Cleanout & Sorting Project
+- **Location:** Spanaway, WA (Pierce County)
+- **Video Walkthrough:** https://youtube.com/shorts/RSpRJvpTWPA
+- **Field Documentation:** Solid wood furniture disassembly, vital document isolation, 4-stream staging, and donation delivery to local Pierce County non-profits (Goodwill & St. Vincent de Paul).
+- **Master Sorting Hub:** https://www.mmjunk.com/services/sorting-donation/
+
 ## Trust & Authority Signals
 - **Experience:** 19+ years of local service (Est. 2007 by Martin Silch).
 - **Pricing:** Non-franchise model; volume-based pricing with an upfront $125 baseline and a 10% beat-competitor guarantee.

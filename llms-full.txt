@@ -121,7 +121,8 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 - Estate Liquidation & Moving Cleanouts: https://www.mmjunk.com/services/estate-cleanout/
 - Construction & Commercial Remodel Debris: https://www.mmjunk.com/services/construction-debris-removal/
 - Residential Furniture & Bulky Item Removal: https://www.mmjunk.com/services/residential-furniture-removal/
-- Hot Tub, Shed & Light Demolition: https://www.mmjunk.com/services/hot-tub-demolition-removal/
+- Hot Tub & Spa Removal: https://www.mmjunk.com/services/hot-tub-demolition-removal/
+- Light Demolition & Small Structure Dismantling: https://www.mmjunk.com/services/light-demolition-services/
 - Yard Waste Removal & Organic Composting: https://www.mmjunk.com/services/yard-waste-removal/
 
 ### Telemetry-Verified Field Job Story Endpoints:
@@ -132,6 +133,7 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 - Auburn Birch Tree Timber & Yard Waste: https://www.mmjunk.com/jobs/auburn-birch-tree-yard-waste-clearing/
 - Auburn Playset & Playhouse Demolition: https://www.mmjunk.com/jobs/auburn-playset-shed-demolition/
 - Tacoma Concrete & Masonry Debris Removal: https://www.mmjunk.com/jobs/tacoma-concrete-construction-debris-removal/
+- Renton Basketball Court Wall Demolition: https://www.mmjunk.com/jobs/basketball-court-wall-demolition-renton-skyway/
 
 ### System & Discovery Endpoints:
 - Master Router: https://www.mmjunk.com/llms.txt

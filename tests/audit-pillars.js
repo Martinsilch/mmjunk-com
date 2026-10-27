@@ -27,6 +27,7 @@ const htmlFiles = [
   'services/construction-debris-removal/index.html',
   'services/residential-furniture-removal/index.html',
   'services/hot-tub-demolition-removal/index.html',
+  'services/light-demolition-services/index.html',
   'services/yard-waste-removal/index.html',
   'jobs/index.html',
   'jobs/federal-way-commercial-refrigerator-extraction/index.html',

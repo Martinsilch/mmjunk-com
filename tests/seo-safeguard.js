@@ -264,6 +264,43 @@ htmlFiles.forEach(file => {
 recordPass(`Audited ${graphsAudited} JSON-LD entity graphs. All entity ID references resolved.`);
 
 // -----------------------------------------------------------------------------
+// CHECK 5: VIDEOOBJECT UPLOADDATE & TIMEZONE VALIDATION
+// -----------------------------------------------------------------------------
+console.log('\n--- [GATE 5] VideoObject uploadDate Timezone Validation ---');
+let checkedVideos = 0;
+htmlFiles.forEach(file => {
+  const content = fs.readFileSync(file, 'utf8');
+  const scriptRegex = /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+  let match;
+  while ((match = scriptRegex.exec(content)) !== null) {
+    try {
+      const parsed = JSON.parse(match[1]);
+      function checkVideos(obj) {
+        if (!obj || typeof obj !== 'object') return;
+        if (obj['@type'] === 'VideoObject') {
+          checkedVideos++;
+          const d = obj.uploadDate;
+          if (!d) {
+            recordError(`${file}: VideoObject "${obj.name || ''}" is missing required "uploadDate"!`);
+          } else {
+            const hasTz = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(d);
+            if (!hasTz) {
+              recordError(`${file}: VideoObject "${obj.name || ''}" has uploadDate "${d}" missing an ISO 8601 timezone!`);
+            }
+          }
+        }
+        for (const k of Object.keys(obj)) {
+          if (typeof obj[k] === 'object') checkVideos(obj[k]);
+        }
+      }
+      if (parsed['@graph']) checkVideos(parsed['@graph']);
+      else checkVideos(parsed);
+    } catch (e) {}
+  }
+});
+recordPass(`Audited ${checkedVideos} VideoObject schema instances. All uploadDate timestamps include full ISO 8601 timezones.`);
+
+// -----------------------------------------------------------------------------
 // SUMMARY & EXIT CODE
 // -----------------------------------------------------------------------------
 console.log('\n====================================================');

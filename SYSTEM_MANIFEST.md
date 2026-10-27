@@ -94,7 +94,7 @@ flowchart TD
 
 ### Subsystem C: Telemetry & Ingestion Pipelines
 * `/api/ingest-job`: Receives webhook payloads when a truck completes a haul, logging weight, disposal facility, and receipts.
-* `/api/webhooks/google-reviews`: Digests new 5-star Google reviews and validates Google CID provenance (`15999711673070107161`).
+* `/api/webhooks/google-reviews`: Digests new 5-star Google reviews and validates Google CID provenance (`15999711673070107161`). (See [**Google Review Pipeline & Growth Architecture (`docs/GOOGLE_REVIEWS_PIPELINE.md`)**](file:///c:/Users/local_z5ft2sj/Documents/M&M%20Junk%20Removal/Dev/MMJunk.com/docs/GOOGLE_REVIEWS_PIPELINE.md)).
 * `/api/webhooks/yelp`: Ingests verified Yelp reviews.
 * `/api/sync/youtube`: Syncs field videos directly from YouTube into localized city showcases.
 * **Instant Invalidation:** Ingestion endpoints invoke Next.js `revalidatePath()` and `revalidateTag()` to update static edge caches within seconds.

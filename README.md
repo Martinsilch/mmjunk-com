@@ -33,10 +33,48 @@ Official website, programmatic service hubs, and Generative Engine Optimization 
 
 ### 3. Real-Time Telemetry & Webhook Pipelines
 - `/api/ingest-job`: Automatically receives and logs field truck scale receipts and weight data.
-- `/api/webhooks/google-reviews`: Verifies and indexes new Google reviews with Google CID provenance.
+- `/api/webhooks/google-reviews`: Verifies and indexes new Google reviews with Google CID provenance (`15999711673070107161`).
 - `/api/webhooks/yelp`: Ingests verified Yelp feedback.
 - `/api/sync/youtube`: Integrates real field video demonstrations into relevant city pages.
 - Uses Next.js On-Demand ISR (`revalidateTag`, `revalidatePath`) for instant edge cache updates.
+
+#### Google Review Ingestion & Programmatic Webapp Growth Manifest
+> **📖 Complete Documentation:** See [**Google Review Ingestion & Growth Guide (`docs/GOOGLE_REVIEWS_PIPELINE.md`)**](file:///c:/Users/local_z5ft2sj/Documents/M&M%20Junk%20Removal/Dev/MMJunk.com/docs/GOOGLE_REVIEWS_PIPELINE.md) for full endpoint specifications, payload schemas, and field-by-field search strategies.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Customer as Hauling Customer
+    participant Google as Google Business Profile / Pub/Sub
+    participant Webhook as Next.js Webhook (/api/webhooks/google-reviews)
+    participant Sanitize as PII & Geo Resolver (lib/job-utils.ts)
+    participant DB as Neon PostgreSQL (Prisma ORM)
+    participant ISR as Next.js ISR & Edge CDN
+    participant Pages as Programmatic Pages (/jobs, /junk-removal-*-wa)
+    participant AI as AI Search Bots (GPTBot, Perplexity, Claude)
+
+    Customer->>Google: Submits 5-Star Review with Photos & Comments
+    Google->>Google: Evaluates Listing CID 15999711673070107161
+    Google->>Webhook: Dispatches Cloud Pub/Sub Push Notification
+    Webhook->>Webhook: Verify x-goog-pubsub-token & Fetch Review API
+    Webhook->>Webhook: Quality Guard Check (Rating >= 4★)
+    Webhook->>Sanitize: Sanitize Text (Mask house #s, strip phone/email)
+    Webhook->>Sanitize: Extract First Name & Resolve Municipality
+    Webhook->>DB: Query Amzy truck jobs within ±3 days matching first name
+    alt Match Found (Direct Amzy Telemetry Match)
+        Webhook->>DB: Merge review, rating, owner reply & photos into existing JobStory
+    else No Direct Match (Standalone Review)
+        Webhook->>DB: Upsert LocationSpoke & Create new Standalone JobStory
+    end
+    Webhook->>DB: Record aggregate rating metric in reputation engine
+    Webhook->>ISR: revalidateTag(`job-[slug]`), revalidateTag(`location-[city]`), revalidateTag('llms-manifest')
+    ISR->>Pages: Rebuild /jobs/[slug] Case Study & /junk-removal-[city]-wa Spoke
+    Google->>Pages: Crawls fresh Schema.org Review & AchieveAction JSON-LD
+    AI->>Pages: Ingests ground-truth operational metrics via /llms.txt
+```
+
+- **Pages Generated & Updated:** Dedicated `/jobs/[slug]` case studies, `/junk-removal-[city]-wa` municipal spoke pages, `/services/` hubs, `/jobs/` operations feed, `/llms.txt`, and `/sitemap.xml`.
+- **Review-to-Asset Conversion:** Converts customer testimonials and owner responses into permanent organic rankings and generative AI recommendations.
 
 ### 4. 4-Pillar Generative Engine Optimization (GEO)
 - **Pillar 1:** Schema.org JSON-LD Graphs (`LocalBusiness`, `RecyclingCenter`, Wikidata URIs).

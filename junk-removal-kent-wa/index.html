@@ -38,31 +38,6 @@
   <link rel="apple-touch-icon" href="../assets/images/favicon.png">
   <link rel="stylesheet" href="../assets/css/style.css">
 
-  <!-- Google Analytics & Google Tag Manager -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-TBB9FCL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'GT-TBB9FCL');
-    gtag('config', 'AW-1064983468');
-
-    function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) !== 'undefined') {
-          window.location = url;
-        }
-      };
-      if (typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-          'send_to': 'AW-1064983468/urRRCJDHq6obEKy36fsD',
-          'event_callback': callback
-        });
-      }
-      return false;
-    }
-  </script>
-
   <!-- Localized Schema.org JSON-LD -->
   <script type="application/ld+json">
 {

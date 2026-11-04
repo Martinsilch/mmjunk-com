@@ -32,6 +32,16 @@ const MUNICIPALITY_SLUGS = new Set([
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Enforce canonical hostname (redirect apex mmjunk.com or vercel.app previews to www.mmjunk.com)
+  const host = request.headers.get('host') || '';
+  if (host === 'mmjunk.com' || (host.endsWith('.vercel.app') && !host.includes('localhost') && !host.includes('127.0.0.1'))) {
+    const url = request.nextUrl.clone();
+    url.host = 'www.mmjunk.com';
+    url.protocol = 'https:';
+    url.port = '';
+    return NextResponse.redirect(url, 301);
+  }
+
   // Bypass Next.js internals, API routes, and static asset requests with file extensions
   if (
     pathname.startsWith('/_next') ||

@@ -9,6 +9,8 @@
 
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
+require('dotenv').config();
 const { google } = require('googleapis');
 
 const KEY_FILE = path.join(__dirname, '..', 'google-service-account.json');
@@ -47,7 +49,8 @@ async function runReport(propId) {
   console.log(`======================================================\n`);
 
   try {
-    const res = await analyticsdata.properties.runReport({
+    // 1. Top Pages
+    const resPages = await analyticsdata.properties.runReport({
       property: `properties/${cleanId}`,
       requestBody: {
         dateRanges: [{ startDate: `${days}daysAgo`, endDate: 'today' }],
@@ -58,43 +61,133 @@ async function runReport(propId) {
           { name: 'conversions' },
           { name: 'averageSessionDuration' }
         ],
-        limit: 25
+        limit: 20
       }
     });
 
-    const rows = res.data.rows || [];
-    if (rows.length === 0) {
-      console.log('No analytics data recorded for this time range.');
-      return;
+    console.log(`--- [1] Top Landing Pages & Engagement ---`);
+    const pageRows = resPages.data.rows || [];
+    if (pageRows.length === 0) {
+      console.log('No page view data recorded for this time range.\n');
+    } else {
+      console.log(
+        'Page Path'.padEnd(45) +
+        'Active Users'.padStart(14) +
+        'Page Views'.padStart(12) +
+        'Conversions'.padStart(14) +
+        'Avg Duration'.padStart(14)
+      );
+      console.log('-'.repeat(99));
+
+      pageRows.forEach(r => {
+        const page = r.dimensionValues[0].value;
+        const shortPage = page.length > 43 ? page.substring(0, 40) + '...' : page;
+        const users = r.metricValues[0].value;
+        const views = r.metricValues[1].value;
+        const conv = r.metricValues[2].value;
+        const dur = parseFloat(r.metricValues[3].value).toFixed(1) + 's';
+
+        console.log(
+          shortPage.padEnd(45) +
+          users.padStart(14) +
+          views.padStart(12) +
+          conv.padStart(14) +
+          dur.padStart(14)
+        );
+      });
+      console.log('\n');
     }
 
-    console.log(
-      'Page Path'.padEnd(45) +
-      'Active Users'.padStart(14) +
-      'Page Views'.padStart(12) +
-      'Conversions'.padStart(14) +
-      'Avg Duration'.padStart(14)
-    );
-    console.log('-'.repeat(99));
-
-    rows.forEach(r => {
-      const page = r.dimensionValues[0].value;
-      const shortPage = page.length > 43 ? page.substring(0, 40) + '...' : page;
-      const users = r.metricValues[0].value;
-      const views = r.metricValues[1].value;
-      const conv = r.metricValues[2].value;
-      const dur = parseFloat(r.metricValues[3].value).toFixed(1) + 's';
-
-      console.log(
-        shortPage.padEnd(45) +
-        users.padStart(14) +
-        views.padStart(12) +
-        conv.padStart(14) +
-        dur.padStart(14)
-      );
+    // 2. Acquisition Channels & Sources
+    const resChannels = await analyticsdata.properties.runReport({
+      property: `properties/${cleanId}`,
+      requestBody: {
+        dateRanges: [{ startDate: `${days}daysAgo`, endDate: 'today' }],
+        dimensions: [
+          { name: 'sessionDefaultChannelGroup' },
+          { name: 'sessionSourceMedium' }
+        ],
+        metrics: [
+          { name: 'activeUsers' },
+          { name: 'sessions' },
+          { name: 'conversions' }
+        ],
+        limit: 15
+      }
     });
 
-    console.log('\n');
+    console.log(`--- [2] Traffic Acquisition Channels & Sources ---`);
+    const channelRows = resChannels.data.rows || [];
+    if (channelRows.length === 0) {
+      console.log('No channel acquisition data recorded.\n');
+    } else {
+      console.log(
+        'Channel Group'.padEnd(22) +
+        'Source / Medium'.padEnd(38) +
+        'Active Users'.padStart(14) +
+        'Sessions'.padStart(10) +
+        'Conversions'.padStart(14)
+      );
+      console.log('-'.repeat(98));
+
+      channelRows.forEach(r => {
+        const channel = r.dimensionValues[0].value;
+        const source = r.dimensionValues[1].value;
+        const shortSource = source.length > 36 ? source.substring(0, 33) + '...' : source;
+        const users = r.metricValues[0].value;
+        const sessions = r.metricValues[1].value;
+        const conv = r.metricValues[2].value;
+
+        console.log(
+          channel.padEnd(22) +
+          shortSource.padEnd(38) +
+          users.padStart(14) +
+          sessions.padStart(10) +
+          conv.padStart(14)
+        );
+      });
+      console.log('\n');
+    }
+
+    // 3. Conversion Events Breakdown
+    const resEvents = await analyticsdata.properties.runReport({
+      property: `properties/${cleanId}`,
+      requestBody: {
+        dateRanges: [{ startDate: `${days}daysAgo`, endDate: 'today' }],
+        dimensions: [{ name: 'eventName' }],
+        metrics: [
+          { name: 'eventCount' },
+          { name: 'totalUsers' }
+        ],
+        limit: 15
+      }
+    });
+
+    console.log(`--- [3] Live Event & Conversion Telemetry ---`);
+    const eventRows = resEvents.data.rows || [];
+    if (eventRows.length === 0) {
+      console.log('No event telemetry recorded.\n');
+    } else {
+      console.log(
+        'Event Name'.padEnd(35) +
+        'Total Events'.padStart(15) +
+        'Unique Users'.padStart(15)
+      );
+      console.log('-'.repeat(65));
+
+      eventRows.forEach(r => {
+        const evt = r.dimensionValues[0].value;
+        const count = r.metricValues[0].value;
+        const users = r.metricValues[1].value;
+
+        console.log(
+          evt.padEnd(35) +
+          count.padStart(15) +
+          users.padStart(15)
+        );
+      });
+      console.log('\n');
+    }
   } catch (err) {
     console.error('❌ GA4 Query Error:', err.message);
   }

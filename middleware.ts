@@ -58,9 +58,27 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
+  // 50/50 A/B Experiment Cookie Assignment for Root Homepage
+  const response = NextResponse.next();
+  if (pathname === '/') {
+    const existingCookie = request.cookies.get('mm_hero_ab')?.value;
+    if (!existingCookie) {
+      const userAgent = request.headers.get('user-agent') || '';
+      const isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headless/i.test(userAgent);
+      if (!isBot) {
+        const assignedVariant = Math.random() < 0.5 ? 'control' : 'social';
+        response.cookies.set('mm_hero_ab', assignedVariant, {
+          maxAge: 60 * 60 * 24 * 30, // 30-day persistence
+          path: '/',
+          sameSite: 'lax',
+        });
+      }
+    }
+  }
+
   // Allow /locations root directory
   if (pathname === '/locations' || pathname === '/locations/') {
-    return NextResponse.next();
+    return response;
   }
 
   // Handle legacy static pages from mamhad.com
@@ -108,7 +126,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {

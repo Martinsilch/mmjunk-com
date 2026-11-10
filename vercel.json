@@ -366,6 +366,756 @@
       "source": "/security.txt",
       "destination": "/.well-known/security.txt",
       "permanent": true
+    },
+    {
+      "source": "/locations/federal-way",
+      "destination": "/junk-removal-federal-way-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/federal-way/",
+      "destination": "/junk-removal-federal-way-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/federal-way-junk-removal",
+      "destination": "/junk-removal-federal-way-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/federal-way-junk-removal/",
+      "destination": "/junk-removal-federal-way-wa",
+      "permanent": true
+    },
+    {
+      "source": "/federal-way-junk-removal",
+      "destination": "/junk-removal-federal-way-wa",
+      "permanent": true
+    },
+    {
+      "source": "/federal-way-junk-removal/",
+      "destination": "/junk-removal-federal-way-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/auburn",
+      "destination": "/junk-removal-auburn-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/auburn/",
+      "destination": "/junk-removal-auburn-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/auburn-junk-removal",
+      "destination": "/junk-removal-auburn-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/auburn-junk-removal/",
+      "destination": "/junk-removal-auburn-wa",
+      "permanent": true
+    },
+    {
+      "source": "/auburn-junk-removal",
+      "destination": "/junk-removal-auburn-wa",
+      "permanent": true
+    },
+    {
+      "source": "/auburn-junk-removal/",
+      "destination": "/junk-removal-auburn-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/kent",
+      "destination": "/junk-removal-kent-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/kent/",
+      "destination": "/junk-removal-kent-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/kent-junk-removal",
+      "destination": "/junk-removal-kent-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/kent-junk-removal/",
+      "destination": "/junk-removal-kent-wa",
+      "permanent": true
+    },
+    {
+      "source": "/kent-junk-removal",
+      "destination": "/junk-removal-kent-wa",
+      "permanent": true
+    },
+    {
+      "source": "/kent-junk-removal/",
+      "destination": "/junk-removal-kent-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tacoma",
+      "destination": "/junk-removal-tacoma-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tacoma/",
+      "destination": "/junk-removal-tacoma-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tacoma-junk-removal",
+      "destination": "/junk-removal-tacoma-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tacoma-junk-removal/",
+      "destination": "/junk-removal-tacoma-wa",
+      "permanent": true
+    },
+    {
+      "source": "/tacoma-junk-removal",
+      "destination": "/junk-removal-tacoma-wa",
+      "permanent": true
+    },
+    {
+      "source": "/tacoma-junk-removal/",
+      "destination": "/junk-removal-tacoma-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/edgewood",
+      "destination": "/junk-removal-edgewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/edgewood/",
+      "destination": "/junk-removal-edgewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/edgewood-junk-removal",
+      "destination": "/junk-removal-edgewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/edgewood-junk-removal/",
+      "destination": "/junk-removal-edgewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/edgewood-junk-removal",
+      "destination": "/junk-removal-edgewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/edgewood-junk-removal/",
+      "destination": "/junk-removal-edgewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/des-moines",
+      "destination": "/junk-removal-des-moines-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/des-moines/",
+      "destination": "/junk-removal-des-moines-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/des-moines-junk-removal",
+      "destination": "/junk-removal-des-moines-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/des-moines-junk-removal/",
+      "destination": "/junk-removal-des-moines-wa",
+      "permanent": true
+    },
+    {
+      "source": "/des-moines-junk-removal",
+      "destination": "/junk-removal-des-moines-wa",
+      "permanent": true
+    },
+    {
+      "source": "/des-moines-junk-removal/",
+      "destination": "/junk-removal-des-moines-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/milton",
+      "destination": "/junk-removal-milton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/milton/",
+      "destination": "/junk-removal-milton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/milton-junk-removal",
+      "destination": "/junk-removal-milton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/milton-junk-removal/",
+      "destination": "/junk-removal-milton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/milton-junk-removal",
+      "destination": "/junk-removal-milton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/milton-junk-removal/",
+      "destination": "/junk-removal-milton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/pacific",
+      "destination": "/junk-removal-pacific-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/pacific/",
+      "destination": "/junk-removal-pacific-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/pacific-junk-removal",
+      "destination": "/junk-removal-pacific-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/pacific-junk-removal/",
+      "destination": "/junk-removal-pacific-wa",
+      "permanent": true
+    },
+    {
+      "source": "/pacific-junk-removal",
+      "destination": "/junk-removal-pacific-wa",
+      "permanent": true
+    },
+    {
+      "source": "/pacific-junk-removal/",
+      "destination": "/junk-removal-pacific-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/algona",
+      "destination": "/junk-removal-algona-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/algona/",
+      "destination": "/junk-removal-algona-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/algona-junk-removal",
+      "destination": "/junk-removal-algona-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/algona-junk-removal/",
+      "destination": "/junk-removal-algona-wa",
+      "permanent": true
+    },
+    {
+      "source": "/algona-junk-removal",
+      "destination": "/junk-removal-algona-wa",
+      "permanent": true
+    },
+    {
+      "source": "/algona-junk-removal/",
+      "destination": "/junk-removal-algona-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/covington",
+      "destination": "/junk-removal-covington-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/covington/",
+      "destination": "/junk-removal-covington-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/covington-junk-removal",
+      "destination": "/junk-removal-covington-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/covington-junk-removal/",
+      "destination": "/junk-removal-covington-wa",
+      "permanent": true
+    },
+    {
+      "source": "/covington-junk-removal",
+      "destination": "/junk-removal-covington-wa",
+      "permanent": true
+    },
+    {
+      "source": "/covington-junk-removal/",
+      "destination": "/junk-removal-covington-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/maple-valley",
+      "destination": "/junk-removal-maple-valley-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/maple-valley/",
+      "destination": "/junk-removal-maple-valley-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/maple-valley-junk-removal",
+      "destination": "/junk-removal-maple-valley-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/maple-valley-junk-removal/",
+      "destination": "/junk-removal-maple-valley-wa",
+      "permanent": true
+    },
+    {
+      "source": "/maple-valley-junk-removal",
+      "destination": "/junk-removal-maple-valley-wa",
+      "permanent": true
+    },
+    {
+      "source": "/maple-valley-junk-removal/",
+      "destination": "/junk-removal-maple-valley-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/normandy-park",
+      "destination": "/junk-removal-normandy-park-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/normandy-park/",
+      "destination": "/junk-removal-normandy-park-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/normandy-park-junk-removal",
+      "destination": "/junk-removal-normandy-park-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/normandy-park-junk-removal/",
+      "destination": "/junk-removal-normandy-park-wa",
+      "permanent": true
+    },
+    {
+      "source": "/normandy-park-junk-removal",
+      "destination": "/junk-removal-normandy-park-wa",
+      "permanent": true
+    },
+    {
+      "source": "/normandy-park-junk-removal/",
+      "destination": "/junk-removal-normandy-park-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/renton",
+      "destination": "/junk-removal-renton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/renton/",
+      "destination": "/junk-removal-renton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/renton-junk-removal",
+      "destination": "/junk-removal-renton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/renton-junk-removal/",
+      "destination": "/junk-removal-renton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/renton-junk-removal",
+      "destination": "/junk-removal-renton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/renton-junk-removal/",
+      "destination": "/junk-removal-renton-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/seatac",
+      "destination": "/junk-removal-seatac-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/seatac/",
+      "destination": "/junk-removal-seatac-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/seatac-junk-removal",
+      "destination": "/junk-removal-seatac-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/seatac-junk-removal/",
+      "destination": "/junk-removal-seatac-wa",
+      "permanent": true
+    },
+    {
+      "source": "/seatac-junk-removal",
+      "destination": "/junk-removal-seatac-wa",
+      "permanent": true
+    },
+    {
+      "source": "/seatac-junk-removal/",
+      "destination": "/junk-removal-seatac-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tukwila",
+      "destination": "/junk-removal-tukwila-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tukwila/",
+      "destination": "/junk-removal-tukwila-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tukwila-junk-removal",
+      "destination": "/junk-removal-tukwila-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/tukwila-junk-removal/",
+      "destination": "/junk-removal-tukwila-wa",
+      "permanent": true
+    },
+    {
+      "source": "/tukwila-junk-removal",
+      "destination": "/junk-removal-tukwila-wa",
+      "permanent": true
+    },
+    {
+      "source": "/tukwila-junk-removal/",
+      "destination": "/junk-removal-tukwila-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/bonney-lake",
+      "destination": "/junk-removal-bonney-lake-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/bonney-lake/",
+      "destination": "/junk-removal-bonney-lake-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/bonney-lake-junk-removal",
+      "destination": "/junk-removal-bonney-lake-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/bonney-lake-junk-removal/",
+      "destination": "/junk-removal-bonney-lake-wa",
+      "permanent": true
+    },
+    {
+      "source": "/bonney-lake-junk-removal",
+      "destination": "/junk-removal-bonney-lake-wa",
+      "permanent": true
+    },
+    {
+      "source": "/bonney-lake-junk-removal/",
+      "destination": "/junk-removal-bonney-lake-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fife",
+      "destination": "/junk-removal-fife-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fife/",
+      "destination": "/junk-removal-fife-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fife-junk-removal",
+      "destination": "/junk-removal-fife-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fife-junk-removal/",
+      "destination": "/junk-removal-fife-wa",
+      "permanent": true
+    },
+    {
+      "source": "/fife-junk-removal",
+      "destination": "/junk-removal-fife-wa",
+      "permanent": true
+    },
+    {
+      "source": "/fife-junk-removal/",
+      "destination": "/junk-removal-fife-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fircrest",
+      "destination": "/junk-removal-fircrest-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fircrest/",
+      "destination": "/junk-removal-fircrest-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fircrest-junk-removal",
+      "destination": "/junk-removal-fircrest-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/fircrest-junk-removal/",
+      "destination": "/junk-removal-fircrest-wa",
+      "permanent": true
+    },
+    {
+      "source": "/fircrest-junk-removal",
+      "destination": "/junk-removal-fircrest-wa",
+      "permanent": true
+    },
+    {
+      "source": "/fircrest-junk-removal/",
+      "destination": "/junk-removal-fircrest-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/gig-harbor",
+      "destination": "/junk-removal-gig-harbor-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/gig-harbor/",
+      "destination": "/junk-removal-gig-harbor-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/gig-harbor-junk-removal",
+      "destination": "/junk-removal-gig-harbor-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/gig-harbor-junk-removal/",
+      "destination": "/junk-removal-gig-harbor-wa",
+      "permanent": true
+    },
+    {
+      "source": "/gig-harbor-junk-removal",
+      "destination": "/junk-removal-gig-harbor-wa",
+      "permanent": true
+    },
+    {
+      "source": "/gig-harbor-junk-removal/",
+      "destination": "/junk-removal-gig-harbor-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/lakewood",
+      "destination": "/junk-removal-lakewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/lakewood/",
+      "destination": "/junk-removal-lakewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/lakewood-junk-removal",
+      "destination": "/junk-removal-lakewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/lakewood-junk-removal/",
+      "destination": "/junk-removal-lakewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/lakewood-junk-removal",
+      "destination": "/junk-removal-lakewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/lakewood-junk-removal/",
+      "destination": "/junk-removal-lakewood-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/puyallup",
+      "destination": "/junk-removal-puyallup-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/puyallup/",
+      "destination": "/junk-removal-puyallup-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/puyallup-junk-removal",
+      "destination": "/junk-removal-puyallup-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/puyallup-junk-removal/",
+      "destination": "/junk-removal-puyallup-wa",
+      "permanent": true
+    },
+    {
+      "source": "/puyallup-junk-removal",
+      "destination": "/junk-removal-puyallup-wa",
+      "permanent": true
+    },
+    {
+      "source": "/puyallup-junk-removal/",
+      "destination": "/junk-removal-puyallup-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/ruston",
+      "destination": "/junk-removal-ruston-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/ruston/",
+      "destination": "/junk-removal-ruston-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/ruston-junk-removal",
+      "destination": "/junk-removal-ruston-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/ruston-junk-removal/",
+      "destination": "/junk-removal-ruston-wa",
+      "permanent": true
+    },
+    {
+      "source": "/ruston-junk-removal",
+      "destination": "/junk-removal-ruston-wa",
+      "permanent": true
+    },
+    {
+      "source": "/ruston-junk-removal/",
+      "destination": "/junk-removal-ruston-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/sumner",
+      "destination": "/junk-removal-sumner-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/sumner/",
+      "destination": "/junk-removal-sumner-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/sumner-junk-removal",
+      "destination": "/junk-removal-sumner-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/sumner-junk-removal/",
+      "destination": "/junk-removal-sumner-wa",
+      "permanent": true
+    },
+    {
+      "source": "/sumner-junk-removal",
+      "destination": "/junk-removal-sumner-wa",
+      "permanent": true
+    },
+    {
+      "source": "/sumner-junk-removal/",
+      "destination": "/junk-removal-sumner-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/university-place",
+      "destination": "/junk-removal-university-place-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/university-place/",
+      "destination": "/junk-removal-university-place-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/university-place-junk-removal",
+      "destination": "/junk-removal-university-place-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/university-place-junk-removal/",
+      "destination": "/junk-removal-university-place-wa",
+      "permanent": true
+    },
+    {
+      "source": "/university-place-junk-removal",
+      "destination": "/junk-removal-university-place-wa",
+      "permanent": true
+    },
+    {
+      "source": "/university-place-junk-removal/",
+      "destination": "/junk-removal-university-place-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/south-seattle",
+      "destination": "/junk-removal-south-seattle-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/south-seattle/",
+      "destination": "/junk-removal-south-seattle-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/south-seattle-junk-removal",
+      "destination": "/junk-removal-south-seattle-wa",
+      "permanent": true
+    },
+    {
+      "source": "/locations/south-seattle-junk-removal/",
+      "destination": "/junk-removal-south-seattle-wa",
+      "permanent": true
+    },
+    {
+      "source": "/south-seattle-junk-removal",
+      "destination": "/junk-removal-south-seattle-wa",
+      "permanent": true
+    },
+    {
+      "source": "/south-seattle-junk-removal/",
+      "destination": "/junk-removal-south-seattle-wa",
+      "permanent": true
     }
   ],
   "rewrites": [

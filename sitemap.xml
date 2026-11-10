@@ -133,6 +133,18 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://www.mmjunk.com/jobs/basketball-court-wall-demolition-renton-skyway</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.mmjunk.com/locations</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
     <loc>https://www.mmjunk.com/junk-removal-federal-way-wa</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>weekly</changefreq>

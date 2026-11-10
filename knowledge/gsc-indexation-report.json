@@ -1,0 +1,438 @@
+{
+  "indexed": [
+    {
+      "url": "https://www.mmjunk.com/",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-05T13:25:57Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/"
+    },
+    {
+      "url": "https://www.mmjunk.com/services",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-04T02:44:44Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/services"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/industrial",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-05T19:58:31Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/services/industrial"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/contractual",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-07T17:06:54Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/services/contractual"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-federal-way-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-07T22:09:26Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-federal-way-wa"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-tacoma-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-06T02:35:32Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-tacoma-wa"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-edgewood-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-06T07:34:20Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-edgewood-wa"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-pacific-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-03T14:26:02Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-pacific-wa"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-algona-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-08T08:17:55Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-algona-wa"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-normandy-park-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-10-25T07:35:24Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-normandy-park-wa"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-puyallup-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-07T06:32:55Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-puyallup-wa"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-university-place-wa",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "lastCrawlTime": "2026-11-09T17:31:46Z",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "googleCanonical": "https://www.mmjunk.com/junk-removal-university-place-wa"
+    }
+  ],
+  "notIndexed": [
+    {
+      "url": "https://www.mmjunk.com/services/residential",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/commercial",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/sorting-donation",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/recurring",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/commercial-appliance-removal",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/estate-cleanout",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/construction-debris-removal",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/residential-furniture-removal",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/hot-tub-demolition-removal",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/light-demolition-services",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/services/yard-waste-removal",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/jobs",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/jobs/federal-way-commercial-refrigerator-extraction",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/jobs/ne-tacoma-moving-cleanout",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/jobs/federal-way-heavy-treadmill-disassembly",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/jobs/auburn-birch-tree-yard-waste-clearing",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/jobs/auburn-playset-shed-demolition",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/jobs/tacoma-concrete-construction-debris-removal",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-auburn-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-kent-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-des-moines-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-milton-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-covington-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-maple-valley-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-renton-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-seatac-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-tukwila-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-bonney-lake-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-fife-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-fircrest-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-gig-harbor-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-lakewood-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-ruston-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "URL is unknown to Google",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-sumner-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/junk-removal-south-seattle-wa",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    },
+    {
+      "url": "https://www.mmjunk.com/privacy-policy",
+      "verdict": "NEUTRAL",
+      "coverageState": "Discovered - currently not indexed",
+      "lastCrawlTime": "Never",
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "googleCanonical": "None"
+    }
+  ]
+}

@@ -5,6 +5,7 @@
 
 # --- Standard Bot Rules ---
 User-agent: *
+Disallow: /preview*
 Disallow: /cgi-bin
 Disallow: /?
 Disallow: /wp-

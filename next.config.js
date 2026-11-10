@@ -24,6 +24,30 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/preview-1',
+        destination: '/preview-1/index.html',
+      },
+      {
+        source: '/preview-1/',
+        destination: '/preview-1/index.html',
+      },
+      {
+        source: '/preview-2',
+        destination: '/preview-2/index.html',
+      },
+      {
+        source: '/preview-2/',
+        destination: '/preview-2/index.html',
+      },
+      {
+        source: '/preview-3',
+        destination: '/preview-3/index.html',
+      },
+      {
+        source: '/preview-3/',
+        destination: '/preview-3/index.html',
+      },
+      {
         source: '/services',
         destination: '/services/index.html',
       },

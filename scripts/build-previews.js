@@ -2,27 +2,24 @@ const fs = require('fs');
 const path = require('path');
 
 // Read current index.html as base
-const baseHtml = fs.readFileSync('index.html', 'utf8');
+let baseHtml = fs.readFileSync('index.html', 'utf8');
 
-// Switcher Bar Component HTML
-function getSwitcherBar(activeVersion) {
+// Developer Preview Switcher Bar
+function getDevSwitcherBar() {
   return `
-  <!-- PREVIEW MODE SWITCHER BAR -->
+  <!-- DEVELOPER PREVIEW BAR -->
   <div class="preview-switcher-bar">
     <div class="preview-switcher-inner">
       <div class="preview-label">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-        <span>UI/UX Preview: <strong>Clean Social Profile Hero</strong></span>
+        <span>Developer Preview: <strong>Clean Social Profile Hero</strong></span>
       </div>
       <div class="preview-nav-group">
-        <a href="/preview-1" class="preview-nav-btn ${activeVersion === 1 ? 'preview-nav-btn--active' : ''}">
-          ${activeVersion === 1 ? '● ' : ''}Clean Social Profile (Primary)
-        </a>
-        <a href="/preview-2" class="preview-nav-btn ${activeVersion === 2 ? 'preview-nav-btn--active' : ''}">
-          ${activeVersion === 2 ? '● ' : ''}Glassmorphic Variant
-        </a>
+        <span class="preview-nav-btn preview-nav-btn--active">
+          ● Live Developer Staging (/preview-1)
+        </span>
         <a href="/" class="preview-nav-btn preview-nav-btn--return">
-          ← Live Site
+          ← Return to Live mmjunk.com
         </a>
       </div>
     </div>
@@ -30,7 +27,7 @@ function getSwitcherBar(activeVersion) {
   `;
 }
 
-// Common styles for previews
+// Common styles for preview
 const previewSharedStyles = `
 <style id="preview-enhancement-styles">
 /* Switcher Bar */
@@ -82,11 +79,6 @@ const previewSharedStyles = `
   align-items: center;
   gap: 4px;
 }
-.preview-nav-btn:hover {
-  background: rgba(234, 88, 12, 0.2);
-  border-color: #ea580c;
-  color: #ffffff;
-}
 .preview-nav-btn--active {
   background: #ea580c !important;
   color: #ffffff !important;
@@ -98,6 +90,10 @@ const previewSharedStyles = `
   border-color: rgba(255,255,255,0.25);
   color: #94a3b8;
 }
+.preview-nav-btn--return:hover {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+}
 
 /* Verified checkmark SVG icon */
 .verified-check-svg {
@@ -108,7 +104,7 @@ const previewSharedStyles = `
 }
 
 /* ============================================================
-   CLEAN SOCIAL PROFILE HERO STYLES
+   CLEAN SOCIAL PROFILE HERO STYLES (Zero Clutter)
    ============================================================ */
 .social-clean-hero {
   position: relative;
@@ -144,15 +140,8 @@ const previewSharedStyles = `
   background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 22px;
-  padding: 24px 30px;
+  padding: 28px 32px 32px;
   box-shadow: 0 24px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.05);
-}
-.social-clean-card--glass {
-  background: rgba(17, 24, 39, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(234, 88, 12, 0.3);
 }
 .social-clean-top {
   display: flex;
@@ -191,11 +180,14 @@ const previewSharedStyles = `
   margin: 0;
   line-height: 1.2;
 }
-.social-clean-handle {
+.social-clean-location-radius {
   font-size: 0.95rem;
-  color: #94a3b8;
+  color: #cbd5e1;
   font-weight: 500;
-  margin: 4px 0 0 0;
+  margin: 5px 0 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .social-clean-actions {
   display: flex;
@@ -218,23 +210,8 @@ const previewSharedStyles = `
   font-size: 1.05rem;
   line-height: 1.65;
   color: #e2e8f0;
-  margin: 0 0 20px 0;
+  margin: 0;
   max-width: 950px;
-}
-.social-clean-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.social-meta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.88rem;
-  color: #cbd5e1;
 }
 
 @media (max-width: 768px) {
@@ -243,7 +220,7 @@ const previewSharedStyles = `
     padding: 0 14px;
   }
   .social-clean-card {
-    padding: 20px 16px;
+    padding: 22px 18px 24px;
   }
   .social-clean-top {
     flex-direction: column;
@@ -278,27 +255,33 @@ const previewSharedStyles = `
   .social-clean-desc {
     font-size: 0.96rem;
   }
-  .social-clean-meta {
-    gap: 10px;
-    font-size: 0.82rem;
-  }
 }
 </style>
 `;
 
 // Helper: Verified SVG
 const verifiedSvg = `
-<svg class="verified-check-svg" width="20" height="20" viewBox="0 0 24 24" fill="#38bdf8" title="Verified Local Owner &amp; Operator">
+<svg class="verified-check-svg" width="20" height="20" viewBox="0 0 24 24" fill="#38bdf8" title="Verified Owner &amp; Operator">
   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
 </svg>`;
 
 // ============================================================
-// BUILD CLEAN SOCIAL PROFILE (PRIMARY VERSION)
+// BUILD CLEAN DEVELOPER PREVIEW
 // ============================================================
-function buildCleanSocial(versionNum, isGlass = false) {
+function buildDevPreview(versionNum) {
   let html = baseHtml;
 
-  // 1. Update robots and canonical
+  // 1. Remove redundant "Questions or Rapid Dispatch" in top bar
+  const redundantContactRegex = /<div class="top-bar__contact">[\s\S]*?<\/div>/i;
+  html = html.replace(redundantContactRegex, '');
+
+  // 2. Center the top-bar inner since phone contact was removed
+  html = html.replace(
+    'class="container top-bar__inner"',
+    'class="container top-bar__inner" style="justify-content: center;"'
+  );
+
+  // 3. Update robots and canonical
   html = html.replace(
     /<meta name="robots"[^>]*>/i,
     `<meta name="robots" content="noindex, nofollow">`
@@ -309,16 +292,16 @@ function buildCleanSocial(versionNum, isGlass = false) {
   );
   html = html.replace(
     /<title>.*?<\/title>/i,
-    `<title>[Preview: Clean Social Profile] M&amp;M Junk Removal</title>`
+    `<title>[Developer Preview] M&amp;M Junk Removal — Clean Social Profile</title>`
   );
 
-  // 2. Inject preview styles right before </head>
+  // 4. Inject preview styles right before </head>
   html = html.replace('</head>', `${previewSharedStyles}\n</head>`);
 
-  // 3. Inject switcher bar right after <body>
-  html = html.replace('<body>', `<body>\n${getSwitcherBar(versionNum)}`);
+  // 5. Inject developer preview bar right after <body>
+  html = html.replace('<body>', `<body>\n${getDevSwitcherBar()}`);
 
-  // 4. Replace Hero Section
+  // 6. Replace Hero Section with the uncluttered Clean Social Profile
   const heroRegex = /<section class="hero" id="hero">[\s\S]*?<\/section>/;
   const newHeroHtml = `
     <section class="social-clean-hero" id="hero">
@@ -333,9 +316,9 @@ function buildCleanSocial(versionNum, isGlass = false) {
 
       <!-- Social Profile Container -->
       <div class="social-clean-container">
-        <div class="social-clean-card ${isGlass ? 'social-clean-card--glass' : ''}">
+        <div class="social-clean-card">
           
-          <!-- Top Row: Avatar + Identity + Action Buttons -->
+          <!-- Top Row: Avatar + Name + Action Buttons -->
           <div class="social-clean-top">
             <div class="social-clean-identity">
               <img class="social-clean-avatar" 
@@ -347,8 +330,9 @@ function buildCleanSocial(versionNum, isGlass = false) {
                   <span>Martin Silchuk</span>
                   ${verifiedSvg}
                 </div>
-                <p class="social-clean-handle">
-                  @mmjunk • Founder &amp; Lead Operator • Est. 2007
+                <p class="social-clean-location-radius">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#ea580c" style="flex-shrink:0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+                  <span>Based in Federal Way, WA • Service Radius 15 Miles</span>
                 </p>
               </div>
             </div>
@@ -371,34 +355,10 @@ function buildCleanSocial(versionNum, isGlass = false) {
             M&amp;M Junk Removal — Fast &amp; Reliable Junk Hauling Based in <span>Federal Way, WA</span>
           </h1>
 
-          <!-- QUICK CONCISE DESCRIPTION -->
+          <!-- QUICK CONCISE DESCRIPTION (Zero Clutter) -->
           <p class="social-clean-desc">
             "We Haul Junk to the Dump" — Fast, friendly, and fair-priced hauling by owner Martin Silchuk. Zero franchise overhead, upfront volume rates, and we match &amp; beat any licensed competitor's price by 10% across Federal Way, Pierce &amp; South King County.
           </p>
-
-          <!-- CLEAN METADATA STRIP (Single Line, No Clutter) -->
-          <div class="social-clean-meta">
-            <div class="social-meta-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#ea580c"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-              <span>Based in Federal Way, WA</span>
-            </div>
-            <div class="social-meta-pill">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#38bdf8"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-              <span>Licensed &amp; Insured (UBI Active)</span>
-            </div>
-            <a href="#reviews" class="social-meta-pill" style="color: inherit; text-decoration: none;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <span><strong>258+ Verified Reviews</strong> (5.0 ★ Google &amp; Yelp)</span>
-            </a>
-            <div class="social-meta-pill">
-              <span style="font-weight: 800; color: #ea580c;">10%</span>
-              <span>Rate Beat Guarantee</span>
-            </div>
-            <div class="social-meta-pill">
-              <span class="live-pulse"></span>
-              <span style="color: #22c55e; font-weight: 700;">Same-Day Standby</span>
-            </div>
-          </div>
 
         </div>
       </div>
@@ -408,15 +368,13 @@ function buildCleanSocial(versionNum, isGlass = false) {
   return html.replace(heroRegex, newHeroHtml);
 }
 
-// Build Preview 1 (Clean Primary) & Preview 2 (Glassmorphic) & Preview 3 (Redirect / Clean)
-const v1 = buildCleanSocial(1, false);
-const v2 = buildCleanSocial(2, true);
-const v3 = buildCleanSocial(3, false);
+// Build Preview 1, 2, 3 with this clean layout
+const content = buildDevPreview(1);
 
 const outputs = [
-  { dir: 'preview-1', content: v1 },
-  { dir: 'preview-2', content: v2 },
-  { dir: 'preview-3', content: v3 }
+  { dir: 'preview-1', content: buildDevPreview(1) },
+  { dir: 'preview-2', content: buildDevPreview(2) },
+  { dir: 'preview-3', content: buildDevPreview(3) }
 ];
 
 outputs.forEach(({ dir, content }) => {
@@ -430,4 +388,4 @@ outputs.forEach(({ dir, content }) => {
   console.log(`Generated ${dir}/index.html and public/${dir}/index.html`);
 });
 
-console.log('Clean social profile hero previews built successfully!');
+console.log('Clean developer preview built successfully!');

@@ -184,10 +184,11 @@ const previewSharedStyles = `
   font-size: 0.95rem;
   color: #cbd5e1;
   font-weight: 500;
-  margin: 5px 0 0 0;
+  margin: 6px 0 0 0;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .social-clean-actions {
   display: flex;
@@ -301,7 +302,7 @@ function buildDevPreview(versionNum) {
   // 5. Inject developer preview bar right after <body>
   html = html.replace('<body>', `<body>\n${getDevSwitcherBar()}`);
 
-  // 6. Replace Hero Section with the uncluttered Clean Social Profile
+  // 6. Replace Hero Section with the exact requested text and layout
   const heroRegex = /<section class="hero" id="hero">[\s\S]*?<\/section>/;
   const newHeroHtml = `
     <section class="social-clean-hero" id="hero">
@@ -323,7 +324,7 @@ function buildDevPreview(versionNum) {
             <div class="social-clean-identity">
               <img class="social-clean-avatar" 
                    src="/assets/images/martin-silchuk-avatar.webp" 
-                   alt="Martin Silchuk - Owner &amp; Lead Operator" 
+                   alt="Martin Silchuk - Owner Operator" 
                    width="114" height="114">
               <div class="social-clean-name-block">
                 <div class="social-clean-name">
@@ -331,8 +332,12 @@ function buildDevPreview(versionNum) {
                   ${verifiedSvg}
                 </div>
                 <p class="social-clean-location-radius">
+                  <strong style="color: #ffffff; font-weight: 700;">Owner Operator</strong>
+                  <span style="color: #64748b;">•</span>
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="#ea580c" style="flex-shrink:0;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-                  <span>Based in Federal Way, WA • Service Radius 15 Miles</span>
+                  <span>Based in Federal Way, WA</span>
+                  <span style="color: #64748b;">•</span>
+                  <span>Service Radius 15 Miles</span>
                 </p>
               </div>
             </div>
@@ -350,14 +355,14 @@ function buildDevPreview(versionNum) {
             </div>
           </div>
 
-          <!-- PRIMARY H1 HEADLINE: Company Name + Service Provided + Base in Federal Way -->
+          <!-- PRIMARY H1 HEADLINE: Exactly as requested -->
           <h1 class="social-clean-h1">
-            M&amp;M Junk Removal — Fast &amp; Reliable Junk Hauling Based in <span>Federal Way, WA</span>
+            M&amp;M Junk Removal — Fast &amp; Reliable Junk Hauling in <span>Pierce &amp; South King County</span>
           </h1>
 
-          <!-- QUICK CONCISE DESCRIPTION (Zero Clutter) -->
+          <!-- QUICK CONCISE DESCRIPTION: Exactly as requested -->
           <p class="social-clean-desc">
-            "We Haul Junk to the Dump" — Fast, friendly, and fair-priced hauling by owner Martin Silchuk. Zero franchise overhead, upfront volume rates, and we match &amp; beat any licensed competitor's price by 10% across Federal Way, Pierce &amp; South King County.
+            "We Haul Junk to the Dump" — Save 10% compared to corporate franchises. Instant online estimates, upfront flat rates, zero hidden fees, and certified eco-sorting across 25 local communities.
           </p>
 
         </div>
@@ -369,8 +374,6 @@ function buildDevPreview(versionNum) {
 }
 
 // Build Preview 1, 2, 3 with this clean layout
-const content = buildDevPreview(1);
-
 const outputs = [
   { dir: 'preview-1', content: buildDevPreview(1) },
   { dir: 'preview-2', content: buildDevPreview(2) },

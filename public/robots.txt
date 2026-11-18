@@ -40,6 +40,12 @@ Allow: /knowledge/
 Allow: /humans.txt
 Allow: /privacy-policy/
 
+# Product Feed Suite - Explicitly Allowed for OpenAI & AI Agent Ingestion
+Allow: /feeds/
+Allow: /api/feeds/
+Allow: /feeds/chatgpt-products.jsonl
+Allow: /api/feeds/chatgpt-products.jsonl
+
 # Security Policy Discovery
 Allow: /.well-known/security.txt
 

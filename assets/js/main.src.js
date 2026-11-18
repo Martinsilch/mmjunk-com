@@ -174,27 +174,32 @@ function initIntakeEngine() {
     const pricingMatrix = {
       'mini': {
         name: 'MINI (Minimum Load)',
-        range: '$95 - $140',
+        range: '$95 - $150',
         desc: 'Minimum load, single item or few bags'
       },
       '1_pickup': {
         name: '1 Pick Up Truck Load',
-        range: '$140 - $230',
-        desc: 'Standard pickup truck capacity (~4x8 bed)'
+        range: '$154 - $286',
+        desc: 'Standard pickup truck capacity (~4x8 bed, Base: $220)'
       },
       '2_pickup': {
         name: '2 Pick Up Loads',
-        range: '$230 - $415',
-        desc: 'Double pickup truck capacity'
+        range: '$308 - $572',
+        desc: 'Double pickup truck capacity (Base: $440)'
+      },
+      '3_pickup': {
+        name: '3 Pick Up Loads',
+        range: '$462 - $858',
+        desc: 'Triple pickup truck capacity (Base: $660)'
       },
       'dump_truck': {
         name: 'Dump Truck Load',
-        range: '$740 - $1,110',
-        desc: 'Full dump truck capacity'
+        range: '$840 - $1,560',
+        desc: 'Full dump truck capacity (~5.5 pickup loads, Base: $1,200)'
       },
       'dump_truck_plus': {
         name: 'Dump Truck Plus',
-        range: '$1,110 - $1,480',
+        range: '$1,560 - $2,400+',
         desc: 'Exceeds one dump truck capacity'
       }
     };

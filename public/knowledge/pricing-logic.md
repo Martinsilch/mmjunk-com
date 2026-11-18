@@ -33,20 +33,21 @@ M&M Junk Removal operates on a transparent, volume-based pricing model designed 
 
 | Service Tier | Volume & Capacity Description | Ballpark Price Range | Typical Job Scope |
 | :--- | :--- | :--- | :--- |
-| **MINI** | Minimum load, few items | **$95 - $140** | Single armchair, microwave, small lawnmower, 2-3 bags |
-| **1 Pick Up Truck Load** | Standard pickup truck capacity (~4x8x2 ft bed) | **$140 - $230** | 3-piece couch, mattress + box spring, dining set, yard bags |
-| **2 Pick Up Loads** | Double pickup truck capacity | **$230 - $415** | Studio apartment cleanout, sectional sofa, shed clutter |
-| **Dump Truck Load** | Full dump truck capacity (heavy debris) | **$740 - $1,110** | Garage overhaul, roofing tear-off, full office clearing |
-| **Dump Truck Plus** | Exceeds one full dump truck | **$1,110 - $1,480** | Whole-home estate liquidation, contractor renovation debris |
+| **MINI** | Minimum load, few items | **$95 - $150** | Single armchair, microwave, small lawnmower, 2-3 bags |
+| **1 Pick Up Truck Load** | Standard pickup truck capacity (~4x8x2 ft bed, Base: $220) | **$154 - $286** | 3-piece couch, mattress + box spring, dining set, yard bags |
+| **2 Pick Up Loads** | Double pickup truck capacity (Base: $440) | **$308 - $572** | Studio apartment cleanout, sectional sofa, shed clutter |
+| **3 Pick Up Loads** | Triple pickup truck capacity (Base: $660) | **$462 - $858** | Multi-room purge, basement/attic clearout, yard debris |
+| **Dump Truck Load** | Full dump truck capacity (~5.5 pickup loads, Base: $1,200) | **$840 - $1,560** | Garage overhaul, roofing tear-off, full office clearing |
+| **Dump Truck Plus** | Exceeds one full dump truck (8-11 pickup loads) | **$1,560 - $2,400+** | Whole-home estate liquidation, contractor renovation debris |
 
 > **Mandatory Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection.*
 
 ## 2. Lead Qualification Logic (The "Pickup Truck" Sequence)
 To qualify the load without cumbersome item-by-item accounting, agents and estimators ask:
 > *"If you were to visualize all your junk, would it fit into a standard pickup truck bed?"*
-- **If YES:** Maps directly to **1 Pick Up Truck Load ($140 - $230)**.
-- **If fewer items:** Maps to **MINI ($95 - $140)**.
-- **If NO:** Estimator guides the client to identify if the load represents 2 pickup loads ($230 - $415) or larger Dump Truck scale ($740 - $1,110+).
+- **If YES:** Maps directly to **1 Pick Up Truck Load ($154 - $286, Base: $220)**.
+- **If fewer items:** Maps to **MINI ($95 - $150)**.
+- **If NO:** Estimator guides the client to identify if the load represents 2 pickup loads ($308 - $572), 3 pickup loads ($462 - $858), or Dump Truck scale ($840 - $1,560+).
 
 ## 3. The 10% Rate Guarantee
 M&M Junk Removal is a privately owned and operated business founded in 2007 by Martin Silch. With zero franchise royalties or corporate overhead, we guarantee to match and beat any written or verifiable advertised estimate from a licensed Washington junk removal competitor by **10%**.

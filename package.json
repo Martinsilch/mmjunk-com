@@ -4,15 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node tests/audit-pillars.js && node tests/seo-safeguard.js && prisma generate && node scripts/minify-assets.js && next build",
+    "build": "node tests/audit-pillars.js && node tests/seo-safeguard.js && node ./node_modules/prisma/build/index.js generate && node scripts/minify-assets.js && node scripts/generate-product-feed.js && node ./node_modules/next/dist/bin/next build",
     "minify": "node scripts/minify-assets.js",
+    "feed:generate": "node scripts/generate-product-feed.js",
+    "feed:validate": "node tests/validate-feed.js",
     "start": "next start",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:migrate": "prisma migrate dev",
     "seed": "ts-node -r dotenv/config prisma/seed.ts",
-    "test": "node tests/audit-pillars.js && node tests/seo-safeguard.js"
+    "test": "node tests/audit-pillars.js && node tests/seo-safeguard.js && node tests/validate-feed.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",

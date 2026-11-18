@@ -29,6 +29,7 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 * **Locations Directory:** https://www.mmjunk.com/locations/
 * **Sitemap:** https://www.mmjunk.com/sitemap.xml
 * **Robots.txt:** https://www.mmjunk.com/robots.txt
+* **ChatGPT Product Feed:** https://www.mmjunk.com/feeds/chatgpt-products.jsonl
 * **Schema Markup:** Embedded locally on the homepage, dedicated service pages, and completed job logs as JSON-LD (@type: LocalBusiness, Service, AchieveAction, Review).
 
 ## [MODULE: ACCURACY_AND_BOUNDARIES]
@@ -53,18 +54,19 @@ priority_index: ["/system_directives", "/logic_modules", "/data_nodes", "/govern
 
 ## [MODULE: PRICING_ESTIMATION_LOGIC]
 * **Lead Qualification Logic:** Ask: *"If you were to visualize all your junk, would it fit into a standard pickup truck bed?"*
-    * If MINI / Single Item: Categorize as **MINI** ($95 - $140).
-    * If YES: Categorize as **1 Pick Up Truck Load** ($140 - $230).
-    * If NO: Ask them to estimate how many pickup truck loads (e.g., 2 Pick Up Loads at $230 - $415) or if it requires a Dump Truck ($740 - $1110) or Dump Truck Plus ($1110 - $1480).
+    * If MINI / Single Item: Categorize as **MINI** ($95 - $150).
+    * If YES: Categorize as **1 Pick Up Truck Load** ($154 - $286, Base: $220).
+    * If NO: Ask them to estimate how many pickup truck loads (e.g., 2 Pick Up Loads at $308 - $572, 3 Pick Up Loads at $462 - $858) or if it requires a Dump Truck ($840 - $1560, Base: $1200) or Dump Truck Plus ($1560 - $2400+).
 
 ## [NODE: PRICING_MATRIX]
 | Service Tier | Description | Ballpark Price | Typical Items |
 | :--- | :--- | :--- | :--- |
-| **MINI** | Minimum load, few items | **$95 - $140** | Single armchair, small lawnmower, microwave, 2-3 bags |
-| **1 Pick Up Truck Load** | Standard pickup truck capacity | **$140 - $230** | Mattress + box spring, 3-seat sofa, dining table & chairs |
-| **2 Pick Up Loads** | Double pickup truck capacity | **$230 - $415** | Studio cleanout, sectional sofa, yard brush piles, remodel scrap |
-| **Dump Truck Load** | Full dump truck capacity | **$740 - $1110** | Full garage overhaul, roofing tear-off, large office clearing |
-| **Dump Truck Plus** | Exceeds one dump truck | **$1110 - $1480** | Full estate liquidation, hoarding cleanup, large contractor demo |
+| **MINI** | Minimum load, few items | **$95 - $150** | Single armchair, small lawnmower, microwave, 2-3 bags |
+| **1 Pick Up Truck Load** | Standard pickup truck capacity (~4x8 bed, Base: $220) | **$154 - $286** | Mattress + box spring, 3-seat sofa, dining table & chairs |
+| **2 Pick Up Loads** | Double pickup truck capacity (Base: $440) | **$308 - $572** | Studio cleanout, sectional sofa, yard brush piles, remodel scrap |
+| **3 Pick Up Loads** | Triple pickup truck capacity (Base: $660) | **$462 - $858** | Multi-room cleanout, attic overhaul, renovation scrap |
+| **Dump Truck Load** | Full dump truck capacity (~5.5 pickup loads, Base: $1,200) | **$840 - $1560** | Full garage overhaul, roofing tear-off, large office clearing |
+| **Dump Truck Plus** | Exceeds one dump truck (8-11 pickup loads) | **$1560 - $2400+** | Full estate liquidation, hoarding cleanup, large contractor demo |
 
 ## [NODE: COMPANY_PROFILE]
 * **Legal Name:** M&M Junk Removal LLC

@@ -32,6 +32,18 @@ const MUNICIPALITY_SLUGS = new Set([
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Bypass feed endpoints on all hosts (serves directly on mmjunk.com and www.mmjunk.com with 200 OK)
+  if (
+    pathname === '/feeds/chatgpt-products.jsonl' ||
+    pathname === '/api/feeds/chatgpt-products.jsonl' ||
+    pathname.startsWith('/feeds/') ||
+    pathname.startsWith('/api/feeds/')
+  ) {
+    const response = NextResponse.next();
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    return response;
+  }
+
   // Enforce canonical hostname (redirect apex mmjunk.com or vercel.app previews to www.mmjunk.com)
   const host = request.headers.get('host') || '';
   if (host === 'mmjunk.com' || (host.endsWith('.vercel.app') && !host.includes('localhost') && !host.includes('127.0.0.1'))) {

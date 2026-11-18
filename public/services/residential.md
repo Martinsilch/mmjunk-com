@@ -20,9 +20,11 @@ M&M Junk Removal provides full-service, two-person crew residential junk removal
 - **Light Demolition:** Hot tubs, backyard wooden sheds, playsets, decks, cedar fences.
 
 ## Upfront Pricing:
-- Single Item Curbside / MINI: **$95 - $140**
-- 1 Pickup Truck Bed Load: **$140 - $230**
-- 2 Pickup Truck Bed Loads: **$230 - $415**
+- Single Item Curbside / MINI: **$95 - $150**
+- 1 Pickup Truck Bed Load: **$154 - $286 (Base: $220)**
+- 2 Pickup Truck Bed Loads: **$308 - $572 (Base: $440)**
+- 3 Pickup Truck Bed Loads: **$462 - $858 (Base: $660)**
+- Full Dump Truck Load: **$840 - $1,560 (Base: $1,200)**
 - 10% Rate Match Guarantee on all licensed competitor quotes.
 
 ## Booking:

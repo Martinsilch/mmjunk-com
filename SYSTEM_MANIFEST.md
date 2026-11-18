@@ -118,6 +118,7 @@ MMJunk.com strictly adheres to the 4-Pillar GEO architecture verified by `tests/
    * `/llms-workflows.txt`: Step-by-step agentic execution flows for AI models.
    * `/llm-examples.md`: Few-shot training pairs and geographic boundary enforcement directives.
    * `/knowledge/`: Atomic markdown nodes (`pricing-logic.md`, `estate-cleanout.md`, `reputation.json`, `index.json`).
+   * `/feeds/chatgpt-products.jsonl`: Spec-compliant OpenAI ChatGPT Product Feed endpoint adhering to OpenAI Product Feed Schema for automated catalog ingestion in ChatGPT Business Hub.
 
 ### Subsystem E: Conversion Tracking & Analytics
 * **Google Tag Manager Container:** `GTM-5QB83C38` embedded in `<head>` and `<body>` across all 51 Next.js pages and static fallback templates.

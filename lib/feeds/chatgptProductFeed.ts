@@ -49,7 +49,7 @@ export interface OpenAIFeedItem {
 
 export const BRAND_NAME = 'M&M Junk Removal';
 export const SELLER_NAME = 'M&M Junk Removal Service';
-export const CANONICAL_SITE_URL = 'https://mmjunk.com';
+export const CANONICAL_SITE_URL = 'https://www.mmjunk.com';
 export const PRIMARY_HERO_IMAGE = `${CANONICAL_SITE_URL}/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png`;
 
 /**

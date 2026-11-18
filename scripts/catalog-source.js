@@ -1,6 +1,6 @@
 const BRAND_NAME = 'M&M Junk Removal';
 const SELLER_NAME = 'M&M Junk Removal Service';
-const CANONICAL_SITE_URL = 'https://mmjunk.com';
+const CANONICAL_SITE_URL = 'https://www.mmjunk.com';
 const PRIMARY_HERO_IMAGE = `${CANONICAL_SITE_URL}/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png`;
 
 const RAW_CATALOG_DATA = [

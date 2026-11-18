@@ -1,17 +1,18 @@
 /**
- * Generates the static chatgpt-products.jsonl file into public/ and feeds/
+ * Generates spec-compliant product feeds for OpenAI ChatGPT Product Feed Ingestion:
+ * - chatgpt-products.jsonl.gz (Required format for hosted JSONL URL feeds)
+ * - chatgpt-products.csv      (Uncompressed CSV feed, accepted natively)
+ * - chatgpt-products.tsv      (Uncompressed TSV feed, accepted natively)
+ * - chatgpt-products.jsonl    (Raw uncompressed JSON Lines feed)
  */
 const fs = require('fs');
 const path = require('path');
-
-// Compile or require the feed generator
-// Since lib is TS, we can write a self-contained generator or use ts-node / import compiled
-// But having a pure JS mirror or executing via ts-node ensures seamless static file writing.
+const zlib = require('zlib');
 
 const { RAW_CATALOG_DATA, BRAND_NAME, SELLER_NAME, CANONICAL_SITE_URL } = require('./catalog-source.js');
 
-function generateJSONL() {
-  const items = RAW_CATALOG_DATA.map(item => {
+function buildItems() {
+  return RAW_CATALOG_DATA.map(item => {
     const priceFormatted = `${Number(item.priceAmount).toFixed(2)} USD`;
     const feedItem = {
       item_id: item.itemId,
@@ -47,28 +48,153 @@ function generateJSONL() {
 
     return feedItem;
   });
+}
 
+function generateJSONL(items) {
   return items.map(item => JSON.stringify(item)).join('\n') + '\n';
 }
 
-function run() {
-  const jsonl = generateJSONL();
+function escapeCsvCell(val) {
+  if (val === undefined || val === null) return '';
+  const str = typeof val === 'object' ? JSON.stringify(val) : String(val);
+  if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+    return `"${str.replace(/"/g, '""')}"`;
+  }
+  return str;
+}
 
-  // Targets
-  const targets = [
-    path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.jsonl'),
-    path.join(__dirname, '..', 'public', 'api', 'feeds', 'chatgpt-products.jsonl'),
-    path.join(__dirname, '..', 'feeds', 'chatgpt-products.jsonl')
+const OPENAI_FEED_COLUMNS = [
+  'item_id',
+  'title',
+  'description',
+  'url',
+  'brand',
+  'seller_name',
+  'image_url',
+  'availability',
+  'price',
+  'target_countries',
+  'store_country',
+  'group_id',
+  'listing_has_variations',
+  'variant_dict',
+  'offer_id',
+  'is_eligible_search',
+  'product_category',
+  'seller_url',
+  'shipping_price',
+  'accepts_returns',
+  'additional_image_urls'
+];
+
+function generateCSV(items) {
+  const rows = [OPENAI_FEED_COLUMNS.join(',')];
+
+  items.forEach(item => {
+    const row = [
+      escapeCsvCell(item.item_id),
+      escapeCsvCell(item.title),
+      escapeCsvCell(item.description),
+      escapeCsvCell(item.url),
+      escapeCsvCell(item.brand),
+      escapeCsvCell(item.seller_name),
+      escapeCsvCell(item.image_url),
+      escapeCsvCell(item.availability),
+      escapeCsvCell(item.price),
+      escapeCsvCell(JSON.stringify(item.target_countries)),
+      escapeCsvCell(item.store_country),
+      escapeCsvCell(item.group_id || ''),
+      escapeCsvCell(item.listing_has_variations ? 'true' : ''),
+      escapeCsvCell(item.variant_dict ? item.variant_dict : ''),
+      escapeCsvCell(item.offer_id || ''),
+      escapeCsvCell(item.is_eligible_search ? 'true' : 'false'),
+      escapeCsvCell(item.product_category || ''),
+      escapeCsvCell(item.seller_url || ''),
+      escapeCsvCell(item.shipping_price || '0.00 USD'),
+      escapeCsvCell(item.accepts_returns ? 'true' : 'false'),
+      escapeCsvCell(item.additional_image_urls ? item.additional_image_urls.join(',') : '')
+    ];
+    rows.push(row.join(','));
+  });
+
+  return rows.join('\n') + '\n';
+}
+
+function escapeTsvCell(val) {
+  if (val === undefined || val === null) return '';
+  const str = typeof val === 'object' ? JSON.stringify(val) : String(val);
+  return str.replace(/[\t\n\r]/g, ' ');
+}
+
+function generateTSV(items) {
+  const rows = [OPENAI_FEED_COLUMNS.join('\t')];
+
+  items.forEach(item => {
+    const row = [
+      escapeTsvCell(item.item_id),
+      escapeTsvCell(item.title),
+      escapeTsvCell(item.description),
+      escapeTsvCell(item.url),
+      escapeTsvCell(item.brand),
+      escapeTsvCell(item.seller_name),
+      escapeTsvCell(item.image_url),
+      escapeTsvCell(item.availability),
+      escapeTsvCell(item.price),
+      escapeTsvCell(JSON.stringify(item.target_countries)),
+      escapeTsvCell(item.store_country),
+      escapeTsvCell(item.group_id || ''),
+      escapeTsvCell(item.listing_has_variations ? 'true' : ''),
+      escapeTsvCell(item.variant_dict ? item.variant_dict : ''),
+      escapeTsvCell(item.offer_id || ''),
+      escapeTsvCell(item.is_eligible_search ? 'true' : 'false'),
+      escapeTsvCell(item.product_category || ''),
+      escapeTsvCell(item.seller_url || ''),
+      escapeTsvCell(item.shipping_price || '0.00 USD'),
+      escapeTsvCell(item.accepts_returns ? 'true' : 'false'),
+      escapeTsvCell(item.additional_image_urls ? item.additional_image_urls.join(',') : '')
+    ];
+    rows.push(row.join('\t'));
+  });
+
+  return rows.join('\n') + '\n';
+}
+
+function run() {
+  const items = buildItems();
+  const jsonl = generateJSONL(items);
+  const jsonlGz = zlib.gzipSync(Buffer.from(jsonl, 'utf8'), { level: 9 });
+  const csv = generateCSV(items);
+  const tsv = generateTSV(items);
+
+  const baseDirs = [
+    path.join(__dirname, '..', 'public', 'feeds'),
+    path.join(__dirname, '..', 'public', 'api', 'feeds'),
+    path.join(__dirname, '..', 'feeds')
   ];
 
-  targets.forEach(tgt => {
-    const dir = path.dirname(tgt);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+  baseDirs.forEach(baseDir => {
+    if (!fs.existsSync(baseDir)) {
+      fs.mkdirSync(baseDir, { recursive: true });
     }
-    fs.writeFileSync(tgt, jsonl, 'utf8');
-    console.log(`Generated: ${tgt} (${jsonl.length} bytes, ${jsonl.trim().split('\n').length} items)`);
+
+    // Write .jsonl
+    fs.writeFileSync(path.join(baseDir, 'chatgpt-products.jsonl'), jsonl, 'utf8');
+
+    // Write .jsonl.gz (binary)
+    fs.writeFileSync(path.join(baseDir, 'chatgpt-products.jsonl.gz'), jsonlGz);
+
+    // Write .csv
+    fs.writeFileSync(path.join(baseDir, 'chatgpt-products.csv'), csv, 'utf8');
+
+    // Write .tsv
+    fs.writeFileSync(path.join(baseDir, 'chatgpt-products.tsv'), tsv, 'utf8');
   });
+
+  console.log(`Generated feeds across 3 directories for ${items.length} catalog items:`);
+  console.log(`  - chatgpt-products.jsonl.gz (${jsonlGz.length} bytes) [Gzip-compressed JSONL - REQUIRED by OpenAI for .jsonl feeds]`);
+  console.log(`  - chatgpt-products.csv      (${csv.length} bytes)     [Uncompressed CSV - Accepted natively]`);
+  console.log(`  - chatgpt-products.tsv      (${tsv.length} bytes)     [Uncompressed TSV - Accepted natively]`);
+  console.log(`  - chatgpt-products.jsonl    (${jsonl.length} bytes)    [Uncompressed JSONL]`);
 }
 
 run();

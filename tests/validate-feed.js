@@ -376,6 +376,8 @@ console.log('\n--- Feed Route Handlers & Integration Checks ---');
 
 const routeFeedsPath = path.join(__dirname, '..', 'app', 'feeds', 'chatgpt-products.jsonl', 'route.ts');
 const routeApiFeedsPath = path.join(__dirname, '..', 'app', 'api', 'feeds', 'chatgpt-products.jsonl', 'route.ts');
+const routeFeedsGzPath = path.join(__dirname, '..', 'app', 'feeds', 'chatgpt-products.jsonl.gz', 'route.ts');
+const routeFeedsCsvPath = path.join(__dirname, '..', 'app', 'feeds', 'chatgpt-products.csv', 'route.ts');
 
 if (fs.existsSync(routeFeedsPath)) {
   const content = fs.readFileSync(routeFeedsPath, 'utf8');
@@ -397,6 +399,78 @@ if (fs.existsSync(routeApiFeedsPath)) {
   }
 } else {
   recordFail(`Route handler missing: ${routeApiFeedsPath}`);
+}
+
+if (fs.existsSync(routeFeedsGzPath)) {
+  const content = fs.readFileSync(routeFeedsGzPath, 'utf8');
+  if (content.includes('application/gzip') && content.includes('GET')) {
+    recordPass(`Route handler at /feeds/chatgpt-products.jsonl.gz is spec-compliant.`);
+  } else {
+    recordFail(`Route handler at ${routeFeedsGzPath} missing required headers or methods.`);
+  }
+} else {
+  recordFail(`Route handler missing: ${routeFeedsGzPath}`);
+}
+
+if (fs.existsSync(routeFeedsCsvPath)) {
+  const content = fs.readFileSync(routeFeedsCsvPath, 'utf8');
+  if (content.includes('text/csv') && content.includes('GET')) {
+    recordPass(`Route handler at /feeds/chatgpt-products.csv is spec-compliant.`);
+  } else {
+    recordFail(`Route handler at ${routeFeedsCsvPath} missing required headers or methods.`);
+  }
+} else {
+  recordFail(`Route handler missing: ${routeFeedsCsvPath}`);
+}
+
+// -----------------------------------------------------------------------------
+// COMPRESSED GZIP (.jsonl.gz) & UNCOMPRESSED (.csv / .tsv) INTEGRITY AUDIT
+// -----------------------------------------------------------------------------
+console.log('\n--- GZIP (.jsonl.gz), CSV & TSV Feed File Integrity Checks ---');
+
+const zlib = require('zlib');
+const gzFile = path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.jsonl.gz');
+if (fs.existsSync(gzFile)) {
+  const gzBuf = fs.readFileSync(gzFile);
+  try {
+    const unzipped = zlib.gunzipSync(gzBuf).toString('utf8');
+    const unzippedLines = unzipped.trim().split('\n');
+    if (unzippedLines.length === lines.length) {
+      recordPass(`Gzip feed (${gzFile}, ${gzBuf.length} bytes) successfully unzips to ${unzippedLines.length} identical JSONL records.`);
+    } else {
+      recordFail(`Gzip feed record count mismatch: ${unzippedLines.length} vs raw ${lines.length}`);
+    }
+  } catch (err) {
+    recordFail(`Failed to decompress gzip feed: ${err.message}`);
+  }
+} else {
+  recordFail(`Missing gzip feed file: ${gzFile}`);
+}
+
+const csvFile = path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.csv');
+if (fs.existsSync(csvFile)) {
+  const csvContent = fs.readFileSync(csvFile, 'utf8');
+  const csvLines = csvContent.trim().split('\n');
+  if (csvLines.length === lines.length + 1) { // 1 header + 26 rows
+    recordPass(`CSV feed (${csvFile}, ${csvLines.length - 1} data rows) validated with header row.`);
+  } else {
+    recordFail(`CSV feed row count mismatch: ${csvLines.length} lines vs expected ${lines.length + 1}`);
+  }
+} else {
+  recordFail(`Missing CSV feed file: ${csvFile}`);
+}
+
+const tsvFile = path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.tsv');
+if (fs.existsSync(tsvFile)) {
+  const tsvContent = fs.readFileSync(tsvFile, 'utf8');
+  const tsvLines = tsvContent.trim().split('\n');
+  if (tsvLines.length === lines.length + 1) {
+    recordPass(`TSV feed (${tsvFile}, ${tsvLines.length - 1} data rows) validated with header row.`);
+  } else {
+    recordFail(`TSV feed row count mismatch: ${tsvLines.length} lines vs expected ${lines.length + 1}`);
+  }
+} else {
+  recordFail(`Missing TSV feed file: ${tsvFile}`);
 }
 
 // Check robots.txt allows feed

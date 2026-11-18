@@ -1,3 +1,5 @@
+import zlib from 'zlib';
+
 /**
  * M&M Junk Removal — OpenAI ChatGPT Product Feed Generator
  *
@@ -458,4 +460,128 @@ export function generateChatGPTProductFeed(): OpenAIFeedItem[] {
 export function generateChatGPTProductFeedJSONL(): string {
   const items = generateChatGPTProductFeed();
   return items.map(item => JSON.stringify(item)).join('\n') + '\n';
+}
+
+/**
+ * Returns the gzip-compressed binary buffer of the JSONL feed (.jsonl.gz).
+ * Required by OpenAI for hosted JSONL URL feeds.
+ */
+export function generateChatGPTProductFeedGzip(): Buffer {
+  const jsonl = generateChatGPTProductFeedJSONL();
+  return zlib.gzipSync(Buffer.from(jsonl, 'utf8'), { level: 9 });
+}
+
+function escapeCsvCell(val: unknown): string {
+  if (val === undefined || val === null) return '';
+  const str = typeof val === 'object' ? JSON.stringify(val) : String(val);
+  if (str.includes(',') || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+    return `"${str.replace(/"/g, '""')}"`;
+  }
+  return str;
+}
+
+export const OPENAI_FEED_COLUMNS = [
+  'item_id',
+  'title',
+  'description',
+  'url',
+  'brand',
+  'seller_name',
+  'image_url',
+  'availability',
+  'price',
+  'target_countries',
+  'store_country',
+  'group_id',
+  'listing_has_variations',
+  'variant_dict',
+  'offer_id',
+  'is_eligible_search',
+  'product_category',
+  'seller_url',
+  'shipping_price',
+  'accepts_returns',
+  'additional_image_urls'
+] as const;
+
+/**
+ * Serializes the product feed items into spec-compliant CSV format with header row.
+ * Accepted as uncompressed feed by OpenAI ChatGPT Product Feed Ingestion.
+ */
+export function generateChatGPTProductFeedCSV(): string {
+  const items = generateChatGPTProductFeed();
+  const rows: string[] = [OPENAI_FEED_COLUMNS.join(',')];
+
+  items.forEach(item => {
+    const row = [
+      escapeCsvCell(item.item_id),
+      escapeCsvCell(item.title),
+      escapeCsvCell(item.description),
+      escapeCsvCell(item.url),
+      escapeCsvCell(item.brand),
+      escapeCsvCell(item.seller_name),
+      escapeCsvCell(item.image_url),
+      escapeCsvCell(item.availability),
+      escapeCsvCell(item.price),
+      escapeCsvCell(JSON.stringify(item.target_countries)),
+      escapeCsvCell(item.store_country),
+      escapeCsvCell(item.group_id || ''),
+      escapeCsvCell(item.listing_has_variations ? 'true' : ''),
+      escapeCsvCell(item.variant_dict ? item.variant_dict : ''),
+      escapeCsvCell(item.offer_id || ''),
+      escapeCsvCell(item.is_eligible_search ? 'true' : 'false'),
+      escapeCsvCell(item.product_category || ''),
+      escapeCsvCell(item.seller_url || ''),
+      escapeCsvCell(item.shipping_price || '0.00 USD'),
+      escapeCsvCell(item.accepts_returns ? 'true' : 'false'),
+      escapeCsvCell(item.additional_image_urls ? item.additional_image_urls.join(',') : '')
+    ];
+    rows.push(row.join(','));
+  });
+
+  return rows.join('\n') + '\n';
+}
+
+function escapeTsvCell(val: unknown): string {
+  if (val === undefined || val === null) return '';
+  const str = typeof val === 'object' ? JSON.stringify(val) : String(val);
+  return str.replace(/[\t\n\r]/g, ' ');
+}
+
+/**
+ * Serializes the product feed items into spec-compliant TSV format with header row.
+ * Accepted as uncompressed feed by OpenAI ChatGPT Product Feed Ingestion.
+ */
+export function generateChatGPTProductFeedTSV(): string {
+  const items = generateChatGPTProductFeed();
+  const rows: string[] = [OPENAI_FEED_COLUMNS.join('\t')];
+
+  items.forEach(item => {
+    const row = [
+      escapeTsvCell(item.item_id),
+      escapeTsvCell(item.title),
+      escapeTsvCell(item.description),
+      escapeTsvCell(item.url),
+      escapeTsvCell(item.brand),
+      escapeTsvCell(item.seller_name),
+      escapeTsvCell(item.image_url),
+      escapeTsvCell(item.availability),
+      escapeTsvCell(item.price),
+      escapeTsvCell(JSON.stringify(item.target_countries)),
+      escapeTsvCell(item.store_country),
+      escapeTsvCell(item.group_id || ''),
+      escapeTsvCell(item.listing_has_variations ? 'true' : ''),
+      escapeTsvCell(item.variant_dict ? item.variant_dict : ''),
+      escapeTsvCell(item.offer_id || ''),
+      escapeTsvCell(item.is_eligible_search ? 'true' : 'false'),
+      escapeTsvCell(item.product_category || ''),
+      escapeTsvCell(item.seller_url || ''),
+      escapeTsvCell(item.shipping_price || '0.00 USD'),
+      escapeTsvCell(item.accepts_returns ? 'true' : 'false'),
+      escapeTsvCell(item.additional_image_urls ? item.additional_image_urls.join(',') : '')
+    ];
+    rows.push(row.join('\t'));
+  });
+
+  return rows.join('\n') + '\n';
 }

@@ -251,7 +251,6 @@ const nextConfig = {
       {
         source: '/feeds/:path*',
         headers: [
-          { key: 'Content-Type', value: 'application/x-ndjson; charset=utf-8' },
           { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, HEAD, OPTIONS' },
@@ -261,7 +260,6 @@ const nextConfig = {
       {
         source: '/api/feeds/:path*',
         headers: [
-          { key: 'Content-Type', value: 'application/x-ndjson; charset=utf-8' },
           { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, HEAD, OPTIONS' },

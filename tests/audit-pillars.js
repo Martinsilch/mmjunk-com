@@ -252,6 +252,18 @@ if (knowledgeIndexExists) {
   results.pillar4.checks.push(`✓ knowledge/index.json: Valid Index=${hasNodes}, AuthorityAligned=${hasAuth}, AtomicNodesPresent=${allNodesExist}`);
 }
 
+const agentJsonExists = fs.existsSync('public/.well-known/agent.json');
+if (agentJsonExists) {
+  const agentJson = JSON.parse(fs.readFileSync('public/.well-known/agent.json', 'utf8'));
+  const hasProvider = agentJson.provider && agentJson.provider.washington_ubi === '604-676-011';
+  const hasMcp = agentJson.dispatch_infrastructure && agentJson.dispatch_infrastructure.mcp_server_endpoint === 'https://mcp.amzy.me/mcp';
+  const hasTiers = agentJson.pricing_engine && Array.isArray(agentJson.pricing_engine.load_tiers) && agentJson.pricing_engine.load_tiers.length >= 6;
+  results.pillar4.checks.push(`✓ .well-known/agent.json: Provider UBI=${hasProvider}, AMZY MCP=${hasMcp}, Load Tiers=${hasTiers}`);
+} else {
+  results.pillar4.passed = false;
+  results.pillar4.checks.push('❌ public/.well-known/agent.json is missing');
+}
+
 // ----------------------------------------------------
 // PRINT DETAILED REPORT
 // ----------------------------------------------------

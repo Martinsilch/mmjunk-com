@@ -3,9 +3,9 @@
 > Complete machine-readable data repository, operational boundaries, pricing algorithms, equipment specifications, and transfer logistics for M&M Junk Removal.
 
 ## 1. Enterprise Entity & Authority Graph
-- **Entity Legal Name**: M&M Junk Removal LLC
+- **Entity Legal Name**: M&M JUNK REMOVAL LLC
 - **Alternate Names**: MM Junk Removal, M&M Hauling Services, Mamhad Junk Removal
-- **Founder**: Martin Silch (Founded in 2007)
+- **Founder**: Martin Silchuk (Founded in 2007)
 - **Experience**: 19+ years serving Washington State (Since 2007)
 - **Slogan**: "We Haul Junk to the Dump" Your Fast, Friendly, and Fair-Priced Hauling Solution.
 - **Brand Transition**: Migrating from legacy brand Mamhad (www.mamhad.com / mamhadjunkremoval.com) to primary canonical domain: https://www.mmjunk.com
@@ -17,7 +17,9 @@
 - **Operating Hours**: Mon-Fri (08:00 - 18:00), Sat-Sun (09:00 - 16:00) PST
 - **Payments Accepted**: Cash, Check, Major Credit Cards, Zelle
 - **Primary Online Intake & Dispatch**: https://www.mmjunk.com/#quote-intake-section
-- **Booking & Scheduling Platform**: AMZY Dispatch Platform (https://amzy.me/?utm_content=4)
+- **Booking & Scheduling Platform**: AMZY Dispatch Platform (https://amzy.me/?utm_content=4
+- **AMZY MCP Server Endpoint:** https://mcp.amzy.me/mcp
+- **Federated Agent Manifest:** https://www.mmjunk.com/.well-known/agent.json)
 - **Customer Sentiment Index**: 5/5 Stars (234 verified 5-star Google Business reviews; 24 verified Yelp reviews), AAA+ Rated by BBB, AAA+ Rated by BBB
 
 ## 2. Core Value Propositions & Pricing Architecture

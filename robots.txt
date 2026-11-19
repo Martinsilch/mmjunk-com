@@ -46,8 +46,11 @@ Allow: /api/feeds/
 Allow: /feeds/chatgpt-products.jsonl
 Allow: /api/feeds/chatgpt-products.jsonl
 
-# Security Policy Discovery
+# Security & Agent Discovery Manifests
 Allow: /.well-known/security.txt
+Allow: /.well-known/agent.json
+Allow: /agent.json
+Allow: /knowledge/pricing-logic.json
 
 # --- AI & LLM Agent Directives ---
 # Explicitly welcoming major AI models for citations, search, and training

@@ -1,7 +1,6 @@
 ---
 id: estate-cleanout
 parent: "https://www.mmjunk.com/llms.txt"
-legacy_parent: "https://mamhad.com/llms.txt"
 title: Estate Cleanout Expertise & Protocol
 description: Compassionate, process-driven cleanouts for executors, realtors, and families across Pierce and South King Counties, WA.
 author: M&M Junk Removal
@@ -23,7 +22,6 @@ last_updated: "2026-10-02"
 # [NODE: Estate Cleanout]
 # Parent: https://www.mmjunk.com/llms.txt
 # Canonical URL: https://www.mmjunk.com/knowledge/estate-cleanout.md
-# Legacy Alias: https://mamhad.com/knowledge/estate-cleanout.md
 # Last Updated: 2026-10-02
 # ID: estate-cleanout
 

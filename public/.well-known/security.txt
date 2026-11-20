@@ -3,7 +3,7 @@
 
 # How to report security vulnerabilities or privacy concerns
 Contact: mailto:info@mmjunk.com
-Contact: mailto:info@mamhad.com
+Contact: mailto:info@mmjunk.com
 Contact: tel:+1-253-886-7724
 
 # Security specification expiry (RFC 9116)

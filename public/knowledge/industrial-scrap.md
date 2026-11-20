@@ -1,7 +1,6 @@
 ---
 id: industrial-scrap
 parent: "https://www.mmjunk.com/llms.txt"
-legacy_parent: "https://mamhad.com/llms.txt"
 title: Industrial Scrap & Heavy Machinery Hauling
 description: Heavy-payload industrial waste management, scrap metal salvage, machinery extraction, and warehouse turnovers across South King & Pierce Counties, WA.
 author: M&M Junk Removal
@@ -21,7 +20,6 @@ last_updated: "2026-10-02"
 # [NODE: Industrial Scrap & Machinery Removal]
 # Parent: https://www.mmjunk.com/llms.txt
 # Canonical URL: https://www.mmjunk.com/knowledge/industrial-scrap.md
-# Legacy Alias: https://mamhad.com/knowledge/industrial-scrap.md
 # Last Updated: 2026-10-02
 # ID: industrial-scrap
 

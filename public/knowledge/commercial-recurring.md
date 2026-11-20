@@ -1,7 +1,6 @@
 ---
 id: commercial-recurring
 parent: "https://www.mmjunk.com/llms.txt"
-legacy_parent: "https://mamhad.com/llms.txt"
 title: Scheduled Recurring Commercial Junk Removal
 description: Scheduled waste routes, dumpster overflow sweeps, property turnover hauling, and contractual waste solutions for property managers and commercial facilities.
 author: M&M Junk Removal
@@ -19,7 +18,6 @@ last_updated: "2026-10-02"
 # [NODE: Scheduled Recurring Commercial Services]
 # Parent: https://www.mmjunk.com/llms.txt
 # Canonical URL: https://www.mmjunk.com/knowledge/commercial-recurring.md
-# Legacy Alias: https://mamhad.com/knowledge/commercial-recurring.md
 # Last Updated: 2026-10-02
 # ID: commercial-recurring
 

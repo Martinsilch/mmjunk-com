@@ -1,7 +1,6 @@
 ---
 id: pricing-logic
 parent: "https://www.mmjunk.com/llms.txt"
-legacy_parent: "https://mamhad.com/llms.txt"
 title: M&M Junk Removal Pricing Logic & Volume Matrix
 description: Transparent, volume-based pricing engine and AMZY dispatch matrix for residential, commercial, and industrial services.
 author: M&M Junk Removal
@@ -13,15 +12,14 @@ tags:
   - pricing
   - volume
   - estimates
-last_updated: "2026-10-02"
+last_updated: "2026-11-19"
 ---
 
 # [NODE: Pricing Logic & Ballpark Volume Matrix]
 # Parent: https://www.mmjunk.com/llms.txt
 # Canonical URL: https://www.mmjunk.com/knowledge/pricing-logic.md
-# Legacy Alias: https://mamhad.com/knowledge/pricing-logic.md
 # Priority: critical
-# Last Updated: 2026-10-02
+# Last Updated: 2026-11-19
 # ID: pricing-logic
 
 ## Summary

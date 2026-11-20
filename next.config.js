@@ -188,7 +188,7 @@ const nextConfig = {
         source: '/llms.txt',
         headers: [
           { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=3600' },
+          { key: 'Cache-Control', value: 'public, max-age=60, s-maxage=60, stale-while-revalidate=600' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
         ],
       },
@@ -196,7 +196,7 @@ const nextConfig = {
         source: '/llms-full.txt',
         headers: [
           { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=3600' },
+          { key: 'Cache-Control', value: 'public, max-age=60, s-maxage=60, stale-while-revalidate=600' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
         ],
       },
@@ -204,7 +204,7 @@ const nextConfig = {
         source: '/llms-workflows.txt',
         headers: [
           { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=3600' },
+          { key: 'Cache-Control', value: 'public, max-age=60, s-maxage=60, stale-while-revalidate=600' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
         ],
       },
@@ -212,7 +212,7 @@ const nextConfig = {
         source: '/llm-examples.md',
         headers: [
           { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=3600' },
+          { key: 'Cache-Control', value: 'public, max-age=60, s-maxage=60, stale-while-revalidate=600' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
         ],
       },

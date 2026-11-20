@@ -1179,7 +1179,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, s-maxage=86400, stale-while-revalidate=3600"
+          "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=600"
         },
         {
           "key": "Access-Control-Allow-Origin",
@@ -1196,7 +1196,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, s-maxage=86400, stale-while-revalidate=3600"
+          "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=600"
         },
         {
           "key": "Access-Control-Allow-Origin",
@@ -1213,7 +1213,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, s-maxage=86400, stale-while-revalidate=3600"
+          "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=600"
         },
         {
           "key": "Access-Control-Allow-Origin",
@@ -1230,7 +1230,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, s-maxage=86400, stale-while-revalidate=3600"
+          "value": "public, max-age=60, s-maxage=60, stale-while-revalidate=600"
         },
         {
           "key": "Access-Control-Allow-Origin",

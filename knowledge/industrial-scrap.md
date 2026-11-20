@@ -4,7 +4,7 @@ parent: "https://www.mmjunk.com/llms.txt"
 title: Industrial Scrap & Heavy Machinery Hauling
 description: Heavy-payload industrial waste management, scrap metal salvage, machinery extraction, and warehouse turnovers across South King & Pierce Counties, WA.
 author: M&M Junk Removal
-founder: Martin Silch
+founder: Martin Silchukov
 phone: "+1-253-886-7724"
 booking_platform: "https://amzy.me/?utm_content=4"
 priority: high

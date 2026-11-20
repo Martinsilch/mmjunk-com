@@ -1,7 +1,7 @@
 ---
 title: About M&M Junk Removal | Founder & History
-description: Learn about M&M Junk Removal, founded in 2007 by Martin Silch in Federal Way, WA. Non-franchise, affordable, eco-friendly hauling across South King & Pierce Counties.
-author: Martin Silch
+description: Learn about M&M Junk Removal, founded in 2007 by Martin Silchukov in Federal Way, WA. Non-franchise, affordable, eco-friendly hauling across South King & Pierce Counties.
+author: Martin Silchukov
 phone: "+1-253-886-7724"
 canonical: "https://www.mmjunk.com/about-us.md"
 last_updated: "2026-10-02"
@@ -12,7 +12,7 @@ last_updated: "2026-10-02"
 > M&M Junk Removal is your premier, locally owned and operated, non-franchise junk removal and hauling specialist, proudly serving Federal Way, Auburn, Puyallup, and the broader Pierce County and South King County, WA regions since 2007.
 
 ## Our Story
-M&M Junk Removal was founded in 2007 by **Martin Silch** to provide honest, dependable, and affordable hauling services to South Puget Sound communities. Frustrated by the excessive surcharges, corporate royalty markups, and impersonal call centers of national franchise haulers, Martin built M&M on a simple premise:
+M&M Junk Removal was founded in 2007 by **Martin Silchukov** to provide honest, dependable, and affordable hauling services to South Puget Sound communities. Frustrated by the excessive surcharges, corporate royalty markups, and impersonal call centers of national franchise haulers, Martin built M&M on a simple premise:
 > *"Treat customers fairly, show up on time, provide upfront pricing, and haul junk responsibly."*
 
 Over 19+ years of operation, M&M Junk Removal has completed thousands of successful residential cleanouts, commercial demolitions, and contractor hauls, earning over **258 verified customer reviews** (234 5.0-star Google reviews and 24 Yelp reviews) and an **AAA+ BBB Rating**.

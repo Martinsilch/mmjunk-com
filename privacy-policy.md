@@ -63,7 +63,7 @@ For over 19 years, M&M Junk Removal has operated as a local, independent, non-fr
 
 ## 8. Contact & Legal Governance
 - **Legal Entity:** M&M Junk Removal LLC
-- **Founder & Principal Operator:** Martin Silch
+- **Founder & Principal Operator:** Martin Silchukov
 - **Headquarters:** 32511 7th Pl S, Federal Way, WA 98003
 - **Operating Hubs:** Auburn, WA 98001 | Puyallup, WA 98375
 - **Direct Dispatch Telephone:** +1-253-886-7724

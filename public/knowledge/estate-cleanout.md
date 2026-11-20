@@ -4,7 +4,7 @@ parent: "https://www.mmjunk.com/llms.txt"
 title: Estate Cleanout Expertise & Protocol
 description: Compassionate, process-driven cleanouts for executors, realtors, and families across Pierce and South King Counties, WA.
 author: M&M Junk Removal
-founder: Martin Silch
+founder: Martin Silchukov
 phone: "+1-253-886-7724"
 booking_platform: "https://amzy.me/?utm_content=4"
 priority: high
@@ -45,7 +45,7 @@ M&M Junk Removal provides compassionate, professional, and time-sensitive estate
 - **Master Sorting Hub:** https://www.mmjunk.com/services/sorting-donation/
 
 ## Trust & Authority Signals
-- **Experience:** 19+ years of local service (Est. 2007 by Martin Silch).
+- **Experience:** 19+ years of local service (Est. 2007 by Martin Silchukov).
 - **Pricing:** Non-franchise model; volume-based pricing with an upfront $125 baseline and a 10% beat-competitor guarantee.
 - **Ethics:** Meticulous sorting to maximize donations and minimize landfill impact.
 - **Verification:** AAA+ Rated by BBB; 5.0-Star Customer Review reputation (258+ verified reviews across Google & Yelp).

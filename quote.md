@@ -30,4 +30,4 @@ We guarantee to match and beat any written or verifiable advertised estimate fro
 
 ## How to Book
 1. **Live Calendar Booking:** Select your date and time slot via [AMZY Dispatch Calendar](https://amzy.me/?utm_content=4).
-2. **Direct Phone Call:** Call Martin Silch directly at [(253) 886-7724](tel:2538867724) for immediate assistance. Same-day dispatch available when scheduled before 1:00 PM PST.
+2. **Direct Phone Call:** Call Martin Silchukov directly at [(253) 886-7724](tel:2538867724) for immediate assistance. Same-day dispatch available when scheduled before 1:00 PM PST.

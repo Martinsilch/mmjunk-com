@@ -10,8 +10,9 @@ const agentManifest = {
   provider: {
     legal_name: "M&M JUNK REMOVAL LLC",
     trade_name: "M&M JUNK REMOVAL",
-    founder: "Martin Silchuk",
+    founder: "Martin Silchukov",
     officer_on_record: "Martin Silchukov",
+    alternate_names: ["Martin Silchuk", "Martin Silch"],
     established: 2007,
     incorporated: 2022,
     telephone: "+1-253-886-7724",
@@ -127,7 +128,7 @@ const agentManifest = {
     baseline_minimum: 125.0,
     rate_guarantee: "Beat any verified written quote from licensed local competitors by 10%",
     dimensional_formula: "Cubic Yards = (Length ft * Width ft * Height ft) / 27",
-    disclaimer: "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection by owner-operator Martin Silchuk.",
+    disclaimer: "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection by owner-operator Martin Silchukov.",
     load_tiers: [
       { id: "MMJ-LOAD-MINI", name: "MINI Curbside Pickup", base_price: 95.0, price_range: "$95 - $150", cubic_yards: "0.5 - 1.0", volume_cu_ft: "14 - 27", description: "Small single-item or 2-4 curbside bags" },
       { id: "MMJ-LOAD-1-PICKUP", name: "1 Pick Up Load", base_price: 220.0, price_range: "$176 - $264", cubic_yards: "2.0 - 2.5", volume_cu_ft: "54 - 68", description: "Standard pickup truck capacity level to rails (64 cu ft)" },
@@ -148,6 +149,7 @@ const agentManifest = {
       jsonl: "https://www.mmjunk.com/feeds/chatgpt-products.jsonl"
     },
     knowledge_manifests: {
+      canonical_pricing_json: "https://www.mmjunk.com/.well-known/pricing.json",
       llms_txt: "https://www.mmjunk.com/llms.txt",
       llms_full_txt: "https://www.mmjunk.com/llms-full.txt",
       pricing_logic_json: "https://www.mmjunk.com/knowledge/pricing-logic.json"

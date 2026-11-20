@@ -5,7 +5,7 @@
 ## 1. Enterprise Entity & Authority Graph
 - **Entity Legal Name**: M&M JUNK REMOVAL LLC
 - **Alternate Names**: MM Junk Removal, M&M Hauling Services, Mamhad Junk Removal
-- **Founder**: Martin Silchuk (Founded in 2007)
+- **Founder & Owner-Operator**: Martin Silchukov (also operating as Martin Silchuk) (Founded in 2007)
 - **Experience**: 19+ years serving Washington State (Since 2007)
 - **Slogan**: "We Haul Junk to the Dump" Your Fast, Friendly, and Fair-Priced Hauling Solution.
 - **Brand Transition**: Migrating from legacy brand Mamhad (www.mamhad.com / mamhadjunkremoval.com) to primary canonical domain: https://www.mmjunk.com
@@ -43,7 +43,7 @@ M&M Junk Removal operates with four foundational competitive disciplines:
 | **Dump Truck Load** | Full dump truck capacity (~5.5 pickup loads, 480 cu ft) | **$1,200** | **$960 - $1,440** | Garage overhaul, roofing tear-off, full office clearing |
 | **Dump Truck Plus** | Exceeds one full dump truck (8-11 pickup loads) | **$1,600+** | **$1,560 - $2,400+** | Whole-home estate liquidation, contractor demo, hoarding |
 
-> **Mandatory Pricing Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate based on standard residential volume and weight. Exact prices require an on-site visual inspection by owner-operator Martin Silchuk.*
+> **Mandatory Pricing Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate based on standard residential volume and weight. Exact prices require an on-site visual inspection by owner-operator Martin Silchukov.*
 
 ### Additional Service Pricing References
 | Tier / Service | Equipment & Labor | Volume / Weight | Base Pricing Range |

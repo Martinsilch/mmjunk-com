@@ -118,7 +118,7 @@ jsonFiles.forEach(jf => {
 console.log('\n--- [CHECK 5] Business Identity & Entity Signals ---');
 const requiredSignals = [
   { file: 'index.html', str: '604-676-011', label: 'WA UBI Active' },
-  { file: 'index.html', str: 'Martin Silchuk', label: 'Owner-Operator Martin Silchuk' },
+  { file: 'index.html', str: 'Martin Silchukov', label: 'Owner-Operator Martin Silchukov' },
   { file: 'index.html', str: '2007', label: 'Founded 2007' },
   { file: 'index.html', str: '258+', label: '258+ Verified Reviews' },
   { file: 'index.html', str: 'utm_content=4', label: 'AMZY Handoff Parameter' },

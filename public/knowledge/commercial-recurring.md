@@ -4,7 +4,7 @@ parent: "https://www.mmjunk.com/llms.txt"
 title: Scheduled Recurring Commercial Junk Removal
 description: Scheduled waste routes, dumpster overflow sweeps, property turnover hauling, and contractual waste solutions for property managers and commercial facilities.
 author: M&M Junk Removal
-founder: Martin Silch
+founder: Martin Silchukov
 phone: "+1-253-886-7724"
 booking_platform: "https://amzy.me/?utm_content=4"
 priority: medium
@@ -33,7 +33,7 @@ M&M Junk Removal offers scheduled recurring junk removal routes and priority dis
 ## Master Services Agreement (MSA) & Invoicing Benefits
 - **Locked Preferential Pricing:** Volume discount tiers locked in for 12 months with zero surprise surcharge fees.
 - **Net-30 Invoicing:** Monthly consolidated commercial billing with detailed manifests and job completion photos.
-- **Dedicated Account Manager:** Direct telephone and text dispatch line to Martin Silch with guaranteed 2-hour emergency response.
+- **Dedicated Account Manager:** Direct telephone and text dispatch line to Martin Silchukov with guaranteed 2-hour emergency response.
 - **COI Compliance:** $1,000,000+ General Liability commercial insurance naming facility owners or property management firms as additional insured.
 
 ## Service Area

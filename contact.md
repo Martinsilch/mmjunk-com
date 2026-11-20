@@ -1,6 +1,6 @@
 ---
 title: Contact M&M Junk Removal | Direct Dispatch & Service Hubs
-description: Contact Martin Silch at M&M Junk Removal. Direct telephone dispatch, operational addresses in Federal Way, Auburn, Puyallup, and online booking.
+description: Contact Martin Silchukov at M&M Junk Removal. Direct telephone dispatch, operational addresses in Federal Way, Auburn, Puyallup, and online booking.
 phone: "+1-253-886-7724"
 email: "info@mmjunk.com"
 canonical: "https://www.mmjunk.com/contact.md"

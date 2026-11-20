@@ -7,8 +7,12 @@
   "provider": {
     "legal_name": "M&M JUNK REMOVAL LLC",
     "trade_name": "M&M JUNK REMOVAL",
-    "founder": "Martin Silchuk",
+    "founder": "Martin Silchukov",
     "officer_on_record": "Martin Silchukov",
+    "alternate_names": [
+      "Martin Silchuk",
+      "Martin Silch"
+    ],
     "established": 2007,
     "incorporated": 2022,
     "telephone": "+1-253-886-7724",
@@ -306,7 +310,7 @@
     "baseline_minimum": 125,
     "rate_guarantee": "Beat any verified written quote from licensed local competitors by 10%",
     "dimensional_formula": "Cubic Yards = (Length ft * Width ft * Height ft) / 27",
-    "disclaimer": "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection by owner-operator Martin Silchuk.",
+    "disclaimer": "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection by owner-operator Martin Silchukov.",
     "load_tiers": [
       {
         "id": "MMJ-LOAD-MINI",
@@ -324,7 +328,7 @@
         "price_range": "$176 - $264",
         "cubic_yards": "2.0 - 2.5",
         "volume_cu_ft": "54 - 68",
-        "description": "Standard pickup truck capacity level to rails (64 cu ft). Standard +/- 20% residential weight variance."
+        "description": "Standard pickup truck capacity level to rails (64 cu ft)"
       },
       {
         "id": "MMJ-LOAD-2-PICKUP",

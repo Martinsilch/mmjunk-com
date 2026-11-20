@@ -1,7 +1,7 @@
 ---
 title: The Founding Story of M&M Junk Removal
-description: Detailed narrative of how Martin Silch founded M&M Junk Removal in 2007 in South Puget Sound, building a trusted non-franchise hauling service.
-author: Martin Silch
+description: Detailed narrative of how Martin Silchukov founded M&M Junk Removal in 2007 in South Puget Sound, building a trusted non-franchise hauling service.
+author: Martin Silchukov
 phone: "+1-253-886-7724"
 canonical: "https://www.mmjunk.com/history.md"
 last_updated: "2026-10-02"
@@ -10,7 +10,7 @@ last_updated: "2026-10-02"
 # The Founding Story of M&M Junk Removal
 
 ## 2007: Origins in Federal Way, Washington
-In 2007, Martin Silch recognized a critical gap in the Pacific Northwest junk removal market. Homeowners and contractors in Federal Way and Tacoma had two poor options: overpriced national corporate franchises charging exorbitant franchise fees, or unreliable uninsured individuals who frequently fly-tipped waste illegally.
+In 2007, Martin Silchukov recognized a critical gap in the Pacific Northwest junk removal market. Homeowners and contractors in Federal Way and Tacoma had two poor options: overpriced national corporate franchises charging exorbitant franchise fees, or unreliable uninsured individuals who frequently fly-tipped waste illegally.
 
 Martin invested in his first hauling truck with a clear mission: provide honest, punctual, transparently priced junk removal backed by proper commercial insurance and ethical disposal.
 

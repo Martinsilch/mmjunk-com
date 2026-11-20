@@ -1,19 +1,10 @@
 {
-  "system": "M&M Junk Removal Canonical Pricing Engine",
-  "version": "4.0",
   "currency": "USD",
   "curbside_minimum": 95,
-  "baseline_minimum": 95,
-  "canonical_pricing_json": "https://www.mmjunk.com/.well-known/pricing.json",
-  "booking_url": "https://amzy.me/?utm_content=4",
+  "baseline_minimum": 125,
   "rate_guarantee": "Beat any verified written quote from licensed local competitors by 10%",
   "dimensional_formula": "Cubic Yards = (Length ft * Width ft * Height ft) / 27",
-  "disclaimer": "This is NOT a final quote, but an approximate ballpark estimate based on standard volume and weight. Exact prices require an on-site visual inspection by owner-operator Martin Silchuk.",
-  "three_component_model": {
-    "component_1": "Base volume price ($220.00 per pickup truck bed equivalent)",
-    "component_2": "Standard residential weight-related variance of +/- 20%",
-    "component_3": "Separate complexity & labor surcharges (commercial refrigeration, stairs, rigging, demo)"
-  },
+  "disclaimer": "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection by owner-operator Martin Silchukov.",
   "load_tiers": [
     {
       "id": "MMJ-LOAD-MINI",
@@ -22,7 +13,7 @@
       "price_range": "$95 - $150",
       "cubic_yards": "0.5 - 1.0",
       "volume_cu_ft": "14 - 27",
-      "description": "Small single-item or 2-4 curbside bags. Enforces $95 hard minimum service charge."
+      "description": "Small single-item or 2-4 curbside bags"
     },
     {
       "id": "MMJ-LOAD-1-PICKUP",
@@ -31,7 +22,7 @@
       "price_range": "$176 - $264",
       "cubic_yards": "2.0 - 2.5",
       "volume_cu_ft": "54 - 68",
-      "description": "Standard pickup truck capacity level to rails (64 cu ft). Standard +/- 20% residential weight variance."
+      "description": "Standard pickup truck capacity level to rails (64 cu ft)"
     },
     {
       "id": "MMJ-LOAD-2-PICKUP",
@@ -69,12 +60,5 @@
       "volume_cu_ft": "540+",
       "description": "Exceeds one dump truck (8-11 pickup loads); estate liquidation or contractor demo"
     }
-  ],
-  "unit_rates": {
-    "yard_waste": {
-      "rate": "$85 - $130 per cu yd",
-      "minimum_charge": 95,
-      "rule": "Cannot fall below $95 minimum base service charge."
-    }
-  }
+  ]
 }

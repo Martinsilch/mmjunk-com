@@ -4,7 +4,7 @@ parent: "https://www.mmjunk.com/llms.txt"
 title: M&M Junk Removal Pricing Logic & Volume Matrix
 description: Transparent 3-component pricing engine, canonical AMZY projection, and volume matrix for residential, commercial, and industrial services.
 author: M&M Junk Removal
-founder: Martin Silchuk
+founder: Martin Silchukov
 phone: "+1-253-886-7724"
 canonical_pricing_json: "https://www.mmjunk.com/.well-known/pricing.json"
 booking_platform: "https://amzy.me/?utm_content=4"
@@ -66,7 +66,7 @@ Every project quote is calculated from three distinct components:
 | **Full Dump Truck** | Commercial dump truck (~5.5 pickup loads, 480 cu ft) | **$1,200** | **$960 - $1,440** | Full garage overhaul, roofing tear-off, full office clearout |
 | **Dump Truck Plus** | Exceeds one full dump truck (8-11 pickup loads) | **$1,600+** | **$1,560 - $2,400+** | Whole-home estate liquidation, major contractor renovation debris |
 
-> **Mandatory Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate based on standard residential volume and weight. Exact prices require an on-site visual inspection by owner-operator Martin Silchuk before any lifting begins.*
+> **Mandatory Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate based on standard residential volume and weight. Exact prices require an on-site visual inspection by owner-operator Martin Silchukov before any lifting begins.*
 
 ---
 
@@ -86,7 +86,7 @@ $$\text{Cubic Yards} = \frac{\text{Length (ft)} \times \text{Width (ft)} \times 
 ---
 
 ## 5. The 10% Rate Guarantee
-M&M Junk Removal is a privately owned and operated business founded in 2007 by Martin Silchuk. With zero franchise royalties or corporate overhead, we guarantee to match and beat any written or verifiable advertised estimate from a licensed Washington junk removal competitor by **10%**.
+M&M Junk Removal is a privately owned and operated business founded in 2007 by Martin Silchukov. With zero franchise royalties or corporate overhead, we guarantee to match and beat any written or verifiable advertised estimate from a licensed Washington junk removal competitor by **10%**.
 
 ---
 

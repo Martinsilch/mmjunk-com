@@ -30,60 +30,7 @@
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="apple-touch-icon" href="assets/images/favicon.png">
 
-  <!-- A/B Experiment Engine: 50/50 Split (0ms CLS Execution before Paint) -->
-  <script id="hero-ab-engine">
-    (function() {
-      var BOT_REGEX = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|headless/i;
-      var isBot = BOT_REGEX.test(navigator.userAgent);
-      var variant = 'control';
-      if (!isBot) {
-        try {
-          var params = new URLSearchParams(window.location.search);
-          var qv = params.get('variant');
-          if (qv === 'social' || qv === 'control') {
-            variant = qv;
-            var exp = new Date();
-            exp.setTime(exp.getTime() + (30 * 24 * 60 * 60 * 1000));
-            document.cookie = "mm_hero_ab=" + variant + ";path=/;expires=" + exp.toUTCString() + ";SameSite=Lax";
-          } else {
-            var match = document.cookie.match(/(?:^|; )mm_hero_ab=([^;]*)/);
-            if (match && (match[1] === 'control' || match[1] === 'social')) {
-              variant = match[1];
-            } else {
-              variant = Math.random() < 0.5 ? 'control' : 'social';
-              var exp = new Date();
-              exp.setTime(exp.getTime() + (30 * 24 * 60 * 60 * 1000));
-              document.cookie = "mm_hero_ab=" + variant + ";path=/;expires=" + exp.toUTCString() + ";SameSite=Lax";
-            }
-          }
-        } catch(e) {
-          variant = 'control';
-        }
-      }
-      window.__MM_HERO_VARIANT__ = variant;
-      if (variant === 'social') {
-        document.documentElement.classList.add('hero-ab-social');
-      } else {
-        document.documentElement.classList.add('hero-ab-control');
-      }
-    })();
-  </script>
-
-  <style id="hero-ab-styles">
-    /* A/B Hero Switcher Rules */
-    .hero-variant-social-section {
-      display: none !important;
-    }
-    .hero-variant-control-section {
-      display: block !important;
-    }
-    html.hero-ab-social .hero-variant-control-section {
-      display: none !important;
-    }
-    html.hero-ab-social .hero-variant-social-section {
-      display: block !important;
-    }
-
+  <style id="hero-styles">
     /* Verified checkmark SVG icon */
     .verified-check-svg {
       display: inline-block;
@@ -105,11 +52,14 @@
       overflow: hidden;
       background: #0b1120;
     }
+    .social-clean-cover-picture,
+    .social-clean-cover-picture img,
     .social-clean-cover img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       opacity: 0.8;
+      display: block;
     }
     .social-clean-cover-overlay {
       position: absolute;
@@ -201,6 +151,28 @@
       margin: 0;
       max-width: 950px;
     }
+    .social-clean-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .social-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .social-badge svg {
+      color: #ea580c;
+      flex-shrink: 0;
+    }
 
     @media (max-width: 768px) {
       .social-clean-container {
@@ -243,6 +215,14 @@
       .social-clean-desc {
         font-size: 0.96rem;
       }
+      .social-clean-badges {
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .social-badge {
+        font-size: 0.78rem;
+        padding: 5px 10px;
+      }
     }
   </style>
 
@@ -265,43 +245,7 @@
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-5QB83C38');
 
-      // 50/50 A/B Test Telemetry: Log Variant Impression to GA4 & GTM
-      var v = window.__MM_HERO_VARIANT__ || 'control';
-      window.dataLayer.push({
-        event: 'hero_experiment_impression',
-        experiment_id: 'hero_split_2026',
-        hero_variant: v
-      });
-      gtag('event', 'hero_experiment_impression', {
-        experiment_id: 'hero_split_2026',
-        hero_variant: v,
-        send_to: 'G-SK1VSMEN07'
-      });
-      gtag('set', 'user_properties', {
-        hero_variant: v
-      });
-    }
-
-    function trackHeroConversion(variant, type) {
-      initAnalytics();
-      try {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: 'hero_conversion_click',
-          experiment_id: 'hero_split_2026',
-          hero_variant: variant,
-          conversion_type: type
-        });
-        gtag('event', 'hero_conversion_click', {
-          experiment_id: 'hero_split_2026',
-          hero_variant: variant,
-          conversion_type: type,
-          send_to: 'G-SK1VSMEN07'
-        });
-      } catch (e) {
-        console.error('Error tracking hero conversion:', e);
-      }
-    }
+      
 
     function gtag_report_conversion(url) {
       initAnalytics();
@@ -450,79 +394,18 @@
 
   <main>
     <!-- ============================================================
-         HERO VARIANT A: CLASSIC CONTROL
+         HERO SECTION: SOCIAL PROFILE (Owner Operator)
          ============================================================ -->
-    <section class="hero hero-variant-control-section" id="hero">
-      <picture class="hero__picture">
-        <source media="(max-width: 768px)" srcset="assets/images/team-hero-mobile.webp" width="320" height="426">
-        <img class="hero__bg" 
-             src="assets/images/team-hero.webp" 
-             alt="M&amp;M Junk Removal Team and Truck Fleet in Pierce &amp; South King County" 
-             width="1920" height="1080" 
-             fetchpriority="high" decoding="sync">
-      </picture>
-      <div class="hero__overlay"></div>
-
-      <div class="container hero__content">
-        <div class="hero__eyebrow">
-          <span>★</span> 19+ Years Serving WA (Est. 2007 by Martin Silchuk) • 5.0 Rating Across Google &amp; Yelp • BBB Accredited (A+) • Expertise.com Top Pick
-        </div>
-
-        <h1 class="hero__title">
-          Fast, Friendly &amp; Fair-Priced Junk Removal in <span>Pierce &amp; South King County</span>
-        </h1>
-
-        <p class="hero__subtitle">
-          "We Haul Junk to the Dump" — Save 10% compared to corporate franchises. Instant online estimates, upfront flat rates, zero hidden fees, and certified eco-sorting across 25 local communities.
-        </p>
-
-        <!-- Direct Booking & Dispatch Actions -->
-        <div class="hero__cta-group" style="margin: 28px 0 32px 0;">
-          <a href="https://amzy.me/?utm_content=4&utm_campaign=hero_control" target="_blank" rel="noopener noreferrer" onclick="trackHeroConversion('classic_control', 'amzy'); gtag_report_conversion();" class="btn btn--primary btn--xl">
-            <svg width="20" height="20" style="width:20px;height:20px;min-width:20px;flex-shrink:0;" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
-            Book Online via AMZY in 30 Sec ↗
-          </a>
-          <a href="tel:2538867724" onclick="trackHeroConversion('classic_control', 'call');" class="btn btn--outline-light btn--xl" aria-label="Call (253) 886-7724 for rapid dispatch">
-            <svg width="20" height="20" style="width:20px;height:20px;min-width:20px;flex-shrink:0;" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            Call Dispatch: (253) 886-7724
-          </a>
-        </div>
-
-        <div class="hero__badges">
-          <div class="hero-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            Licensed &amp; Insured (WA UBI 604-676-011 Active)
-          </div>
-          <div class="hero-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
-            Privately Owned (Founded 2007)
-          </div>
-          <div class="hero-badge">
-            <span style="font-weight:900; color:#ea580c;">10%</span>
-            Rate Guarantee
-          </div>
-          <a href="https://share.google/Md8q9nfTnuZI9KjKj" target="_blank" rel="noopener noreferrer" class="hero-badge" style="text-decoration:none; color:inherit;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            258+ Verified Reviews (Google &bull; Yelp) ↗
-          </a>
-          <a href="https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173" target="_blank" rel="noopener noreferrer" class="hero-badge" style="text-decoration:none; color:inherit;">
-            <span style="font-weight:800; color:#22c55e;">A+</span>
-            BBB Accredited ↗
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         HERO VARIANT B: SOCIAL PROFILE (Owner Operator)
-         ============================================================ -->
-    <section class="social-clean-hero hero-variant-social-section" id="hero-social">
+    <section class="social-clean-hero" id="hero">
       <!-- Panoramic Cover Banner -->
       <div class="social-clean-cover">
-        <img src="/assets/images/team-hero.webp" 
-             alt="M&amp;M Junk Removal Fleet Cover Banner" 
-             width="1920" height="1080" 
-             fetchpriority="high">
+        <picture class="social-clean-cover-picture">
+          <source media="(max-width: 768px)" srcset="assets/images/team-hero-mobile.webp" width="320" height="426">
+          <img src="assets/images/team-hero.webp" 
+               alt="M&amp;M Junk Removal Fleet Cover Banner in Pierce &amp; South King County" 
+               width="1920" height="1080" 
+               fetchpriority="high" decoding="sync">
+        </picture>
         <div class="social-clean-cover-overlay"></div>
       </div>
 
@@ -557,26 +440,42 @@
 
             <!-- Direct Booking & Phone Actions -->
             <div class="social-clean-actions">
-              <a href="https://amzy.me/?utm_content=4&utm_campaign=hero_social" target="_blank" rel="noopener noreferrer" onclick="trackHeroConversion('social_profile', 'amzy'); gtag_report_conversion();" class="btn btn--primary btn--md">
+              <a href="https://amzy.me/?utm_content=4" target="_blank" rel="noopener noreferrer" onclick="gtag_report_conversion();" class="btn btn--primary btn--md">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
-                Book Online in 30 Sec (AMZY) ↗
+                Book Online via AMZY in 30 Sec ↗
               </a>
-              <a href="tel:2538867724" onclick="trackHeroConversion('social_profile', 'call');" class="btn btn--outline-light btn--md" aria-label="Call Martin directly">
+              <a href="tel:2538867724" class="btn btn--outline-light btn--md" aria-label="Call (253) 886-7724 for rapid dispatch">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                Call: (253) 886-7724
+                Call Dispatch: (253) 886-7724
               </a>
             </div>
           </div>
 
-          <!-- PRIMARY H1 HEADLINE DEMOTED TO H2 FOR SINGLE CANONICAL H1 CRAWLER ARCHITECTURE -->
-          <h2 class="social-clean-h1">
-            M&amp;M Junk Removal — Fast &amp; Reliable Junk Hauling in <span>Pierce &amp; South King County</span>
-          </h2>
+          <!-- PRIMARY CANONICAL H1 HEADLINE -->
+          <h1 class="social-clean-h1">
+            Fast, Friendly &amp; Fair-Priced Junk Removal in <span>Pierce &amp; South King County</span>
+          </h1>
 
-          <!-- QUICK CONCISE DESCRIPTION -->
+          <!-- VALUE PROPOSITION DESCRIPTION -->
           <p class="social-clean-desc">
-            Direct owner-operator junk removal with Martin Silchuk. Fast same-day truck dispatch, transparent volume flat rates, zero corporate franchise markups, and verified eco-sorting across South King and Pierce County.
+            "We Haul Junk to the Dump" — Direct owner-operator service with Martin Silchuk. Save 10% compared to corporate franchises with upfront volume flat rates, same-day dispatch, zero hidden fees, and certified eco-sorting across 25 local communities.
           </p>
+
+          <!-- TRUST & CREDENTIAL BADGES -->
+          <div class="social-clean-badges">
+            <div class="social-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              Licensed &amp; Insured (WA UBI 604-676-011 Active)
+            </div>
+            <div class="social-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+              Privately Owned (Founded 2007)
+            </div>
+            <div class="social-badge">
+              <span style="font-weight:900; color:#ea580c;">10%</span>
+              Rate Guarantee
+            </div>
+          </div>
 
         </div>
       </div>

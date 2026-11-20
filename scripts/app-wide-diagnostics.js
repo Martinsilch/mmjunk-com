@@ -197,6 +197,40 @@ jobSlugs.forEach(slug => {
   }
 });
 
+// 8. Check Hero Repetition & Single Canonical H1 Architecture
+console.log('\n--- [CHECK 8] Hero Repetition & Single Canonical H1 Validation ---');
+const idxHtml = fs.readFileSync('index.html', 'utf8');
+
+totalChecks++;
+const h1Matches = idxHtml.match(/<h1[^>]*>[\s\S]*?<\/h1>/gi) || [];
+if (h1Matches.length === 1) {
+  console.log('  ✓ Exactly one canonical H1 tag present in index.html');
+} else {
+  errors.push(`[H1 Architecture Error] Expected 1 H1 tag in index.html, found ${h1Matches.length}`);
+}
+
+totalChecks++;
+if (!idxHtml.includes('hero-variant-control-section') && !idxHtml.includes('hero-variant-social-section')) {
+  console.log('  ✓ Zero A/B hero variant classes found in index.html');
+} else {
+  errors.push('[Hero Repetition Error] Found legacy hero-variant classes in index.html');
+}
+
+totalChecks++;
+if (!idxHtml.includes('hero-ab-engine') && !idxHtml.includes('hero-ab-social')) {
+  console.log('  ✓ Zero A/B engine scripts or cookie mutation classes in index.html');
+} else {
+  errors.push('[A/B Engine Error] Found legacy hero-ab-engine script or class in index.html');
+}
+
+totalChecks++;
+const headlineCount = (idxHtml.match(/Fast, Friendly &amp; Fair-Priced Junk Removal/g) || []).length;
+if (headlineCount === 1) {
+  console.log('  ✓ Exactly 1 primary headline instance (Zero token duplication at DOM top)');
+} else {
+  errors.push(`[Hero Headline Duplication Error] Expected 1 primary headline, found ${headlineCount}`);
+}
+
 console.log('\n====================================================');
 console.log(`TOTAL AUDIT CHECKS: ${totalChecks}`);
 console.log(`TOTAL ERRORS:       ${errors.length}`);

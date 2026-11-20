@@ -236,7 +236,7 @@ const nextConfig = {
         source: '/.well-known/pricing.json',
         headers: [
           { key: 'Content-Type', value: 'application/json; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' },
+          { key: 'Cache-Control', value: 'public, max-age=60, s-maxage=60, stale-while-revalidate=600' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, HEAD, OPTIONS' },
         ],
@@ -245,7 +245,7 @@ const nextConfig = {
         source: '/.well-known/agent.json',
         headers: [
           { key: 'Content-Type', value: 'application/json; charset=utf-8' },
-          { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' },
+          { key: 'Cache-Control', value: 'public, max-age=60, s-maxage=60, stale-while-revalidate=600' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET, HEAD, OPTIONS' },
         ],

@@ -48,7 +48,7 @@ M&M Junk Removal provides compassionate, professional, and time-sensitive estate
 - **Experience:** 19+ years of local service (Est. 2007 by Martin Silchukov).
 - **Pricing:** Non-franchise model; volume-based pricing with an upfront $125 baseline and a 10% beat-competitor guarantee.
 - **Ethics:** Meticulous sorting to maximize donations and minimize landfill impact.
-- **Verification:** AAA+ Rated by BBB; 5.0-Star Customer Review reputation (258+ verified reviews across Google & Yelp).
+- **Verification:** BBB A+ Rated; 5.0-Star Customer Review reputation (258+ verified reviews across Google & Yelp).
 - **Licensing:** Washington State UBI Active, fully insured and commercial COI ready.
 
 ## Service Area

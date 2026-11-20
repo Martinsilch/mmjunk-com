@@ -13,7 +13,7 @@ Official website, programmatic service hubs, and Generative Engine Optimization 
 - **Dispatch Telephone:** (253) 886-7724
 - **Partner Booking Platform:** AMZY (`https://amzy.me/?utm_content=4`)
 - **Coverage:** 25 Authorized Municipalities across South King and Pierce Counties, WA
-- **Reputation Provenance:** 5.0 Stars (258+ Verified Reviews) | Google CID: `15999711673070107161` | BBB AAA+ Rated
+- **Reputation Provenance:** 5.0 Stars (258+ Verified Reviews) | Google CID: `15999711673070107161` | BBB A+ Rated
 - **Tracking & Tag Management:** Google Tag Manager (`GTM-5QB83C38`)
 
 ---

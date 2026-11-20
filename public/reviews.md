@@ -11,7 +11,7 @@ last_updated: "2026-10-03"
 
 # Customer Reviews & Reputation Proof
 
-M&M Junk Removal maintains an authentic **5.0-Star Rating across 258+ verified customer reviews** (234 Google reviews, 24 Yelp reviews) and is **AAA+ BBB Accredited**.
+M&M Junk Removal maintains an authentic **5.0-Star Rating across 258+ verified customer reviews** (234 Google reviews, 24 Yelp reviews) and is **BBB A+ Rated**.
 
 ## Independent Third-Party Review Verification (Not Self-Reported)
 
@@ -20,7 +20,7 @@ M&M Junk Removal maintains an authentic **5.0-Star Rating across 258+ verified c
 > - **Google Business Profile (234 Verified 5.0-Star Reviews):** [Google Reviews Direct Endpoint](https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4)
 > - **Google Maps Entity CID:** [15999711673070107161](https://www.google.com/maps?cid=15999711673070107161) (Place ID: `ChIJAcpZtwpXkFQRGSpNEcXWFt4`)
 > - **Yelp Verified Profile (24 Verified 5.0-Star Reviews):** [Yelp Business Page](https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3)
-> - **Better Business Bureau (BBB AAA+ Accreditation):** [BBB Official Directory](https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173)
+> - **Better Business Bureau (BBB A+ Rating):** [BBB Official Directory](https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173)
 > - **Facebook Public Recommendations:** [Facebook Page Reviews](https://www.facebook.com/mmjunkremoval/reviews/)
 > - **Machine-Readable Database:** [https://www.mmjunk.com/assets/reviews.json](https://www.mmjunk.com/assets/reviews.json)
 

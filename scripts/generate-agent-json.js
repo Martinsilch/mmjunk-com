@@ -38,7 +38,7 @@ const agentManifest = {
       google_business_profile: "https://share.google/Md8q9nfTnuZI9KjKj",
       yelp: "https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3",
       better_business_bureau: "https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173",
-      bbb_rating: "A+ (BBB Accredited)",
+      bbb_rating: "A+ Rated",
       expertise_com: "https://www.expertise.com/home-improvement/junk-removal/washington/seattle#mmjunkremoval",
       facebook: "https://www.facebook.com/mmjunkremoval/",
       state_registry: "https://dor.wa.gov (UBI: 604-676-011)"

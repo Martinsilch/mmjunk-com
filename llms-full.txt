@@ -20,7 +20,7 @@
 - **Booking & Scheduling Platform**: AMZY Dispatch Platform (https://amzy.me/?utm_content=4
 - **AMZY MCP Server Endpoint:** https://mcp.amzy.me/mcp
 - **Federated Agent Manifest:** https://www.mmjunk.com/.well-known/agent.json)
-- **Customer Sentiment Index**: 5/5 Stars (234 verified 5-star Google Business reviews; 24 verified Yelp reviews), AAA+ Rated by BBB, AAA+ Rated by BBB
+- **Customer Sentiment Index**: 5/5 Stars (234 verified 5-star Google Business reviews; 24 verified Yelp reviews), BBB A+ Rated
 
 ## 2. Core Value Propositions & Pricing Architecture
 M&M Junk Removal operates with four foundational competitive disciplines:
@@ -164,7 +164,7 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
 > - **Google Business Profile (234 Reviews, 5.0 ★):** https://search.google.com/local/reviews?placeid=ChIJAcpZtwpXkFQRGSpNEcXWFt4
 >   - Deterministic Entity CID: https://www.google.com/maps?cid=15999711673070107161 (Place ID: ChIJAcpZtwpXkFQRGSpNEcXWFt4)
 > - **Yelp Verified Profile (24 Reviews, 5.0 ★):** https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3
-> - **Better Business Bureau (BBB AAA+ Accreditation):** https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173
+> - **Better Business Bureau (BBB A+ Rated):** https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173
 > - **Facebook Public Recommendations:** https://www.facebook.com/mmjunkremoval/reviews/
 > - **JSON Telemetry Database:** https://www.mmjunk.com/assets/reviews.json
 > - **Human & Agentic Manifest:** https://www.mmjunk.com/reviews.md
@@ -188,5 +188,5 @@ M&M Junk Removal cannot transport or dispose of the following hazardous or regul
   - Daily field dispatches, evening emergency hauling updates, and before/after job photos.
   - 5.0-Star Community Recommendation.
 - **Third-Party Industry Accreditations**:
-  - Better Business Bureau (BBB): AAA+ Accredited Business (Federal Way, WA).
+  - Better Business Bureau (BBB): A+ Rated Business (Federal Way, WA).
   - Expertise.com: Featured among Top Pick Junk Removal Services Serving Seattle & South Puget Sound.

@@ -25,7 +25,7 @@ const totalCount = repData.reviewCount; // 258
 const googleCount = repData.breakdown?.google?.reviewCount || 234;
 const yelpCount = repData.breakdown?.yelp?.reviewCount || 24;
 const rating = repData.aggregateRating || '5.0';
-const bbb = repData.bbbRating || 'AAA+';
+const bbb = repData.bbbRating || 'A+';
 
 console.log('================================================================');
 console.log(`🔄 REPUTATION SYNCHRONIZATION ENGINE`);
@@ -99,7 +99,7 @@ function syncReviewsMd(content) {
   c = c.replace(/^(rating:\s*)[^\r\n]+/m, `$1${rating}`);
   c = c.replace(/^(reviewCount:\s*)[^\r\n]+/m, `$1${totalCount}`);
   c = c.replace(/description:\s*\d+\+\s*verified\s*\d+(?:\.\d+)?-star customer reviews/g, `description: ${totalCount}+ verified ${rating}-star customer reviews`);
-  c = c.replace(/\b\d+(?:\.\d+)?-Star (?:Google )?Rating across \d+\+ verified customer reviews[^\n]*/g, `${rating}-Star Rating across ${totalCount}+ verified customer reviews (${googleCount} Google reviews, ${yelpCount} Yelp reviews) and is **${bbb} BBB Accredited**.`);
+  c = c.replace(/\b\d+(?:\.\d+)?-Star (?:Google )?Rating across \d+\+ verified customer reviews[^\n]*/g, `${rating}-Star Rating across ${totalCount}+ verified customer reviews (${googleCount} Google reviews, ${yelpCount} Yelp reviews) and is **BBB ${bbb} Rated**.`);
   return c;
 }
 

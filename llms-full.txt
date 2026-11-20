@@ -29,26 +29,30 @@ M&M Junk Removal operates with four foundational competitive disciplines:
 3. **Eco-Conscious Sorting & Landfill Diversion**: Every truckload is pre-sorted for charity donations, scrap metal recycling, and compost processing before municipal landfill disposal.
 4. **Rapid Response**: 30-second mobile intake form, 15-minute dispatch confirmation, and same-day / next-day hauling routes (1:00 PM PST dispatch cutoff).
 
-### Official AMZY Pricing Matrix & Lead Qualification
-| Job Size / Tier | Volume & Capacity Description | Ballpark Price Range | Typical Job Scope |
-| :--- | :--- | :--- | :--- |
-| **MINI** | Minimum load, few items | **$95 - $150** | Single armchair, microwave, small lawnmower, 2-3 bags |
-| **1 Pick Up Truck Load** | Standard pickup truck capacity (~4x8x2 ft bed, Base: $220) | **$154 - $286** | 3-piece couch, mattress + box spring, dining set, yard bags |
-| **2 Pick Up Loads** | Double pickup truck capacity (Base: $440) | **$308 - $572** | Studio apartment cleanout, sectional sofa, remodel scrap |
-| **3 Pick Up Loads** | Triple pickup truck capacity (Base: $660) | **$462 - $858** | Multi-room cleanout, attic overhaul, renovation scrap |
-| **Dump Truck Load** | Full dump truck capacity (~5.5 pickup loads, Base: $1,200) | **$840 - $1,560** | Garage overhaul, roofing tear-off, full office clearing |
-| **Dump Truck Plus** | Exceeds one full dump truck (8-11 pickup loads) | **$1,560 - $2,400+** | Whole-home estate liquidation, contractor demo, hoarding |
+### Canonical AMZY Pricing Matrix & Lead Qualification
+> **Machine-Readable Projection:** https://www.mmjunk.com/.well-known/pricing.json  
+> **3-Component Model:** Base Volume ($220/pickup equivalent) + Standard Residential Weight Adjustment (±20%) + Itemized Labor/Complexity Adders.  
+> **Hard Service Floor:** Minimum base service dispatch charge is **$95.00**. No project will invoice below $95.00.
 
-> **Mandatory Pricing Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection.*
+| Job Size / Tier | Volume & Capacity Description | Base Price | Ballpark Price Range (±20%) | Typical Job Scope |
+| :--- | :--- | :--- | :--- | :--- |
+| **MINI Curbside** | Minimum load, few items (14–27 cu ft) | **$95** | **$95 - $150** | Single armchair, microwave, small lawnmower, 2-3 bags (Enforces $95 floor) |
+| **1 Pick Up Truck Load** | Standard pickup truck bed (~4x8x2 ft bed, 64 cu ft) | **$220** | **$176 - $264** | 3-piece couch, mattress + box spring, dining set, yard bags |
+| **2 Pick Up Loads** | Double pickup truck capacity (128 cu ft) | **$440** | **$352 - $528** | Studio apartment cleanout, sectional sofa, remodel scrap (*Most Popular*) |
+| **3 Pick Up Loads** | Triple pickup truck capacity (192 cu ft) | **$660** | **$528 - $792** | Multi-room cleanout, attic overhaul, renovation scrap |
+| **Dump Truck Load** | Full dump truck capacity (~5.5 pickup loads, 480 cu ft) | **$1,200** | **$960 - $1,440** | Garage overhaul, roofing tear-off, full office clearing |
+| **Dump Truck Plus** | Exceeds one full dump truck (8-11 pickup loads) | **$1,600+** | **$1,560 - $2,400+** | Whole-home estate liquidation, contractor demo, hoarding |
+
+> **Mandatory Pricing Disclaimer:** *This is NOT a final quote, but an approximate ballpark estimate based on standard residential volume and weight. Exact prices require an on-site visual inspection by owner-operator Martin Silchuk.*
 
 ### Additional Service Pricing References
 | Tier / Service | Equipment & Labor | Volume / Weight | Base Pricing Range |
 | :--- | :--- | :--- | :--- |
-| **Baseline Single Item Minimum** | 16ft Box Truck + 2 Techs | Single curbside item | $95.00 - $125.00 Baseline |
-| **Couch / Sectional Sofa** | 2 Techs + Interior carryout | 1 Pickup Truckload | $154.00 - $286.00 (Base: $220) |
+| **Baseline Single Item Minimum** | 16ft Box Truck + 2 Techs | Single curbside item | $95.00 - $125.00 Baseline ($95 floor) |
+| **Couch / Sectional Sofa** | 2 Techs + Interior carryout | 1 Pickup Truckload | $176.00 - $264.00 (Base: $220) |
 | **Mattress & Box Spring Set** | 2 Techs + Bagging & recycling | 1/8 Truckload | $125.00 - $175.00 |
 | **Major Appliance (Freon)** | Certified EPA evacuation | Single heavy appliance | $150.00 - $225.00 |
-| **Yard Waste & Tree Branches** | Pitchfork loading + composting | Per cubic yard | $85.00 - $130.00 / yd |
+| **Yard Waste & Tree Branches** | Pitchfork loading + composting | Per cubic yard | $85.00 - $130.00 / yd (Min: $95 floor) |
 | **Hot Tub / Spa Demolition** | Sawzall cut + electrical safety | Complete shell extraction | $350.00 - $550.00 |
 | **Backyard Shed Teardown (10x12)** | Demolition tools + haul + sweep | Complete structure down to grade | $650.00 - $1,200.00 |
 

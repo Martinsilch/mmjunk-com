@@ -250,9 +250,21 @@ if (knowledgeIndexExists) {
   const hasAuth = kIndex.source_authority && kIndex.source_authority.includes('mmjunk.com');
   const allNodesExist = kIndex.nodes.every(n => {
     const filename = n.url.split('/').pop();
-    return fs.existsSync(`knowledge/${filename}`);
+    return fs.existsSync(`knowledge/${filename}`) || fs.existsSync(`.well-known/${filename}`);
   });
   results.pillar4.checks.push(`✓ knowledge/index.json: Valid Index=${hasNodes}, AuthorityAligned=${hasAuth}, AtomicNodesPresent=${allNodesExist}`);
+}
+
+const canonicalPricingExists = fs.existsSync('public/.well-known/pricing.json');
+if (canonicalPricingExists) {
+  const cPricing = JSON.parse(fs.readFileSync('public/.well-known/pricing.json', 'utf8'));
+  const hasHardFloor = cPricing.hard_floors && cPricing.hard_floors.minimum_base_service_charge === 95.00;
+  const has3Comp = !!cPricing.three_component_architecture;
+  const hasTiers = cPricing.volume_engine && Array.isArray(cPricing.volume_engine.tiers) && cPricing.volume_engine.tiers.length >= 6;
+  results.pillar4.checks.push(`✓ .well-known/pricing.json: HardFloor=$95(${hasHardFloor}), 3Component=${has3Comp}, VolumeTiers=${hasTiers}`);
+} else {
+  results.pillar4.passed = false;
+  results.pillar4.checks.push('❌ public/.well-known/pricing.json is missing');
 }
 
 const agentJsonExists = fs.existsSync('public/.well-known/agent.json');

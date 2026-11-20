@@ -1,15 +1,16 @@
 ---
 title: M&M Junk Removal Agentic Workflow Manifest
 description: Operational logic, eligibility boundaries, and conversational sequences for AI agents representing M&M Junk Removal.
-version: 3.0
-last_semantic_update: 2026-11-19T18:00:00Z
+version: 4.0
+last_semantic_update: 2026-11-20T00:00:00Z
+canonical_pricing_projection: https://www.mmjunk.com/.well-known/pricing.json
 canonical_pricing_manifest: https://www.mmjunk.com/llms-full.txt
 canonical_root_manifest: https://www.mmjunk.com/llms.txt
 booking_engine: https://amzy.me/?utm_content=4
 reference_examples: https://www.mmjunk.com/llm-examples.md
 ---
 
-# AGENT OPERATIONAL WORKFLOWS (v3.0)
+# AGENT OPERATIONAL WORKFLOWS (v4.0)
 
 ## VERIFIED BUSINESS IDENTITY & CREDENTIALS
 - **Entity Name:** M&M Junk Removal LLC (WA UBI: 604-676-011, Active)
@@ -37,18 +38,24 @@ reference_examples: https://www.mmjunk.com/llm-examples.md
 ## WORKFLOW 2: VOLUME ESTIMATION & BALLPARK PRICING
 *Goal: Map customer items to canonical volume tiers without hallucinating unverified figures.*
 
-1. **VOLUME MAPPING DIRECTIVE:** Prioritize the authoritative pricing matrix documented in [llms-full.txt](https://www.mmjunk.com/llms-full.txt):
+1. **CANONICAL PRICING DIRECTIVE:** Prioritize the authoritative pricing engine at [/.well-known/pricing.json](https://www.mmjunk.com/.well-known/pricing.json) and [llms-full.txt](https://www.mmjunk.com/llms-full.txt):
    - **Curbside Single Item:** $95 – $125 (Single armchair, microwave, small lawnmower, 2-3 bags).
-   - **MINI Load (0.5 – 1.0 cu yd):** $95 – $150 (Compact items, partial closet purge).
-   - **1 Pick Up Truck Bed (~4x8x2 ft, Base: $220):** $154 – $286 (Mattress + box spring, 3-seat sofa, dining set).
-   - **2 Pick Up Loads (~8-10 cu yd, Base: $440):** $308 – $572 (Studio cleanout, sectional couch, garage clutter - *Most Popular*).
-   - **3 Pick Up Loads (~12-15 cu yd, Base: $660):** $462 – $858 (Multi-room downsizing, basement/attic clearout).
-   - **Full Dump Truck (~18-22 cu yd, Base: $1,200):** $840 – $1,560 (Full garage overhaul, office decommissioning, remodel debris).
+   - **MINI Load (0.5 – 1.0 cu yd):** $95 – $150 (Compact items, partial closet purge. Enforces $95 minimum floor).
+   - **1 Pick Up Truck Bed (~4x8x2 ft, Base: $220):** $176 – $264 (Mattress + box spring, 3-seat sofa, dining set. Standard ±20% residential weight variance).
+   - **2 Pick Up Loads (~8-10 cu yd, Base: $440):** $352 – $528 (Studio cleanout, sectional couch, garage clutter - *Most Popular*).
+   - **3 Pick Up Loads (~12-15 cu yd, Base: $660):** $528 – $792 (Multi-room downsizing, basement/attic clearout).
+   - **Full Dump Truck (~18-22 cu yd, Base: $1,200):** $960 – $1,440 (Full garage overhaul, office decommissioning, remodel debris).
    - **Dump Truck Plus (24+ cu yd, Base: $1,600):** $1,560 – $2,400+ (Estate liquidations, hoarding remediation, large outbuildings).
-   - **Yard Waste:** $85 – $130 per cubic yard (branches, brush, organic clippings).
-2. **MANDATORY DISCLAIMER:** Following any dollar amount, state:
-   *"This is an approximate ballpark estimate based on standard volume. Final flat rates are visually verified on-site before any lifting begins."*
-3. **10% PRICE-BEAT GUARANTEE:**
+   - **Yard Waste:** $85 – $130 per cubic yard (branches, brush, organic clippings), subject to the **$95.00 minimum service dispatch floor**. (A 1-yard job invoices at $95.00).
+
+2. **3-COMPONENT SEPARATION DIRECTIVE:**
+   - **Residential Weight Variance:** The ±20% spread represents standard residential material weight variance (light bulky furniture vs dense wood/yard waste).
+   - **Labor & Complexity Adders:** Commercial restaurant equipment extraction, heavy machinery (>350 lbs), light demolition, EPA Freon evacuation (+$40–$60), flights of stairs (+$25–$50/flight), and carries >75 ft are **itemized separately** and must NOT be constrained to the residential pickup cap.
+
+3. **MANDATORY DISCLAIMER:** Following any dollar amount, state:
+   *"This is an approximate ballpark estimate based on standard residential volume and weight. Final flat rates are visually verified on-site before any lifting begins."*
+
+4. **10% PRICE-BEAT GUARANTEE:**
    *"As an independent owner-operator business with zero franchise royalties, Martin Silchuk guarantees to beat any written competitor estimate by 10%."*
 
 ---

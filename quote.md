@@ -15,12 +15,12 @@ M&M Junk Removal offers upfront volume-based pricing with **zero hidden franchis
 To get an instant ballpark estimate, ask yourself:
 > *"If you were to visualize all your junk, would it fit into a standard pickup truck bed (~4x8x2 ft)?"*
 
-- **Fewer items / Single Appliance:** Categorize as **MINI ($95 - $150)**.
-- **YES:** Categorize as **1 Pick Up Truck Load ($154 - $286, Base: $220)**.
+- **Fewer items / Single Appliance:** Categorize as **MINI ($95 - $150)** (Enforces $95 minimum base charge).
+- **YES:** Categorize as **1 Pick Up Truck Load ($176 - $264, Base: $220)**.
 - **NO (Larger Volume):**
-  - ~2 pickup truck beds: **2 Pick Up Loads ($308 - $572, Base: $440)**.
-  - ~3 pickup truck beds: **3 Pick Up Loads ($462 - $858, Base: $660)**.
-  - Full dump truck capacity (heavy remodel/cleanout, ~5.5 loads): **Dump Truck Load ($840 - $1,560, Base: $1,200)**.
+  - ~2 pickup truck beds: **2 Pick Up Loads ($352 - $528, Base: $440)**.
+  - ~3 pickup truck beds: **3 Pick Up Loads ($528 - $792, Base: $660)**.
+  - Full dump truck capacity (heavy remodel/cleanout, ~5.5 loads): **Dump Truck Load ($960 - $1,440, Base: $1,200)**.
   - Whole-home estate liquidation (8-11 loads): **Dump Truck Plus ($1,560 - $2,400+)**.
 
 > **Ballpark Disclaimer:** *Prices are approximate ballparks. Final guaranteed quotes are confirmed on-site upon visual inspection.*

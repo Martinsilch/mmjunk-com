@@ -397,17 +397,17 @@ export default async function LocationsHubPage() {
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>
             <div style={{ fontSize: '13px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase' }}>1 Pickup Truck Bed</div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$154 – $286</div>
+            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$176 – $264</div>
             <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Mattress + box spring, 3-seat sofa, table set.</p>
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>
             <div style={{ fontSize: '13px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase' }}>2 Pickup Loads</div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$308 – $572</div>
+            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$352 – $528</div>
             <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Studio cleanout, sectional couch, yard brush.</p>
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>
             <div style={{ fontSize: '13px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase' }}>Full Dump Truck</div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$840 – $1,560</div>
+            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$960 – $1,440</div>
             <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Full 2-car garage overhaul, office cleanout.</p>
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>

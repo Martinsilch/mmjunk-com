@@ -179,22 +179,22 @@ function initIntakeEngine() {
       },
       '1_pickup': {
         name: '1 Pick Up Truck Load',
-        range: '$154 - $286',
+        range: '$176 - $264',
         desc: 'Standard pickup truck capacity (~4x8 bed, Base: $220)'
       },
       '2_pickup': {
         name: '2 Pick Up Loads',
-        range: '$308 - $572',
+        range: '$352 - $528',
         desc: 'Double pickup truck capacity (Base: $440)'
       },
       '3_pickup': {
         name: '3 Pick Up Loads',
-        range: '$462 - $858',
+        range: '$528 - $792',
         desc: 'Triple pickup truck capacity (Base: $660)'
       },
       'dump_truck': {
         name: 'Dump Truck Load',
-        range: '$840 - $1,560',
+        range: '$960 - $1,440',
         desc: 'Full dump truck capacity (~5.5 pickup loads, Base: $1,200)'
       },
       'dump_truck_plus': {

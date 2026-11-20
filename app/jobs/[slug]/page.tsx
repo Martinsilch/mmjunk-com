@@ -383,10 +383,15 @@ export default async function JobStoryPage({ params }: JobPageProps) {
         </h1>
 
         {/* Executive Summary */}
-        <p style={{ fontSize: '18px', color: '#334155', marginBottom: '32px', lineHeight: 1.6 }}>
+        <p style={{ fontSize: '18px', color: '#334155', marginBottom: '20px', lineHeight: 1.6 }}>
           Operational field summary: On {formattedDate}, M&M Junk Removal completed the rapid extraction, transport, and certified disposal of <strong>{job.itemCategory}</strong> in <strong>{neighborhoodName ? `${neighborhoodName}, ` : ''}{cityName}, WA</strong>. 
           Carried out via single-operator dispatch utilizing our {job.equipmentUsed || '16-foot high-wall box truck with hydraulic liftgate'}, materials were diverted for eco-sorting and compliant transfer at {job.disposalSite || 'the local transfer facility'}.
         </p>
+
+        {/* Historical Service Context Disclaimer */}
+        <aside style={{ backgroundColor: '#f8fafc', borderLeft: '4px solid #ea580c', padding: '14px 18px', margin: '20px 0 32px 0', borderRadius: '6px', fontSize: '14px', color: '#475569', lineHeight: 1.5 }}>
+          <strong>Historical Field Operational Log:</strong> This case study documents a completed project performed on {formattedDate}. Pricing, vehicle routing, disposal fees, and labor requirements reflect specific on-site conditions at the time of service and do not constitute current binding quotes. For current rates and instant route placement, see our <Link href="/.well-known/pricing.json" style={{ color: '#ea580c', fontWeight: 700 }}>Pricing Engine</Link> ($95 base minimum, $220/pickup load equivalent) or <a href={AMZY_BOOKING_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#ea580c', fontWeight: 700 }}>Book Online via AMZY</a>.
+        </aside>
 
         {/* Before & After Visual Transformation Showcase */}
         {job.mediaUrls && job.mediaUrls.length >= 2 && (

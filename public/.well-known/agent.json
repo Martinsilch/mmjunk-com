@@ -321,16 +321,16 @@
         "id": "MMJ-LOAD-1-PICKUP",
         "name": "1 Pick Up Load",
         "base_price": 220,
-        "price_range": "$154 - $286",
+        "price_range": "$176 - $264",
         "cubic_yards": "2.0 - 2.5",
         "volume_cu_ft": "54 - 68",
-        "description": "Standard pickup truck capacity level to rails (64 cu ft)"
+        "description": "Standard pickup truck capacity level to rails (64 cu ft). Standard +/- 20% residential weight variance."
       },
       {
         "id": "MMJ-LOAD-2-PICKUP",
         "name": "2 Pick Up Loads",
         "base_price": 440,
-        "price_range": "$308 - $572",
+        "price_range": "$352 - $528",
         "cubic_yards": "4.5 - 5.0",
         "volume_cu_ft": "120 - 135",
         "description": "Double pickup capacity; studio cleanout or sectional + dresser"
@@ -339,7 +339,7 @@
         "id": "MMJ-LOAD-3-PICKUP",
         "name": "3 Pick Up Loads",
         "base_price": 660,
-        "price_range": "$462 - $858",
+        "price_range": "$528 - $792",
         "cubic_yards": "7.0 - 7.5",
         "volume_cu_ft": "190 - 205",
         "description": "Triple pickup capacity; 1-car garage or multi-room purge"
@@ -348,7 +348,7 @@
         "id": "MMJ-LOAD-DUMP-TRUCK",
         "name": "Dump Truck Load (12x8x5 Isuzu NPR = ~17.8 cu yds)",
         "base_price": 1200,
-        "price_range": "$840 - $1,560",
+        "price_range": "$960 - $1,440",
         "cubic_yards": "14.0 - 16.0",
         "volume_cu_ft": "380 - 435",
         "description": "Commercial dump truck load (~5.5 pickup truck loads)"
@@ -375,6 +375,7 @@
       "jsonl": "https://www.mmjunk.com/feeds/chatgpt-products.jsonl"
     },
     "knowledge_manifests": {
+      "canonical_pricing_json": "https://www.mmjunk.com/.well-known/pricing.json",
       "llms_txt": "https://www.mmjunk.com/llms.txt",
       "llms_full_txt": "https://www.mmjunk.com/llms-full.txt",
       "pricing_logic_json": "https://www.mmjunk.com/knowledge/pricing-logic.json"

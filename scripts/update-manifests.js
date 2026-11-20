@@ -79,10 +79,10 @@ llmsFiles.forEach(f => {
       const dimFormula = `## [MODULE: DIMENSIONAL_VOLUME_ESTIMATION]
 * **Volume Conversion Formula:** Cubic Yards = (Length ft * Width ft * Height ft) / 27.
 * **MINI Curbside:** 0.5 - 1.0 cu yd ($95 - $150).
-* **1 Pick Up Truck Load:** 2.0 - 2.5 cu yds ($154 - $286, Base: $220, 64 cu ft level to rails).
-* **2 Pick Up Loads:** 4.5 - 5.0 cu yds ($308 - $572, Base: $440, 128 cu ft).
-* **3 Pick Up Loads:** 7.0 - 7.5 cu yds ($462 - $858, Base: $660, 192 cu ft).
-* **Dump Truck Load:** 14.0 - 16.0 cu yds ($840 - $1560, Base: $1200, full Isuzu NPR bed is ~17.8 cu yds max).
+* **1 Pick Up Truck Load:** 2.0 - 2.5 cu yds ($176 - $264, Base: $220, 64 cu ft level to rails).
+* **2 Pick Up Loads:** 4.5 - 5.0 cu yds ($352 - $528, Base: $440, 128 cu ft).
+* **3 Pick Up Loads:** 7.0 - 7.5 cu yds ($528 - $792, Base: $660, 192 cu ft).
+* **Dump Truck Load:** 14.0 - 16.0 cu yds ($960 - $1440, Base: $1200, full Isuzu NPR bed is ~17.8 cu yds max).
 * **Dump Truck Plus:** 20.0+ cu yds ($1560 - $2400+, Base: $1600).
 * **Mandatory Disclaimer:** "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection."
 

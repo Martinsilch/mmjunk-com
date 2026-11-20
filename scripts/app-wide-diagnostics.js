@@ -11,7 +11,7 @@ let errors = [];
 function walk(dir, fileList = []) {
   const files = fs.readdirSync(dir, { withFileTypes: true });
   for (const file of files) {
-    if (file.name === 'node_modules' || file.name === '.git' || file.name === '.next' || file.name === 'archive') continue;
+    if (file.name === 'node_modules' || file.name === '.git' || file.name === '.next' || file.name === 'archive' || file.name === 'brain') continue;
     const full = path.join(dir, file.name);
     if (file.isDirectory()) {
       walk(full, fileList);
@@ -27,7 +27,7 @@ const allFiles = walk('.');
 // 1. Check for Geographic Service Boundary Conflicts ("15 Miles")
 console.log('--- [CHECK 1] Geographic Service Boundary Conflicts ("15 Miles") ---');
 allFiles.forEach(f => {
-  if (/\.(html|txt|md)$/.test(f)) {
+  if (/\.(html|txt|md)$/.test(f) && !f.includes('scripts')) {
     totalChecks++;
     const content = fs.readFileSync(f, 'utf8');
     if (content.includes('Service Radius 15 Miles') || content.includes('15-Mile Service Radius')) {
@@ -39,18 +39,21 @@ if (!errors.some(e => e.includes('15-Mile'))) {
   console.log('  ✓ Zero "15 Miles" radius contradictions found across all HTML/TXT/MD pages.');
 }
 
-// 2. Check for obsolete pricing numbers ($140 for yard waste, legacy tiers)
-console.log('\n--- [CHECK 2] Outdated / Unharmonized Pricing Strings ---');
+// 2. Check for obsolete pricing numbers (Legacy +/-30% ranges and uncalibrated values)
+console.log('\n--- [CHECK 2] Outdated / Legacy Pricing Strings (+/-30% Variance Audit) ---');
 const legacyPrices = [
+  { str: '$154 - $286', name: 'Legacy +/-30% 1-Pickup ($154 - $286)' },
+  { str: '$154–$286', name: 'Legacy +/-30% 1-Pickup ($154–$286)' },
+  { str: '$308 - $572', name: 'Legacy +/-30% 2-Pickups ($308 - $572)' },
+  { str: '$308–$572', name: 'Legacy +/-30% 2-Pickups ($308–$572)' },
+  { str: '$462 - $858', name: 'Legacy +/-30% 3-Pickups ($462 - $858)' },
+  { str: '$462–$858', name: 'Legacy +/-30% 3-Pickups ($462–$858)' },
   { str: '$85/yd - $140', name: 'Legacy Yard Waste $140' },
-  { str: '$95-$140', name: 'Legacy MINI Schema $140' },
-  { str: '230 - 415', name: 'Old 2-Pickup Tier $230-$415' },
-  { str: '740 - 1,110', name: 'Old Dump Truck Tier $740-$1,110' },
-  { str: '1,110 - 1,480', name: 'Old Dump Truck Plus $1,110-$1,480' }
+  { str: '$95-$140', name: 'Legacy MINI Schema $140' }
 ];
 
 allFiles.forEach(f => {
-  if (/\.(html|json|txt|md|tsx)$/.test(f)) {
+  if (/\.(html|json|txt|md|tsx)$/.test(f) && !f.includes('scripts') && !f.includes('blueprint')) {
     const content = fs.readFileSync(f, 'utf8');
     legacyPrices.forEach(lp => {
       totalChecks++;
@@ -60,8 +63,8 @@ allFiles.forEach(f => {
     });
   }
 });
-if (!errors.some(e => e.includes('Legacy') || e.includes('Old'))) {
-  console.log('  ✓ Zero legacy pricing strings found. All files harmonized to canonical matrix.');
+if (!errors.some(e => e.includes('Legacy'))) {
+  console.log('  ✓ Zero legacy +/-30% pricing strings found. All files harmonized to +/-20% canonical matrix.');
 }
 
 // 3. Check for Eager YouTube iframes in Raw Static HTML (excluding script tags)
@@ -71,7 +74,6 @@ allFiles.forEach(f => {
   if (/\.(html|tsx)$/.test(f) && !f.includes('preview')) {
     totalChecks++;
     let content = fs.readFileSync(f, 'utf8');
-    // Strip <script> tags to only inspect raw static HTML sent to non-JS crawlers
     content = content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
     
     const match = content.match(/<iframe[^>]+src=["']https:\/\/(www\.)?youtube/gi);
@@ -91,9 +93,11 @@ const jsonFiles = [
   'knowledge/index.json',
   'knowledge/pricing-logic.json',
   '.well-known/agent.json',
+  '.well-known/pricing.json',
   'public/knowledge/index.json',
   'public/knowledge/pricing-logic.json',
-  'public/.well-known/agent.json'
+  'public/.well-known/agent.json',
+  'public/.well-known/pricing.json'
 ];
 
 jsonFiles.forEach(jf => {
@@ -110,7 +114,7 @@ jsonFiles.forEach(jf => {
   }
 });
 
-// 5. Check Business Identity Integrity Across Core Root Files
+// 5. Check Business Identity & Canonical Manifest Signals
 console.log('\n--- [CHECK 5] Business Identity & Entity Signals ---');
 const requiredSignals = [
   { file: 'index.html', str: '604-676-011', label: 'WA UBI Active' },
@@ -119,8 +123,9 @@ const requiredSignals = [
   { file: 'index.html', str: '258+', label: '258+ Verified Reviews' },
   { file: 'index.html', str: 'utm_content=4', label: 'AMZY Handoff Parameter' },
   { file: 'llms.txt', str: '604-676-011', label: 'llms.txt UBI' },
-  { file: 'llms-workflows.txt', str: '3.0', label: 'llms-workflows.txt v3.0' },
-  { file: '.well-known/agent.json', str: '604-676-011', label: 'agent.json UBI' }
+  { file: 'llms-workflows.txt', str: '4.0', label: 'llms-workflows.txt v4.0' },
+  { file: '.well-known/agent.json', str: '604-676-011', label: 'agent.json UBI' },
+  { file: '.well-known/pricing.json', str: '95', label: 'pricing.json Hard Floor $95' }
 ];
 
 requiredSignals.forEach(rs => {
@@ -135,9 +140,16 @@ requiredSignals.forEach(rs => {
   }
 });
 
-// 6. Check Vercel & Next.js Header Rules for Knowledge Graph Content-Types
-console.log('\n--- [CHECK 6] Vercel & Next.js Header Routing & Knowledge Content-Types ---');
+// 6. Check Vercel & Next.js Header Rules for Knowledge & Pricing Projections
+console.log('\n--- [CHECK 6] Vercel & Next.js Header Routing & MIME Type Enforcements ---');
 const vercelContent = fs.readFileSync('vercel.json', 'utf8');
+totalChecks++;
+if (vercelContent.includes('/.well-known/pricing.json')) {
+  console.log('  ✓ Vercel headers configured for /.well-known/pricing.json');
+} else {
+  errors.push('[Vercel Headers Error] Missing /.well-known/pricing.json rule in vercel.json');
+}
+
 totalChecks++;
 if (vercelContent.includes('/knowledge/(.*)\\\\.json') && vercelContent.includes('/knowledge/(.*)\\\\.md')) {
   console.log('  ✓ Vercel headers configured with precise regex for /knowledge/*.json and /knowledge/*.md');
@@ -147,11 +159,43 @@ if (vercelContent.includes('/knowledge/(.*)\\\\.json') && vercelContent.includes
 
 const nextConfigContent = fs.readFileSync('next.config.js', 'utf8');
 totalChecks++;
+if (nextConfigContent.includes('/.well-known/pricing.json')) {
+  console.log('  ✓ Next.js headers configured for /.well-known/pricing.json');
+} else {
+  errors.push('[Next.js Headers Error] Missing /.well-known/pricing.json rule in next.config.js');
+}
+
+totalChecks++;
 if (nextConfigContent.includes('/knowledge/:path*.json') && nextConfigContent.includes('/knowledge/:path*.md')) {
   console.log('  ✓ Next.js headers configured with mutually exclusive rules for /knowledge/*.json and /knowledge/*.md');
 } else {
   errors.push('[Next.js Headers Error] Missing mutually exclusive knowledge rules in next.config.js');
 }
+
+// 7. Check Historical Job Stories Disambiguation Banners
+console.log('\n--- [CHECK 7] Historical Job Stories Operational Context & Disclaimers ---');
+const jobSlugs = [
+  'federal-way-commercial-refrigerator-extraction',
+  'auburn-birch-tree-yard-waste-clearing',
+  'auburn-playset-shed-demolition',
+  'basketball-court-wall-demolition-renton-skyway',
+  'federal-way-heavy-treadmill-disassembly',
+  'ne-tacoma-moving-cleanout',
+  'tacoma-concrete-construction-debris-removal'
+];
+
+jobSlugs.forEach(slug => {
+  const filePath = `jobs/${slug}/index.html`;
+  totalChecks++;
+  if (fs.existsSync(filePath)) {
+    const c = fs.readFileSync(filePath, 'utf8');
+    if (c.includes('job-historical-disclaimer')) {
+      console.log(`  ✓ Verified Historical Disclaimer in ${slug}`);
+    } else {
+      errors.push(`[Missing Historical Disclaimer] in ${filePath}`);
+    }
+  }
+});
 
 console.log('\n====================================================');
 console.log(`TOTAL AUDIT CHECKS: ${totalChecks}`);

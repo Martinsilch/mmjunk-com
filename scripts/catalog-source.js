@@ -29,7 +29,7 @@ const RAW_CATALOG_DATA = [
     groupId: 'MMJ-TRUCK-LOAD',
     variantDict: { load_size: '1 Pick Up Truck Load' },
     title: 'Full-Service Junk Removal — 1 Pick Up Truck Load',
-    description: 'Standard pickup truck bed volume capacity (approx. 4x8x2 ft bed). Base rate: $220 (ballpark range $154 - $286). Ideal for a 3-piece couch, mattress + box spring set, dining set, or 8-12 bagged household items. Includes two-person crew, loading, transport, and certified recycling across South King and Pierce Counties, WA.',
+    description: 'Standard pickup truck bed volume capacity (approx. 4x8x2 ft bed). Base rate: $220 (ballpark range $176 - $264). Ideal for a 3-piece couch, mattress + box spring set, dining set, or 8-12 bagged household items. Includes two-person crew, loading, transport, and certified recycling across South King and Pierce Counties, WA.',
     url: `${CANONICAL_SITE_URL}/services/residential?load=1-pickup`,
     imageUrl: PRIMARY_HERO_IMAGE,
     additionalImageUrls: [
@@ -44,7 +44,7 @@ const RAW_CATALOG_DATA = [
     groupId: 'MMJ-TRUCK-LOAD',
     variantDict: { load_size: '2 Pick Up Loads' },
     title: 'Full-Service Junk Removal — 2 Pick Up Loads',
-    description: 'Double pickup truck capacity. Base rate: $440 (ballpark range $308 - $572). Ideal for studio cleanouts, sectional sofas, garage clutter, yard debris piles, or light remodel scrap. Includes complete heavy lifting, sorting, sweep-up, hauling, and recycling across South King and Pierce Counties, WA.',
+    description: 'Double pickup truck capacity. Base rate: $440 (ballpark range $352 - $528). Ideal for studio cleanouts, sectional sofas, garage clutter, yard debris piles, or light remodel scrap. Includes complete heavy lifting, sorting, sweep-up, hauling, and recycling across South King and Pierce Counties, WA.',
     url: `${CANONICAL_SITE_URL}/services/residential?load=2-pickup`,
     imageUrl: PRIMARY_HERO_IMAGE,
     additionalImageUrls: [
@@ -59,7 +59,7 @@ const RAW_CATALOG_DATA = [
     groupId: 'MMJ-TRUCK-LOAD',
     variantDict: { load_size: '3 Pick Up Loads' },
     title: 'Full-Service Junk Removal — 3 Pick Up Loads',
-    description: 'Triple pickup truck capacity. Base rate: $660 (ballpark range $462 - $858). Perfect for multi-room home purges, basement or attic cleanouts, substantial yard clearing, or moderate contractor remodel debris. Includes full two-person loading, hauling, and eco-friendly diversion across South King and Pierce Counties, WA.',
+    description: 'Triple pickup truck capacity. Base rate: $660 (ballpark range $528 - $792). Perfect for multi-room home purges, basement or attic cleanouts, substantial yard clearing, or moderate contractor remodel debris. Includes full two-person loading, hauling, and eco-friendly diversion across South King and Pierce Counties, WA.',
     url: `${CANONICAL_SITE_URL}/services/residential?load=3-pickup`,
     imageUrl: PRIMARY_HERO_IMAGE,
     additionalImageUrls: [
@@ -74,7 +74,7 @@ const RAW_CATALOG_DATA = [
     groupId: 'MMJ-TRUCK-LOAD',
     variantDict: { load_size: 'Dump Truck Load' },
     title: 'Full-Service Junk Removal — Dump Truck Load',
-    description: 'Full high-capacity hauling dump truck volume (approx. 5.5 pickup truck loads, rated up to 4.5 tons payload). Base rate: $1,200 (ballpark range $840 - $1,560). Ideal for garage overhauls, whole-home 2-3 bedroom cleanouts, roofing tear-off, or commercial office clearances across South King and Pierce Counties, WA.',
+    description: 'Full high-capacity hauling dump truck volume (approx. 5.5 pickup truck loads, rated up to 4.5 tons payload). Base rate: $1,200 (ballpark range $960 - $1,440). Ideal for garage overhauls, whole-home 2-3 bedroom cleanouts, roofing tear-off, or commercial office clearances across South King and Pierce Counties, WA.',
     url: `${CANONICAL_SITE_URL}/services/residential?load=dump-truck`,
     imageUrl: PRIMARY_HERO_IMAGE,
     additionalImageUrls: [

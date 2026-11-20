@@ -129,7 +129,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
   const faqItems = [
     {
       q: `How does your pricing work for ${cityName} pickups?`,
-      a: `We quote upfront flat rates based strictly on the volume of space your items occupy in our high-wall hauling truck. Baseline curbside pickups start at $95 (MINI), standard pickup truck loads run $154–$286 (Base $220), and full dump truck loads are $840–$1,560. All labor, loading, and transfer station disposal fees are included with zero franchise royalty surcharges.`
+      a: `We quote upfront flat rates based strictly on the volume of space your items occupy in our high-wall hauling truck. Baseline curbside pickups start at $95 (MINI), standard pickup truck loads run $176–$264 (Base $220, based on standard ±20% residential weight variance), and full dump truck loads are $960–$1,440. All labor, loading, and transfer station disposal fees are included with zero franchise royalty surcharges.`
     },
     {
       q: `Where does our junk go after pickup in ${cityName}?`,
@@ -239,7 +239,9 @@ export default async function DynamicSpokePage({ params }: PageProps) {
               },
               'priceSpecification': {
                 '@type': 'PriceSpecification',
-                'price': '154.00',
+                'price': '220.00',
+                'minPrice': '176.00',
+                'maxPrice': '264.00',
                 'priceCurrency': 'USD'
               },
               'url': AMZY_BOOKING_URL
@@ -586,17 +588,17 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>
             <div style={{ fontSize: '13px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase' }}>1 Pickup Truck Bed</div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$154 – $286</div>
+            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$176 – $264</div>
             <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Mattress + box spring, 3-seat sofa, dining set.</p>
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>
             <div style={{ fontSize: '13px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase' }}>2 Pickup Loads</div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$308 – $572</div>
+            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$352 – $528</div>
             <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Studio cleanout, sectional sofa, yard brush piles.</p>
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>
             <div style={{ fontSize: '13px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase' }}>Full Dump Truck</div>
-            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$840 – $1,560</div>
+            <div style={{ fontSize: '22px', fontWeight: 800, color: '#111827', margin: '4px 0' }}>$960 – $1,440</div>
             <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Full garage overhaul, office clearing, remodel scrap.</p>
           </div>
           <div style={{ backgroundColor: '#ffffff', borderRadius: '8px', padding: '16px', border: '1px solid #ffedd5' }}>

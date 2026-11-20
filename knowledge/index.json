@@ -65,6 +65,18 @@
         "machine-readable",
         "estimates"
       ]
+    },
+    {
+      "id": "canonical-pricing-projection",
+      "topic": "Canonical Pricing Engine Public Projection (JSON)",
+      "url": "https://www.mmjunk.com/.well-known/pricing.json",
+      "priority": "critical",
+      "tags": [
+        "pricing",
+        "canonical",
+        "amzy-projection",
+        "machine-readable"
+      ]
     }
   ]
 }

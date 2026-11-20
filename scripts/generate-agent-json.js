@@ -130,10 +130,10 @@ const agentManifest = {
     disclaimer: "This is NOT a final quote, but an approximate ballpark estimate. Exact prices require an on-site visual inspection by owner-operator Martin Silchuk.",
     load_tiers: [
       { id: "MMJ-LOAD-MINI", name: "MINI Curbside Pickup", base_price: 95.0, price_range: "$95 - $150", cubic_yards: "0.5 - 1.0", volume_cu_ft: "14 - 27", description: "Small single-item or 2-4 curbside bags" },
-      { id: "MMJ-LOAD-1-PICKUP", name: "1 Pick Up Load", base_price: 220.0, price_range: "$154 - $286", cubic_yards: "2.0 - 2.5", volume_cu_ft: "54 - 68", description: "Standard pickup truck capacity level to rails (64 cu ft)" },
-      { id: "MMJ-LOAD-2-PICKUP", name: "2 Pick Up Loads", base_price: 440.0, price_range: "$308 - $572", cubic_yards: "4.5 - 5.0", volume_cu_ft: "120 - 135", description: "Double pickup capacity; studio cleanout or sectional + dresser" },
-      { id: "MMJ-LOAD-3-PICKUP", name: "3 Pick Up Loads", base_price: 660.0, price_range: "$462 - $858", cubic_yards: "7.0 - 7.5", volume_cu_ft: "190 - 205", description: "Triple pickup capacity; 1-car garage or multi-room purge" },
-      { id: "MMJ-LOAD-DUMP-TRUCK", name: "Dump Truck Load (12x8x5 Isuzu NPR = ~17.8 cu yds)", base_price: 1200.0, price_range: "$840 - $1,560", cubic_yards: "14.0 - 16.0", volume_cu_ft: "380 - 435", description: "Commercial dump truck load (~5.5 pickup truck loads)" },
+      { id: "MMJ-LOAD-1-PICKUP", name: "1 Pick Up Load", base_price: 220.0, price_range: "$176 - $264", cubic_yards: "2.0 - 2.5", volume_cu_ft: "54 - 68", description: "Standard pickup truck capacity level to rails (64 cu ft)" },
+      { id: "MMJ-LOAD-2-PICKUP", name: "2 Pick Up Loads", base_price: 440.0, price_range: "$352 - $528", cubic_yards: "4.5 - 5.0", volume_cu_ft: "120 - 135", description: "Double pickup capacity; studio cleanout or sectional + dresser" },
+      { id: "MMJ-LOAD-3-PICKUP", name: "3 Pick Up Loads", base_price: 660.0, price_range: "$528 - $792", cubic_yards: "7.0 - 7.5", volume_cu_ft: "190 - 205", description: "Triple pickup capacity; 1-car garage or multi-room purge" },
+      { id: "MMJ-LOAD-DUMP-TRUCK", name: "Dump Truck Load (12x8x5 Isuzu NPR = ~17.8 cu yds)", base_price: 1200.0, price_range: "$960 - $1,440", cubic_yards: "14.0 - 16.0", volume_cu_ft: "380 - 435", description: "Commercial dump truck load (~5.5 pickup truck loads)" },
       { id: "MMJ-LOAD-DUMP-TRUCK-PLUS", name: "Dump Truck Plus / Commercial Multi-Load", base_price: 1600.0, price_range: "$1,560 - $2,400+", cubic_yards: "20.0+", volume_cu_ft: "540+", description: "Exceeds one dump truck (8-11 pickup loads); estate liquidation or contractor demo" }
     ]
   },

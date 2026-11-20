@@ -20,7 +20,8 @@ async function run() {
     'https://www.mmjunk.com/knowledge/pricing-logic.md',
     'https://www.mmjunk.com/llms-workflows.txt',
     'https://www.mmjunk.com/llms.txt',
-    'https://www.mmjunk.com/.well-known/agent.json'
+    'https://www.mmjunk.com/.well-known/agent.json',
+    'https://www.mmjunk.com/.well-known/pricing.json'
   ];
 
   console.log('Fetching live headers from mmjunk.com...');

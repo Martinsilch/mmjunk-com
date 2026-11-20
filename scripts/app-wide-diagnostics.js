@@ -135,14 +135,22 @@ requiredSignals.forEach(rs => {
   }
 });
 
-// 6. Check Vercel Header Rules for Knowledge Graph Content-Types
-console.log('\n--- [CHECK 6] Vercel Header Routing & Knowledge Content-Types ---');
+// 6. Check Vercel & Next.js Header Rules for Knowledge Graph Content-Types
+console.log('\n--- [CHECK 6] Vercel & Next.js Header Routing & Knowledge Content-Types ---');
 const vercelContent = fs.readFileSync('vercel.json', 'utf8');
 totalChecks++;
 if (vercelContent.includes('/knowledge/(.*)\\\\.json') && vercelContent.includes('/knowledge/(.*)\\\\.md')) {
   console.log('  ✓ Vercel headers configured with precise regex for /knowledge/*.json and /knowledge/*.md');
 } else {
   errors.push('[Vercel Headers Error] Missing precise knowledge regex in vercel.json');
+}
+
+const nextConfigContent = fs.readFileSync('next.config.js', 'utf8');
+totalChecks++;
+if (nextConfigContent.includes('/knowledge/:path*.json') && nextConfigContent.includes('/knowledge/:path*.md')) {
+  console.log('  ✓ Next.js headers configured with mutually exclusive rules for /knowledge/*.json and /knowledge/*.md');
+} else {
+  errors.push('[Next.js Headers Error] Missing mutually exclusive knowledge rules in next.config.js');
 }
 
 console.log('\n====================================================');

@@ -233,7 +233,7 @@ const nextConfig = {
         ],
       },
       {
-        source: '/knowledge/index.json',
+        source: '/knowledge/:path*.json',
         headers: [
           { key: 'Content-Type', value: 'application/json; charset=utf-8' },
           { key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' },
@@ -241,7 +241,7 @@ const nextConfig = {
         ],
       },
       {
-        source: '/knowledge/:path*',
+        source: '/knowledge/:path*.md',
         headers: [
           { key: 'Content-Type', value: 'text/markdown; charset=utf-8' },
           { key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' },

@@ -26,7 +26,7 @@ function scanDir(dir, results = {}) {
         if (content.includes('$462') || content.includes('$858')) matches.push('$462 - $858 (3 pickups)');
         if (content.includes('$840') || content.includes('$1,560') || content.includes('$1560')) matches.push('$840 - $1560 (dump truck)');
         if (content.includes('$2,400+') || content.includes('$2400+')) matches.push('$1560 - $2400+ (dump truck plus)');
-        if (content.includes('$85 - $130') || content.includes('$85–$130')) matches.push('yard waste $85 - $130');
+        if (content.includes('$95 - $130') || content.includes('$95–$130')) matches.push('yard waste $85 - $130');
         if (matches.length > 0) {
           results[fullPath.replace(/\\/g, '/')] = matches;
         }

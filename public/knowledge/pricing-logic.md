@@ -51,7 +51,7 @@ Every project quote is calculated from three distinct components:
 
 - **Minimum Base Service Charge:** **$95.00** per dispatched job.
 - No project will invoice below $95.00, covering two-person crew labor, transport, fuel, and municipal transfer station minimum disposal entry fees across South King and Pierce County.
-- **Yard Waste Rule:** Priced at **$85 – $130 per cubic yard**, subject to the $95.00 minimum service dispatch floor. A 1-cubic-yard project ($85.00 calculated) invoices at the $95.00 minimum base charge.
+- **Yard Waste Rule:** Priced at **$95 – $130 per cubic yard**, subject to the $95.00 minimum service dispatch floor. No completed job will invoice below the $95.00 base charge.
 
 ---
 

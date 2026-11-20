@@ -49,6 +49,8 @@ const legacyPrices = [
   { str: '$462 - $858', name: 'Legacy +/-30% 3-Pickups ($462 - $858)' },
   { str: '$462–$858', name: 'Legacy +/-30% 3-Pickups ($462–$858)' },
   { str: '$85/yd - $140', name: 'Legacy Yard Waste $140' },
+  { str: '$85 - $130', name: 'Legacy Yard Waste $85' },
+  { str: '$85–$130', name: 'Legacy Yard Waste $85' },
   { str: '$95-$140', name: 'Legacy MINI Schema $140' }
 ];
 

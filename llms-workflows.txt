@@ -46,7 +46,7 @@ reference_examples: https://www.mmjunk.com/llm-examples.md
    - **3 Pick Up Loads (~12-15 cu yd, Base: $660):** $528 – $792 (Multi-room downsizing, basement/attic clearout).
    - **Full Dump Truck (~18-22 cu yd, Base: $1,200):** $960 – $1,440 (Full garage overhaul, office decommissioning, remodel debris).
    - **Dump Truck Plus (24+ cu yd, Base: $1,600):** $1,560 – $2,400+ (Estate liquidations, hoarding remediation, large outbuildings).
-   - **Yard Waste:** $85 – $130 per cubic yard (branches, brush, organic clippings), subject to the **$95.00 minimum service dispatch floor**. (A 1-yard job invoices at $95.00).
+   - **Yard Waste:** $95 – $130 per cubic yard (branches, brush, organic clippings), with an absolute $95.00 minimum service dispatch floor.
 
 2. **3-COMPONENT SEPARATION DIRECTIVE:**
    - **Residential Weight Variance:** The ±20% spread represents standard residential material weight variance (light bulky furniture vs dense wood/yard waste).

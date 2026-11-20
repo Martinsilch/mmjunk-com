@@ -130,11 +130,11 @@ const RAW_CATALOG_DATA = [
     itemId: 'MMJ-SVC-YARD-WASTE',
     offerId: 'mmjunk-MMJ-SVC-YARD-WASTE',
     title: 'Yard Waste Removal and Tree Branch Hauling Service',
-    description: 'Pickup and hauling of fallen tree branches, timber logs, shrub clippings, brush piles, and organic storm debris across South King and Pierce Counties, WA. Starting rate from $85 per cubic yard. 100% diverted from landfills to certified regional composting facilities for organic soil blending.',
+    description: 'Pickup and hauling of fallen tree branches, timber logs, shrub clippings, brush piles, and organic storm debris across South King and Pierce Counties, WA. Starting rate from $95 per cubic yard (subject to $95 minimum service charge). 100% diverted from landfills to certified regional composting facilities for organic soil blending.',
     url: `${CANONICAL_SITE_URL}/services/yard-waste-removal`,
     imageUrl: `${CANONICAL_SITE_URL}/assets/images/Yard%20Trash%20Removal%20in%20Milton,%20WA.png`,
     additionalImageUrls: [PRIMARY_HERO_IMAGE],
-    priceAmount: '85.00',
+    priceAmount: '95.00',
     productCategory: 'Home & Garden > Waste Management & Hauling > Junk Removal'
   },
   {

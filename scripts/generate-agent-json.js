@@ -125,6 +125,16 @@ const agentManifest = {
   pricing_engine: {
     currency: "USD",
     curbside_minimum: 95.0,
+    unit_rates: {
+      yard_waste: {
+        rate_per_cubic_yard: "$95 - $130",
+        range_min: 95.0,
+        range_max: 130.0,
+        unit: "cubic yard",
+        minimum_dispatch_floor: 95.0,
+        rule: "Minimum is always $95.00 for any service dispatch. Yard waste is priced from $95.00 minimum base charge up to $130.00 per cubic yard."
+      }
+    },
     baseline_minimum: 125.0,
     rate_guarantee: "Beat any verified written quote from licensed local competitors by 10%",
     dimensional_formula: "Cubic Yards = (Length ft * Width ft * Height ft) / 27",

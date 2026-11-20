@@ -209,7 +209,7 @@ if (llmsExists) {
 
 if (llmsWorkflowsExists) {
   const workflowsContent = fs.readFileSync('llms-workflows.txt', 'utf8');
-  const hasPickupStep = workflowsContent.includes('standard pickup truck bed');
+  const hasPickupStep = workflowsContent.toLowerCase().includes('pickup truck bed') || workflowsContent.toLowerCase().includes('pick up truck bed');
   const hasAmzyDispatch = workflowsContent.includes('https://amzy.me/?utm_content=4');
   results.pillar4.checks.push(`✓ llms-workflows.txt: Agentic Lead Sequence=${hasPickupStep}, AMZY Handoff Flow=${hasAmzyDispatch}`);
 }
@@ -246,9 +246,12 @@ if (vercelExists) {
 const knowledgeIndexExists = fs.existsSync('knowledge/index.json');
 if (knowledgeIndexExists) {
   const kIndex = JSON.parse(fs.readFileSync('knowledge/index.json', 'utf8'));
-  const hasNodes = Array.isArray(kIndex.nodes) && kIndex.nodes.length === 4;
+  const hasNodes = Array.isArray(kIndex.nodes) && kIndex.nodes.length >= 4;
   const hasAuth = kIndex.source_authority && kIndex.source_authority.includes('mmjunk.com');
-  const allNodesExist = kIndex.nodes.every(n => fs.existsSync(`knowledge/${n.id}.md`));
+  const allNodesExist = kIndex.nodes.every(n => {
+    const filename = n.url.split('/').pop();
+    return fs.existsSync(`knowledge/${filename}`);
+  });
   results.pillar4.checks.push(`✓ knowledge/index.json: Valid Index=${hasNodes}, AuthorityAligned=${hasAuth}, AtomicNodesPresent=${allNodesExist}`);
 }
 

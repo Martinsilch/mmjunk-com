@@ -1265,7 +1265,7 @@
           <div class="estimator-result">
             <div class="estimator-price-wrap">
               <span class="estimator-tag">Ballpark Estimate</span>
-              <div class="estimator-price" id="estimator-price-val">$230 - $415</div>
+              <div class="estimator-price" id="estimator-price-val">$308 - $572</div>
               <div class="estimator-tier-name" id="estimator-tier-val">2 Pick Up Loads (Multi-Room Estate Sort - Most Popular)</div>
               <p class="estimator-desc" id="estimator-desc-val">Double pickup truck capacity. Ideal for 2 to 3 furnished rooms, a packed garage or basement cleanout, with full 4-way triage (valuables, donation, recycling, disposal).</p>
               <div class="estimator-disclaimer">
@@ -1481,13 +1481,12 @@
           <!-- Video 1: Spanaway Walkthrough -->
           <div class="video-card-clean">
             <div class="video-wrapper-16-9">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/RSpRJvpTWPA"
-                title="Spanaway Whole-House Cleanout & Sorting Project Walkthrough"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
+              <div class="video-facade" data-video-id="RSpRJvpTWPA" data-video-title="Spanaway Whole-House Cleanout &amp; Sorting Project Walkthrough" onclick="loadVideoFacade(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
+                <img src="https://i.ytimg.com/vi/RSpRJvpTWPA/hqdefault.jpg" alt="Spanaway Whole-House Cleanout Walkthrough Video Preview" width="480" height="360" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: rgba(234, 88, 12, 0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
             </div>
             <div class="video-info-clean">
               <h3 class="video-title-clean">Spanaway Cleanout Walkthrough</h3>
@@ -1498,13 +1497,12 @@
           <!-- Video 2: Estate Testimonial -->
           <div class="video-card-clean">
             <div class="video-wrapper-16-9">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/uv9AW2wzOyo"
-                title="Stress-Free Estate Cleanout Customer Testimonial in Tacoma, WA"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
+              <div class="video-facade" data-video-id="uv9AW2wzOyo" data-video-title="Stress-Free Estate Cleanout Customer Testimonial in Tacoma, WA" onclick="loadVideoFacade(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
+                <img src="https://i.ytimg.com/vi/uv9AW2wzOyo/hqdefault.jpg" alt="Estate Cleanout Customer Testimonial Video Preview" width="480" height="360" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: rgba(234, 88, 12, 0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
             </div>
             <div class="video-info-clean">
               <h3 class="video-title-clean">Stress-Free Estate Cleanout Review</h3>
@@ -1704,8 +1702,15 @@
     </div>
   </footer>
 
-  <!-- Interactive Estimator Script -->
+  <!-- Interactive Estimator & Video Script -->
   <script>
+    function loadVideoFacade(btn) {
+      var id = btn.getAttribute('data-video-id');
+      var title = btn.getAttribute('data-video-title') || 'Video Proof';
+      var parent = btn.parentElement;
+      parent.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" title="' + title.replace(/"/g, '&quot;') + '" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const estimatorButtons = document.querySelectorAll('.estimator-btn');
       const priceDisplay = document.getElementById('estimator-price-val');

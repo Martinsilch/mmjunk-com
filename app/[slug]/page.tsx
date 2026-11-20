@@ -239,7 +239,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
               },
               'priceSpecification': {
                 '@type': 'PriceSpecification',
-                'price': '125.00',
+                'price': '154.00',
                 'priceCurrency': 'USD'
               },
               'url': AMZY_BOOKING_URL
@@ -855,16 +855,27 @@ export default async function DynamicSpokePage({ params }: PageProps) {
               return (
                 <div key={post.id} style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden', backgroundColor: '#ffffff', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
                   {post.platform === 'youtube' && cleanVidId ? (
-                    <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', backgroundColor: '#000000' }}>
-                      <iframe
-                        src={`https://www.youtube.com/embed/${cleanVidId}?rel=0&modestbranding=1`}
-                        title={post.caption}
-                        loading="lazy"
-                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      />
+                    <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', backgroundColor: '#0f172a' }}>
+                      <a
+                        href={post.videoUrl || `https://youtube.com/shorts/${cleanVidId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Watch ${post.caption} on YouTube`}
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'block' }}
+                      >
+                        <img
+                          src={`https://i.ytimg.com/vi/${cleanVidId}/hqdefault.jpg`}
+                          alt={`${post.caption} - Video Preview`}
+                          width={480}
+                          height={360}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '56px', height: '40px', backgroundColor: 'rgba(234, 88, 12, 0.95)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.4)' }}>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                      </a>
                     </div>
                   ) : (
                     <img

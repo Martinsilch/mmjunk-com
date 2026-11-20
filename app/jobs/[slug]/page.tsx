@@ -596,16 +596,27 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                 const isBefore = post.caption?.toLowerCase().includes('before') || idx === 0;
                 return (
                   <div key={idx} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#0f172a', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-                    <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0 }}>
-                      <iframe
-                        src={`https://www.youtube.com/embed/${vidId}?rel=0&modestbranding=1`}
-                        title={post.caption || `Field Video #${idx + 1}`}
-                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                        loading="lazy"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      />
+                    <div style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', height: 0, overflow: 'hidden', backgroundColor: '#0f172a' }}>
+                      <a
+                        href={post.videoUrl || `https://youtube.com/shorts/${vidId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Watch ${post.caption || `Field Video #${idx + 1}`} on YouTube`}
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'block' }}
+                      >
+                        <img
+                          src={`https://i.ytimg.com/vi/${vidId}/hqdefault.jpg`}
+                          alt={`${post.caption || `Field Video #${idx + 1}`} - Video Preview`}
+                          width={480}
+                          height={360}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '56px', height: '40px', backgroundColor: 'rgba(234, 88, 12, 0.95)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.4)' }}>
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                      </a>
                     </div>
                     <div style={{ padding: '14px 16px', backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
                       <div style={{ fontSize: '13px', fontWeight: 700, color: '#0f172a', marginBottom: '8px' }}>

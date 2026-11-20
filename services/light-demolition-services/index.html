@@ -538,15 +538,12 @@
           <!-- Before Video -->
           <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background-color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
-              <iframe
-                src="https://www.youtube.com/embed/TL3-Ki0g6KA?rel=0&amp;modestbranding=1"
-                title="Before Demolition: Basketball Court Wall Enclosure in Renton Skyway"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
+              <div class="video-facade" data-video-id="TL3-Ki0g6KA" data-video-title="Before Demolition: Basketball Court Wall Enclosure in Renton Skyway" onclick="loadVideoFacade(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
+                <img src="https://i.ytimg.com/vi/TL3-Ki0g6KA/hqdefault.jpg" alt="Before Demolition Video Preview" width="480" height="360" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: rgba(234, 88, 12, 0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
             </div>
             <div style="padding: 14px 16px; background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
               <div style="font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">
@@ -574,15 +571,12 @@
           <!-- After Video -->
           <div style="border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background-color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
-              <iframe
-                src="https://www.youtube.com/embed/PX1rE_r07V4?rel=0&amp;modestbranding=1"
-                title="After Demolition &amp; Broom-Clean Surface: 100% Recycled via DTG Renton"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
+              <div class="video-facade" data-video-id="PX1rE_r07V4" data-video-title="After Demolition &amp; Broom-Clean Surface: 100% Recycled via DTG Renton" onclick="loadVideoFacade(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
+                <img src="https://i.ytimg.com/vi/PX1rE_r07V4/hqdefault.jpg" alt="After Demolition Video Preview" width="480" height="360" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; background: rgba(234, 88, 12, 0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
             </div>
             <div style="padding: 14px 16px; background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
               <div style="font-size: 13px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">
@@ -691,5 +685,13 @@
     </div>
   </footer>
 
+  <script>
+    function loadVideoFacade(btn) {
+      var id = btn.getAttribute('data-video-id');
+      var title = btn.getAttribute('data-video-title') || 'Video Proof';
+      var parent = btn.parentElement;
+      parent.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" title="' + title.replace(/"/g, '&quot;') + '" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    }
+  </script>
 </body>
 </html>

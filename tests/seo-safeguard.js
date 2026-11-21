@@ -82,7 +82,7 @@ const htmlFiles = [];
 function findHtml(dir) {
   fs.readdirSync(dir).forEach(file => {
     const full = path.join(dir, file);
-    if (['node_modules', '.next', '.git', 'archive'].includes(file)) return;
+    if (['node_modules', '.next', '.git', 'archive', 'Agentic Files Library'].includes(file)) return;
     if (fs.statSync(full).isDirectory()) {
       findHtml(full);
     } else if (file.endsWith('.html')) {

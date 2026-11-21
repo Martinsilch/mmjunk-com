@@ -11,7 +11,7 @@ let errors = [];
 function walk(dir, fileList = []) {
   const files = fs.readdirSync(dir, { withFileTypes: true });
   for (const file of files) {
-    if (file.name === 'node_modules' || file.name === '.git' || file.name === '.next' || file.name === 'archive' || file.name === 'brain') continue;
+    if (file.name === 'node_modules' || file.name === '.git' || file.name === '.next' || file.name === 'archive' || file.name === 'brain' || file.name === 'Agentic Files Library') continue;
     const full = path.join(dir, file.name);
     if (file.isDirectory()) {
       walk(full, fileList);

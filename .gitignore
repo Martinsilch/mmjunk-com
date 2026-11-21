@@ -36,3 +36,7 @@ archive/
 *service-account*.json
 credentials*.json
 google-key.json
+
+# Personal Agentic Files Library
+Agentic Files Library/
+

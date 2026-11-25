@@ -255,28 +255,28 @@ if (knowledgeIndexExists) {
   results.pillar4.checks.push(`✓ knowledge/index.json: Valid Index=${hasNodes}, AuthorityAligned=${hasAuth}, AtomicNodesPresent=${allNodesExist}`);
 }
 
-const canonicalPricingExists = fs.existsSync('public/.well-known/pricing.json');
+const canonicalPricingExists = fs.existsSync('app/.well-known/pricing.json/route.ts') && fs.existsSync('.well-known/pricing.json');
 if (canonicalPricingExists) {
-  const cPricing = JSON.parse(fs.readFileSync('public/.well-known/pricing.json', 'utf8'));
+  const cPricing = JSON.parse(fs.readFileSync('.well-known/pricing.json', 'utf8'));
   const hasHardFloor = cPricing.hard_floors && cPricing.hard_floors.minimum_base_service_charge === 95.00;
   const has3Comp = !!cPricing.three_component_architecture;
   const hasTiers = cPricing.volume_engine && Array.isArray(cPricing.volume_engine.tiers) && cPricing.volume_engine.tiers.length >= 6;
-  results.pillar4.checks.push(`✓ .well-known/pricing.json: HardFloor=$95(${hasHardFloor}), 3Component=${has3Comp}, VolumeTiers=${hasTiers}`);
+  results.pillar4.checks.push(`✓ .well-known/pricing.json (App Router + schema): HardFloor=$95(${hasHardFloor}), 3Component=${has3Comp}, VolumeTiers=${hasTiers}`);
 } else {
   results.pillar4.passed = false;
-  results.pillar4.checks.push('❌ public/.well-known/pricing.json is missing');
+  results.pillar4.checks.push('❌ app/.well-known/pricing.json/route.ts or .well-known/pricing.json is missing');
 }
 
-const agentJsonExists = fs.existsSync('public/.well-known/agent.json');
+const agentJsonExists = fs.existsSync('app/.well-known/agent.json/route.ts') && fs.existsSync('.well-known/agent.json');
 if (agentJsonExists) {
-  const agentJson = JSON.parse(fs.readFileSync('public/.well-known/agent.json', 'utf8'));
+  const agentJson = JSON.parse(fs.readFileSync('.well-known/agent.json', 'utf8'));
   const hasProvider = agentJson.provider && agentJson.provider.washington_ubi === '604-676-011';
   const hasMcp = agentJson.dispatch_infrastructure && agentJson.dispatch_infrastructure.mcp_server_endpoint === 'https://mcp.amzy.me/mcp';
   const hasTiers = agentJson.pricing_engine && Array.isArray(agentJson.pricing_engine.load_tiers) && agentJson.pricing_engine.load_tiers.length >= 6;
-  results.pillar4.checks.push(`✓ .well-known/agent.json: Provider UBI=${hasProvider}, AMZY MCP=${hasMcp}, Load Tiers=${hasTiers}`);
+  results.pillar4.checks.push(`✓ .well-known/agent.json (App Router + schema): Provider UBI=${hasProvider}, AMZY MCP=${hasMcp}, Load Tiers=${hasTiers}`);
 } else {
   results.pillar4.passed = false;
-  results.pillar4.checks.push('❌ public/.well-known/agent.json is missing');
+  results.pillar4.checks.push('❌ app/.well-known/agent.json/route.ts or .well-known/agent.json is missing');
 }
 
 // ----------------------------------------------------

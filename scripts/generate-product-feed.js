@@ -167,8 +167,6 @@ function run() {
   const tsv = generateTSV(items);
 
   const baseDirs = [
-    path.join(__dirname, '..', 'public', 'feeds'),
-    path.join(__dirname, '..', 'public', 'api', 'feeds'),
     path.join(__dirname, '..', 'feeds')
   ];
 
@@ -190,7 +188,7 @@ function run() {
     fs.writeFileSync(path.join(baseDir, 'chatgpt-products.tsv'), tsv, 'utf8');
   });
 
-  console.log(`Generated feeds across 3 directories for ${items.length} catalog items:`);
+  console.log(`Generated offline verification feeds in feeds/ for ${items.length} catalog items:`);
   console.log(`  - chatgpt-products.jsonl.gz (${jsonlGz.length} bytes) [Gzip-compressed JSONL - REQUIRED by OpenAI for .jsonl feeds]`);
   console.log(`  - chatgpt-products.csv      (${csv.length} bytes)     [Uncompressed CSV - Accepted natively]`);
   console.log(`  - chatgpt-products.tsv      (${tsv.length} bytes)     [Uncompressed TSV - Accepted natively]`);

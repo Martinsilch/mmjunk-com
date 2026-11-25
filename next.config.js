@@ -48,80 +48,12 @@ const nextConfig = {
         destination: '/preview-3/index.html',
       },
       {
-        source: '/services',
-        destination: '/services/index.html',
-      },
-      {
-        source: '/services/:path*',
-        destination: '/services/:path*/index.html',
-      },
-      {
-        source: '/jobs',
-        destination: '/jobs/index.html',
-      },
-      {
-        source: '/jobs/',
-        destination: '/jobs/index.html',
-      },
-      {
-        source: '/jobs/auburn-birch-tree-yard-waste-clearing',
-        destination: '/jobs/auburn-birch-tree-yard-waste-clearing/index.html',
-      },
-      {
-        source: '/jobs/auburn-birch-tree-yard-waste-clearing/',
-        destination: '/jobs/auburn-birch-tree-yard-waste-clearing/index.html',
-      },
-      {
-        source: '/jobs/auburn-playset-shed-demolition',
-        destination: '/jobs/auburn-playset-shed-demolition/index.html',
-      },
-      {
-        source: '/jobs/auburn-playset-shed-demolition/',
-        destination: '/jobs/auburn-playset-shed-demolition/index.html',
-      },
-      {
-        source: '/jobs/federal-way-commercial-refrigerator-extraction',
-        destination: '/jobs/federal-way-commercial-refrigerator-extraction/index.html',
-      },
-      {
-        source: '/jobs/federal-way-commercial-refrigerator-extraction/',
-        destination: '/jobs/federal-way-commercial-refrigerator-extraction/index.html',
-      },
-      {
-        source: '/jobs/federal-way-heavy-treadmill-disassembly',
-        destination: '/jobs/federal-way-heavy-treadmill-disassembly/index.html',
-      },
-      {
-        source: '/jobs/federal-way-heavy-treadmill-disassembly/',
-        destination: '/jobs/federal-way-heavy-treadmill-disassembly/index.html',
-      },
-      {
-        source: '/jobs/ne-tacoma-moving-cleanout',
-        destination: '/jobs/ne-tacoma-moving-cleanout/index.html',
-      },
-      {
-        source: '/jobs/ne-tacoma-moving-cleanout/',
-        destination: '/jobs/ne-tacoma-moving-cleanout/index.html',
-      },
-      {
-        source: '/jobs/tacoma-concrete-construction-debris-removal',
-        destination: '/jobs/tacoma-concrete-construction-debris-removal/index.html',
-      },
-      {
-        source: '/jobs/tacoma-concrete-construction-debris-removal/',
-        destination: '/jobs/tacoma-concrete-construction-debris-removal/index.html',
-      },
-      {
         source: '/privacy-policy',
         destination: '/privacy-policy/index.html',
       },
       {
         source: '/privacy-policy/',
         destination: '/privacy-policy/index.html',
-      },
-      {
-        source: '/jobs/:path*',
-        destination: '/jobs/:path*/index.html',
       },
     ];
   },

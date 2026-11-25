@@ -33,7 +33,7 @@ function recordFail(msg) {
   console.error(`  ❌ ${msg}`);
 }
 
-const FEED_PATH = path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.jsonl');
+const FEED_PATH = path.join(__dirname, '..', 'feeds', 'chatgpt-products.jsonl');
 
 if (!fs.existsSync(FEED_PATH)) {
   recordFail(`Feed file not found at ${FEED_PATH}`);
@@ -326,13 +326,15 @@ lines.forEach((line, index) => {
 
   let routeFound = false;
   if (urlPath === '' || urlPath === '/') {
-    routeFound = fs.existsSync('index.html') || fs.existsSync('public/index.html');
+    routeFound = fs.existsSync('app/route.ts') || fs.existsSync('index.html') || fs.existsSync('public/index.html');
   } else {
     const candidates = [
       path.join('.', urlPath, 'index.html'),
       path.join('public', urlPath, 'index.html'),
       path.join('app', urlPath, 'page.tsx'),
-      path.join('app', urlPath, 'page.js')
+      path.join('app', urlPath, 'page.js'),
+      ...(urlPath.startsWith('/services/') ? [path.join('app', 'services', '[slug]', 'page.tsx')] : []),
+      ...(urlPath.startsWith('/jobs/') ? [path.join('app', 'jobs', '[slug]', 'page.tsx')] : []),
     ];
     routeFound = candidates.some(c => fs.existsSync(c));
   }
@@ -429,7 +431,7 @@ if (fs.existsSync(routeFeedsCsvPath)) {
 console.log('\n--- GZIP (.jsonl.gz), CSV & TSV Feed File Integrity Checks ---');
 
 const zlib = require('zlib');
-const gzFile = path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.jsonl.gz');
+const gzFile = path.join(__dirname, '..', 'feeds', 'chatgpt-products.jsonl.gz');
 if (fs.existsSync(gzFile)) {
   const gzBuf = fs.readFileSync(gzFile);
   try {
@@ -447,7 +449,7 @@ if (fs.existsSync(gzFile)) {
   recordFail(`Missing gzip feed file: ${gzFile}`);
 }
 
-const csvFile = path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.csv');
+const csvFile = path.join(__dirname, '..', 'feeds', 'chatgpt-products.csv');
 if (fs.existsSync(csvFile)) {
   const csvContent = fs.readFileSync(csvFile, 'utf8');
   const csvLines = csvContent.trim().split('\n');
@@ -460,7 +462,7 @@ if (fs.existsSync(csvFile)) {
   recordFail(`Missing CSV feed file: ${csvFile}`);
 }
 
-const tsvFile = path.join(__dirname, '..', 'public', 'feeds', 'chatgpt-products.tsv');
+const tsvFile = path.join(__dirname, '..', 'feeds', 'chatgpt-products.tsv');
 if (fs.existsSync(tsvFile)) {
   const tsvContent = fs.readFileSync(tsvFile, 'utf8');
   const tsvLines = tsvContent.trim().split('\n');

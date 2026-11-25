@@ -214,8 +214,15 @@ export async function POST(req: NextRequest) {
     } else {
       linkedServiceId = existingSvc.id;
       if (existingSvc.status === 'CANDIDATE' || !existingSvc.isActive) {
-        const linkedJobCount = await db.jobStory.count({ where: { serviceId: existingSvc.id } }).catch(() => 0);
-        if (linkedJobCount >= 1 || meetsQualityThreshold) {
+        const linkedOtherJobsCount = await db.jobStory
+          .count({
+            where: {
+              serviceId: existingSvc.id,
+              NOT: { externalJobId },
+            },
+          })
+          .catch(() => 0);
+        if (linkedOtherJobsCount >= 1 || meetsQualityThreshold) {
           await db.serviceOffering.update({
             where: { id: existingSvc.id },
             data: { status: 'ACTIVE', isActive: true },

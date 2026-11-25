@@ -57,6 +57,7 @@ model ServiceOffering {
   isCoreBase          Boolean    @default(false)
   autoDiscovered      Boolean    @default(false)
   discoveredFromJobId String?
+  status              String     @default("ACTIVE")
   isActive            Boolean    @default(true)
   jobs                JobStory[]
   createdAt           DateTime   @default(now())

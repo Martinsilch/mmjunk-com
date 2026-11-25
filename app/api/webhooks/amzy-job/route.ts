@@ -188,10 +188,15 @@ export async function POST(req: NextRequest) {
   } : null);
 
   let discoveredNewService = false;
+  let promotedService = false;
   if (svcSeed) {
+    const meetsQualityThreshold =
+      (mediaUrls.length > 0 && (reviewRating ?? 0) >= 4) ||
+      Boolean(customerReview && (reviewRating ?? 0) >= 4);
+
     const existingSvc = await db.serviceOffering.findUnique({ where: { slug: svcSeed.slug } }).catch(() => null);
     if (!existingSvc) {
-      discoveredNewService = true;
+      discoveredNewService = meetsQualityThreshold;
       const createdSvc = await db.serviceOffering.create({
         data: {
           slug: svcSeed.slug,
@@ -201,12 +206,24 @@ export async function POST(req: NextRequest) {
           isCoreBase: false,
           autoDiscovered: true,
           discoveredFromJobId: externalJobId,
-          isActive: true,
+          status: meetsQualityThreshold ? 'ACTIVE' : 'CANDIDATE',
+          isActive: meetsQualityThreshold,
         },
       });
       linkedServiceId = createdSvc.id;
     } else {
       linkedServiceId = existingSvc.id;
+      if (existingSvc.status === 'CANDIDATE' || !existingSvc.isActive) {
+        const linkedJobCount = await db.jobStory.count({ where: { serviceId: existingSvc.id } }).catch(() => 0);
+        if (linkedJobCount >= 1 || meetsQualityThreshold) {
+          await db.serviceOffering.update({
+            where: { id: existingSvc.id },
+            data: { status: 'ACTIVE', isActive: true },
+          });
+          discoveredNewService = true;
+          promotedService = true;
+        }
+      }
     }
   }
 

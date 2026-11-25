@@ -421,7 +421,7 @@ export function generateChatGPTProductFeed(): OpenAIFeedItem[] {
       brand: BRAND_NAME,
       seller_name: SELLER_NAME,
       image_url: item.imageUrl,
-      availability: 'in_stock',
+      availability: 'in_stock' as const,
       price: priceFormatted,
       target_countries: ['US'],
       store_country: 'US',
@@ -583,5 +583,149 @@ export function generateChatGPTProductFeedTSV(): string {
     rows.push(row.join('\t'));
   });
 
+  return rows.join('\n') + '\n';
+}
+
+/**
+ * Dynamic DB-backed OpenAI ChatGPT Product Feed generator scoped to current BusinessProfile & ServiceOffering rows.
+ * Dynamically imports business-context at runtime so static Node CLI feed tests continue cleanly without Next bundler aliases.
+ */
+export async function generateChatGPTProductFeedAsync(): Promise<OpenAIFeedItem[]> {
+  const { getContractorContext, getDynamicServices } = await import('../business-context');
+  const [ctx, services] = await Promise.all([
+    getContractorContext(),
+    getDynamicServices(),
+  ]);
+
+  if (!ctx.isConfiguredFromDb && !ctx.isColdStartEnv) {
+    return generateChatGPTProductFeed();
+  }
+
+  const baseUrl = ctx.canonicalUrl.replace(/\/$/, '');
+  const defaultImage = `${baseUrl}/logo.svg`;
+  const loadRates: any[] = Array.isArray((ctx.pricing as any)?.loadRates)
+    ? (ctx.pricing as any).loadRates
+    : [];
+
+  const loadItems: OpenAIFeedItem[] = loadRates.map((rate, idx) => ({
+    item_id: `LOAD-${String(rate.slug || idx + 1).toUpperCase().replace(/[^A-Z0-9-]/g, '')}`,
+    offer_id: `${ctx.trackerSlug || 'amzy'}-${rate.slug || idx + 1}`,
+    group_id: 'AMZY-TRUCK-LOAD',
+    listing_has_variations: true,
+    variant_dict: { load_size: rate.title || rate.slug },
+    title: `${ctx.brandName} — ${rate.title || rate.slug}`,
+    description: rate.shortDescription || `Upfront junk removal hauling in ${ctx.city}, ${ctx.state}.`,
+    url: `${baseUrl}/services`,
+    brand: ctx.brandName,
+    seller_name: ctx.legalName,
+    image_url: defaultImage,
+    availability: 'in_stock' as const,
+    price: `${Number(rate.basePrice || 145).toFixed(2)} USD`,
+    target_countries: ['US'],
+    store_country: ctx.country || 'US',
+    is_eligible_search: true,
+    product_category: 'Home & Garden > Waste Management & Hauling > Junk Removal',
+    seller_url: baseUrl,
+    shipping_price: '0.00 USD',
+    accepts_returns: false,
+  }));
+
+  const serviceItems: OpenAIFeedItem[] = services.map((svc, idx) => ({
+    item_id: `SVC-${svc.slug.toUpperCase().replace(/[^A-Z0-9-]/g, '') || idx}`,
+    offer_id: `${ctx.trackerSlug || 'amzy'}-${svc.slug}`,
+    title: `${svc.name} in ${ctx.city}, ${ctx.state} | ${ctx.brandName}`,
+    description: svc.shortDescription || `${svc.name} by ${ctx.brandName}.`,
+    url: `${baseUrl}/services/${svc.slug}`,
+    brand: ctx.brandName,
+    seller_name: ctx.legalName,
+    image_url: defaultImage,
+    availability: 'in_stock' as const,
+    price: `${Number(svc.basePrice || 145).toFixed(2)} USD`,
+    target_countries: ['US'],
+    store_country: ctx.country || 'US',
+    is_eligible_search: true,
+    product_category: 'Home & Garden > Waste Management & Hauling > Junk Removal',
+    seller_url: baseUrl,
+    shipping_price: '0.00 USD',
+    accepts_returns: false,
+  }));
+
+  const combined = [...loadItems, ...serviceItems];
+  return combined.length > 0 ? combined : (ctx.isColdStartEnv ? [] : generateChatGPTProductFeed());
+}
+
+export async function generateChatGPTProductFeedJSONLAsync(): Promise<string> {
+  const items = await generateChatGPTProductFeedAsync();
+  return items.map((item) => JSON.stringify(item)).join('\n') + (items.length ? '\n' : '');
+}
+
+export async function generateChatGPTProductFeedGzipAsync(): Promise<Buffer> {
+  const jsonl = await generateChatGPTProductFeedJSONLAsync();
+  return zlib.gzipSync(Buffer.from(jsonl, 'utf8'), { level: 9 });
+}
+
+export async function generateChatGPTProductFeedCSVAsync(): Promise<string> {
+  const items = await generateChatGPTProductFeedAsync();
+  const rows: string[] = [OPENAI_FEED_COLUMNS.join(',')];
+  items.forEach((item) => {
+    rows.push(
+      [
+        escapeCsvCell(item.item_id),
+        escapeCsvCell(item.title),
+        escapeCsvCell(item.description),
+        escapeCsvCell(item.url),
+        escapeCsvCell(item.brand),
+        escapeCsvCell(item.seller_name),
+        escapeCsvCell(item.image_url),
+        escapeCsvCell(item.availability),
+        escapeCsvCell(item.price),
+        escapeCsvCell(JSON.stringify(item.target_countries)),
+        escapeCsvCell(item.store_country),
+        escapeCsvCell(item.group_id || ''),
+        escapeCsvCell(item.listing_has_variations ? 'true' : ''),
+        escapeCsvCell(item.variant_dict || ''),
+        escapeCsvCell(item.offer_id || ''),
+        escapeCsvCell(item.is_eligible_search ? 'true' : 'false'),
+        escapeCsvCell(item.product_category || ''),
+        escapeCsvCell(item.seller_url || ''),
+        escapeCsvCell(item.shipping_price || '0.00 USD'),
+        escapeCsvCell(item.accepts_returns ? 'true' : 'false'),
+        escapeCsvCell(item.additional_image_urls ? item.additional_image_urls.join(',') : ''),
+      ].join(',')
+    );
+  });
+  return rows.join('\n') + '\n';
+}
+
+export async function generateChatGPTProductFeedTSVAsync(): Promise<string> {
+  const items = await generateChatGPTProductFeedAsync();
+  const rows: string[] = [OPENAI_FEED_COLUMNS.join('\t')];
+  items.forEach((item) => {
+    rows.push(
+      [
+        escapeTsvCell(item.item_id),
+        escapeTsvCell(item.title),
+        escapeTsvCell(item.description),
+        escapeTsvCell(item.url),
+        escapeTsvCell(item.brand),
+        escapeTsvCell(item.seller_name),
+        escapeTsvCell(item.image_url),
+        escapeTsvCell(item.availability),
+        escapeTsvCell(item.price),
+        escapeTsvCell(JSON.stringify(item.target_countries)),
+        escapeTsvCell(item.store_country),
+        escapeTsvCell(item.group_id || ''),
+        escapeTsvCell(item.listing_has_variations ? 'true' : ''),
+        escapeTsvCell(item.variant_dict || ''),
+        escapeTsvCell(item.offer_id || ''),
+        escapeTsvCell(item.is_eligible_search ? 'true' : 'false'),
+        escapeTsvCell(item.product_category || ''),
+        escapeTsvCell(item.seller_url || ''),
+        escapeTsvCell(item.shipping_price || '0.00 USD'),
+        escapeTsvCell(item.accepts_returns ? 'true' : 'false'),
+        escapeTsvCell(item.additional_image_urls ? item.additional_image_urls.join(',') : ''),
+      ].join('\t')
+    );
+  });
   return rows.join('\n') + '\n';
 }

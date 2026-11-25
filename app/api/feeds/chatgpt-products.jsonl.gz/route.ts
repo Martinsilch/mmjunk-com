@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { generateChatGPTProductFeedGzip } from '@/lib/feeds/chatgptProductFeed';
+import { generateChatGPTProductFeedGzipAsync } from '@/lib/feeds/chatgptProductFeed';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const gzipped = generateChatGPTProductFeedGzip();
+  const gzipped = await generateChatGPTProductFeedGzipAsync();
 
   return new NextResponse(new Uint8Array(gzipped), {
     status: 200,

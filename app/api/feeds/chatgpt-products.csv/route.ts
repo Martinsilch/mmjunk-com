@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { generateChatGPTProductFeedCSV } from '@/lib/feeds/chatgptProductFeed';
+import { generateChatGPTProductFeedCSVAsync } from '@/lib/feeds/chatgptProductFeed';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const csv = generateChatGPTProductFeedCSV();
+  const csv = await generateChatGPTProductFeedCSVAsync();
 
   return new NextResponse(csv, {
     status: 200,

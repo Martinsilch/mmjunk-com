@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { generateChatGPTProductFeedJSONL } from '@/lib/feeds/chatgptProductFeed';
+import { generateChatGPTProductFeedJSONLAsync } from '@/lib/feeds/chatgptProductFeed';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600; // Cache 1 hour, revalidate in background
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
-  const jsonl = generateChatGPTProductFeedJSONL();
+  const jsonl = await generateChatGPTProductFeedJSONLAsync();
 
   // Smart browser detection: if human browser requests text/html or specifies ?format=text or ?view=browser,
   // return text/plain so Chrome renders the JSON lines directly on screen without triggering a "Save As" download.

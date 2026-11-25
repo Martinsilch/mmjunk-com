@@ -8,49 +8,176 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model BusinessProfile {
+  id                  String   @id @default("primary")
+  appId               String?
+  kbVersion           String?
+  kbRevision          Int      @default(0)
+  brandName           String
+  legalName           String
+  ownerName           String?
+  phone               String
+  email               String
+  domain              String?
+  canonicalUrl        String
+  tagline             String?
+  description         String?
+  foundedYear         Int?
+  languages           String[] @default(["English"])
+  street              String
+  city                String
+  county              String?
+  state               String
+  postalCode          String
+  country             String   @default("US")
+  lat                 Float
+  lng                 Float
+  serviceRadiusMiles  Float    @default(30)
+  trackerSlug         String?
+  schedulerUrl        String?
+  discoveryProviderId String?
+  operatingHoursJson  Json?
+  pricingJson         Json?
+  fleetJson           Json?
+  brandingJson        Json?
+  externalLinksJson   Json?
+  syncedAt            DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model ServiceOffering {
+  id                  String     @id @default(cuid())
+  slug                String     @unique
+  name                String
+  category            String     @default("Core Hauling")
+  shortDescription    String
+  longDescription     String?
+  basePrice           Float?
+  estimatedTimeHours  Float?
+  isCoreBase          Boolean    @default(false)
+  autoDiscovered      Boolean    @default(false)
+  discoveredFromJobId String?
+  isActive            Boolean    @default(true)
+  jobs                JobStory[]
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+
+  @@index([category])
+  @@index([isActive])
+}
+
+model ReputationProfile {
+  id              String   @id @default("primary")
+  reviewCount     Int      @default(0)
+  ratingValue     Float?
+  aggregateRating String?
+  googleCount     Int      @default(0)
+  googleRating    Float?
+  yelpCount       Int      @default(0)
+  yelpRating      Float?
+  amzyCount       Int      @default(0)
+  amzyRating      Float?
+  bbbRating       String?
+  breakdownJson   Json?
+  lastUpdated     DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model CharacterSignal {
+  id             String   @id @default(cuid())
+  dimension      String   @unique
+  label          String
+  summary        String
+  evidenceCount  Int      @default(1)
+  sourceType     String   @default("job_telemetry")
+  matchedSignals String[] @default([])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model CustomerReview {
+  id             String    @id @default(cuid())
+  externalId     String    @unique
+  platform       String    @default("Google")
+  authorName     String
+  authorPhoto    String?
+  rating         Float
+  reviewText     String
+  reviewDate     DateTime  @default(now())
+  ownerReply     String?
+  ownerReplyDate DateTime?
+  locationCity   String?
+  jobStoryId     String?
+  publishedToApp Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([platform])
+  @@index([publishedToApp])
+  @@index([reviewDate(sort: Desc)])
+}
+
 model LocationSpoke {
-  id          String       @id @default(cuid())
-  slug        String       @unique // "federal-way", "auburn", "tacoma"
-  cityName    String
-  county      String       // "King County", "Pierce County"
-  zipCodes    String[]     // ["98003", "98023"]
-  coordinates Float[]      // [47.3073, -122.3107]
-  wikidataUri String       // "https://www.wikidata.org/wiki/Q852586"
-  jobs        JobStory[]
-  socialPosts SocialPost[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id            String       @id @default(cuid())
+  slug          String       @unique // "federal-way", "auburn", "tacoma"
+  cityName      String
+  state         String       @default("WA")
+  county        String       // "King County", "Pierce County"
+  zipCodes      String[]     // ["98003", "98023"]
+  coordinates   Float[]      // [47.3073, -122.3107]
+  distanceMiles Float?
+  isPrimaryHub  Boolean      @default(false)
+  neighborhoods String[]     @default([])
+  population    Int?
+  wikidataUri   String       @default("")
+  jobs          JobStory[]
+  socialPosts   SocialPost[]
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 
   @@index([slug])
   @@index([county])
 }
 
 model JobStory {
-  id              String        @id @default(cuid())
-  externalJobId   String?       @unique // e.g. "amz-98421"
-  slug            String?       @unique // e.g. "commercial-appliance-removal-auburn-98421"
-  locationId      String
-  location        LocationSpoke @relation(fields: [locationId], references: [id], onDelete: Cascade)
-  serviceType     String        // "Commercial Appliance", "Estate Cleanout"
-  itemCategory    String        // "True 2-Door Reach-in Cooler"
-  weightLbs       Int?
-  equipmentUsed   String?       // "16-ft Box Truck, Hydraulic Liftgate"
-  disposalSite    String?       // "Bow Lake Transfer Station"
-  disposalReceipt String?       // e.g. "WA-ALG-2026-8819"
-  customerReview  String?
-  reviewRating    Int?          @default(5)
-  reviewSource    String?       // "google", "amzy", "facebook"
-  reviewerName    String?
-  reviewPlatform  String?       @default("Google")
-  reviewUrl       String?
-  ownerReply      String?
-  ownerReplyDate  DateTime?
-  mediaUrls       String[]      @default([])
-  completedAt     DateTime      @default(now())
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @default(now()) @updatedAt
+  id                   String           @id @default(cuid())
+  externalJobId        String?          @unique // e.g. "amz-98421"
+  slug                 String?          @unique // e.g. "commercial-appliance-removal-auburn-98421"
+  locationId           String
+  location             LocationSpoke    @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  serviceId            String?
+  service              ServiceOffering? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  canonicalServiceSlug String?
+  serviceType          String           // "Commercial Appliance", "Estate Cleanout"
+  itemCategory         String           // "True 2-Door Reach-in Cooler"
+  weightLbs            Int?
+  volumeCubicYards     Float?
+  truckVolumeFraction  String?
+  diversionRatePct     Float?
+  diversionFacility    String?
+  equipmentUsed        String?          // "16-ft Box Truck, Hydraulic Liftgate"
+  disposalSite         String?          // "Bow Lake Transfer Station"
+  disposalReceipt      String?          // e.g. "WA-ALG-2026-8819"
+  customerReview       String?
+  reviewRating         Int?             @default(5)
+  reviewSource         String?          // "google", "amzy", "facebook"
+  reviewerName         String?
+  reviewPlatform       String?          @default("Google")
+  reviewUrl            String?
+  ownerReply           String?
+  ownerReplyDate       DateTime?
+  mediaUrls            String[]         @default([])
+  beforePhotoUrls      String[]         @default([])
+  afterPhotoUrls       String[]         @default([])
+  characterSignalsJson Json?
+  isPublished          Boolean          @default(true)
+  completedAt          DateTime         @default(now())
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @default(now()) @updatedAt
 
   @@index([locationId])
+  @@index([serviceId])
+  @@index([canonicalServiceSlug])
   @@index([serviceType])
   @@index([completedAt(sort: Desc)])
   @@index([slug])

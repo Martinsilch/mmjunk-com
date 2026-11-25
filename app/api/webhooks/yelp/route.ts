@@ -5,7 +5,7 @@ import { db } from '@/lib/db';
 import { fetchYelpReviews, fetchYelpBusinessMetrics } from '@/lib/yelp';
 import { resolveMunicipality, generateJobSlug, extractFirstName, sanitizeReviewText } from '@/lib/job-utils';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
-import { recordReviewMetric, setAuthoritativePlatformMetrics } from '@/lib/reputation';
+import { recordReviewMetricDb, setAuthoritativePlatformMetricsDb } from '@/lib/reputation';
 
 const YelpPayloadSchema = z.object({
   reviewId: z.string().optional(),
@@ -60,8 +60,9 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
     const windowStart = new Date(reviewDate.getTime() - 3 * 24 * 60 * 60 * 1000);
     const windowEnd = new Date(reviewDate.getTime() + 3 * 24 * 60 * 60 * 1000);
 
-    // Infer city from review text or fallback to Federal Way
-    const inferredCity = resolveMunicipality(cleanComment) || 'Federal Way';
+    // Infer city from review text or synced BusinessProfile
+    const profile = await db.businessProfile.findUnique({ where: { id: 'primary' } }).catch(() => null);
+    const inferredCity = resolveMunicipality(cleanComment) || profile?.city || 'Service Area';
     const targetSpokeSlug = inferredCity.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
     // Check candidates in 3-day rolling window
@@ -114,10 +115,10 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
       // Standalone Yelp Review: Upsert spoke and create JobStory
       const meta = AUTHORIZED_MUNICIPALITIES[targetSpokeSlug];
       const cityName = meta ? meta.cityName : inferredCity;
-      const county = meta ? meta.county : 'King County';
-      const zipCodes = meta ? meta.zipCodes : ['98003'];
-      const coordinates = meta ? meta.coords : [47.3223, -122.3126];
-      const wikidataUri = meta ? meta.wikidataUri : 'https://www.wikidata.org/wiki/Q852586';
+      const county = meta ? meta.county : (profile?.county || `${cityName} Area`);
+      const zipCodes = meta ? meta.zipCodes : (profile?.postalCode ? [profile.postalCode] : []);
+      const coordinates = meta ? meta.coords : (profile ? [profile.lat, profile.lng] : [0, 0]);
+      const wikidataUri = meta ? meta.wikidataUri : '';
 
       const location = await db.locationSpoke.upsert({
         where: { slug: targetLocationSlug },
@@ -179,11 +180,32 @@ async function processReviews(reviewsToProcess: ReviewInput[]) {
       revalidatePath(`/jobs/${fallbackSlug}`);
     }
 
-    // Ingest into Canonical Reputation Engine
+    // Ingest into Canonical Neon Postgres Reputation Engine & CustomerReview table
     const isNewReview = action === 'CREATED_NEW_STANDALONE_YELP_REVIEW' || (action === 'MERGED_WITH_AMZY_JOB' && !candidateJob?.customerReview);
     let updatedReputation = null;
     if (isNewReview) {
-      updatedReputation = recordReviewMetric({ platform: 'yelp', rating: r.starRating });
+      updatedReputation = await recordReviewMetricDb({ platform: 'yelp', rating: r.starRating });
+      await db.customerReview.upsert({
+        where: { externalId: r.reviewId },
+        create: {
+          externalId: r.reviewId,
+          platform: 'Yelp',
+          authorName: r.reviewerName,
+          rating: r.starRating,
+          reviewText: cleanComment,
+          reviewDate,
+          ownerReply: r.ownerReply || null,
+          locationCity: inferredCity,
+          jobStoryId: mergedJobId,
+          publishedToApp: true,
+        },
+        update: {
+          rating: r.starRating,
+          reviewText: cleanComment,
+          ownerReply: r.ownerReply || undefined,
+          jobStoryId: mergedJobId,
+        },
+      }).catch(() => {});
     }
 
     // Invalidate Edge Caches
@@ -326,7 +348,7 @@ export async function GET(req: NextRequest) {
     const liveMetrics = await fetchYelpBusinessMetrics();
     let repMetrics = null;
     if (liveMetrics) {
-      repMetrics = setAuthoritativePlatformMetrics({
+      repMetrics = await setAuthoritativePlatformMetricsDb({
         platform: 'yelp',
         reviewCount: liveMetrics.reviewCount,
         rating: liveMetrics.rating,
@@ -352,6 +374,6 @@ export async function GET(req: NextRequest) {
     endpoint: '/api/webhooks/yelp',
     accepts: ['POST', 'GET'],
     supportedAuth: ['Bearer <YELP_WEBHOOK_SECRET>', 'x-webhook-secret', '?token=<SECRET>'],
-    businessAlias: process.env.YELP_BUSINESS_ALIAS || 'm-and-m-junk-removal-federal-way-3'
+    businessAlias: process.env.YELP_BUSINESS_ALIAS || null
   });
 }

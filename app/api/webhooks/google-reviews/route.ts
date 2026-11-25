@@ -4,7 +4,7 @@ import { db } from '@/lib/db';
 import { fetchGoogleReview } from '@/lib/google-business';
 import { resolveMunicipality, generateJobSlug, extractFirstName, sanitizeReviewText } from '@/lib/job-utils';
 import { AUTHORIZED_MUNICIPALITIES } from '@/lib/geo-resolver';
-import { recordReviewMetric } from '@/lib/reputation';
+import { recordReviewMetricDb } from '@/lib/reputation';
 
 export async function POST(req: Request) {
   try {
@@ -79,7 +79,8 @@ export async function POST(req: Request) {
     const windowStart = new Date(reviewDate.getTime() - 3 * 24 * 60 * 60 * 1000);
     const windowEnd = new Date(reviewDate.getTime() + 3 * 24 * 60 * 60 * 1000);
 
-    const inferredCity = resolveMunicipality(cleanComment) || 'Federal Way';
+    const profile = await db.businessProfile.findUnique({ where: { id: 'primary' } }).catch(() => null);
+    const inferredCity = resolveMunicipality(cleanComment) || profile?.city || 'Service Area';
     const targetSpokeSlug = inferredCity.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
     const candidates = await db.jobStory.findMany({
@@ -132,13 +133,13 @@ export async function POST(req: Request) {
         revalidatePath(`/jobs/${updated.slug}`);
       }
     } else {
-      // No Direct Amzy Match: Infer city from review text or fallback to Federal Way
+      // No Direct Amzy Match: Infer city from review text or synced BusinessProfile
       const meta = AUTHORIZED_MUNICIPALITIES[targetSpokeSlug];
       const cityName = meta ? meta.cityName : inferredCity;
-      const county = meta ? meta.county : 'King County';
-      const zipCodes = meta ? meta.zipCodes : ['98003'];
-      const coordinates = meta ? meta.coords : [47.3223, -122.3126];
-      const wikidataUri = meta ? meta.wikidataUri : 'https://www.wikidata.org/wiki/Q852586';
+      const county = meta ? meta.county : (profile?.county || `${cityName} Area`);
+      const zipCodes = meta ? meta.zipCodes : (profile?.postalCode ? [profile.postalCode] : []);
+      const coordinates = meta ? meta.coords : (profile ? [profile.lat, profile.lng] : [0, 0]);
+      const wikidataUri = meta ? meta.wikidataUri : '';
 
       const location = await db.locationSpoke.upsert({
         where: { slug: targetLocationSlug },
@@ -203,10 +204,33 @@ export async function POST(req: Request) {
       revalidatePath(`/jobs/${fallbackSlug}`);
     }
 
-    // 5. Ingest into Canonical Reputation Engine
+    // 5. Ingest into Canonical Neon Postgres Reputation Engine & CustomerReview table
     let updatedReputation = null;
     if (isNewReview) {
-      updatedReputation = recordReviewMetric({ platform: 'google', rating: starRating });
+      updatedReputation = await recordReviewMetricDb({ platform: 'google', rating: starRating });
+      await db.customerReview.upsert({
+        where: { externalId: reviewId },
+        create: {
+          externalId: reviewId,
+          platform: 'Google',
+          authorName: reviewerName,
+          authorPhoto: reviewData.reviewerPhotoUrl || null,
+          rating: starRating,
+          reviewText: cleanComment,
+          reviewDate,
+          ownerReply: ownerReply || null,
+          ownerReplyDate: ownerReplyDate ? new Date(ownerReplyDate) : null,
+          locationCity: inferredCity,
+          jobStoryId: mergedJobId,
+          publishedToApp: true,
+        },
+        update: {
+          rating: starRating,
+          reviewText: cleanComment,
+          ownerReply: ownerReply || undefined,
+          jobStoryId: mergedJobId,
+        },
+      }).catch(() => {});
     }
 
     // 6. Invalidate Edge Caches

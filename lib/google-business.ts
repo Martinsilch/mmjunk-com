@@ -39,13 +39,15 @@ export async function fetchGoogleReview(reviewName: string): Promise<DecodedRevi
     return res;
   }
 
-  // Fallback mock for mock test resource names or when mock credentials are in place
-  if (
-    reviewName.includes('test-rev-') ||
-    reviewName.includes('mock-') ||
-    process.env.GOOGLE_CLIENT_ID?.startsWith('mock-') ||
-    !process.env.GOOGLE_CLIENT_ID
-  ) {
+  // Explicit mock opt-in ONLY for isolated test runs; production with missing credentials must fail closed (null)
+  const allowMocks =
+    process.env.ALLOW_MOCK_REVIEWS === 'true' ||
+    (process.env.NODE_ENV === 'test' && (reviewName.includes('test-rev-') || reviewName.includes('mock-')));
+
+  if (!process.env.GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID.startsWith('mock-')) {
+    if (!allowMocks) {
+      return null;
+    }
     if (reviewName.includes('low-star') || reviewName.includes('test-low')) {
       return {
         reviewId: reviewName.split('/').pop() || 'test-low-star',

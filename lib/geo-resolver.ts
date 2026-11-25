@@ -1,4 +1,4 @@
-import { db } from '@/lib/db';
+import { db } from './db';
 
 export interface NeighborhoodEntity {
   name: string;

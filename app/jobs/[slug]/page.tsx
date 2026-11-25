@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db';
 import { AUTHORIZED_MUNICIPALITIES, resolveNeighborhoodEntity } from '@/lib/geo-resolver';
-import { getReputationMetrics } from '@/lib/reputation';
+import { getContractorContext, getEffectiveReputation } from '@/lib/business-context';
 
 interface JobPageProps {
   params: { slug: string };
@@ -25,7 +25,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: JobPageProps): Promise<Metadata> {
   const slug = params?.slug || '';
-  if (!slug) return { title: 'M&M Junk Removal Job Story' };
+  const ctx = await getContractorContext();
+  if (!slug) return { title: `${ctx.brandName} Job Story` };
 
   const job = await db.jobStory.findFirst({
     where: {
@@ -39,25 +40,26 @@ export async function generateMetadata({ params }: JobPageProps): Promise<Metada
   }).catch(() => null);
 
   if (!job) {
-    return { title: 'Completed Hauling Case Study | M&M Junk Removal' };
+    return { title: `Completed Hauling Case Study | ${ctx.brandName}` };
   }
 
-  const cityName = job.location?.cityName || 'Federal Way';
+  const cityName = job.location?.cityName || ctx.city;
+  const stateAbbr = job.location?.state || ctx.state;
   const weightText = job.weightLbs ? `${job.weightLbs.toLocaleString()} lbs` : 'Standard Volume';
 
   return {
-    title: `${job.serviceType} in ${cityName}, WA | M&M Junk Removal`,
-    description: `Operational telemetry & verified field log: ${job.serviceType} (${job.itemCategory}) in ${cityName}, WA. Scale weight: ${weightText}. Eco-diverted via ${job.disposalSite || 'Certified Transfer Station'}.`,
+    title: `${job.serviceType} in ${cityName}, ${stateAbbr} | ${ctx.brandName}`,
+    description: `Operational telemetry & verified field log: ${job.serviceType} (${job.itemCategory}) in ${cityName}, ${stateAbbr}. Scale weight: ${weightText}. Eco-diverted via ${job.disposalSite || 'Certified Transfer Station'}.`,
     alternates: {
-      canonical: `https://www.mmjunk.com/jobs/${job.slug || slug}`
+      canonical: `${ctx.canonicalUrl}/jobs/${job.slug || slug}`
     },
     openGraph: {
-      title: `${job.serviceType} in ${cityName}, WA | M&M Junk Removal`,
-      description: `Job telemetry log: ${job.itemCategory} hauled and recycled in ${cityName}, WA. Single-operator upfront flat rates.`,
-      url: `https://www.mmjunk.com/jobs/${job.slug || slug}`,
-      siteName: 'M&M Junk Removal',
+      title: `${job.serviceType} in ${cityName}, ${stateAbbr} | ${ctx.brandName}`,
+      description: `Job telemetry log: ${job.itemCategory} hauled and recycled in ${cityName}, ${stateAbbr}. Transparent upfront flat rates.`,
+      url: `${ctx.canonicalUrl}/jobs/${job.slug || slug}`,
+      siteName: ctx.brandName,
       type: 'article',
-      images: job.mediaUrls.length > 0 ? [{ url: job.mediaUrls[0] }] : [{ url: 'https://www.mmjunk.com/assets/images/logo.png' }]
+      images: job.mediaUrls.length > 0 ? [{ url: job.mediaUrls[0] }] : [{ url: `${ctx.canonicalUrl}/assets/images/logo.png` }]
     }
   };
 }
@@ -66,35 +68,40 @@ export default async function JobStoryPage({ params }: JobPageProps) {
   const slug = params?.slug || '';
   if (!slug) notFound();
 
-  const job = await db.jobStory.findFirst({
-    where: {
-      OR: [
-        { slug },
-        { externalJobId: slug },
-        { id: slug }
-      ]
-    },
-    include: { location: true }
-  }).catch(() => null);
+  const [ctx, reputation, job] = await Promise.all([
+    getContractorContext(),
+    getEffectiveReputation(),
+    db.jobStory.findFirst({
+      where: {
+        OR: [
+          { slug },
+          { externalJobId: slug },
+          { id: slug }
+        ]
+      },
+      include: { location: true, service: true }
+    }).catch(() => null),
+  ]);
 
   if (!job) notFound();
 
   const spoke = job.location;
-  const cityName = spoke?.cityName || 'Federal Way';
-  const county = spoke?.county || 'King County';
-  const zipCodes = spoke?.zipCodes || ['98003'];
-  const logId = job.disposalReceipt || job.externalJobId || `MMJ-${job.id.slice(-6).toUpperCase()}`;
+  const cityName = spoke?.cityName || ctx.city;
+  const stateAbbr = spoke?.state || ctx.state;
+  const county = spoke?.county || ctx.county;
+  const zipCodes = spoke?.zipCodes?.length ? spoke.zipCodes : (ctx.postalCode ? [ctx.postalCode] : []);
+  const logId = job.disposalReceipt || job.externalJobId || `JOB-${job.id.slice(-6).toUpperCase()}`;
   const weightText = job.weightLbs ? `${job.weightLbs.toLocaleString()} lbs` : 'Standard Volume Tier';
 
-  const meta = spoke?.slug ? AUTHORIZED_MUNICIPALITIES[spoke.slug] : null;
+  const meta = !ctx.isConfiguredFromDb && !ctx.isColdStartEnv && spoke?.slug ? AUTHORIZED_MUNICIPALITIES[spoke.slug] : null;
   const neighborhoodMatch = resolveNeighborhoodEntity(
     `${job.slug || ''} ${job.itemCategory || ''} ${job.customerReview || ''}`,
     meta
   );
   const neighborhoodName = neighborhoodMatch?.name;
-  const targetZip = neighborhoodMatch?.postalCode || zipCodes[0] || '98001';
-  const targetCoords = neighborhoodMatch?.coords || (spoke?.coordinates && spoke.coordinates.length === 2 ? (spoke.coordinates as [number, number]) : meta?.coords || null);
-  const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || 'https://www.wikidata.org/wiki/Q852586';
+  const targetZip = neighborhoodMatch?.postalCode || zipCodes[0] || ctx.postalCode || '';
+  const targetCoords = neighborhoodMatch?.coords || (spoke?.coordinates && spoke.coordinates.length === 2 ? (spoke.coordinates as [number, number]) : meta?.coords || [ctx.lat, ctx.lng]);
+  const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || '';
 
   const isDemolition = job.serviceType?.toLowerCase().includes('demolition') || (job.slug?.includes('demolition') ?? false);
   const isZeroWaste = (job.disposalSite?.includes('100%') || job.disposalSite?.includes('Diverted')) ?? false;
@@ -108,11 +115,11 @@ export default async function JobStoryPage({ params }: JobPageProps) {
 
   const videoPosts = socialPosts.filter(p => p.platform === 'youtube' && p.videoUrl);
 
-  const HUB_PHONE = '+1-253-886-7724';
-  const HUB_PHONE_RAW = '2538867724';
-  const HUB_URL = 'https://www.mmjunk.com';
-  const AMZY_BOOKING_URL = 'https://amzy.me/?utm_content=4';
-  const reputation = getReputationMetrics();
+  const HUB_PHONE = ctx.phone || '';
+  const HUB_DISPLAY_PHONE = ctx.displayPhone || ctx.phone;
+  const HUB_PHONE_RAW = HUB_PHONE.replace(/[^0-9+]/g, '');
+  const HUB_URL = ctx.canonicalUrl;
+  const AMZY_BOOKING_URL = ctx.bookingUrl;
 
   const canonicalUrl = `${HUB_URL}/jobs/${job.slug || slug}`;
 
@@ -123,24 +130,26 @@ export default async function JobStoryPage({ params }: JobPageProps) {
       {
         '@type': ['LocalBusiness', 'HomeAndConstructionBusiness', 'RecyclingCenter'],
         '@id': `${HUB_URL}/#business`,
-        name: 'M&M Junk Removal',
+        name: ctx.brandName,
         url: HUB_URL,
-        telephone: HUB_PHONE,
+        ...(HUB_PHONE ? { telephone: HUB_PHONE } : {}),
         priceRange: '$$',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '320th St',
-          addressLocality: 'Federal Way',
-          addressRegion: 'WA',
-          postalCode: '98003',
-          addressCountry: 'US'
+          streetAddress: ctx.street,
+          addressLocality: ctx.city,
+          addressRegion: ctx.state,
+          postalCode: ctx.postalCode,
+          addressCountry: ctx.country
         },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: reputation.aggregateRating,
-          reviewCount: String(reputation.reviewCount),
-          bestRating: '5'
-        },
+        ...(reputation.reviewCount > 0 && reputation.aggregateRating ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: reputation.aggregateRating,
+            reviewCount: String(reputation.reviewCount),
+            bestRating: '5'
+          }
+        } : {}),
         potentialAction: [
           {
             '@type': 'ReserveAction',
@@ -192,20 +201,20 @@ export default async function JobStoryPage({ params }: JobPageProps) {
       {
         '@type': 'AchieveAction',
         '@id': `${canonicalUrl}#action`,
-        name: `${job.serviceType} in ${cityName}, WA`,
+        name: `${job.serviceType} in ${cityName}, ${stateAbbr}`,
         agent: { '@id': `${HUB_URL}/#business` },
         endTime: job.completedAt ? new Date(job.completedAt).toISOString() : undefined,
         location: {
           '@type': 'Place',
-          name: neighborhoodName ? `${neighborhoodName}, ${cityName}, WA` : `${cityName}, WA Operations`,
+          name: neighborhoodName ? `${neighborhoodName}, ${cityName}, ${stateAbbr}` : `${cityName}, ${stateAbbr} Operations`,
           address: {
             '@type': 'PostalAddress',
             addressLocality: cityName,
-            addressRegion: 'WA',
+            addressRegion: stateAbbr,
             postalCode: targetZip,
-            addressCountry: 'US'
+            addressCountry: ctx.country
           },
-          ...(targetCoords ? {
+          ...(targetCoords[0] || targetCoords[1] ? {
             geo: {
               '@type': 'GeoCoordinates',
               latitude: targetCoords[0],
@@ -215,7 +224,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
           containedInPlace: {
             '@type': 'City',
             name: cityName,
-            '@id': wikidataUri
+            ...(wikidataUri ? { '@id': wikidataUri } : {})
           }
         },
         ...(job.customerReview ? {
@@ -225,17 +234,16 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             itemReviewed: {
               '@type': 'LocalBusiness',
               '@id': `${HUB_URL}/#business`,
-              name: 'M&M Junk Removal',
-              telephone: '+1-253-886-7724',
+              name: ctx.brandName,
+              ...(HUB_PHONE ? { telephone: HUB_PHONE } : {}),
               priceRange: '$$',
-              image: `${HUB_URL}/assets/images/logo.png`,
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: '320th St',
+                streetAddress: ctx.street,
                 addressLocality: cityName,
-                addressRegion: 'WA',
+                addressRegion: stateAbbr,
                 postalCode: targetZip,
-                addressCountry: 'US'
+                addressCountry: ctx.country
               }
             },
             reviewRating: {
@@ -250,8 +258,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             },
             publisher: {
               '@type': 'Organization',
-              name: job.reviewPlatform || 'Google Verified Reviews',
-              sameAs: 'https://www.google.com/maps?cid=15999711673070107161'
+              name: job.reviewPlatform || 'Verified Reviews'
             },
             ...(job.ownerReply ? {
               comment: {
@@ -259,7 +266,7 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                 text: job.ownerReply,
                 author: {
                   '@type': 'Person',
-                  name: 'Martin Silch (Owner)'
+                  name: `${ctx.ownerName} (Owner)`
                 }
               }
             } : {})
@@ -271,8 +278,8 @@ export default async function JobStoryPage({ params }: JobPageProps) {
         '@id': `${canonicalUrl}#image-${idx + 1}`,
         url: url,
         contentUrl: url,
-        caption: `${job.serviceType} in ${cityName}, WA - Operational Field Proof Photo #${idx + 1}`,
-        description: `Field photo documenting ${job.itemCategory || 'junk removal haul'} performed by M&M Junk Removal in ${cityName}, WA. Scale weight: ${weightText}.`,
+        caption: `${job.serviceType} in ${cityName}, ${stateAbbr} - Operational Field Proof Photo #${idx + 1}`,
+        description: `Field photo documenting ${job.itemCategory || 'junk removal haul'} performed by ${ctx.brandName} in ${cityName}, ${stateAbbr}. Scale weight: ${weightText}.`,
         author: { '@id': `${HUB_URL}/#business` }
       })),
       ...videoPosts.map((post, idx) => {
@@ -280,8 +287,8 @@ export default async function JobStoryPage({ params }: JobPageProps) {
         return {
           '@type': 'VideoObject',
           '@id': `${canonicalUrl}#video-${idx + 1}`,
-          name: post.caption || `${job.serviceType} in ${cityName}, WA`,
-          description: post.caption || `Field video documenting ${job.itemCategory} by M&M Junk Removal in ${cityName}, WA.`,
+          name: post.caption || `${job.serviceType} in ${cityName}, ${stateAbbr}`,
+          description: post.caption || `Field video documenting ${job.itemCategory} by ${ctx.brandName} in ${cityName}, ${stateAbbr}.`,
           thumbnailUrl: post.mediaUrl || `https://img.youtube.com/vi/${vidId}/maxresdefault.jpg`,
           uploadDate: post.publishedAt ? new Date(post.publishedAt).toISOString() : new Date().toISOString(),
           embedUrl: `https://www.youtube-nocookie.com/embed/${vidId}`
@@ -310,11 +317,13 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             <span style={{ backgroundColor: '#059669', color: '#ffffff', padding: '2px 8px', borderRadius: '4px', fontWeight: 700, fontSize: '11px', textTransform: 'uppercase' }}>
               Log ID: {logId}
             </span>
-            <span>Verified Operational Telemetry • {cityName}, WA</span>
+            <span>Verified Operational Telemetry • {cityName}, {stateAbbr}</span>
           </div>
-          <a href={`tel:${HUB_PHONE_RAW}`} style={{ color: '#ea580c', textDecoration: 'none', fontWeight: 700 }}>
-            📞 (253) 886-7724
-          </a>
+          {HUB_PHONE && (
+            <a href={`tel:${HUB_PHONE_RAW}`} style={{ color: '#ea580c', textDecoration: 'none', fontWeight: 700 }}>
+              {HUB_DISPLAY_PHONE}
+            </a>
+          )}
         </div>
       </div>
 
@@ -322,17 +331,19 @@ export default async function JobStoryPage({ params }: JobPageProps) {
       <header style={{ borderBottom: '1px solid #e2e8f0', backgroundColor: '#ffffff', padding: '16px 20px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '22px', fontWeight: 900, color: '#ea580c', letterSpacing: '-0.5px' }}>
-              M&M JUNK REMOVAL
+            <span style={{ fontSize: '22px', fontWeight: 900, color: '#ea580c', letterSpacing: '-0.5px', textTransform: 'uppercase' }}>
+              {ctx.brandName}
             </span>
           </Link>
           <div style={{ display: 'flex', gap: '10px' }}>
-            <a
-              href={`tel:${HUB_PHONE_RAW}`}
-              style={{ padding: '8px 16px', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#1e293b', textDecoration: 'none', fontWeight: 600, fontSize: '14px' }}
-            >
-              (253) 886-7724
-            </a>
+            {HUB_PHONE && (
+              <a
+                href={`tel:${HUB_PHONE_RAW}`}
+                style={{ padding: '8px 16px', border: '1px solid #cbd5e1', borderRadius: '6px', color: '#1e293b', textDecoration: 'none', fontWeight: 600, fontSize: '14px' }}
+              >
+                {HUB_DISPLAY_PHONE}
+              </a>
+            )}
             <a
               href={AMZY_BOOKING_URL}
               target="_blank"
@@ -379,13 +390,13 @@ export default async function JobStoryPage({ params }: JobPageProps) {
 
         {/* Case Study Title */}
         <h1 style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: '0 0 16px 0', lineHeight: 1.25 }}>
-          {job.serviceType}: {neighborhoodName ? `${neighborhoodName}, ` : ''}{cityName}, WA
+          {job.serviceType}: {neighborhoodName ? `${neighborhoodName}, ` : ''}{cityName}, {stateAbbr}
         </h1>
 
         {/* Executive Summary */}
         <p style={{ fontSize: '18px', color: '#334155', marginBottom: '20px', lineHeight: 1.6 }}>
-          Operational field summary: On {formattedDate}, M&M Junk Removal completed the rapid extraction, transport, and certified disposal of <strong>{job.itemCategory}</strong> in <strong>{neighborhoodName ? `${neighborhoodName}, ` : ''}{cityName}, WA</strong>. 
-          Carried out via single-operator dispatch utilizing our {job.equipmentUsed || '16-foot high-wall box truck with hydraulic liftgate'}, materials were diverted for eco-sorting and compliant transfer at {job.disposalSite || 'the local transfer facility'}.
+          Operational field summary: On {formattedDate}, {ctx.brandName} completed the rapid extraction, transport, and certified disposal of <strong>{job.itemCategory}</strong> in <strong>{neighborhoodName ? `${neighborhoodName}, ` : ''}{cityName}, {stateAbbr}</strong>. 
+          Carried out using {job.equipmentUsed || 'our dedicated hauling fleet'}, materials were sorted and routed at {job.disposalSite || 'the local certified transfer facility'}.
         </p>
 
         {/* Historical Service Context Disclaimer */}
@@ -673,8 +684,8 @@ export default async function JobStoryPage({ params }: JobPageProps) {
                 <div key={idx} style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#f8fafc' }}>
                   <img
                     src={url}
-                    alt={`${job.serviceType} (${job.itemCategory || 'Hauling'}) operational proof photo #${idx + 1} in ${cityName}, WA - M&M Junk Removal`}
-                    title={`${job.serviceType} in ${cityName}, WA - Verified Operational Evidence #${idx + 1}`}
+                    alt={`${job.serviceType} (${job.itemCategory || 'Hauling'}) operational proof photo #${idx + 1} in ${cityName}, ${stateAbbr} - ${ctx.brandName}`}
+                    title={`${job.serviceType} in ${cityName}, ${stateAbbr} - Verified Operational Evidence #${idx + 1}`}
                     width={600}
                     height={450}
                     style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block', aspectRatio: '4/3' }}
@@ -735,10 +746,10 @@ export default async function JobStoryPage({ params }: JobPageProps) {
         {isDemolition && (
           <section style={{ borderTop: '1px solid #e2e8f0', paddingTop: '32px', marginBottom: '36px' }}>
             <h2 style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
-              Light Demolition & Dismantling Services in {cityName} & King County
+              Light Demolition &amp; Dismantling Services in {cityName} &amp; {county}
             </h2>
             <p style={{ fontSize: '15px', color: '#64748b', marginBottom: '20px' }}>
-              In addition to outdoor sports courts, M&M Junk Removal specializes in residential and commercial small-structure teardowns throughout {cityName} and nearby communities:
+              In addition to outdoor sports courts, {ctx.brandName} specializes in residential and commercial small-structure teardowns throughout {cityName} and nearby communities:
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
               <div style={{ padding: '16px', border: '1px solid #e2e8f0', borderRadius: '8px', backgroundColor: '#ffffff' }}>
@@ -819,12 +830,14 @@ export default async function JobStoryPage({ params }: JobPageProps) {
             >
               Book Dispatch via AMZY ↗
             </a>
-            <a
-              href={`tel:${HUB_PHONE_RAW}`}
-              style={{ backgroundColor: 'transparent', color: '#ffffff', border: '2px solid #ffffff', padding: '12px 24px', borderRadius: '6px', fontWeight: 800, textDecoration: 'none', fontSize: '15px' }}
-            >
-              Call Dispatch: (253) 886-7724
-            </a>
+            {HUB_PHONE && (
+              <a
+                href={`tel:${HUB_PHONE_RAW}`}
+                style={{ backgroundColor: 'transparent', color: '#ffffff', border: '2px solid #ffffff', padding: '12px 24px', borderRadius: '6px', fontWeight: 800, textDecoration: 'none', fontSize: '15px' }}
+              >
+                Call Dispatch: {HUB_DISPLAY_PHONE}
+              </a>
+            )}
           </div>
         </div>
       </main>
@@ -832,10 +845,10 @@ export default async function JobStoryPage({ params }: JobPageProps) {
       {/* Footer */}
       <footer style={{ borderTop: '1px solid #e2e8f0', backgroundColor: '#f8fafc', padding: '24px 20px', marginTop: '48px', fontSize: '13px', color: '#64748b', textAlign: 'center' }}>
         <p style={{ margin: '0 0 6px 0' }}>
-          &copy; 2026 M&M Junk Removal LLC • Operating across 25 Municipalities in South King & Pierce Counties.
+          &copy; {new Date().getFullYear()} {ctx.legalName} &bull; Serving {ctx.city}, {ctx.state} &amp; Surrounding Communities.
         </p>
         <p style={{ margin: 0 }}>
-          Authorized Postal Zones for this dispatch: {zipCodes.join(', ')} ({county}, WA).
+          Authorized Postal Zones for this dispatch: {zipCodes.join(', ') || ctx.postalCode || 'Local Territory'} ({county}, {stateAbbr}).
         </p>
       </footer>
     </>

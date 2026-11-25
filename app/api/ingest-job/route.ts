@@ -58,16 +58,17 @@ export async function POST(req: NextRequest) {
   const reviewText = p.review || p.text || p.comment || null;
   const reviewer = p.customerName || p.name || 'Verified Customer';
   const reviewLink = p.reviewUrl || p.exactReviewUrl || null;
-  const targetCityOrZip = p.city || p.zip || 'Federal Way';
+  const profile = await db.businessProfile.findUnique({ where: { id: 'primary' } }).catch(() => null);
+  const targetCityOrZip = p.city || p.zip || profile?.city || '';
 
-  // 3. Resolve Municipality
-  const meta = resolveMunicipality(targetCityOrZip);
-  const cityName = meta ? meta.cityName : (p.city || 'Federal Way');
+  // 3. Resolve Municipality scoped to BusinessProfile
+  const meta = targetCityOrZip ? resolveMunicipality(targetCityOrZip) : null;
+  const cityName = meta ? meta.cityName : (p.city || profile?.city || 'Service Area');
   const slug = cityName.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
-  const county = meta ? meta.county : 'King County';
-  const coordinates = meta ? meta.coords : [47.3223, -122.3126];
-  const wikidataUri = meta ? meta.wikidataUri : 'https://www.wikidata.org/wiki/Q852586';
-  const zipCodes = meta ? meta.zipCodes : (p.zip ? [p.zip] : ['98003']);
+  const county = meta ? meta.county : (profile?.county || `${cityName} Area`);
+  const coordinates = meta ? meta.coords : (profile ? [profile.lat, profile.lng] : [0, 0]);
+  const wikidataUri = meta ? meta.wikidataUri : '';
+  const zipCodes = meta ? meta.zipCodes : (p.zip ? [p.zip] : (profile?.postalCode ? [profile.postalCode] : []));
 
   // 4. Upsert Location Spoke
   const spoke = await db.locationSpoke.upsert({
@@ -75,6 +76,7 @@ export async function POST(req: NextRequest) {
     create: {
       slug,
       cityName,
+      state: profile?.state || 'WA',
       county,
       zipCodes,
       coordinates,

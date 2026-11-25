@@ -44,11 +44,14 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
-  // Enforce canonical hostname (redirect apex mmjunk.com or vercel.app previews to www.mmjunk.com)
+  // Enforce canonical hostname only when explicitly configured (or M&M production mode)
   const host = request.headers.get('host') || '';
-  if (host === 'mmjunk.com' || (host.endsWith('.vercel.app') && !host.includes('localhost') && !host.includes('127.0.0.1'))) {
+  const canonicalHost =
+    process.env.CANONICAL_HOST ||
+    (process.env.STRICT_COLD_START === 'true' || process.env.MERCHANT_BUSINESS_NAME ? '' : 'www.mmjunk.com');
+  if (canonicalHost && (host === 'mmjunk.com' || (canonicalHost === 'www.mmjunk.com' && host.endsWith('.vercel.app') && !host.includes('localhost') && !host.includes('127.0.0.1')))) {
     const url = request.nextUrl.clone();
-    url.host = 'www.mmjunk.com';
+    url.host = canonicalHost;
     url.protocol = 'https:';
     url.port = '';
     return NextResponse.redirect(url, 301);

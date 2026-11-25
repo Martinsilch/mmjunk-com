@@ -1,3 +1,5 @@
+import { db } from '@/lib/db';
+
 export interface NeighborhoodEntity {
   name: string;
   postalCode: string;
@@ -6,7 +8,8 @@ export interface NeighborhoodEntity {
 
 export interface MunicipalityMeta {
   cityName: string;
-  county: 'King County' | 'Pierce County';
+  state?: string;
+  county: 'King County' | 'Pierce County' | string;
   zipCodes: string[];
   coords: [number, number];
   wikidataUri: string;
@@ -393,9 +396,65 @@ export function resolveMunicipality(cityOrZip: string): MunicipalityMeta | null 
 export interface NearbyMunicipality {
   slug: string;
   cityName: string;
-  county: 'King County' | 'Pierce County';
+  state?: string;
+  county: string;
   distanceMiles: number;
   corridor?: string;
+}
+
+export function calculateHaversineMiles(
+  [lat1, lon1]: [number, number],
+  [lat2, lon2]: [number, number]
+): number {
+  const R = 3958.8;
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) *
+      Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return Math.round(R * c * 10) / 10;
+}
+
+/**
+ * DB-first dynamic Haversine mesh: builds nearby city links from the active
+ * contractor's synced LocationSpoke records centered on currentSlug.
+ */
+export async function getNearbyMunicipalitiesAsync(
+  currentSlug: string,
+  limit: number = 4
+): Promise<NearbyMunicipality[]> {
+  const normalized = currentSlug.toLowerCase().trim().replace(/^junk-removal-/, '').replace(/-[a-z]{2}$/, '');
+  try {
+    const spokes = await db.locationSpoke.findMany();
+    if (spokes.length > 1) {
+      const currentSpoke = spokes.find(s => s.slug === normalized);
+      const currentCoords = currentSpoke?.coordinates?.length === 2
+        ? (currentSpoke.coordinates as [number, number])
+        : null;
+
+      if (currentCoords) {
+        return spokes
+          .filter(s => s.slug !== normalized && s.coordinates?.length === 2)
+          .map(s => ({
+            slug: s.slug,
+            cityName: s.cityName,
+            state: s.state,
+            county: s.county,
+            distanceMiles: calculateHaversineMiles(currentCoords, s.coordinates as [number, number]),
+            corridor: AUTHORIZED_MUNICIPALITIES[s.slug]?.majorCorridors?.[0],
+          }))
+          .sort((a, b) => a.distanceMiles - b.distanceMiles)
+          .slice(0, limit);
+      }
+    }
+  } catch {
+    // Fallback below
+  }
+  return getNearbyMunicipalities(normalized, limit);
 }
 
 /**

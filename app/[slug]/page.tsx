@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db';
-import { AUTHORIZED_MUNICIPALITIES, getNearbyMunicipalities, getNeighborhoodEntities } from '@/lib/geo-resolver';
-import { getReputationMetrics } from '@/lib/reputation';
+import { AUTHORIZED_MUNICIPALITIES, getNearbyMunicipalitiesAsync, getNeighborhoodEntities } from '@/lib/geo-resolver';
+import { getContractorContext, getEffectiveReputation } from '@/lib/business-context';
 
 interface PageProps {
   params: { slug: string };
@@ -12,96 +12,123 @@ interface PageProps {
 export const revalidate = false; // Relies on on-demand revalidateTag()
 export const dynamicParams = true; // Allows newly ingested municipalities to generate on demand
 
+function parseSpokeSlug(rawSlug: string): { cleanSlug: string; stateCode: string } | null {
+  const match = rawSlug.match(/^junk-removal-(.+)-([a-z]{2})$/);
+  if (!match) return null;
+  return { cleanSlug: match[1], stateCode: match[2].toUpperCase() };
+}
+
 export async function generateStaticParams() {
-  const slugs = new Set<string>(Object.keys(AUTHORIZED_MUNICIPALITIES));
   try {
-    const spokes = await db.locationSpoke.findMany({ select: { slug: true } });
-    for (const s of spokes) {
-      slugs.add(s.slug);
+    const spokes = await db.locationSpoke.findMany({ select: { slug: true, state: true } });
+    if (spokes.length > 0) {
+      return spokes.map(s => ({
+        slug: `junk-removal-${s.slug}-${(s.state || 'wa').toLowerCase()}`
+      }));
     }
   } catch {
     // Database offline during initial static generation
   }
 
-  return Array.from(slugs).map(slug => ({
+  return Object.keys(AUTHORIZED_MUNICIPALITIES).map(slug => ({
     slug: `junk-removal-${slug}-wa`
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const rawSlug = params?.slug || '';
-  if (!rawSlug.startsWith('junk-removal-') || !rawSlug.endsWith('-wa')) {
-    return { title: 'M&M Junk Removal' };
+  const ctx = await getContractorContext();
+  const parsed = parseSpokeSlug(rawSlug);
+  if (!parsed) {
+    return { title: ctx.brandName };
   }
 
-  const cleanSlug = rawSlug.replace(/^junk-removal-/, '').replace(/-wa$/, '');
-  const meta = AUTHORIZED_MUNICIPALITIES[cleanSlug];
+  const { cleanSlug, stateCode } = parsed;
   const spoke = cleanSlug ? await db.locationSpoke.findUnique({ where: { slug: cleanSlug } }).catch(() => null) : null;
+  const meta = !ctx.isConfiguredFromDb && !ctx.isColdStartEnv ? AUTHORIZED_MUNICIPALITIES[cleanSlug] : null;
   const cityName = spoke?.cityName || meta?.cityName || cleanSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const region = spoke?.state || meta?.state || stateCode;
 
-  if (cleanSlug === 'federal-way') {
+  if (cleanSlug === 'federal-way' && ctx.brandName === 'M&M Junk Removal') {
     return {
       title: 'Junk Removal Federal Way WA | Fast Local Hauling | M&M Junk Removal',
       description: 'Local junk removal in Federal Way, WA. Same-day appliance removal, cleanouts & yard waste hauling across Twin Lakes, Redondo & Campus. Free upfront quote!',
       alternates: {
-        canonical: 'https://www.mmjunk.com/junk-removal-federal-way-wa'
+        canonical: `${ctx.canonicalUrl}/junk-removal-federal-way-wa`
       }
     };
   }
 
-  const neighborhoodSample = meta?.neighborhoods?.slice(0, 3).join(', ');
+  const neighborhoods = spoke?.neighborhoods?.length ? spoke.neighborhoods : meta?.neighborhoods;
+  const neighborhoodSample = neighborhoods?.slice(0, 3).join(', ');
   const geoContext = neighborhoodSample ? ` across ${neighborhoodSample} & nearby areas` : '';
+  const phoneCue = ctx.displayPhone ? ` Call ${ctx.displayPhone}.` : '';
 
   return {
-    title: `Junk Removal ${cityName} WA | Fast Local Hauling | M&M Junk Removal`,
-    description: `Local junk removal in ${cityName}, WA. Same-day appliance removal, cleanouts & yard waste hauling${geoContext}. Upfront flat-rate quote! Call (253) 886-7724.`,
+    title: `Junk Removal ${cityName} ${region} | Fast Local Hauling | ${ctx.brandName}`,
+    description: `Local junk removal in ${cityName}, ${region}. Same-day appliance removal, cleanouts & yard waste hauling${geoContext}. Upfront flat-rate quote!${phoneCue}`,
     alternates: {
-      canonical: `https://www.mmjunk.com/junk-removal-${cleanSlug}-wa`
+      canonical: `${ctx.canonicalUrl}/${rawSlug}`
     }
   };
 }
 
 export default async function DynamicSpokePage({ params }: PageProps) {
   const rawSlug = params?.slug || '';
-  if (!rawSlug.startsWith('junk-removal-') || !rawSlug.endsWith('-wa')) {
+  const parsed = parseSpokeSlug(rawSlug);
+  if (!parsed) {
     notFound();
   }
 
-  const cleanSlug = rawSlug.replace(/^junk-removal-/, '').replace(/-wa$/, '');
-  const meta = AUTHORIZED_MUNICIPALITIES[cleanSlug];
-
-  const spoke = cleanSlug ? await db.locationSpoke.findUnique({
-    where: { slug: cleanSlug },
-    include: {
-      jobs: {
-        orderBy: { completedAt: 'desc' },
-        take: 15
-      },
-      socialPosts: {
-        orderBy: { publishedAt: 'asc' },
-        take: 6
+  const { cleanSlug, stateCode } = parsed;
+  const [ctx, reputation, spoke] = await Promise.all([
+    getContractorContext(),
+    getEffectiveReputation(),
+    db.locationSpoke.findUnique({
+      where: { slug: cleanSlug },
+      include: {
+        jobs: {
+          where: { isPublished: true },
+          orderBy: { completedAt: 'desc' },
+          take: 15
+        },
+        socialPosts: {
+          orderBy: { publishedAt: 'asc' },
+          take: 6
+        }
       }
-    }
-  }).catch(() => null) : null;
+    }).catch(() => null),
+  ]);
 
-  // Resolve municipality metadata with resilient fallbacks
+  const allowLegacyMeta = !ctx.isConfiguredFromDb && !ctx.isColdStartEnv;
+  const meta = AUTHORIZED_MUNICIPALITIES[cleanSlug];
+  if (!spoke && (!allowLegacyMeta || !meta)) {
+    notFound();
+  }
+
+  // Resolve municipality metadata with dynamic DB first
   const cityName = spoke?.cityName || meta?.cityName || cleanSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-  const county = spoke?.county || meta?.county || 'King County';
-  const zipCodes = (spoke?.zipCodes && spoke.zipCodes.length > 0) ? spoke.zipCodes : (meta?.zipCodes || ['98001']);
-  const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || 'https://www.wikidata.org/wiki/Q852586';
+  const stateAbbr = spoke?.state || meta?.state || stateCode || ctx.state;
+  const county = spoke?.county || meta?.county || ctx.county || `${cityName} Area`;
+  const zipCodes = (spoke?.zipCodes && spoke.zipCodes.length > 0) ? spoke.zipCodes : (meta?.zipCodes || (ctx.postalCode ? [ctx.postalCode] : []));
+  const wikidataUri = spoke?.wikidataUri || meta?.wikidataUri || '';
+  const spokeCoords: [number, number] =
+    spoke?.coordinates && spoke.coordinates.length === 2
+      ? (spoke.coordinates as [number, number])
+      : meta?.coords || [ctx.lat, ctx.lng];
   const jobs = spoke?.jobs || [];
-  const nearbyCities = getNearbyMunicipalities(cleanSlug, 4);
+  const nearbyCities = await getNearbyMunicipalitiesAsync(cleanSlug, 4);
   const neighborhoodEntities = meta ? getNeighborhoodEntities(meta) : [];
   
   // Hyper-local geographic contextual datasets
-  const neighborhoods = meta?.neighborhoods || [
-    `${cityName} City Center`, `${cityName} Residential District`, `${cityName} Business Corridors`
-  ];
+  const neighborhoods = (spoke?.neighborhoods && spoke.neighborhoods.length > 0)
+    ? spoke.neighborhoods
+    : meta?.neighborhoods || [`${cityName} City Center`, `${cityName} Residential District`, `${cityName} Business Corridors`];
   const corridors = meta?.majorCorridors || [
     `${cityName} Main Arterials`, `${county} Transit Corridors`
   ];
-  const transferStation = meta?.transferStation || (county === 'King County' ? 'King County Algona Transfer Station & Bow Lake Recycling' : 'Pierce County Hidden Valley Transfer Station');
-  const donationPartners = meta?.donationPartners || (county === 'King County' ? [`${cityName} St. Vincent de Paul`, `${cityName} Goodwill`] : ['Pierce County Goodwill', 'St. Francis House']);
+  const transferStation = meta?.transferStation || `Regional Certified Transfer & Recycling Facility`;
+  const donationPartners = meta?.donationPartners || [`${cityName} Local Charity Partners`];
 
   let socialPosts = spoke?.socialPosts || [];
   if (socialPosts.length === 0) {
@@ -109,7 +136,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       where: {
         OR: [
           { locationId: null },
-          { location: { slug: 'federal-way' } }
+          { location: { isPrimaryHub: true } }
         ]
       },
       orderBy: { publishedAt: 'desc' },
@@ -121,23 +148,23 @@ export default async function DynamicSpokePage({ params }: PageProps) {
     notFound();
   }
 
-  const HUB_PHONE = '+1-253-886-7724';
-  const HUB_URL = 'https://www.mmjunk.com';
-  const AMZY_BOOKING_URL = 'https://amzy.me/?utm_content=4';
-  const reputation = getReputationMetrics();
+  const HUB_PHONE = ctx.phone || '';
+  const HUB_DISPLAY_PHONE = ctx.displayPhone || ctx.phone;
+  const HUB_URL = ctx.canonicalUrl;
+  const AMZY_BOOKING_URL = ctx.bookingUrl;
 
   const faqItems = [
     {
       q: `How does your pricing work for ${cityName} pickups?`,
-      a: `We quote upfront flat rates based strictly on the volume of space your items occupy in our high-wall hauling truck. Baseline curbside pickups start at $95 (MINI), standard pickup truck loads run $176–$264 (Base $220, based on standard ±20% residential weight variance), and full dump truck loads are $960–$1,440. All labor, loading, and transfer station disposal fees are included with zero franchise royalty surcharges.`
+      a: `We quote upfront flat rates based strictly on the volume of space your items occupy in our hauling truck. All labor, loading, and certified transfer station disposal fees are included with zero surprise surcharges.`
     },
     {
       q: `Where does our junk go after pickup in ${cityName}?`,
-      a: `Usable furniture, household goods, and working appliances are sorted and diverted to local charities like ${donationPartners.join(' and ')}. Unusable materials are hauled directly to certified regional transfer stations (${transferStation}) in full compliance with ${county} environmental regulations.`
+      a: `Usable furniture, household goods, and working appliances are sorted and diverted to local charities like ${donationPartners.join(' and ')}. Unusable materials are hauled directly to certified regional facilities (${transferStation}) in full compliance with ${county} regulations.`
     },
     {
       q: `How soon can you haul away my junk in ${cityName}?`,
-      a: `We frequently offer same-day and next-day pickup windows across ${cityName}. You can call dispatch directly at (253) 886-7724 or lock in your appointment in 30 seconds through our live AMZY booking calendar.`
+      a: `We frequently offer same-day and next-day pickup windows across ${cityName}. ${HUB_DISPLAY_PHONE ? `Call dispatch directly at ${HUB_DISPLAY_PHONE} or lock in` : 'Lock in'} your appointment online through our live AMZY booking calendar.`
     },
     {
       q: `Do you handle refrigerator and appliance freon reclamation in ${cityName}?`,
@@ -150,53 +177,44 @@ export default async function DynamicSpokePage({ params }: PageProps) {
     '@graph': [
       {
         '@type': ['LocalBusiness', 'HomeAndConstructionBusiness', 'RecyclingCenter'],
-        '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#business`,
-        'name': `M&M Junk Removal - ${cityName}`,
+        '@id': `${HUB_URL}/${rawSlug}/#business`,
+        'name': `${ctx.brandName} - ${cityName}`,
         'parentOrganization': {
           '@type': 'LocalBusiness',
-          'name': 'M&M Junk Removal',
+          'name': ctx.brandName,
           'url': HUB_URL
         },
-        'url': `${HUB_URL}/junk-removal-${cleanSlug}-wa/`,
-        'telephone': HUB_PHONE,
+        'url': `${HUB_URL}/${rawSlug}/`,
+        ...(HUB_PHONE ? { 'telephone': HUB_PHONE } : {}),
         'priceRange': '$$',
-        'image': `${HUB_URL}/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png`,
-        'sameAs': [
-          'https://www.google.com/maps?cid=15999711673070107161',
-          'https://ccfs.sos.wa.gov/#/BusinessSearch/BusinessInformation',
-          'https://dor.wa.gov/',
-          'https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173',
-          'https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3',
-          'https://www.facebook.com/mmjunkremoval/',
-          AMZY_BOOKING_URL
-        ],
+        ...(ctx.sameAsUrls.length > 0 ? { 'sameAs': ctx.sameAsUrls } : {}),
         'address': {
           '@type': 'PostalAddress',
           'addressLocality': cityName,
-          'addressRegion': 'WA',
-          'postalCode': zipCodes[0] || '98003',
-          'addressCountry': 'US'
+          'addressRegion': stateAbbr,
+          'postalCode': zipCodes[0] || ctx.postalCode || '',
+          'addressCountry': ctx.country
         },
-        'geo': {
-          '@type': 'GeoCoordinates',
-          'latitude': meta?.coords[0] || 47.3223,
-          'longitude': meta?.coords[1] || -122.3126
-        },
-        'aggregateRating': {
-          '@type': 'AggregateRating',
-          'ratingValue': reputation.aggregateRating,
-          'reviewCount': String(reputation.reviewCount),
-          'bestRating': '5'
-        },
+        ...(spokeCoords[0] || spokeCoords[1] ? {
+          'geo': {
+            '@type': 'GeoCoordinates',
+            'latitude': spokeCoords[0],
+            'longitude': spokeCoords[1]
+          }
+        } : {}),
+        ...(reputation.reviewCount > 0 && reputation.aggregateRating ? {
+          'aggregateRating': {
+            '@type': 'AggregateRating',
+            'ratingValue': reputation.aggregateRating,
+            'reviewCount': String(reputation.reviewCount),
+            'bestRating': '5'
+          }
+        } : {}),
         'areaServed': [
           {
             '@type': 'City',
             'name': cityName,
-            '@id': wikidataUri,
-            'sameAs': [
-              wikidataUri,
-              `https://en.wikipedia.org/wiki/${encodeURIComponent(cityName)},_Washington`
-            ]
+            ...(wikidataUri ? { '@id': wikidataUri, 'sameAs': [wikidataUri] } : {})
           },
           ...zipCodes.map(code => ({
             '@type': 'PostalCode',
@@ -204,13 +222,13 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           })),
           ...neighborhoodEntities.map(ne => ({
             '@type': 'Place',
-            'name': `${ne.name}, ${cityName}, WA`,
+            'name': `${ne.name}, ${cityName}, ${stateAbbr}`,
             'address': {
               '@type': 'PostalAddress',
               'addressLocality': cityName,
-              'addressRegion': 'WA',
+              'addressRegion': stateAbbr,
               'postalCode': ne.postalCode,
-              'addressCountry': 'US'
+              'addressCountry': ctx.country
             },
             ...(ne.coords ? {
               'geo': {
@@ -222,7 +240,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
             'containedInPlace': {
               '@type': 'City',
               'name': cityName,
-              '@id': wikidataUri
+              ...(wikidataUri ? { '@id': wikidataUri } : {})
             }
           }))
         ],
@@ -320,7 +338,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       },
       {
         '@type': 'FAQPage',
-        '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#faq`,
+        '@id': `${HUB_URL}/${rawSlug}/#faq`,
         'mainEntity': faqItems.map(item => ({
           '@type': 'Question',
           'name': item.q,
@@ -332,16 +350,16 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       },
       ...jobs.map((job) => ({
         '@type': 'AchieveAction',
-        '@id': job.slug ? `${HUB_URL}/jobs/${job.slug}/#action` : `${HUB_URL}/junk-removal-${cleanSlug}-wa/#job-${job.id}`,
+        '@id': job.slug ? `${HUB_URL}/jobs/${job.slug}/#action` : `${HUB_URL}/${rawSlug}/#job-${job.id}`,
         'name': `${job.serviceType} in ${cityName}`,
         'url': job.slug ? `${HUB_URL}/jobs/${job.slug}/` : undefined,
-        'agent': { '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#business` },
+        'agent': { '@id': `${HUB_URL}/${rawSlug}/#business` },
         'location': {
           '@type': 'Place',
           'address': {
             '@type': 'PostalAddress',
             'addressLocality': cityName,
-            'addressRegion': 'WA'
+            'addressRegion': stateAbbr
           }
         },
         'result': job.customerReview ? {
@@ -351,18 +369,17 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           'author': { '@type': 'Person', 'name': job.reviewerName || 'Verified Client' },
           'itemReviewed': {
             '@type': 'LocalBusiness',
-            '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#business`,
-            'name': 'M&M Junk Removal',
-            'telephone': '+1-253-886-7724',
+            '@id': `${HUB_URL}/${rawSlug}/#business`,
+            'name': ctx.brandName,
+            ...(HUB_PHONE ? { 'telephone': HUB_PHONE } : {}),
             'priceRange': '$$',
-            'image': `${HUB_URL}/assets/images/logo.png`,
             'address': {
               '@type': 'PostalAddress',
-              'streetAddress': '320th St',
+              'streetAddress': ctx.street,
               'addressLocality': cityName,
-              'addressRegion': 'WA',
-              'postalCode': zipCodes[0] || '98003',
-              'addressCountry': 'US'
+              'addressRegion': stateAbbr,
+              'postalCode': zipCodes[0] || ctx.postalCode || '',
+              'addressCountry': ctx.country
             }
           }
         } : undefined
@@ -371,8 +388,8 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         const cleanVidId = post.videoUrl?.match(/(?:shorts\/|[?&]v=)([a-zA-Z0-9_-]+)/)?.[1] || post.externalId?.replace(/^yt-/, '') || '';
         return {
           '@type': 'VideoObject',
-          '@id': `${HUB_URL}/junk-removal-${cleanSlug}-wa/#video-${post.id}`,
-          'name': `${cityName}, WA Junk Removal Action: ${post.caption.slice(0, 60)}`,
+          '@id': `${HUB_URL}/${rawSlug}/#video-${post.id}`,
+          'name': `${cityName}, ${stateAbbr} Junk Removal Action: ${post.caption.slice(0, 60)}`,
           'description': post.caption,
           'thumbnailUrl': post.mediaUrl || `https://img.youtube.com/vi/${cleanVidId}/maxresdefault.jpg`,
           'uploadDate': post.publishedAt.toISOString(),
@@ -394,17 +411,17 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       <nav style={{ fontSize: '13px', color: '#6b7280', marginBottom: '16px' }}>
         <Link href="/" style={{ color: '#2563eb', textDecoration: 'none' }}>Home</Link> &rsaquo; 
         <Link href="/locations" style={{ color: '#2563eb', textDecoration: 'none', marginLeft: '6px' }}>Locations</Link> &rsaquo; 
-        <span style={{ marginLeft: '6px', color: '#374151', fontWeight: 600 }}>{cityName}, WA</span>
+        <span style={{ marginLeft: '6px', color: '#374151', fontWeight: 600 }}>{cityName}, {stateAbbr}</span>
       </nav>
 
       {/* Hero Section */}
       <header style={{ marginBottom: '32px' }}>
         <h1 style={{ fontSize: '34px', fontWeight: 900, color: '#111827', marginBottom: '16px', lineHeight: 1.2 }}>
-          Junk Removal & Hauling Services in {cityName}, WA
+          Junk Removal &amp; Hauling Services in {cityName}, {stateAbbr}
         </h1>
         <p style={{ fontSize: '18px', color: '#374151', marginBottom: '24px', lineHeight: 1.65 }}>
-          Looking for dependable, affordable junk removal in {cityName}? M&M Junk Removal delivers full-service hauling throughout {cityName} and surrounding {county} neighborhoods. 
-          Whether clearing out a cluttered garage in <strong>{neighborhoods[0]}</strong>, renovating a property near <strong>{corridors[3] || corridors[0]}</strong>, or removing yard storm debris in <strong>{neighborhoods[2] || neighborhoods[1]}</strong>, 
+          Looking for dependable, affordable junk removal in {cityName}? {ctx.brandName} delivers full-service hauling throughout {cityName} and surrounding {county} neighborhoods. 
+          Whether clearing out a cluttered garage in <strong>{neighborhoods[0]}</strong>, renovating a property near <strong>{corridors[3] || corridors[0]}</strong>, or removing yard debris in <strong>{neighborhoods[2] || neighborhoods[1]}</strong>, 
           our team handles all lifting, heavy loading, eco-sorting, and certified disposal with zero corporate franchise markups.
         </p>
         <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -425,21 +442,23 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           >
             Book Online via AMZY in 30 Sec ↗
           </a>
-          <a
-            href={`tel:${HUB_PHONE.replace(/[^0-9+]/g, '')}`}
-            style={{
-              border: '2px solid #d1d5db',
-              color: '#111827',
-              padding: '14px 28px',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              fontWeight: 700,
-              fontSize: '16px',
-              backgroundColor: '#ffffff'
-            }}
-          >
-            Call Dispatch: (253) 886-7724
-          </a>
+          {HUB_PHONE && (
+            <a
+              href={`tel:${HUB_PHONE.replace(/[^0-9+]/g, '')}`}
+              style={{
+                border: '2px solid #d1d5db',
+                color: '#111827',
+                padding: '14px 28px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: '16px',
+                backgroundColor: '#ffffff'
+              }}
+            >
+              Call Dispatch: {HUB_DISPLAY_PHONE}
+            </a>
+          )}
         </div>
       </header>
 
@@ -449,8 +468,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           Hyper-Local Geographic Coverage in {cityName}
         </h2>
         <p style={{ fontSize: '15px', color: '#4b5563', marginBottom: '20px' }}>
-          Unlike national franchises dispatching from remote call centers, M&M Junk Removal maintains an agile single-operator truck fleet staged directly along <strong>{corridors.join(', ')}</strong>. 
-          This localized presence guarantees rapid arrival times and deep familiarity with {county} disposal compliance.
+          Unlike national franchises dispatching from remote call centers, {ctx.brandName} stages trucks locally along <strong>{corridors.join(', ')}</strong> for rapid dispatch across {county}.
         </p>
 
         {/* Neighborhood Grid */}
@@ -612,22 +630,22 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       {/* Section 4: Side-by-Side Comparison Grid */}
       <section style={{ marginBottom: '44px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#111827', marginBottom: '16px' }}>
-          Why {cityName} Chooses M&M Junk Removal Over National Franchises
+          Why {cityName} Chooses {ctx.brandName} Over National Franchises
         </h2>
         <div style={{ overflowX: 'auto', border: '1px solid #e5e7eb', borderRadius: '10px' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '14px' }}>
             <thead>
               <tr style={{ backgroundColor: '#f9fafb', borderBottom: '2px solid #e5e7eb' }}>
                 <th style={{ padding: '14px 18px', width: '25%' }}>Element / Factor</th>
-                <th style={{ padding: '14px 18px', width: '37%', color: '#6b7280' }}>Franchise Competitors (1-800-Got-Junk / College HUNKS)</th>
-                <th style={{ padding: '14px 18px', width: '38%', color: '#ea580c', fontWeight: 800 }}>M&M Junk Removal ({cityName})</th>
+                <th style={{ padding: '14px 18px', width: '37%', color: '#6b7280' }}>Franchise Competitors</th>
+                <th style={{ padding: '14px 18px', width: '38%', color: '#ea580c', fontWeight: 800 }}>{ctx.brandName} ({cityName})</th>
               </tr>
             </thead>
             <tbody>
               <tr style={{ borderBottom: '1px solid #e5e7eb' }}>
                 <td style={{ padding: '12px 18px', fontWeight: 700 }}>Dispatch Origin</td>
-                <td style={{ padding: '12px 18px', color: '#4b5563' }}>Dispatched from regional hubs (Tacoma / Puyallup)</td>
-                <td style={{ padding: '12px 18px', fontWeight: 600, color: '#111827' }}>Direct local presence rooted in South King County</td>
+                <td style={{ padding: '12px 18px', color: '#4b5563' }}>Outsourced regional call centers</td>
+                <td style={{ padding: '12px 18px', fontWeight: 600, color: '#111827' }}>Direct local dispatch serving {ctx.city} &amp; {county}</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #e5e7eb', backgroundColor: '#f9fafb' }}>
                 <td style={{ padding: '12px 18px', fontWeight: 700 }}>Local Community Context</td>
@@ -636,46 +654,47 @@ export default async function DynamicSpokePage({ params }: PageProps) {
               </tr>
               <tr style={{ borderBottom: '1px solid #e5e7eb' }}>
                 <td style={{ padding: '12px 18px', fontWeight: 700 }}>Waste Regulations</td>
-                <td style={{ padding: '12px 18px', color: '#4b5563' }}>Generic "we donate and recycle" phrasing</td>
+                <td style={{ padding: '12px 18px', color: '#4b5563' }}>Generic &ldquo;we donate and recycle&rdquo; phrasing</td>
                 <td style={{ padding: '12px 18px', fontWeight: 600, color: '#111827' }}>Explicit {county} disposal compliance ({transferStation.split('&')[0]})</td>
               </tr>
               <tr style={{ borderBottom: '1px solid #e5e7eb', backgroundColor: '#f9fafb' }}>
                 <td style={{ padding: '12px 18px', fontWeight: 700 }}>Pricing Transparency</td>
-                <td style={{ padding: '12px 18px', color: '#4b5563' }}>Estimates locked behind lead capture forms / national call centers</td>
-                <td style={{ padding: '12px 18px', fontWeight: 600, color: '#111827' }}>Upfront volume-tier pricing and direct local phone access</td>
+                <td style={{ padding: '12px 18px', color: '#4b5563' }}>Estimates locked behind national call centers</td>
+                <td style={{ padding: '12px 18px', fontWeight: 600, color: '#111827' }}>Upfront volume-tier pricing and direct local access</td>
               </tr>
               <tr>
                 <td style={{ padding: '12px 18px', fontWeight: 700 }}>Cost Structure</td>
                 <td style={{ padding: '12px 18px', color: '#4b5563' }}>20–30% corporate franchise royalty markup passed to client</td>
-                <td style={{ padding: '12px 18px', fontWeight: 600, color: '#111827' }}>100% independent owner-operator with 10% rate beat guarantee</td>
+                <td style={{ padding: '12px 18px', fontWeight: 600, color: '#111827' }}>100% independent local operator</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      {/* Section 5: Local Micro-Case Snapshots */}
+      {/* Section 5: Verified Field Operations (strictly DB-driven — zero fabricated cases on cold start) */}
       <section style={{ marginBottom: '44px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#111827', marginBottom: '16px' }}>
-          Recent Field Operations & Case Snapshots in {cityName}
+          Recent Field Operations &amp; Telemetry in {cityName}
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '24px' }}>
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '18px', backgroundColor: '#ffffff' }}>
-            <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#ea580c' }}>Verified Field Case</span>
-            <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#111827', margin: '6px 0 8px 0' }}>{neighborhoods[0]} 2-Car Garage Cleanout</h4>
-            <p style={{ fontSize: '13px', color: '#4b5563', margin: 0 }}>Hauled 850 lbs of accumulated storage bins, workbench scraps, and broken lawn equipment in under 3 hours.</p>
+        {jobs.length > 0 && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '24px' }}>
+            {jobs.slice(0, 3).map((job) => (
+              <div key={job.id} style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '18px', backgroundColor: '#ffffff' }}>
+                <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#ea580c' }}>Verified Field Case</span>
+                <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#111827', margin: '6px 0 8px 0' }}>{job.serviceType}</h4>
+                <p style={{ fontSize: '13px', color: '#4b5563', margin: '0 0 10px 0' }}>
+                  {job.itemCategory}{job.weightLbs ? ` (${job.weightLbs.toLocaleString()} lbs)` : ''}{job.disposalSite ? ` routed via ${job.disposalSite}` : ''}.
+                </p>
+                {job.slug && (
+                  <Link href={`/jobs/${job.slug}`} style={{ fontSize: '12px', fontWeight: 700, color: '#2563eb', textDecoration: 'none' }}>
+                    View Case Study &rarr;
+                  </Link>
+                )}
+              </div>
+            ))}
           </div>
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '18px', backgroundColor: '#ffffff' }}>
-            <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#ea580c' }}>Verified Field Case</span>
-            <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#111827', margin: '6px 0 8px 0' }}>{corridors[0]} Commercial Extraction</h4>
-            <p style={{ fontSize: '13px', color: '#4b5563', margin: 0 }}>Extracted 3 heavy commercial reach-in refrigerators via hydraulic liftgate for certified EPA freon reclamation.</p>
-          </div>
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '18px', backgroundColor: '#ffffff' }}>
-            <span style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#ea580c' }}>Verified Field Case</span>
-            <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#111827', margin: '6px 0 8px 0' }}>{neighborhoods[2] || neighborhoods[1]} Storm Debris Clearing</h4>
-            <p style={{ fontSize: '13px', color: '#4b5563', margin: 0 }}>Cleared 1,200 lbs of wind-damaged fir tree branches and overgrown blackberries after heavy storm winds.</p>
-          </div>
-        </div>
+        )}
 
         {/* Live Operational Telemetry Feed Table */}
         <div style={{ overflowX: 'auto', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
@@ -811,7 +830,9 @@ export default async function DynamicSpokePage({ params }: PageProps) {
         </h2>
         {jobs.filter((j) => j.customerReview).length === 0 ? (
           <p style={{ color: '#6b7280', fontStyle: 'italic' }}>
-            {reputation.aggregateRating}-Star Google & Amzy Verified Hauling. Over {reputation.reviewCount} verified reviews across South King & Pierce Counties.
+            {reputation.reviewCount > 0 && reputation.aggregateRating
+              ? `${reputation.aggregateRating}-Star Google & Amzy Verified Hauling. ${reputation.reviewCount} verified reviews across ${county} and surrounding communities.`
+              : `Collecting first verified customer reviews in ${cityName}, ${stateAbbr}.`}
           </p>
         ) : (
           jobs
@@ -882,7 +903,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
                   ) : (
                     <img
                       src={post.mediaUrl}
-                      alt={`${post.caption} - M&M Junk Removal ${cityName}, WA`}
+                      alt={`${post.caption} - ${ctx.brandName} ${cityName}, ${stateAbbr}`}
                       title={`${post.caption} - Verified Field Proof`}
                       width={480}
                       height={360}
@@ -948,7 +969,7 @@ export default async function DynamicSpokePage({ params }: PageProps) {
             {nearbyCities.map((nearby) => (
               <Link
                 key={nearby.slug}
-                href={`/junk-removal-${nearby.slug}-wa`}
+                href={`/junk-removal-${nearby.slug}-${(nearby.state || stateAbbr).toLowerCase()}`}
                 style={{
                   display: 'block',
                   border: '1px solid #e5e7eb',
@@ -1021,26 +1042,28 @@ export default async function DynamicSpokePage({ params }: PageProps) {
           >
             Book via AMZY in 30 Seconds ↗
           </a>
-          <a
-            href={`tel:${HUB_PHONE.replace(/[^0-9+]/g, '')}`}
-            style={{
-              border: '1px solid #4b5563',
-              color: '#ffffff',
-              padding: '14px 28px',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              fontWeight: 700,
-              fontSize: '15px'
-            }}
-          >
-            Call (253) 886-7724
-          </a>
+          {HUB_PHONE && (
+            <a
+              href={`tel:${HUB_PHONE.replace(/[^0-9+]/g, '')}`}
+              style={{
+                border: '1px solid #4b5563',
+                color: '#ffffff',
+                padding: '14px 28px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: '15px'
+              }}
+            >
+              Call {HUB_DISPLAY_PHONE}
+            </a>
+          )}
         </div>
       </div>
 
       {/* Postal Zones & Footer Metadata */}
       <footer style={{ paddingTop: '24px', borderTop: '1px solid #e5e7eb', fontSize: '13px', color: '#6b7280' }}>
-        <strong>Authorized Postal Zones:</strong> {zipCodes.join(', ')} ({county}, Washington). 
+        <strong>Authorized Postal Zones:</strong> {zipCodes.join(', ') || ctx.postalCode || 'Local Service Area'} ({county}, {stateAbbr}). 
         Staged and dispatched locally near {corridors[0]} and {corridors[1] || 'regional transfer hubs'}.
       </footer>
     </article>

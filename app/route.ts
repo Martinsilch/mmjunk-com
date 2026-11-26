@@ -121,7 +121,7 @@ export async function GET() {
     ${jobs.length > 0 ? `<section style="margin-bottom:36px;"><h2 style="font-size:24px;font-weight:800;margin:0 0 14px 0;">Verified Field Jobs</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">${jobs.map((j) => `<a href="/jobs/${escapeHtml(j.slug || j.id)}" style="display:block;border:1px solid #e5e7eb;border-radius:10px;padding:16px;text-decoration:none;color:#111827;"><strong>${escapeHtml(j.serviceType)}</strong><div style="font-size:13px;color:#4b5563;">${escapeHtml(j.itemCategory)} — ${escapeHtml(j.location?.cityName || ctx.city)}</div></a>`).join('')}</div></section>` : ''}
 
     <footer style="border-top:1px solid #e5e7eb;padding-top:20px;font-size:13px;color:#6b7280;">
-      <strong>${escapeHtml(ctx.legalName)}</strong> &bull; ${escapeHtml(ctx.street)}, ${escapeHtml(ctx.city)}, ${escapeHtml(ctx.state)} ${escapeHtml(ctx.postalCode)} &bull; <a href="/services">Services</a> &bull; <a href="/locations">Locations</a> &bull; <a href="/jobs">Jobs</a> &bull; <a href="/reputation">Reputation</a> &bull; <a href="/llms.txt">llms.txt</a>
+      <strong>${escapeHtml(ctx.legalName)}</strong> &bull; ${escapeHtml(ctx.street)}, ${escapeHtml(ctx.city)}, ${escapeHtml(ctx.state)} ${escapeHtml(ctx.postalCode)} &bull; <a href="/services">Services</a> &bull; <a href="/locations">Locations</a> &bull; <a href="/jobs">Jobs</a> &bull; <a href="/reputation">Reputation</a> &bull; <a href="/llms.txt">llms.txt</a> &bull; <a href="https://amzy-agency.vercel.app/#pricing" target="_blank" rel="noopener noreferrer" style="color:#ea580c;text-decoration:underline;">This web application is built and managed by Amzy Agency</a>
     </footer>
   </main>
 </body>

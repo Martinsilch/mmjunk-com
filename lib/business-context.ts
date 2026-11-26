@@ -18,6 +18,7 @@ export interface ContractorContext {
   canonicalUrl: string;
   tagline: string;
   description: string;
+  foundedYear?: number | null;
   street: string;
   city: string;
   county: string;
@@ -32,6 +33,7 @@ export interface ContractorContext {
   operatingHours: Record<string, string>;
   pricing: Record<string, unknown>;
   fleet: Record<string, unknown>;
+  branding: Record<string, unknown>;
   externalLinks: Record<string, string | null | undefined>;
   sameAsUrls: string[];
 }
@@ -56,10 +58,12 @@ export async function getContractorContext(): Promise<ContractorContext> {
     const extLinks = (dbProfile.externalLinksJson as Record<string, string | null | undefined>) || {};
     const sameAsUrls = [
       extLinks.googleMapsUrl,
+      extLinks.googlePlaceShareUrl,
       extLinks.bbbUrl,
       extLinks.yelpUrl,
       extLinks.facebookUrl,
       extLinks.youtubeUrl,
+      extLinks.expertiseUrl,
       dbProfile.schedulerUrl,
     ].filter((u): u is string => Boolean(u && /^https?:\/\//i.test(u)));
 
@@ -78,6 +82,7 @@ export async function getContractorContext(): Promise<ContractorContext> {
       description:
         dbProfile.description ||
         `${dbProfile.brandName} provides upfront residential and commercial junk removal across ${dbProfile.city}, ${dbProfile.state}.`,
+      foundedYear: dbProfile.foundedYear,
       street: dbProfile.street,
       city: dbProfile.city,
       county: dbProfile.county || `${dbProfile.city} Area`,
@@ -92,6 +97,7 @@ export async function getContractorContext(): Promise<ContractorContext> {
       operatingHours: (dbProfile.operatingHoursJson as Record<string, string>) || {},
       pricing: (dbProfile.pricingJson as Record<string, unknown>) || {},
       fleet: (dbProfile.fleetJson as Record<string, unknown>) || {},
+      branding: (dbProfile.brandingJson as Record<string, unknown>) || {},
       externalLinks: extLinks,
       sameAsUrls,
     };
@@ -130,6 +136,7 @@ export async function getContractorContext(): Promise<ContractorContext> {
       canonicalUrl: canonical,
       tagline: `Local Junk Removal & Hauling in ${city}, ${state}`,
       description: `Upfront volume-based residential and commercial junk removal in ${city}, ${state}.`,
+      foundedYear: null,
       street: 'Primary Dispatch',
       city,
       county: `${city} Area`,
@@ -144,6 +151,7 @@ export async function getContractorContext(): Promise<ContractorContext> {
       operatingHours: {},
       pricing: {},
       fleet: {},
+      branding: {},
       externalLinks: {},
       sameAsUrls: bookingUrl ? [bookingUrl] : [],
     };
@@ -155,7 +163,7 @@ export async function getContractorContext(): Promise<ContractorContext> {
     isColdStartEnv: false,
     brandName: 'M&M Junk Removal',
     legalName: 'M&M Junk Removal LLC',
-    ownerName: 'Martin Silch',
+    ownerName: 'Martin Silchukov',
     phone: '+1-253-886-7724',
     displayPhone: '(253) 886-7724',
     email: 'dispatch@mmjunk.com',
@@ -164,11 +172,12 @@ export async function getContractorContext(): Promise<ContractorContext> {
     tagline: 'South King & Pierce County Junk Removal & Hauling',
     description:
       'M&M Junk Removal delivers upfront, owner-operated residential and commercial junk removal, estate cleanouts, and light demolition across South King & Pierce Counties.',
-    street: '31200 Pacific Hwy S',
+    foundedYear: 2007,
+    street: '32511 7th Pl S',
     city: 'Federal Way',
     county: 'King County',
     state: 'WA',
-    postalCode: '98003',
+    postalCode: '98003-5913',
     country: 'US',
     lat: 47.3223,
     lng: -122.3126,
@@ -179,19 +188,60 @@ export async function getContractorContext(): Promise<ContractorContext> {
       mondayToFriday: '7:00 AM - 7:00 PM PST',
       saturday: '7:00 AM - 6:00 PM PST',
     },
-    pricing: {},
-    fleet: {},
+    pricing: {
+      freeEstimates: true,
+      upfrontPricing: true,
+      minimumLoadPrice: 95,
+      rateGuarantee: 'Beat any verified written quote from licensed local competitors by 10%',
+      sameDayCutoff: '12:00 PM PST',
+      volumeTiers: [
+        { id: 'MMJ-LOAD-MINI', label: 'MINI Curbside Tier', basePrice: 95, minPrice: 95, maxPrice: 150, pickupLoadsEquivalent: '0.25 load' },
+        { id: 'MMJ-LOAD-1-PICKUP', label: '1 Pick Up Truck Bed', basePrice: 220, minPrice: 176, maxPrice: 264, pickupLoadsEquivalent: '1 pickup bed' },
+        { id: 'MMJ-LOAD-2-PICKUP', label: '2 Pick Up Loads', basePrice: 440, minPrice: 352, maxPrice: 528, pickupLoadsEquivalent: '2 pickup loads' },
+        { id: 'MMJ-LOAD-3-PICKUP', label: '3 Pick Up Loads', basePrice: 660, minPrice: 528, maxPrice: 792, pickupLoadsEquivalent: '3 pickup loads' },
+        { id: 'MMJ-LOAD-DUMP-TRUCK', label: 'Full Dump Truck Load', basePrice: 1200, minPrice: 960, maxPrice: 1440, pickupLoadsEquivalent: '~5.5 pickup loads' },
+        { id: 'MMJ-LOAD-DUMP-TRUCK-PLUS', label: 'Dump Truck Plus', basePrice: 1600, minPrice: 1560, maxPrice: 2400, pickupLoadsEquivalent: '8-11 pickup loads' },
+      ],
+    },
+    fleet: {
+      primaryVehicle: '2017 Isuzu NPR Commercial Dump Truck',
+      licensePlate: 'C59567',
+      trucks: [
+        {
+          name: '2017 Isuzu NPR Commercial Dump Truck',
+          make: 'Isuzu',
+          model: 'NPR',
+          year: 2017,
+          licensePlate: 'C59567',
+          cubicFeet: 480,
+          cubicYards: 17.78,
+        },
+      ],
+    },
+    branding: {
+      heroImageUrl: 'https://www.mmjunk.com/assets/images/team-hero.webp',
+      heroMobileImageUrl: 'https://www.mmjunk.com/assets/images/team-hero-mobile.webp',
+      avatarUrl: 'https://www.mmjunk.com/assets/images/martin-silchuk-avatar.webp',
+      logoUrl: 'https://www.mmjunk.com/assets/images/logo.webp',
+      darkBgLogoUrl: 'https://www.mmjunk.com/assets/images/logo-dark-bg.webp',
+    },
     externalLinks: {
       googleMapsUrl: 'https://www.google.com/maps?cid=15999711673070107161',
+      googlePlaceShareUrl: 'https://share.google/Md8q9nfTnuZI9KjKj',
       bbbUrl: 'https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173',
       yelpUrl: 'https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3',
       facebookUrl: 'https://www.facebook.com/mmjunkremoval/',
+      youtubeUrl: 'https://www.youtube.com/channel/UC0hatNYCgMWhFz-58gO1uQw',
+      expertiseUrl: 'https://www.expertise.com/home-improvement/junk-removal/washington/seattle#mmjunkremoval',
     },
     sameAsUrls: [
       'https://www.google.com/maps?cid=15999711673070107161',
+      'https://share.google/Md8q9nfTnuZI9KjKj',
       'https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173',
       'https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3',
       'https://www.facebook.com/mmjunkremoval/',
+      'https://www.youtube.com/channel/UC0hatNYCgMWhFz-58gO1uQw',
+      'https://www.expertise.com/home-improvement/junk-removal/washington/seattle#mmjunkremoval',
       'https://amzy.me/?utm_content=4',
     ],
   };

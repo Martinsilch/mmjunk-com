@@ -845,7 +845,15 @@ export default async function JobStoryPage({ params }: JobPageProps) {
       {/* Footer */}
       <footer style={{ borderTop: '1px solid #e2e8f0', backgroundColor: '#f8fafc', padding: '24px 20px', marginTop: '48px', fontSize: '13px', color: '#64748b', textAlign: 'center' }}>
         <p style={{ margin: '0 0 6px 0' }}>
-          &copy; {new Date().getFullYear()} {ctx.legalName} &bull; Serving {ctx.city}, {ctx.state} &amp; Surrounding Communities.
+          &copy; {new Date().getFullYear()} {ctx.legalName} &bull; All rights reserved. &bull; Serving {ctx.city}, {ctx.state} &amp; Surrounding Communities. &bull;{' '}
+          <a
+            href="https://amzy-agency.vercel.app/#pricing"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#ea580c', textDecoration: 'underline' }}
+          >
+            This web application is built and managed by Amzy Agency
+          </a>
         </p>
         <p style={{ margin: 0 }}>
           Authorized Postal Zones for this dispatch: {zipCodes.join(', ') || ctx.postalCode || 'Local Territory'} ({county}, {stateAbbr}).

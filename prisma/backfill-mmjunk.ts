@@ -10,7 +10,7 @@ const IS_DRY_RUN = process.argv.includes('--dry-run');
 const MM_BASE = {
   brandName: 'M&M Junk Removal',
   legalName: 'M&M Junk Removal LLC',
-  ownerName: 'Martin Silch',
+  ownerName: 'Martin Silchukov',
   phone: '+12538867724',
   email: 'dispatch@mmjunk.com',
   domain: 'www.mmjunk.com',
@@ -18,18 +18,70 @@ const MM_BASE = {
   tagline: 'South King & Pierce County Junk Removal & Hauling',
   description:
     'M&M Junk Removal delivers upfront, owner-operated residential and commercial junk removal, estate cleanouts, and light demolition across South King & Pierce Counties.',
-  foundedYear: 2020,
-  street: '31200 Pacific Hwy S',
+  foundedYear: 2007,
+  street: '32511 7th Pl S',
   city: 'Federal Way',
   county: 'King County',
   state: 'WA',
-  postalCode: '98003',
+  postalCode: '98003-5913',
   country: 'US',
   lat: 47.3223,
   lng: -122.3126,
   serviceRadiusMiles: 35,
   trackerSlug: 'mam-federalway',
   schedulerUrl: 'https://amzy.me/?utm_content=4',
+};
+
+const MM_PRICING_JSON = {
+  freeEstimates: true,
+  upfrontPricing: true,
+  minimumLoadPrice: 95,
+  rateGuarantee: 'Beat any verified written quote from licensed local competitors by 10%',
+  sameDayCutoff: '12:00 PM PST',
+  volumeTiers: [
+    { id: 'MMJ-LOAD-MINI', label: 'MINI Curbside Tier', basePrice: 95, minPrice: 95, maxPrice: 150, cubicYardsRange: '0.5 - 1.0', pickupLoadsEquivalent: '0.25 load' },
+    { id: 'MMJ-LOAD-1-PICKUP', label: '1 Pick Up Truck Bed', basePrice: 220, minPrice: 176, maxPrice: 264, cubicYardsRange: '2.0 - 2.5', pickupLoadsEquivalent: '1 pickup bed' },
+    { id: 'MMJ-LOAD-2-PICKUP', label: '2 Pick Up Loads', basePrice: 440, minPrice: 352, maxPrice: 528, cubicYardsRange: '4.5 - 5.0', pickupLoadsEquivalent: '2 pickup loads' },
+    { id: 'MMJ-LOAD-3-PICKUP', label: '3 Pick Up Loads', basePrice: 660, minPrice: 528, maxPrice: 792, cubicYardsRange: '7.0 - 7.5', pickupLoadsEquivalent: '3 pickup loads' },
+    { id: 'MMJ-LOAD-DUMP-TRUCK', label: 'Full Dump Truck Load', basePrice: 1200, minPrice: 960, maxPrice: 1440, cubicYardsRange: '14.0 - 16.0', pickupLoadsEquivalent: '~5.5 pickup loads' },
+    { id: 'MMJ-LOAD-DUMP-TRUCK-PLUS', label: 'Dump Truck Plus', basePrice: 1600, minPrice: 1560, maxPrice: 2400, cubicYardsRange: '20.0+', pickupLoadsEquivalent: '8-11 pickup loads' },
+  ],
+};
+
+const MM_FLEET_JSON = {
+  primaryVehicle: '2017 Isuzu NPR Commercial Dump Truck',
+  licensePlate: 'C59567',
+  trucks: [
+    {
+      name: '2017 Isuzu NPR Commercial Dump Truck',
+      make: 'Isuzu',
+      model: 'NPR',
+      year: 2017,
+      licensePlate: 'C59567',
+      cubicFeet: 480,
+      cubicYards: 17.78,
+      dimensionsFeet: { length: 12, width: 8, height: 5 },
+    },
+  ],
+};
+
+const MM_BRANDING_JSON = {
+  heroImageUrl: 'https://www.mmjunk.com/assets/images/team-hero.webp',
+  heroMobileImageUrl: 'https://www.mmjunk.com/assets/images/team-hero-mobile.webp',
+  avatarUrl: 'https://www.mmjunk.com/assets/images/martin-silchuk-avatar.webp',
+  logoUrl: 'https://www.mmjunk.com/assets/images/logo.webp',
+  darkBgLogoUrl: 'https://www.mmjunk.com/assets/images/logo-dark-bg.webp',
+};
+
+const MM_EXTERNAL_LINKS_JSON = {
+  googleMapsUrl: 'https://www.google.com/maps?cid=15999711673070107161',
+  googlePlaceShareUrl: 'https://share.google/Md8q9nfTnuZI9KjKj',
+  bbbUrl: 'https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173',
+  yelpUrl: 'https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3',
+  facebookUrl: 'https://www.facebook.com/mmjunkremoval/',
+  youtubeUrl: 'https://www.youtube.com/channel/UC0hatNYCgMWhFz-58gO1uQw',
+  expertiseUrl: 'https://www.expertise.com/home-improvement/junk-removal/washington/seattle#mmjunkremoval',
+  waDorUrl: 'https://dor.wa.gov',
 };
 
 const MM_SERVICES = [
@@ -317,15 +369,17 @@ async function run() {
         ...MM_BASE,
         languages: ['English'],
         discoveryProviderId: 'app_mmjunk_primary',
-        externalLinksJson: {
-          googleMapsUrl: 'https://www.google.com/maps?cid=15999711673070107161',
-          bbbUrl: 'https://www.bbb.org/us/wa/federal-way/profile/garbage-removal/mm-junk-removal-1296-22638173',
-          yelpUrl: 'https://www.yelp.com/biz/m-and-m-junk-removal-federal-way-3',
-          facebookUrl: 'https://www.facebook.com/mmjunkremoval/',
-        },
+        externalLinksJson: MM_EXTERNAL_LINKS_JSON,
+        pricingJson: MM_PRICING_JSON,
+        fleetJson: MM_FLEET_JSON,
+        brandingJson: MM_BRANDING_JSON,
       },
       update: {
         ...MM_BASE,
+        externalLinksJson: MM_EXTERNAL_LINKS_JSON,
+        pricingJson: MM_PRICING_JSON,
+        fleetJson: MM_FLEET_JSON,
+        brandingJson: MM_BRANDING_JSON,
         syncedAt: new Date(),
       },
     });

@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
 import { getContractorContext, getDynamicServices } from '@/lib/business-context';
 
 export const dynamic = 'force-dynamic';
@@ -9,9 +11,24 @@ export async function GET() {
     getDynamicServices(),
   ]);
 
-  const loadRates = Array.isArray((ctx.pricing as any)?.loadRates)
-    ? (ctx.pricing as any).loadRates
-    : [];
+  const pricingObj = (ctx.pricing as Record<string, any>) || {};
+  const loadRates = Array.isArray(pricingObj.loadRates) ? pricingObj.loadRates : [];
+  const volumeTiers = Array.isArray(pricingObj.volumeTiers) ? pricingObj.volumeTiers : [];
+
+  if (!ctx.isConfiguredFromDb && !ctx.isColdStartEnv) {
+    const staticPricingPath = path.join(process.cwd(), '.well-known', 'pricing.json');
+    if (fs.existsSync(staticPricingPath)) {
+      const content = fs.readFileSync(staticPricingPath, 'utf8');
+      return new NextResponse(content, {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    }
+  }
 
   return NextResponse.json(
     {
@@ -21,10 +38,13 @@ export async function GET() {
       bookingUrl: ctx.bookingUrl,
       pricingModel: {
         type: 'volume_and_service_based',
-        freeEstimates: (ctx.pricing as any)?.freeEstimates ?? true,
-        upfrontPricing: (ctx.pricing as any)?.upfrontPricing ?? true,
-        minimumLoadPriceUsd: (ctx.pricing as any)?.minimumLoadPrice ?? null,
+        freeEstimates: pricingObj.freeEstimates ?? true,
+        upfrontPricing: pricingObj.upfrontPricing ?? true,
+        minimumLoadPriceUsd: pricingObj.minimumLoadPrice ?? null,
+        rateGuarantee: pricingObj.rateGuarantee ?? null,
+        sameDayCutoff: pricingObj.sameDayCutoff ?? null,
         loadRates,
+        volumeTiers,
       },
       services: services.map((s) => ({
         slug: s.slug,

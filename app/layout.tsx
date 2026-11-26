@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: 'M&M Junk Removal | Top-Rated Hauling & Eco-Sorting',
     template: '%s | M&M Junk Removal'
   },
-  description: 'Fast, friendly junk removal & eco-sorting in Federal Way, Auburn, Tacoma & King/Pierce Counties. Same-day service, upfront rates from $125.',
+  description: 'Fast, friendly junk removal & eco-sorting in Federal Way, Auburn, Tacoma & King/Pierce Counties. Same-day service, upfront rates from $95.',
   robots: {
     index: true,
     follow: true
@@ -29,7 +29,12 @@ export default function RootLayout({
           }}
         />
         {/* End Google Tag Manager */}
+        <link rel="preload" href="/assets/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="describedby" href="/llms.txt" />
+        <link rel="describedby" type="application/json" href="/.well-known/agent.json" />
+        <link rel="pricing" href="/.well-known/pricing.json" />
         <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+        <link rel="apple-touch-icon" href="/assets/images/favicon.png" />
       </head>
       <body style={{ margin: 0, fontFamily: 'system-ui, -apple-system, sans-serif', color: '#1f2937' }}>
         {/* Google Tag Manager (noscript) */}

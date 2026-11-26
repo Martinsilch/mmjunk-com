@@ -602,33 +602,57 @@ export async function generateChatGPTProductFeedAsync(): Promise<OpenAIFeedItem[
   }
 
   const baseUrl = ctx.canonicalUrl.replace(/\/$/, '');
-  const defaultImage = `${baseUrl}/logo.svg`;
+  const brandingObj = (ctx.branding as Record<string, any>) || {};
+  const defaultImage =
+    brandingObj.heroImageUrl ||
+    brandingObj.logoUrl ||
+    (ctx.isColdStartEnv ? `${baseUrl}/logo.svg` : `${baseUrl}/assets/images/Federal%20Way%20WA%20Junk%20and%20Trash%20Removal.png`);
+  const additionalImages = [brandingObj.logoUrl, brandingObj.heroImageUrl].filter(
+    (img): img is string => Boolean(img && img !== defaultImage && /^https?:\/\//i.test(img))
+  );
+
+  const volumeTiers: any[] = Array.isArray((ctx.pricing as any)?.volumeTiers)
+    ? (ctx.pricing as any).volumeTiers
+    : [];
   const loadRates: any[] = Array.isArray((ctx.pricing as any)?.loadRates)
     ? (ctx.pricing as any).loadRates
     : [];
+  const tierSource = volumeTiers.length > 0 ? volumeTiers : loadRates;
 
-  const loadItems: OpenAIFeedItem[] = loadRates.map((rate, idx) => ({
-    item_id: `LOAD-${String(rate.slug || idx + 1).toUpperCase().replace(/[^A-Z0-9-]/g, '')}`,
-    offer_id: `${ctx.trackerSlug || 'amzy'}-${rate.slug || idx + 1}`,
-    group_id: 'AMZY-TRUCK-LOAD',
-    listing_has_variations: true,
-    variant_dict: { load_size: rate.title || rate.slug },
-    title: `${ctx.brandName} — ${rate.title || rate.slug}`,
-    description: rate.shortDescription || `Upfront junk removal hauling in ${ctx.city}, ${ctx.state}.`,
-    url: `${baseUrl}/services`,
-    brand: ctx.brandName,
-    seller_name: ctx.legalName,
-    image_url: defaultImage,
-    availability: 'in_stock' as const,
-    price: `${Number(rate.basePrice || 145).toFixed(2)} USD`,
-    target_countries: ['US'],
-    store_country: ctx.country || 'US',
-    is_eligible_search: true,
-    product_category: 'Home & Garden > Waste Management & Hauling > Junk Removal',
-    seller_url: baseUrl,
-    shipping_price: '0.00 USD',
-    accepts_returns: false,
-  }));
+  const loadItems: OpenAIFeedItem[] = tierSource.map((tier, idx) => {
+    const label = tier.label || tier.title || tier.slug || `Tier ${idx + 1}`;
+    const tierSlug = String(tier.id || tier.slug || label)
+      .toLowerCase()
+      .replace(/[^a-z0-9-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    const price = Number(tier.basePrice ?? tier.minPrice ?? 95);
+    return {
+      item_id: `LOAD-${tierSlug.toUpperCase() || idx + 1}`,
+      offer_id: `${ctx.trackerSlug || 'amzy'}-load-${tierSlug || idx + 1}`,
+      group_id: 'MMJ-TRUCK-LOAD',
+      listing_has_variations: true,
+      variant_dict: { load_size: label },
+      title: `${ctx.brandName} — ${label}`,
+      description:
+        tier.typicalItems ||
+        tier.shortDescription ||
+        `${label} upfront junk hauling service in ${ctx.city}, ${ctx.state}. Includes crew, loading, transport, and recycling.`,
+      url: `${baseUrl}/services?load=${encodeURIComponent(tierSlug || String(idx + 1))}`,
+      brand: ctx.brandName,
+      seller_name: ctx.legalName,
+      image_url: defaultImage,
+      ...(additionalImages.length ? { additional_image_urls: additionalImages } : {}),
+      availability: 'in_stock' as const,
+      price: `${price.toFixed(2)} USD`,
+      target_countries: ['US'],
+      store_country: ctx.country || 'US',
+      is_eligible_search: true,
+      product_category: 'Home & Garden > Waste Management & Hauling > Junk Removal',
+      seller_url: baseUrl,
+      shipping_price: '0.00 USD',
+      accepts_returns: false,
+    };
+  });
 
   const serviceItems: OpenAIFeedItem[] = services.map((svc, idx) => ({
     item_id: `SVC-${svc.slug.toUpperCase().replace(/[^A-Z0-9-]/g, '') || idx}`,
@@ -639,8 +663,9 @@ export async function generateChatGPTProductFeedAsync(): Promise<OpenAIFeedItem[
     brand: ctx.brandName,
     seller_name: ctx.legalName,
     image_url: defaultImage,
+    ...(additionalImages.length ? { additional_image_urls: additionalImages } : {}),
     availability: 'in_stock' as const,
-    price: `${Number(svc.basePrice || 145).toFixed(2)} USD`,
+    price: `${Number(svc.basePrice || 95).toFixed(2)} USD`,
     target_countries: ['US'],
     store_country: ctx.country || 'US',
     is_eligible_search: true,

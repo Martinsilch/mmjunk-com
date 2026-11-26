@@ -1065,6 +1065,17 @@ export default async function DynamicSpokePage({ params }: PageProps) {
       <footer style={{ paddingTop: '24px', borderTop: '1px solid #e5e7eb', fontSize: '13px', color: '#6b7280' }}>
         <strong>Authorized Postal Zones:</strong> {zipCodes.join(', ') || ctx.postalCode || 'Local Service Area'} ({county}, {stateAbbr}). 
         Staged and dispatched locally near {corridors[0]} and {corridors[1] || 'regional transfer hubs'}.
+        <div style={{ marginTop: '8px' }}>
+          &copy; {new Date().getFullYear()} {ctx.legalName}. All rights reserved. &bull;{' '}
+          <a
+            href="https://amzy-agency.vercel.app/#pricing"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#ea580c', textDecoration: 'underline' }}
+          >
+            This web application is built and managed by Amzy Agency
+          </a>
+        </div>
       </footer>
     </article>
   );

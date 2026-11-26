@@ -190,6 +190,17 @@ export default async function DynamicServiceDetailPage({ params }: ServicePagePr
           </div>
         )}
       </section>
+      <footer style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid #e5e7eb', fontSize: '13px', color: '#6b7280' }}>
+        &copy; {new Date().getFullYear()} {ctx.legalName}. All rights reserved. &bull;{' '}
+        <a
+          href="https://amzy-agency.vercel.app/#pricing"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: '#ea580c', textDecoration: 'underline' }}
+        >
+          This web application is built and managed by Amzy Agency
+        </a>
+      </footer>
     </main>
   );
 }

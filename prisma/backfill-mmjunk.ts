@@ -464,7 +464,7 @@ async function run() {
       await prisma.jobStory.update({
         where: { id: existing.id },
         data: {
-          slug: existing.slug || job.slug,
+          slug: job.slug,
           serviceId: existing.serviceId || serviceId,
           canonicalServiceSlug: existing.canonicalServiceSlug || job.serviceSlug,
           mediaUrls: existing.mediaUrls.length > 0 ? existing.mediaUrls : (job.mediaUrls || []),

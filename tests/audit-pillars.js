@@ -28,15 +28,7 @@ const htmlFiles = [
   'services/residential-furniture-removal/index.html',
   'services/hot-tub-demolition-removal/index.html',
   'services/light-demolition-services/index.html',
-  'services/yard-waste-removal/index.html',
-  'jobs/index.html',
-  'jobs/federal-way-commercial-refrigerator-extraction/index.html',
-  'jobs/ne-tacoma-moving-cleanout/index.html',
-  'jobs/federal-way-heavy-treadmill-disassembly/index.html',
-  'jobs/auburn-birch-tree-yard-waste-clearing/index.html',
-  'jobs/auburn-playset-shed-demolition/index.html',
-  'jobs/tacoma-concrete-construction-debris-removal/index.html',
-  'jobs/basketball-court-wall-demolition-renton-skyway/index.html'
+  'services/yard-waste-removal/index.html'
 ];
 
 console.log('====================================================');

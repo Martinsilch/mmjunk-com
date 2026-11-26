@@ -12,12 +12,13 @@ interface JobPageProps {
 export const revalidate = false; // Relies on on-demand revalidateTag(`job-${slug}`)
 
 const LEGACY_JOB_SLUG_MAP: Record<string, string> = {
-  'federal-way-commercial-refrigerator-extraction': 'commercial-appliance-removal-federal-way-fw-cooler-0926',
-  'ne-tacoma-moving-cleanout': 'estate-liquidation-moving-cleanouts-tacoma-tac-move-0917',
-  'federal-way-heavy-treadmill-disassembly': 'residential-heavy-item-disassembly-federal-way-fw-fit-0929',
-  'auburn-birch-tree-yard-waste-clearing': 'yard-waste-storm-timber-clearing-auburn-aub-yard-0920',
-  'auburn-playset-shed-demolition': 'outdoor-playset-shed-demolition-auburn-aub-demo-0922',
-  'tacoma-concrete-construction-debris-removal': 'concrete-masonry-demolition-removal-tacoma-tac-conc-0924',
+  // Bi-directional alias support between historical URLs and legacy generated IDs
+  'commercial-appliance-removal-federal-way-fw-cooler-0926': 'federal-way-commercial-refrigerator-extraction',
+  'estate-liquidation-moving-cleanouts-tacoma-tac-move-0917': 'ne-tacoma-moving-cleanout',
+  'residential-heavy-item-disassembly-federal-way-fw-fit-0929': 'federal-way-heavy-treadmill-disassembly',
+  'yard-waste-storm-timber-clearing-auburn-aub-yard-0920': 'auburn-birch-tree-yard-waste-clearing',
+  'outdoor-playset-shed-demolition-auburn-aub-demo-0922': 'auburn-playset-shed-demolition',
+  'concrete-masonry-demolition-removal-tacoma-tac-conc-0924': 'tacoma-concrete-construction-debris-removal',
 };
 
 export async function generateStaticParams() {

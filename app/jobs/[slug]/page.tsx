@@ -11,20 +11,32 @@ interface JobPageProps {
 
 export const revalidate = false; // Relies on on-demand revalidateTag(`job-${slug}`)
 
+const LEGACY_JOB_SLUG_MAP: Record<string, string> = {
+  'federal-way-commercial-refrigerator-extraction': 'commercial-appliance-removal-federal-way-fw-cooler-0926',
+  'ne-tacoma-moving-cleanout': 'estate-liquidation-moving-cleanouts-tacoma-tac-move-0917',
+  'federal-way-heavy-treadmill-disassembly': 'residential-heavy-item-disassembly-federal-way-fw-fit-0929',
+  'auburn-birch-tree-yard-waste-clearing': 'yard-waste-storm-timber-clearing-auburn-aub-yard-0920',
+  'auburn-playset-shed-demolition': 'outdoor-playset-shed-demolition-auburn-aub-demo-0922',
+  'tacoma-concrete-construction-debris-removal': 'concrete-masonry-demolition-removal-tacoma-tac-conc-0924',
+};
+
 export async function generateStaticParams() {
   try {
     const jobs = await db.jobStory.findMany({
       where: { slug: { not: null } },
       select: { slug: true }
     });
-    return jobs.map(j => ({ slug: j.slug as string }));
+    const dbSlugs = jobs.map(j => ({ slug: j.slug as string }));
+    const legacySlugs = Object.keys(LEGACY_JOB_SLUG_MAP).map(slug => ({ slug }));
+    return [...dbSlugs, ...legacySlugs];
   } catch {
-    return [];
+    return Object.keys(LEGACY_JOB_SLUG_MAP).map(slug => ({ slug }));
   }
 }
 
 export async function generateMetadata({ params }: JobPageProps): Promise<Metadata> {
-  const slug = params?.slug || '';
+  const rawSlug = params?.slug || '';
+  const slug = LEGACY_JOB_SLUG_MAP[rawSlug] || rawSlug;
   const ctx = await getContractorContext();
   if (!slug) return { title: `${ctx.brandName} Job Story` };
 
@@ -65,7 +77,8 @@ export async function generateMetadata({ params }: JobPageProps): Promise<Metada
 }
 
 export default async function JobStoryPage({ params }: JobPageProps) {
-  const slug = params?.slug || '';
+  const rawSlug = params?.slug || '';
+  const slug = LEGACY_JOB_SLUG_MAP[rawSlug] || rawSlug;
   if (!slug) notFound();
 
   const [ctx, reputation, job] = await Promise.all([

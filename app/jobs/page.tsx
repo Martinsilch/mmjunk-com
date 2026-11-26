@@ -100,6 +100,9 @@ export default async function JobsFeedPage() {
         </div>
       )}
       <footer style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid #e5e7eb', fontSize: '13px', color: '#6b7280' }}>
+        <p style={{ margin: '0 0 8px 0' }}>
+          Direct Dispatch: <a href={`tel:${ctx.phone}`} style={{ color: '#ea580c', fontWeight: 700 }}>{ctx.phone}</a> &bull; Serving {ctx.city}, {ctx.state} and surrounding areas
+        </p>
         &copy; {new Date().getFullYear()} {ctx.legalName}. All rights reserved. &bull;{' '}
         <a
           href="https://amzy-agency.vercel.app/#pricing"
